@@ -2,6 +2,7 @@ package com.ott.entity;
 
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +10,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
 
 @Getter
 @Setter
@@ -19,18 +19,19 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Movie {
-	private String movie_code; // ¿µÈ­ ÀÏ·Ã¹øÈ£(±¹³»:k, ÇØ¿Ü:f)
-	private String mTitle_ko; // ¿µÈ­Á¦¸ñ ±¹¹®
-	private String mTitle_ori; // ¿µÈ­Á¦¸ñ ¿øÁ¦
-	private String category; // Ä«Å×°í¸®
-	private String genre; // Àå¸£
-	private String nation; // Á¦ÀÛ ±¹°¡
-	private String prodYear; // Á¦ÀÛ ³âµµ
-	private String director; // °¨µ¶
-	private String cast; // Ãâ¿¬Áø
-	private String rating; // °ü¶÷µî±Þ
-	private String running_time; // ·¯´×Å¸ÀÓ
-	private String keyword; // ¿µÈ­ ³»¿ë Å°¿öµå
-	private String description; // ÁÙ°Å¸®, »ó¼¼¼³¸í
-	private String image_path; // ½æ³×ÀÏ ÀÌ¹ÌÁö °æ·Î
+	@Id
+	private String movie_code; // ï¿½ï¿½È­ ï¿½Ï·Ã¹ï¿½È£(ï¿½ï¿½ï¿½ï¿½:k, ï¿½Ø¿ï¿½:f)
+	private String mTitle_ko; // ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	private String mTitle_ori; // ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	private String category; // Ä«ï¿½×°ï¿½
+	private String genre; // ï¿½å¸£
+	private String nation; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	private String openYear; // ï¿½ï¿½ï¿½ï¿½ ï¿½âµµ
+	private String director; // ï¿½ï¿½ï¿½ï¿½
+	private String cast; // ï¿½â¿¬ï¿½ï¿½
+	private String rating; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String running_time; // ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½
+	private String keyword; // ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ Å°ï¿½ï¿½ï¿½ï¿½
+	private String description; // ï¿½Ù°Å¸ï¿½, ï¿½ó¼¼¼ï¿½ï¿½ï¿½
+	private String image_path; // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 }
