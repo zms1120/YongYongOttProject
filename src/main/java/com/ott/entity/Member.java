@@ -26,6 +26,7 @@ public class Member {
 	
 	@Id
 	private String id;       		//아이디
+	
 	private String password;		//비밀번호
 	private String name;			//이름
 	private String phoneNumber;		//전화번호
@@ -37,5 +38,6 @@ public class Member {
 	
 	@OneToMany(mappedBy = "member")
 	private List<Board> boards = new ArrayList<Board>();
+	//1
 	
 }

@@ -39,6 +39,7 @@ public class TVProgram {
 	private String rating;			//등급
 	private String description;		//줄거리
 	private String image_path;		//썸네일
+	//1
 	
 	
 }

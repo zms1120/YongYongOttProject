@@ -32,11 +32,11 @@ public class QBoard extends EntityPathBase<Board> {
 
     public final NumberPath<Integer> like = createNumber("like", Integer.class);
 
-    public final QMember member;
-
     public final StringPath report = createString("report");
 
     public final StringPath title = createString("title");
+
+    public final QMember writer;
 
     public QBoard(String variable) {
         this(Board.class, forVariable(variable), INITS);
@@ -56,7 +56,7 @@ public class QBoard extends EntityPathBase<Board> {
 
     public QBoard(Class<? extends Board> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.member = inits.isInitialized("member") ? new QMember(forProperty("member")) : null;
+        this.writer = inits.isInitialized("writer") ? new QMember(forProperty("writer")) : null;
     }
 
 }

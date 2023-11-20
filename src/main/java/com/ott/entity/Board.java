@@ -24,18 +24,20 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Board {
-	@Id
+
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "board_seq_generator")
 	@SequenceGenerator(name = "board_seq_generator", sequenceName = "board_seq", allocationSize = 1)
-	private String b_seq;
-	private String title;
-	private String content;
-	private int cnt;
-	private String b_category;
-	private int like;
-	private String report;
+	@Id
+	private String b_seq;					//게시글 일련번호
+	private String title;					//게시글 제목
+	private String content;					//게시글 내용
+	private int cnt;						//게시글 조회수
+	private String b_category;				//게시글 항목
+	private int like;						//게시글 추천수
+	private String report;					// 게시글 신고
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "member_id")
-	private Member member;
+	@JoinColumn(name = "member_id")		
+	private Member writer;					// 게시글 작성자
+	//1
 }
