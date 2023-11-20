@@ -34,12 +34,13 @@ public class TVProgram {
 	private String pDirector;		//감독
 	private String pWriter;			//작가
 	private String pCast;			//출연진
+	private	String pCategory;		//프로그램카테고리
 	private String genre;			//장르
 	private String nation;			//나라
 	private String rating;			//등급
 	private String description;		//줄거리
 	private String image_path;		//썸네일
-	//1
+	
 	
 	
 }

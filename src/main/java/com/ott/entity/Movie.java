@@ -27,7 +27,7 @@ public class Movie {
 	private String category; // 카테고리
 	private String genre; // 장르
 	private String nation; // 제작 국가
-	private String prodYear; // 제작 년도
+	private String openYear; // 개봉 년도
 	private String director; // 감독
 	private String cast; // 출연진
 	private String rating; // 관람등급
@@ -35,5 +35,5 @@ public class Movie {
 	private String keyword; // 영화 내용 키워드
 	private String description; // 줄거리, 상세설명
 	private String image_path; // 썸네일 이미지 경로
-	//1
+	
 }

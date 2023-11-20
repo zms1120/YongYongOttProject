@@ -41,7 +41,7 @@ public class QMovie extends EntityPathBase<Movie> {
 
     public final StringPath nation = createString("nation");
 
-    public final StringPath prodYear = createString("prodYear");
+    public final StringPath openYear = createString("openYear");
 
     public final StringPath rating = createString("rating");
 

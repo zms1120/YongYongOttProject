@@ -37,6 +37,8 @@ public class QTVProgram extends EntityPathBase<TVProgram> {
 
     public final StringPath pCast = createString("pCast");
 
+    public final StringPath pCategory = createString("pCategory");
+
     public final StringPath pDirector = createString("pDirector");
 
     public final StringPath pseq = createString("pseq");
