@@ -30,7 +30,7 @@ public class QReply extends EntityPathBase<Reply> {
 
     public final NumberPath<Integer> r_like = createNumber("r_like", Integer.class);
 
-    public final StringPath r_seq = createString("r_seq");
+    public final NumberPath<Integer> r_seq = createNumber("r_seq", Integer.class);
 
     public final StringPath report = createString("report");
 

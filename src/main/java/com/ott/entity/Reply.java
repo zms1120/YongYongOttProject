@@ -29,7 +29,7 @@ public class Reply {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rep_seq_generator")
 	@SequenceGenerator(name = "rep_seq_generator", sequenceName = "rep_seq", allocationSize = 1)
 	@Id
-	private String r_seq;									//´ñ±Û ¹øÈ£
+	private int r_seq;										//´ñ±Û ¹øÈ£
 	private String content;									//´ñ±Û ³»¿ë
 	private int r_like;										//´ñ±Û ÃßÃµ¼ö
 	private String report;									//´ñ±Û ½Å°í

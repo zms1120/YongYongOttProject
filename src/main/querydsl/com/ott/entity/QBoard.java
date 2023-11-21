@@ -26,7 +26,7 @@ public class QBoard extends EntityPathBase<Board> {
 
     public final NumberPath<Integer> b_like = createNumber("b_like", Integer.class);
 
-    public final StringPath b_seq = createString("b_seq");
+    public final NumberPath<Integer> b_seq = createNumber("b_seq", Integer.class);
 
     public final NumberPath<Integer> cnt = createNumber("cnt", Integer.class);
 

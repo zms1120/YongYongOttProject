@@ -35,5 +35,6 @@ public class Movie {
 	private String keyword; // 영화 내용 키워드
 	private String description; // 줄거리, 상세설명
 	private String image_path; // 썸네일 이미지 경로
+	private String video_path; // 영상 주소 경로
 	
 }

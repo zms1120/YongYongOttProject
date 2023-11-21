@@ -32,7 +32,7 @@ public class Board {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "board_seq_generator")
 	@SequenceGenerator(name = "board_seq_generator", sequenceName = "board_seq", allocationSize = 1)
 	@Id
-	private String b_seq;					//게시글 일련번호
+	private int b_seq;						//게시글 일련번호
 	private String title;					//게시글 제목
 	private String content;					//게시글 내용
 	private int cnt;						//게시글 조회수
