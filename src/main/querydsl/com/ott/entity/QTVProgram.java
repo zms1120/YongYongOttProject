@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -21,25 +22,25 @@ public class QTVProgram extends EntityPathBase<TVProgram> {
 
     public final StringPath airingPeriod = createString("airingPeriod");
 
+    public final ListPath<BroadcastEpisode, QBroadcastEpisode> broadcastEpisodes = this.<BroadcastEpisode, QBroadcastEpisode>createList("broadcastEpisodes", BroadcastEpisode.class, QBroadcastEpisode.class, PathInits.DIRECT2);
+
     public final StringPath description = createString("description");
 
-    public final StringPath episodeNum = createString("episodeNum");
-
-    public final StringPath genre = createString("genre");
+    public final NumberPath<Integer> episodeNum = createNumber("episodeNum", Integer.class);
 
     public final StringPath image_path = createString("image_path");
 
     public final StringPath nation = createString("nation");
 
-    public final StringPath pAirDate = createString("pAirDate");
-
     public final StringPath pBoardCasting = createString("pBoardCasting");
 
     public final StringPath pCast = createString("pCast");
 
+    public final StringPath pCategory = createString("pCategory");
+
     public final StringPath pDirector = createString("pDirector");
 
-    public final StringPath pseq = createString("pseq");
+    public final NumberPath<Integer> pseq = createNumber("pseq", Integer.class);
 
     public final StringPath pTitle = createString("pTitle");
 

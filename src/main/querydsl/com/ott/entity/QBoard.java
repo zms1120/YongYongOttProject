@@ -24,15 +24,17 @@ public class QBoard extends EntityPathBase<Board> {
 
     public final StringPath b_category = createString("b_category");
 
-    public final StringPath b_seq = createString("b_seq");
+    public final NumberPath<Integer> b_like = createNumber("b_like", Integer.class);
+
+    public final NumberPath<Integer> b_seq = createNumber("b_seq", Integer.class);
 
     public final NumberPath<Integer> cnt = createNumber("cnt", Integer.class);
 
     public final StringPath content = createString("content");
 
-    public final NumberPath<Integer> like = createNumber("like", Integer.class);
-
     public final QMember member;
+
+    public final ListPath<Reply, QReply> replies = this.<Reply, QReply>createList("replies", Reply.class, QReply.class, PathInits.DIRECT2);
 
     public final StringPath report = createString("report");
 

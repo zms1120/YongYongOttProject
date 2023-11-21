@@ -41,11 +41,13 @@ public class QMovie extends EntityPathBase<Movie> {
 
     public final StringPath nation = createString("nation");
 
-    public final StringPath prodYear = createString("prodYear");
+    public final StringPath openYear = createString("openYear");
 
     public final StringPath rating = createString("rating");
 
     public final StringPath running_time = createString("running_time");
+
+    public final StringPath video_path = createString("video_path");
 
     public QMovie(String variable) {
         super(Movie.class, forVariable(variable));
