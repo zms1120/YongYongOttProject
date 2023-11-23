@@ -31,7 +31,6 @@ public class TVProgram {
 	@SequenceGenerator(name = "tvprog_seq_generator", sequenceName = "tvprog_seq", allocationSize = 1)
 	private int pseq;				//프로그램일련번호
 	private String pTitle;			//프로그램제목
-	private int episodeNum;   		//회차
 	private String pBoardCasting;   //방송사
 	private String airingPeriod;	//방영기간
 	private String pDirector;		//감독
@@ -44,7 +43,7 @@ public class TVProgram {
 	private String image_path;		//썸네일
 	
 
-	@OneToMany(mappedBy = "tvprogram")
+	@OneToMany(mappedBy = "tvProgram")
 	private List<BroadcastEpisode> broadcastEpisodes = new ArrayList<>();
 	
 	

@@ -26,8 +26,6 @@ public class QTVProgram extends EntityPathBase<TVProgram> {
 
     public final StringPath description = createString("description");
 
-    public final NumberPath<Integer> episodeNum = createNumber("episodeNum", Integer.class);
-
     public final StringPath image_path = createString("image_path");
 
     public final StringPath nation = createString("nation");
