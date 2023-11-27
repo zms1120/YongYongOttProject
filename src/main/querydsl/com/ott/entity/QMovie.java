@@ -33,15 +33,15 @@ public class QMovie extends EntityPathBase<Movie> {
 
     public final StringPath keyword = createString("keyword");
 
+    public final StringPath m_title_ko = createString("m_title_ko");
+
+    public final StringPath m_title_ori = createString("m_title_ori");
+
     public final StringPath movie_code = createString("movie_code");
-
-    public final StringPath mTitle_ko = createString("mTitle_ko");
-
-    public final StringPath mTitle_ori = createString("mTitle_ori");
 
     public final StringPath nation = createString("nation");
 
-    public final StringPath openYear = createString("openYear");
+    public final StringPath open_year = createString("open_year");
 
     public final StringPath rating = createString("rating");
 
