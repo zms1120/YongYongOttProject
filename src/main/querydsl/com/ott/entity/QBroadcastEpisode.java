@@ -26,9 +26,9 @@ public class QBroadcastEpisode extends EntityPathBase<BroadcastEpisode> {
 
     public final StringPath description = createString("description");
 
-    public final StringPath episodeNum = createString("episodeNum");
+    public final StringPath ep_title = createString("ep_title");
 
-    public final StringPath epTitle = createString("epTitle");
+    public final StringPath episode_num = createString("episode_num");
 
     public final StringPath running_time = createString("running_time");
 

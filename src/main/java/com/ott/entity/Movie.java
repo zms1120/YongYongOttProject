@@ -37,6 +37,7 @@ public class Movie {
 	private String image_path; // 썸네일 이미지 경로
 	private String video_path; // 영상 주소 경로
 	
+	
 	public Movie(String m_title_ko) {
 		super();
 		this.m_title_ko = m_title_ko;

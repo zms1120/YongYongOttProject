@@ -32,17 +32,17 @@ public class Board {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "board_seq_generator")
 	@SequenceGenerator(name = "board_seq_generator", sequenceName = "board_seq", allocationSize = 1)
 	@Id
-	private int b_seq;						//°Ô½Ã±Û ÀÏ·Ã¹øÈ£
-	private String title;					//°Ô½Ã±Û Á¦¸ñ
-	private String content;					//°Ô½Ã±Û ³»¿ë
-	private int cnt;						//°Ô½Ã±Û Á¶È¸¼ö
-	private String b_category;				//°Ô½Ã±Û Ç×¸ñ
-	private int b_like;						//°Ô½Ã±Û ÃßÃµ¼ö
-	private String report;					// °Ô½Ã±Û ½Å°í
+	private int b_seq;						//ê²Œì‹œê¸€ ì¼ë ¨ë²ˆí˜¸
+	private String title;					//ê²Œì‹œê¸€ ì œëª©
+	private String content;					//ê²Œì‹œê¸€ ë‚´ìš©
+	private int cnt;						//ê²Œì‹œê¸€ ì¡°íšŒìˆ˜
+	private String b_category;				//ê²Œì‹œê¸€ í•­ëª©
+	private int b_like;						//ê²Œì‹œê¸€ ì¶”ì²œìˆ˜
+	private String report;					// ê²Œì‹œê¸€ ì‹ ê³ 
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id")		
-	private Member member;					// °Ô½Ã±Û ÀÛ¼ºÀÚ
+	private Member member;					// ê²Œì‹œê¸€ ì‘ì„±ì
 	
 
 	@OneToMany(mappedBy = "board")

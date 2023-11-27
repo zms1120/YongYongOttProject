@@ -29,18 +29,18 @@ public class TVProgram {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tvprog_seq_generator")
 	@SequenceGenerator(name = "tvprog_seq_generator", sequenceName = "tvprog_seq", allocationSize = 1)
-	private int pseq;				//ÇÁ·Î±×·¥ÀÏ·Ã¹øÈ£
-	private String pTitle;			//ÇÁ·Î±×·¥Á¦¸ñ
-	private String pBoardCasting;   //¹æ¼Û»ç
-	private String airingPeriod;	//¹æ¿µ±â°£
-	private String pDirector;		//°¨µ¶
-	private String pWriter;			//ÀÛ°¡
-	private String pCast;			//Ãâ¿¬Áø
-	private	String pCategory;		//ÇÁ·Î±×·¥Ä«Å×°í¸®
-	private String nation;			//³ª¶ó
-	private String rating;			//µî±Ş
-	private String description;		//ÁÙ°Å¸®
-	private String image_path;		//½æ³×ÀÏ
+	private int pseq;				//í”„ë¡œê·¸ë¨ì¼ë ¨ë²ˆí˜¸
+	private String p_title;			//í”„ë¡œê·¸ë¨ì œëª©
+	private String p_board_casting;   //ë°©ì†¡ì‚¬
+	private String airing_period;	//ë°©ì˜ê¸°ê°„
+	private String p_director;		//ê°ë…
+	private String p_writer;			//ì‘ê°€
+	private String p_cast;			//ì¶œì—°ì§„
+	private	String p_category;		//í”„ë¡œê·¸ë¨ì¹´í…Œê³ ë¦¬
+	private String nation;			//ë‚˜ë¼
+	private String rating;			//ë“±ê¸‰
+	private String description;		//ì¤„ê±°ë¦¬
+	private String image_path;		//ì¸ë„¤ì¼
 	
 
 	@OneToMany(mappedBy = "tvProgram")

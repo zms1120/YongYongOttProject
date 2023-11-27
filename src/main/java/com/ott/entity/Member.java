@@ -25,15 +25,15 @@ import lombok.ToString;
 public class Member {
 	
 	@Id
-	private String id;       		//¾ÆÀÌµğ
-	private String password;		//ºñ¹Ğ¹øÈ£
-	private String name;			//ÀÌ¸§
-	private String phoneNumber;		//ÀüÈ­¹øÈ£
-	private String position;		//È¸¿ø±¸ºĞ
-	private String email;			//ÀÌ¸ŞÀÏ
-	private Date reg_date;			//°¡ÀÔ³¯Â¥
-	private Date renew_date;		//ÀÌ¿ë±Ç°»½Å³¯Â¥
-	private Date end_date;			//ÀÌ¿ë±ÇÁ¾·á³¯Â¥
+	private String id;       		//ì•„ì´ë””
+	private String password;		//ë¹„ë°€ë²ˆí˜¸
+	private String name;			//ì´ë¦„
+	private String phone_number;		//ì „í™”ë²ˆí˜¸
+	private String position;		//íšŒì›êµ¬ë¶„
+	private String email;			//ì´ë©”ì¼
+	private Date reg_date;			//ê°€ì…ë‚ ì§œ
+	private Date renew_date;		//ì´ìš©ê¶Œê°±ì‹ ë‚ ì§œ
+	private Date end_date;			//ì´ìš©ê¶Œì¢…ë£Œë‚ ì§œ
 	
 	@OneToMany(mappedBy = "member")
 	private List<Board> boards = new ArrayList<>();

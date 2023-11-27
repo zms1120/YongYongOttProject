@@ -29,18 +29,18 @@ public class Reply {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rep_seq_generator")
 	@SequenceGenerator(name = "rep_seq_generator", sequenceName = "rep_seq", allocationSize = 1)
 	@Id
-	private int r_seq;										//´ñ±Û ¹øÈ£
-	private String content;									//´ñ±Û ³»¿ë
-	private int r_like;										//´ñ±Û ÃßÃµ¼ö
-	private String report;									//´ñ±Û ½Å°í
+	private int r_seq;										//ëŒ“ê¸€ ë²ˆí˜¸
+	private String content;									//ëŒ“ê¸€ ë‚´ìš©
+	private int r_like;										//ëŒ“ê¸€ ì¶”ì²œìˆ˜
+	private String report;									//ëŒ“ê¸€ ì‹ ê³ 
 	
 	
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "b_seq")  // "b_seq" ÄÃ·³À» ¿Ü·¡Å°·Î »ç¿ë
-    private Board board;  // Board ¿£Æ¼Æ¼¿ÍÀÇ ¸ÅÇÎ				//°Ô½Ã±Û ¹øÈ£ Á¶È¸
+    @JoinColumn(name = "b_seq")  // "b_seq" ì»¬ëŸ¼ì„ ì™¸ë˜í‚¤ë¡œ ì‚¬ìš©
+    private Board board;  // Board ì—”í‹°í‹°ì™€ì˜ ë§¤í•‘				//ê²Œì‹œê¸€ ë²ˆí˜¸ ì¡°íšŒ
     
     @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id")		
-	private Member member;									//´ñ±Û ÀÛ¼ºÀÚ
+	private Member member;									//ëŒ“ê¸€ ì‘ì„±ì
     
 }

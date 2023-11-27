@@ -23,14 +23,12 @@ import lombok.ToString;
 public class BroadcastEpisode {
 	
 	@Id
-	private String episodeNum;  //È¸Â÷ ¹øÈ£
-	private String epTitle;		//È¸Â÷º° Á¦¸ñ
-	private String running_time; //¹æ¿µ ½Ã°£
-	private String airing_date;	// È¸Â÷º° ¹æ¿µ³¯Â¥
-	private String description; // È¸Â÷º° ÁÙ°Å¸®¿º
-	private String video_path; // ¿µ»ó ÁÖ¼Ò °æ·Î
-	
-	 
+	private String episode_num;  //íšŒì°¨ ë²ˆí˜¸
+	private String ep_title;		//íšŒì°¨ë³„ ì œëª©
+	private String running_time; //ë°©ì˜ ì‹œê°„
+	private String airing_date;	// íšŒì°¨ë³„ ë°©ì˜ë‚ ì§œ
+	private String description; // íšŒì°¨ë³„ ì¤„ê±°ë¦¬ì˜Œ
+	private String video_path; // ì˜ìƒ ì£¼ì†Œ ê²½ë¡œ
     @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "pseq")		
 	private TVProgram tvProgram;	
