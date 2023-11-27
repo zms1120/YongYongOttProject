@@ -36,6 +36,7 @@ public class Member {
 	private Date end_date;			//이용권종료날짜
 	
 	@OneToMany(mappedBy = "member")
-	private List<Board> boards = new ArrayList<Board>();
+	private List<Board> boards = new ArrayList<>();
+	
 	
 }
