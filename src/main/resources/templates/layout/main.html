@@ -39,19 +39,20 @@
 					</div>
 					
                 <div class="owl-features owl-carousel">
-				<tr th:each="movie, state : ${movieList}">
+				<div th:each="movie, state : ${movieList}">
                   <div class="item">
                     <div class="thumb">
-                      <img th:src="@{'/assets/images/movie/' + ${movie.image_path}}" alt="">
+                     
+                      <img th:src="@{'/assets/images/movie/' + ${movie.image_path}}" alt="Movie Image">
                       	<a th:href="@{/layout/getMovie(movie_code=${movie.movie_code})}">
 	                      <div class="hover-effect">
 	                        	<h6>바로보기</h6>
 	                      </div>
                       	</a>
                     </div>
-                    <h4>[[${movie.mTitle_ko}]]</h4>
+                    <h4 th:text="${movie.m_title_ko}"></h4>
                   </div>
-				</tr>
+				</div>
                 </div>
               </div>
             </div>
