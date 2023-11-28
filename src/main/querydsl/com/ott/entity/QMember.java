@@ -32,7 +32,7 @@ public class QMember extends EntityPathBase<Member> {
 
     public final StringPath password = createString("password");
 
-    public final StringPath phoneNumber = createString("phoneNumber");
+    public final StringPath phone_number = createString("phone_number");
 
     public final StringPath position = createString("position");
 

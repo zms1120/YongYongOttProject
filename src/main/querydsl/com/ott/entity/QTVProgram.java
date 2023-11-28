@@ -20,7 +20,7 @@ public class QTVProgram extends EntityPathBase<TVProgram> {
 
     public static final QTVProgram tVProgram = new QTVProgram("tVProgram");
 
-    public final StringPath airingPeriod = createString("airingPeriod");
+    public final StringPath airing_period = createString("airing_period");
 
     public final ListPath<BroadcastEpisode, QBroadcastEpisode> broadcastEpisodes = this.<BroadcastEpisode, QBroadcastEpisode>createList("broadcastEpisodes", BroadcastEpisode.class, QBroadcastEpisode.class, PathInits.DIRECT2);
 
@@ -30,19 +30,19 @@ public class QTVProgram extends EntityPathBase<TVProgram> {
 
     public final StringPath nation = createString("nation");
 
-    public final StringPath pBoardCasting = createString("pBoardCasting");
+    public final StringPath p_board_casting = createString("p_board_casting");
 
-    public final StringPath pCast = createString("pCast");
+    public final StringPath p_cast = createString("p_cast");
 
-    public final StringPath pCategory = createString("pCategory");
+    public final StringPath p_category = createString("p_category");
 
-    public final StringPath pDirector = createString("pDirector");
+    public final StringPath p_director = createString("p_director");
+
+    public final StringPath p_title = createString("p_title");
+
+    public final StringPath p_writer = createString("p_writer");
 
     public final NumberPath<Integer> pseq = createNumber("pseq", Integer.class);
-
-    public final StringPath pTitle = createString("pTitle");
-
-    public final StringPath pWriter = createString("pWriter");
 
     public final StringPath rating = createString("rating");
 
