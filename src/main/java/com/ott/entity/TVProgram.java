@@ -41,7 +41,7 @@ public class TVProgram {
 	private String rating;			//등급
 	private String description;		//줄거리
 	private String image_path;		//썸네일
-	
+	private String banner_path; //배너 이미지 경로
 
 	@OneToMany(mappedBy = "tvProgram")
 	private List<BroadcastEpisode> broadcastEpisodes = new ArrayList<>();
