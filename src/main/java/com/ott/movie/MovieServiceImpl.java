@@ -57,4 +57,11 @@ public class MovieServiceImpl implements MovieService {
 		movieRepository.save(movie);
 		
 	}
+
+
+	@Override
+	public List<Movie> findByKeywordContaining(String keyword) {
+		
+		return movieRepository.findByKeywordContaining(keyword); 
+	}
 }

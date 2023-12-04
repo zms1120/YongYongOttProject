@@ -19,7 +19,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
+@ToString(exclude = "broadcastEpisodes")
 @Entity
 @Builder
 @AllArgsConstructor
@@ -34,7 +34,7 @@ public class TVProgram {
 	private String p_board_casting;   //방송사
 	private String airing_period;	//방영기간
 	private String p_director;		//감독
-	private String p_writer;			//작가
+	private String p_writer;		//작가
 	private String p_cast;			//출연진
 	private	String p_category;		//프로그램카테고리
 	private String nation;			//나라

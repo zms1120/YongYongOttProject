@@ -22,6 +22,8 @@ public class QTVProgram extends EntityPathBase<TVProgram> {
 
     public final StringPath airing_period = createString("airing_period");
 
+    public final StringPath banner_path = createString("banner_path");
+
     public final ListPath<BroadcastEpisode, QBroadcastEpisode> broadcastEpisodes = this.<BroadcastEpisode, QBroadcastEpisode>createList("broadcastEpisodes", BroadcastEpisode.class, QBroadcastEpisode.class, PathInits.DIRECT2);
 
     public final StringPath description = createString("description");

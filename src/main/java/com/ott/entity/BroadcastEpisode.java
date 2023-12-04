@@ -29,6 +29,7 @@ public class BroadcastEpisode {
 	private String airing_date;	// 회차별 방영날짜
 	private String description; // 회차별 줄거리옌
 	private String video_path; // 영상 주소 경로
+	
     @ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "pseq")		
 	private TVProgram tvProgram;	

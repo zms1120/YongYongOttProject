@@ -19,6 +19,8 @@ public class QMovie extends EntityPathBase<Movie> {
 
     public static final QMovie movie = new QMovie("movie");
 
+    public final StringPath banner_path = createString("banner_path");
+
     public final StringPath cast = createString("cast");
 
     public final StringPath category = createString("category");

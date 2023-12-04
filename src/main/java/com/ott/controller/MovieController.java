@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -23,10 +24,9 @@ public class MovieController {
     @GetMapping("/main")
     public String mainView(Model model, Movie movie) {
         List<Movie> movieList = movieService.getMovieList(movie);
-    
         System.out.println(movieList);
         model.addAttribute("movieList", movieList);
-       
+        
         return "layout/main";
     }
 
@@ -66,5 +66,21 @@ public class MovieController {
 		
 		return "redirect:getMovieList";
 			
+	}
+	
+	@GetMapping("/movie")
+	public String findByGenreContaining(@RequestParam(name = "genre", required = false)String genre, Model model, Movie movie) {
+		   	List<Movie> movieList = movieService.getMovieList(movie);
+		    List<Movie> romanceList = movieService.findByKeywordContaining("로맨스");
+		    List<Movie> fantasyList = movieService.findByKeywordContaining("판타지");
+		    List<Movie> actionList = movieService.findByKeywordContaining("액션");
+		    List<Movie> dramaList = movieService.findByKeywordContaining("드라마");
+		    
+		    model.addAttribute("romanceList", romanceList);
+		    model.addAttribute("fantasyList", fantasyList);
+		    model.addAttribute("actionList", actionList);
+		    model.addAttribute("dramaList", dramaList);
+		    model.addAttribute("movieList", movieList);
+		    return "layout/allmovie";
 	}
 }

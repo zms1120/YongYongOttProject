@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <th:block th:replace="fragments/header :: header"></th:block>
+    <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="page-content">
+				
+             <!-- ***** image Start ***** -->
+             <div class="feature-banner" 
+                  th:style="'background-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), 
+                  url(\'/assets/images/tv/' + ${tvProgram.image_path} + '\')'">
+               <div class="row">
+                 <div class="col-lg-12">
+                   <div class="header-text">
+                    <!--  <a th:href="'https://www.youtube.com/watch?v=' + ${tvProgram.video_path}" target="_blank">-->
+                     <h4>[[${tvProgram.p_title}]]</h4>
+                     <h6>[[${tvProgram.airing_period}]] &nbsp; &nbsp; [[${tvProgram.p_category}]]</h6>
+                   </div>
+                 </div>
+               </div>
+            </div>
+            <!-- ***** image End ***** -->
+            
+			<!-- detail information -->
+			<div class="detail-table">
+				<table>
+					<tr>
+						<td class="em" th:text="${tvProgram.p_title}" width="80" colspan="2"></td>
+					</tr>
+					<tr>
+						<td th:text="${tvProgram.description}" colspan="2"></td>
+					</tr>
+					<tr>
+						<td class="em" th:text="개요"></td>
+						<td th:text="${tvProgram.nation} + ', ' + ${tvProgram.airing_period}"></td>
+					</tr>
+					<tr>
+						<td class="em" th:text="장르"></td>
+						<td th:text="${tvProgram.p_category}"></td>
+					</tr>
+					<tr>
+						<td class="em" th:text="출연"></td>
+						<td th:text="${tvProgram.p_cast}"></td>
+					</tr>
+					<tr>
+						<td class="em" th:text="감독"></td>
+						<td th:text="${tvProgram.p_director}"></td>
+					</tr>
+					<tr>
+						<td class="em" th:text="등급"></td>
+						<td th:text="${tvProgram.rating}"></td>
+					</tr>
+				</table>
+            </div>
+          
+            
+             </div>
+          </div>
+        </div>
+      </div>
+    </body>
+    <th:block th:replace="fragments/footer :: footer"></th:block>
+</html>  
