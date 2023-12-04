@@ -2165,6 +2165,218 @@ Join Style
 
 /* 
 ---------------------------------------------
+Community Style
+--------------------------------------------- 
+*/
+
+.community{
+  width: 100%;
+  margin-top: 50px;
+  justify-content: center;
+}
+
+.community .heading {
+  flex-direction: column;
+}
+
+.community .search-section{
+  background-color: #353637;
+  border-radius: 15px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 40px;
+}
+
+.community #search {
+	display: block;
+	margin-top: 10px;
+	position: relative;
+}
+
+.community .search-input {
+	margin-right: 100px;
+}
+
+.community #search input {
+	width: 150%;
+	background-color: #1e1e1e;
+	height: 50px;
+	border-radius: 23px;
+	border: 3px solid #666;
+	color: #f7f7f7;
+	font-size: 18px;
+	padding-left: 60px;
+}
+
+.community #search i {
+	position: absolute;
+	color: #666;
+	left: 15px;
+	top: 16px;
+	width: 18px;
+	height: 18px;
+}
+
+.community .main-button {
+  margin-left: 100px; 
+}
+
+.community .main-button a {
+	font-size: 20px;
+	font-weight: 500;
+	margin-top: 10px;
+	position: relative;
+	display: block;
+	padding: 20px 15px;
+}
+
+.community .hot-post{
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.community .hot-post-section {
+	margin-top: 10px;
+	width: 80%;
+	height: 200px;
+}
+
+.community .post-mini {
+	background-color: #353637;
+	border: 5px solid #1e1e1e;
+	border-radius: 8px;
+	padding: 15px 20px;
+	width: 230px;
+	height: 180px;
+	display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    margin-right: 5px;
+    overflow: hidden;
+}
+
+.community .post-mini .item,
+.community .board .item {
+	width: 40px;
+	font-size: 10px;
+	font-weight: 600;
+	padding: 3px 5px;
+	border: 3px solid #ec6090;
+	border-radius: 25px;
+	color: #ec6090;
+	align-self: center;
+	text-align: center;
+}
+
+.community .post-mini h4 {
+  margin-top: 15px;
+  overflow: hidden;
+}
+
+.community .post-mini:hover {
+	background-color: #27292a;
+	border: 5px solid #9ADBE8;
+	color: #9ADBE8;
+}
+
+.community .post-mini:hover h4,
+.community .board:hover h4 {
+  color: #9ADBE8;
+}
+
+.community .post-mini-bottom {
+  margin-top: auto;
+}
+
+.community .post-mini-bottom i,
+.community .board-info .post-mini-bottom i{
+  width: 18px;
+  height: 10px;
+  margin-right: 20px;
+}
+
+.community .heading-section {
+	align-items: flex-start;
+	margin-bottom: 10px;
+}
+
+.community .content-board{
+  border: 3px solid #353637;
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 30px;
+  margin-bottom: 40px;
+}
+
+.community .category-section{
+  background-color: transparent;
+  position: relative;
+  display: flex;
+  align-items: center; 
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.community .item a {
+	font-size: 14px;
+	font-weight: 600;
+	margin-right: 30px;
+	margin-left: 30px;
+	padding: 7px 14px;
+	border: 5px solid #ec6090;
+}
+
+.community .board-section {
+  background-color: transparent;
+  position: relative;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  margin-top: 0px;
+}
+
+.community .board {
+	width: 640px;
+	position: relative;
+	display: flex;
+    align-items: center; 
+    border-bottom: 2px solid #353637;
+    border-top: 2px solid #353637;
+    color: #f7f7f7;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-top: 0px;
+}
+
+.community .board-info {
+  margin-right:20px;
+  margin-left: 20px;
+  width:60%;
+}
+
+.community .board-info h4, span {
+  overflow: hidden;
+}
+
+.community .id {
+  margin-top: -60px;
+  width: auto;
+}
+
+.community .board:hover {
+	background-color: #27292a;
+	color: #9ADBE8;
+}
+/* 
+---------------------------------------------
 Responsive Style
 --------------------------------------------- 
 */

@@ -32,7 +32,7 @@
                         <p>[[${#dates.format(member.reg_date, 'yyyy-MM-dd')}]] 부터 사용중입니다.</p>
                       </div>
                       <div class="main-border-button">
-                        <a href="/layout/modify">회원정보 수정하기</a>
+                        <a href="#">회원정보 수정하기</a>
                       </div>
                     </div>
                   </div>
@@ -59,9 +59,9 @@
 								</div>
 								</th:block>
 								
-								<th:block th:if="${member.position} == 'PREMIERE'">
+								<th:block th:if="${member.position} == 'PREMIER'">
 								<div class="thumb">
-									<h4><em>PREMIERE</em></h4>
+									<h4><em>PREMIER</em></h4>
 									<h6>tv 프로그램과 영화 시청 가능</h6>
 								</div>
 								<div class="down-content">
@@ -121,8 +121,9 @@
 							   <tr th:each="qna, state: ${myqna}">
 								   <td th:text="${#dates.format(qna.write_date, 'yyyy-MM-dd')}"></td>
 								   <td th:text="${qna.title}"></td>
-								  <td th:if="${qna.replies != null and not #lists.isEmpty(qna.replies)}" style="color: #ec6090">답변완료</td>
+								   <td th:if="${qna.replies != null and not #lists.isEmpty(qna.replies)}" th:style="color: #ec6090">답변완료</td>
 								   <td th:unless="${qna.replies != null and not #lists.isEmpty(qna.replies)}">답변미완료</td>
+								   <!-- <td th:unless="${qna.repliesreplies.size() == 0}">답변미완료</td> -->
 								   <td><div class="main-border-button border-no-active"><a href="getboard(b_seq=${qna.b_seq})">go</a></div></td>
 							   </tr>
 							 </table>
@@ -147,8 +148,8 @@
 								   <td th:text="${#dates.format(board.write_date, 'yyyy-MM-dd')}"></td>
 								   <td th:text="${board.title}"></td>
 								   <td th:if="${board.report != null and board.report != ''}"></td> <!-- 신고 안들어옴 -->
-								  <td th:unless="${board.report != null and board.report != ''}" style="color: #ec6090">숨김처리</td> <!-- 신고 안들어옴 -->
-								   <td><div class="main-border-button border-no-active"><a href="getboard(b_seq=${qna.b_seq})">go</a></div></td>
+								   <td th:unless="${board.report != null and board.report != ''}" th:style="color: #ec6090">숨김처리</td> <!-- 신고 들어옴 -->
+								   <td><div class="main-border-button border-no-active"><a href="getboard(b_seq=${board.b_seq})">go</a></div></td>
 							   </tr>
 						   </table>
 						  </div>

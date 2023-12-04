@@ -35,6 +35,14 @@ https://templatemo.com/tm-579-cyborg-gaming
     <div class="container">
         <div class="row">
             <div class="col-12">
+				
+				<ul class="upper-nav">
+					<li th:if="${session.member == null}"><a href="login">로그인</a></li>
+					<li th:unless="${session.member == null}"><a href="logout">로그아웃</a></li>
+					<li><a href="#">이용권</a></li>
+				</ul>
+				<hr>
+				
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="main" class="logo">
@@ -44,14 +52,11 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         <li><a href="main" class="active">Home</a></li>
-                        <li><a href="movie">영화</a></li>
+                        <li><a href="allmovie">영화</a></li>
                         <li><a href="tvprogram">TV프로그램</a></li>
                         <li><a href="community">커뮤니티</a></li>
-                        <li><a href="/layout/login">마이 페이지<img src="assets/images/profile-header.jpg" alt=""></a></li>
-                    </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
+                        <li><a href="mypage">마이 페이지<img src="assets/images/avatar-01.jpg" alt=""></a></li>
+                    </ul>
                     <!-- ***** Menu End ***** -->
                     <!-- ***** Search Start ***** -->
                     <div class="search-input">

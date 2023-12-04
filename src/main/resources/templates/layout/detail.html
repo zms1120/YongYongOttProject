@@ -14,10 +14,14 @@
                <div class="row">
                  <div class="col-lg-12">
                    <div class="header-text">
-                    <a th:href="'https://www.youtube.com/watch?v=' + ${movie.video_path}" target="_blank">
                      <h4>[[${movie.m_title_ko}]]</h4>
                      <h6>[[${movie.open_year}]] &nbsp; [[${movie.running_time}]]분 &nbsp; [[${movie.genre}]]</h6>
                    </div>
+                   <div class="play">
+					    <a th:href="'https://www.youtube.com/watch?v=' + ${movie.video_path}" target="_blank">
+							<p class="play-text">재생하기</p>
+				   		</a>
+				   </div>
                  </div>
                </div>
             </div>
