@@ -95,4 +95,10 @@ public class TVProgramServiceImpl implements TVProgramService {
 		return "/video/" + pseq + ".mp4";
 	}
 
+	@Override
+	public List<TVProgram> findByCategoryContaining(String category) {
+		
+		return tvProgramRepository.findByCategoryContaining(category);
+	}
+
 }

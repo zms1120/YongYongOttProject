@@ -150,7 +150,7 @@ body {
 }
 
 a {
-	color: #CCC;
+	color: #ccc;
 	text-decoration: none !important;
 }
 
@@ -210,6 +210,13 @@ p {
 	margin-bottom: 0px;
 }
 
+hr {
+	margin-top: 10px;
+	margin-bottom: 5px;
+	width: 100%;
+	border-color: #666;
+}
+
 ::selection {
 	background: #9ADBE8;
 	color: #fff;
@@ -229,10 +236,10 @@ p {
 	font-size: 14px;
 	color: #1e1e1e;
 	background-color: #9ADBE8;
-	padding: 12px 30px;
+	padding: 5px 8px;
 	display: inline-block;
 	border-radius: 25px;
-	font-weight: 400;
+	font-weight: 600;
 	text-transform: capitalize;
 	letter-spacing: 0.5px;
 	transition: all .3s;
@@ -242,7 +249,7 @@ p {
 
 .main-button a:hover {
 	background-color: #fff;
-	color: #9ADBE8;
+	color: #1e1e1e;
 }
 
 .main-border-button a {
@@ -264,12 +271,16 @@ p {
 .main-border-button a:hover {
 	border-color: #fff;
 	background-color: #fff;
-	color: #9ADBE8;
+	color: #1e1e1e;
 }
 
 .border-no-active a {
+	margin-left: 5px;
+	padding: 3px 5px;
 	border-color: #666;
 	color: #666;
+	font-size: 14px;
+	border-radius: 20px;
 }
 
 .border-no-active a:hover {
@@ -421,7 +432,7 @@ Header Style
 .header-area {
 	background-color: transparent;
 	position: absolute;
-	height: 70px;
+	height: 900px;
 	top: 20px;
 	left: 0;
 	right: 0;
@@ -432,6 +443,30 @@ Header Style
 	transition: all .5s ease 0s;
 }
 
+.header-area .upper-nav {
+	display: flex;
+	flex-basis: 70%;
+	justify-content: flex-end;
+	vertical-align: middle;
+	text-align: right;
+	margin-top: 0px;
+	margin-right: 10px;
+	margin-bottom: 0px;
+	padding: 0px;
+	-webkit-transition: all 0.3s ease 0s;
+	-moz-transition: all 0.3s ease 0s;
+	-o-transition: all 0.3s ease 0s;
+	transition: all 0.3s ease 0s;
+	position: relative;
+	z-index: 999;
+}
+
+.header-area .upper-nav li {
+	font-size: 14px;
+	padding-left: 8px;
+	padding-right: 8px;
+	display: inline-block;
+}
 
 .header-area .main-nav {
 	min-height: 80px;
@@ -439,6 +474,8 @@ Header Style
 	display: flex;
 	padding: 15px 0px;
 	border-radius: 50px;
+	margin-bottom: 20px;
+	margin-top: 0px;
 }
 
 .background-header .main-nav {
@@ -452,19 +489,19 @@ Header Style
 }
 
 .header-area .main-nav #search input {
-	background-color: #27292a;
+	background-color: #1e1e1e;
 	height: 46px;
 	border-radius: 23px;
-	border: none;
+	border: 3px solid #353637;
 	color: #666;
 	font-size: 18px;
-	padding: 0px 15px 0px 100px;
+	padding: 0px 0px 0px 100px;
 }
 
 .header-area .main-nav #search i {
 	position: absolute;
 	color: #666;
-	left: 20px;
+	left: 10px;
 	top: 16px;
 	width: 18px;
 	height: 18px;
@@ -685,7 +722,7 @@ Header Style
 }
 
 .header-area.header-sticky {
-	min-height: 70px;
+	min-height: 90px;
 }
 
 .header-area.header-sticky .nav li a.active {
@@ -784,7 +821,7 @@ Header Style
 	}
 
 	.header-area.header-sticky .nav {
-		margin-top: 65px !important;
+		margin-top: 30px !important;
 		text-align: center;
 	}
 
@@ -873,10 +910,14 @@ Banner Style
 */
 
 .owl-banner {
-	background-image: url(../images/banner-bg.jpg);
+	position: relative;
+}
+
+.owl-banner .banners {
+	position: relative;
 	background-position: center center;
 	background-size: cover;
-	min-height: 380px;
+	height: 430px;
 	border-radius: 23px;
 	padding: 80px 60px;
 }
@@ -893,10 +934,42 @@ Banner Style
 	margin-bottom: 25px;
 }
 
-.owl-banner h4 em {
-	font-style: normal;
-	color: #ec6090;
+.owl-carousel .nav-button {
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  top: 45%; 
+  transform: translateY(-50%); 
+  height: 120px;
+  width: 120px;
+  cursor: pointer;
+  position: absolute;
+  color: #fff;
+  opacity: 80%;
+  background: center center;
 }
+
+.owl-carousel .nav-button.owl-prev,
+.owl-carousel .nav-button.owl-next {
+  font-size: 120px; 
+  font-weight: 800px;
+}
+
+.owl-carousel .owl-prev {
+  justify-content: center;
+  align-items: center;
+  left: 20px;
+}
+.owl-carousel .owl-next {
+  justify-content: center;
+  align-items: center;
+  right: 20px;
+}
+.owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot:hover span {
+  background: #5110e9;
+}
+
 
 /* 
 ---------------------------------------------
@@ -954,14 +1027,6 @@ Most Popular Style
 	font-size: 14px;
 }
 
-.most-popular .item ul li:first-child i {
-	color: yellow;
-}
-
-.most-popular .item ul li:last-child i {
-	color: #ec6090;
-}
-
 .most-popular .main-button {
 	text-align: center;
 	margin-bottom: -53px;
@@ -974,48 +1039,62 @@ Gaming Library Style
 */
 
 .gaming-library {
-	margin-top: 60px;
+	margin-top: 10px;
 	padding: 30px;
 	background-color: #1f2122;
 	border-radius: 23px;
 }
 
+.gaming-library .heading-section {
+	display: inline-block;
+}
+
+.gaming-library .main-button {
+	display: inline-block;
+	margin-bottom: -30px;
+	margin-left:30px
+}
+
 .gaming-library .item {
-	border-bottom: 1px solid #27292a;
 	margin-bottom: 20px;
 	padding-bottom: 20px;
 }
 
 .gaming-library .last-item {
+	border-radius: 23px;
+	padding: 30px 30px;
+	background-color: #27292a;
 	margin-bottom: 30px;
 }
 
-.profile-library .last-item {
-	border-bottom: none;
-	padding-bottom: 0px;
-	margin-bottom: 0px;
+.gaming-library .last-item .my-board {
+	position: relative;
 }
 
-.gaming-library .item ul li {
-	margin-top: 15px;
+.gaming-library .last-item .my-board h6{
+	color: #ec6090;
+	margin-bottom: 15px;
 }
 
-.gaming-library .item ul li img {
-	margin-top: -30px;
+.gaming-library .last-item .table-content {
+	width: 100%;
 }
 
-.gaming-library .item ul li {
-	display: inline-block;
-	width: 17%;
+.gaming-library .last-item table {
+	text-align: center;
+	color: #ffff;
+	font-size: 14px;
 }
 
-.gaming-library .item ul li:first-child {
-	width: 110px;
+.gaming-library .item table tr {
+	width:100%;
+	margin-top: 5px;
+	border-bottom: 1px solid #666;
 }
 
-.gaming-library .item ul li:last-child {
-	width: 15%;
-	text-align: right;
+.gaming-library .item table tr td {
+	width:17%;
+	margin-right: 10px;
 }
 
 .gaming-library .item ul li h4 {
@@ -1028,10 +1107,6 @@ Gaming Library Style
 	font-size: 14px;
 }
 
-.gaming-library .main-button {
-	text-align: center;
-	margin-bottom: -53px;
-}
 
 /* 
 ---------------------------------------------
@@ -1350,7 +1425,7 @@ Featured Banner Style
 .feature-banner {
 	background-position: center center;
 	background-size: cover;
-	min-height: 430px;
+	min-height: 380px;
 	border-radius: 5px;
 	padding: 80px 60px;
 }
@@ -1368,8 +1443,38 @@ Featured Banner Style
 }
 
 .feature-banner h4 {
+	color: #fff;
 	font-size: 45px;
 	margin-bottom: 25px;
+}
+
+
+.feature-banner .play {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  }
+  
+.feature-banner .play-text {
+	font-size: 36px;
+	color: #fff;
+	font-weight: 600;
+}
+  
+.feature-banner:hover {
+  filter: brightness(60%);
+}
+
+.feature-banner:hover .play {
+  opacity: 1;
 }
 
 
@@ -1630,10 +1735,22 @@ Profile Style
 .main-profile {
 	border-radius: 23px;
 	padding: 30px;
-	background-color: #1f2122;
+	margin-top: 20px;
+	background-color: #27292a;
+	border-width: 10px;
+	border-color: #1e1e1e;
+	width: 100%;
 }
 
-.main-profile .main-info span {
+.main-profile img {
+	border-radius: 180px;
+	width: 230px;
+	height: 230px;
+	margin-left: 25px;
+	margin-top: 10px;
+}
+
+.main-profile span {
 	font-size: 14px;
 	color: #fff;
 	background-color: #9ADBE8;
@@ -1646,44 +1763,57 @@ Profile Style
 	margin-bottom: 15px;
 }
 
+.main-profile .main-info {
+	width:400px
+}
+
+.main-profile .main-border-button, .main-info{
+	margin-left: 100px;
+}
+
+.main-profile .main-info .header-text {
+	margin-top: 30px;
+}
+
 .main-profile .main-info h4 {
-	margin-bottom: 20px;
+	margin-top: 10px;
+	margin-bottom: 30px;
 }
 
-.main-profile .main-info .main-border-button {
-	margin-top: 25px;
-}
-
-.main-profile ul {
-	border-radius: 23px;
-	padding: 30px;
-	background-color: #27292a;
-}
-
-.main-profile ul li {
-	width: 100%;
-	font-size: 14px;
-	color: #666;
-	margin-bottom: 20px;
-	padding-bottom: 20px;
-	border-bottom: 1px solid #666;
-}
-
-.main-profile ul li span {
-	float: right;
-	font-weight: 500;
+.main-profile .main-info h4 em{
+	margin-bottom: 5px;
 	color: #ec6090;
 }
-
-.main-profile ul li:last-child {
-	border-bottom: none;
-	padding-bottom: 0;
-	margin-bottom: 0;
+.main-profile .main-info h6 em{
+	font-size: 16px;
+	font-weight: 400px;
+	color: #9ADBE8;
+	margin-bottom: 20px;
+	letter-spacing: 2px;
 }
+
+.main-profile .main-info h6 {
+	font-size: 14px;
+	font-weight: 400px;
+	margin-bottom: 20px;
+	letter-spacing: 2px;
+}
+
+.main-profile .main-border-button {
+	margin-top: 40px;
+}
+
+.main-profile .main-info span {
+	background-color: #27292a;
+	font-size: 14px;
+	font-weight: 400px;
+	margin-bottom: 20px;
+	letter-spacing: 2px;
+}
+
 
 .clips {
 	margin-top: 30px;
-	border-top: 2px solid #27292a;
 }
 
 .clips .heading-section {
@@ -1702,25 +1832,20 @@ Profile Style
 	margin-bottom: 15px;
 }
 
-.clips .item .thumb a {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-23px, -23px);
-	width: 46px;
-	height: 46px;
-	background-color: #fff;
-	border-radius: 50%;
-	display: inline-block;
-	text-align: center;
-	line-height: 46px;
-	color: #ec6090;
-}
-
 .clips .item h4 {
 	font-size: 15px;
 	display: inline-block;
 }
+
+.clips h4 em{
+	font-size: 20px;
+	margin-bottom: 10px;
+	color: #ec6090;
+}
+.clips h6 {
+	margin-bottom: 10px;
+}
+
 
 .clips .item span i {
 	color: #ec6090;
@@ -1735,6 +1860,307 @@ Profile Style
 .clips .main-button {
 	margin-top: 10px;
 	text-align: center;
+}
+
+/*
+---------------------------------------------
+Login Style
+--------------------------------------------- 
+*/
+
+.login {
+  margin-top: 70px;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login .login-section {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-color: #353637;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40px;
+}
+
+.login .heading-section{
+  width: 330px;
+  margin-top: 50px;
+}
+
+.login .heading-section h2{
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 36px;
+  font-weight: 500px;
+}
+
+.login .heading-section h4{
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.login .form-section {
+  width: 330px;
+  margin-top: 10px;
+}
+
+.login .form {
+  width:100%;
+  max-width:330px;
+  margin: 0 auto;
+}
+
+.login form .input_block {
+  margin: 20px 5px;
+  display: block;
+  position: relative;
+  border-radius: 15px;
+}
+
+.login form .input_block input {
+  display: block;
+  width: 120%;
+  max-width: 330px;
+  height: 40px;
+  margin: 0 auto;
+  border-radius: 8px;
+  border: none;
+  background: #f7f7f7;
+  opacity: 90%;
+  color: #666;
+  padding: 0 0 0 15px;
+  font-size: 14px;
+}
+
+ .login form .input__block input:focus,
+ .login form .input__block input:active {
+  outline: none;
+  border: none;
+  color: rgba(15, 19, 42, 1);
+}
+
+ .login form .signin_btn {
+  background: #9ADBE8;
+  color: #1e1e1e;
+  display: block;
+  width: 100%;
+  max-width: 680px;
+  height: 45px;
+  border-radius: 8px;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 500px;
+  transition: 0.2s linear;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+ .login form .signin_btn:hover {
+  border-color: #fff;
+  background-color: #fff;
+  color: #1e1e1e;
+}
+
+.login .link-block {
+	position: relative;
+    justify-content: center;
+    align-items: center;
+	text-align: center;
+	margin-left: 10px;
+}
+
+.login .separator,
+.join .separator {
+  display: block;
+  margin: 30px auto 10px;
+  text-align: center;
+  height: 40px;
+  position: relative;
+  align-items: center;
+  text-align: center;
+  background: transparent;
+  width: 90%;
+  max-width: 680px;
+  color: #f7f7f7;
+  font-size: 18px;
+}
+
+.login .separator::before,
+.login .separator::after,
+.join .separator::before,
+.join .separator::after {
+  content: "";
+  position: absolute;
+  top: 13px;
+  background:  #f7f7f7;
+  height: 1px;
+  width: 25%;
+}
+
+.login .separator::before,
+.join .separator::before {
+  left: 0;
+}
+
+.login .separator::after,
+.join .separator::after {
+  right: 0;
+}
+
+.login .google__btn,
+.join .google__btn {
+  display: inline-block;
+  align-items: center;
+  width: 70px;
+  margin: 10px auto;
+  height: 70px;
+  cursor: pointer;
+  border-radius: 180px;
+  border: none;
+  line-height: 40px;
+}
+
+.login .google__btn .fa,
+.join .google__btn .fa {
+  font-size: 20px;
+}
+
+.login .google__btn,
+.join .google__btn {
+  background: #f7f7f7;
+  transition: 0.2s linear;
+}
+
+.login .google__btn:hover,
+.join .google__btn:hover {
+  box-shadow: 0 0 0 rgba(91, 144, 240, 0);
+}
+
+/*
+---------------------------------------------
+Join Style
+--------------------------------------------- 
+*/
+
+.join {
+  margin-top: 70px;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.join .join-section {
+  background-color: #353637;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  padding-bottom: 40px;
+  padding-top: 20px;
+}
+
+.join .heading-section{
+  width: 90%;
+  margin-top: 50px;
+  position: relative;
+  text-align: center;
+}
+
+.join .heading-section h2{
+  margin-bottom: 15px;
+  font-weight: 400px;
+  line-height: 1.8;
+}
+
+.join .join-form {
+  width: 100%;
+  margin-top: 10px;
+  position: relative;
+}
+
+.join .join-form form{
+  display: flex;
+  flex-direction: column;
+  margin-left: 15%
+ }
+
+
+.join form .input_block {
+  margin: 10px 5px;
+  display: block;
+  position: relative;
+  border-radius: 15px;
+}
+
+ .join .input_block .password_ck{
+  display: none;
+}
+
+.join form .input_block input {
+  display: block;
+  width: 80%;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  background: #f7f7f7;
+  opacity: 90%;
+  color: #666;
+  padding: 0 0 0 15px;
+  font-size: 14px;
+}
+
+.join form .input_block .join-info {
+  margin-top: 15px;
+  display: block;
+  position: relative;
+  color: #f7f7f7;
+  opacity: 50%;
+  width: 80%;
+}
+
+
+ .join form .input__block input:focus,
+ .join form .input__block input:active {
+  outline: none;
+  border: none;
+  color: rgba(15, 19, 42, 1);
+}
+
+.join form .ck-button input {
+    font-size: 20px;
+	color: #ec6090;
+	background-color: transparent;
+	border: 1px solid #ec6090;
+	display: inline-block;
+	border-radius: 8px;
+	font-weight: 500;
+	text-transform: capitalize;
+	letter-spacing: 0.5px;
+	transition: all .3s;
+	position: relative;
+	justify-content: center;
+    align-items: center;
+	overflow: hidden;
+	cursor: pointer;
+	width: 80%;
+  	height: 45px;
+  	margin-top: 30px;
+}
+
+ .join form .ck-button input:hover {
+  border-color: #fff;
+  background-color: #fff;
+  color: #1e1e1e;
 }
 
 /* 
@@ -1856,7 +2282,7 @@ body {
 		border-right: none;
 	}
 
-	.gaming-library .item ul li {
+	.gaming-library .item tr td {
 		width: 16%;
 	}
 }

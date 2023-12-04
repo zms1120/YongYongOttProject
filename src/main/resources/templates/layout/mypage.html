@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+ <th:block th:replace="fragments/header :: header"></th:block>
+
+<body>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-content">
+			
+		  <div class="main-title">
+			  <h1>마이 페이지</h1>
+		  </div>
+
+          <!-- ***** Banner Start ***** -->
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="main-profile ">
+				  <div class="row">
+				    <div class="col-lg-4">
+					  <img src="assets/images/avatar-01.jpg" alt="">
+				    </div>
+                    <div class="col-lg-4 align-self-center">
+                      <div class="main-info header-text">
+                        <h4>[[${member.name}]] 님</h4>
+                        <h6><em>ID:</em> &nbsp; [[${member.id}]]</h6>
+                        <h6><em>e-mail:</em> &nbsp; [[${member.email}]]</h6>
+                        <h6><em>전화번호:</em> &nbsp; <span id="phone_number">[[${member.phone_number}]]</span></h6>
+                        <p>[[${#dates.format(member.reg_date, 'yyyy-MM-dd')}]] 부터 사용중입니다.</p>
+                      </div>
+                      <div class="main-border-button">
+                        <a href="/layout/modify">회원정보 수정하기</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+				<div class="clips">
+					<div class="row">
+						<hr>
+						<div class="col-lg-12">
+							<div class="heading-section">
+								<h4>내 이용권</h4>
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<div class="item">
+								<th:block th:if="${member.position} == 'BASIC'">
+								<div class="thumb">
+									<h4><em>BASIC</em></h4>
+									<h6>tv 프로그램 시청 가능</h6>
+								</div>
+								<div class="down-content">
+									<h6>[[${#dates.format(member.renew_date, 'yyyy-MM-dd')}]] &nbsp; ~ &nbsp; [[${#dates.format(member.end_date, 'yyyy-MM-dd')}]]</h6>
+									<p>이용권을 업그레이드하여 더 많은 컨텐츠를 즐겨보세요!</p>
+								</div>
+								</th:block>
+								
+								<th:block th:if="${member.position} == 'PREMIERE'">
+								<div class="thumb">
+									<h4><em>PREMIERE</em></h4>
+									<h6>tv 프로그램과 영화 시청 가능</h6>
+								</div>
+								<div class="down-content">
+									<h6>[[${#dates.format(member.renew_date, 'yyyy-MM-dd')}]] &nbsp; ~ &nbsp; [[${#dates.format(member.end_date, 'yyyy-MM-dd')}]]</h6>
+								</div>
+								</th:block>
+								
+								<th:block th:if="${member.position} == 'GUEST'">
+								<div class="thumb">
+									<h4><em>GUEST</em></h4>
+									<h6>용용플레이 둘러보기</h6>
+								</div>
+								<div class="down-content">
+									<p>이용권을 업그레이드하여 더 많은 컨텐츠를 즐겨보세요!</p>
+								</div>
+								</th:block>
+								
+								<th:block th:if="${member.position} == 'ADMIN'">
+								<div class="thumb">
+									<h4><em>ADMIN</em></h4>
+									<h6>관리자님, 환영합니다.</h6>
+								</div>
+								</th:block>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr>
+          <!-- ***** Banner End ***** -->
+
+          <!-- ***** Gaming Library Start ***** -->
+          <div class="gaming-library profile-library">
+            <div class="col-lg-12">
+              <div class="heading-section">
+                <h4>내가 쓴 글</h4>
+              </div>
+              <div class="main-button">
+				<a href="#">커뮤니티 바로가기</a>
+			  </div>
+			<div class="col-lg-12">
+			  <div class="item">
+				 <div class="row">
+				    <div class="col-lg-6">
+				      <div class="last-item">
+						<div class="my-board">
+						  <h6>내 문의사항</h6>
+						 </div>
+						 <div class="table-content">
+						   <table>
+							   <tr>
+								   <td>작성일</td>
+								   <td>제목</td>
+								   <td>답변 상태</td>
+								   <td></td>
+							   </tr>
+							   <tr th:each="qna, state: ${myqna}">
+								   <td th:text="${#dates.format(qna.write_date, 'yyyy-MM-dd')}"></td>
+								   <td th:text="${qna.title}"></td>
+								  <td th:if="${qna.replies != null and not #lists.isEmpty(qna.replies)}" style="color: #ec6090">답변완료</td>
+								   <td th:unless="${qna.replies != null and not #lists.isEmpty(qna.replies)}">답변미완료</td>
+								   <td><div class="main-border-button border-no-active"><a href="getboard(b_seq=${qna.b_seq})">go</a></div></td>
+							   </tr>
+							 </table>
+						  </div>
+				      	 </div>
+	                	</div>
+	                	
+	                <div class="col-lg-6">
+				      <div class="last-item">
+						<div class="my-board">
+						  <h6>내 게시글</h6>
+						 </div>
+						 <div class="table-content">
+						   <table>
+							   <tr>
+								   <td>작성일</td>
+								   <td>제목</td>
+								   <td></td>
+								   <td></td>
+							   </tr>
+							   <tr th:each="board, state: ${myboard}">
+								   <td th:text="${#dates.format(board.write_date, 'yyyy-MM-dd')}"></td>
+								   <td th:text="${board.title}"></td>
+								   <td th:if="${board.report != null and board.report != ''}"></td> <!-- 신고 안들어옴 -->
+								  <td th:unless="${board.report != null and board.report != ''}" style="color: #ec6090">숨김처리</td> <!-- 신고 안들어옴 -->
+								   <td><div class="main-border-button border-no-active"><a href="getboard(b_seq=${qna.b_seq})">go</a></div></td>
+							   </tr>
+						   </table>
+						  </div>
+						 </div>
+	                  </div>
+	                </div>
+	                
+              	  </div>
+				</div>
+			</div>
+               
+          <!-- ***** Gaming Library End ***** -->
+			
+		</div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <th:block th:replace="fragments/footer :: footer"></th:block>
+
+  </body>
+
+</html>

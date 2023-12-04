@@ -1,6 +1,7 @@
 package com.ott.entity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -39,6 +40,7 @@ public class Board {
 	private String b_category;				//게시글 항목
 	private int b_like;						//게시글 추천수
 	private String report;					// 게시글 신고
+	private Date write_date;   				//게시글 등록일
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id")		

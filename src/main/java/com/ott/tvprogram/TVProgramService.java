@@ -20,5 +20,5 @@ public interface TVProgramService {
     
     String getVideoPath(int pseq);
    
-   
+    List<TVProgram> findByCategoryContaining(String category);
 }
