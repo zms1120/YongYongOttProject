@@ -10,7 +10,7 @@
              <!-- ***** image Start ***** -->
              <div class="feature-banner" 
                   th:style="'background-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), 
-                  url(\'/assets/images/tv/' + ${tvProgram.image_path} + '\')'">
+                  url(\'/assets/images/tv/' + ${tvProgram.banner_path} + '\')'">
                <div class="row">
                  <div class="col-lg-12">
                    <div class="header-text">
@@ -54,7 +54,21 @@
 					</tr>
 				</table>
             </div>
-          
+            <!-- episope -->
+          <div class="owl-features owl-carousel">
+		<div th:each="episode, state : ${epiList}" class="item">
+			  <div class="thumb">
+				<img th:src="@{'/assets/images/tv/' + ${tvProgram.image_path}}" alt="">
+					<div class="play">
+					    <a th:href="'https://www.youtube.com/watch?v=' + ${episode.video_path}" target="_blank">
+							<p class="play-text">재생하기</p>
+				   		</a>
+				   </div>
+				  </a>
+				</div>
+			  <h4>[[${episode.ep_title}]]</h4>
+			</div>
+		  </div>
             
              </div>
           </div>

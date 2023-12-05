@@ -17,8 +17,7 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
 	List<Board> findByMemberIdAndBCategory(@Param("id") String memberId, @Param("b_category") String bCategory);
 
 
-	@Query("SELECT b FROM Board b WHERE b.member.id = :id AND b.b_category != 'qna'")
-	List<Board> findByMemberIdAndAllBCategory(@Param("id") String memberId);
+	
 
 	
 	
