@@ -44,7 +44,6 @@
     min-height: 1px;
     float: left;
     -webkit-backface-visibility: hidden;
-    
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none; }
   .owl-carousel .owl-item img {
@@ -66,7 +65,7 @@
   .owl-carousel .owl-nav button.owl-next,
   .owl-carousel button.owl-dot {
     background: none;
-    color: inherit;
+    color: #fff;
     border: none;
     padding: 0 !important;
     font: inherit; }

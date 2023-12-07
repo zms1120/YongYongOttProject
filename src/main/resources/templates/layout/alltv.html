@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+ <th:block th:replace="fragments/header :: header"></th:block>
+
+<body>
+	
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-content">
+			
+		<div class="main-title">
+		  <h1>TV프로그램</h1>
+		</div>
+<!-- 전체 목록 -->
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="featured-contents header-text">
+			<div class="heading-section">
+				<h3>전체 목록</h3>
+			</div>
+
+			<div class="owl-features owl-carousel owl-theme">
+				<div th:each="tvProgram, state : ${tvProgramList}" class="item">
+					<div class="thumb">
+						<img th:src="@{'/assets/images/tv/' + ${tvProgram.image_path}}" alt="">
+						<a th:href="@{tvdetail(pseq=${tvProgram.pseq})}">
+							<div class="hover-effect">
+								<h6>바로보기</h6>
+							</div>
+						</a>
+					</div>
+					<h4>[[${tvProgram.p_title}]]</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	
+	<!-- 드라마 -->
+	
+	<div class="row">
+	  <div class="col-lg-12">
+		<div class="featured-contents header-text">
+		  <div class="heading-section">
+			<h3>드라마</h3>
+		  </div>
+
+		  <div class="owl-features owl-carousel">
+		<div th:each="drama, state : ${dramaList}" class="item">
+			  <div class="thumb">
+				<img th:src="@{'/assets/images/tv/' + ${drama.image_path}}" alt="">
+				  <a th:href="@{tvdetail(pseq=${drama.pseq})}">
+					<div class="hover-effect">
+					  <h6>바로보기</h6>
+					</div>
+				  </a>
+				</div>
+			  <h4>[[${drama.p_title}]]</h4>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	  
+	<!-- 예능 -->
+	
+	<div class="row">
+	  <div class="col-lg-12">
+		<div class="featured-contents header-text">
+		  <div class="heading-section">
+			<h3>예능</h3>
+		  </div>
+
+		  <div class="owl-features owl-carousel">
+		<div th:each="enter, state : ${enterList}" class="item">
+			  <div class="thumb">
+				<img th:src="@{'/assets/images/tv/' + ${enter.image_path}}" alt="">
+				  <a th:href="@{tvdetail(pseq=${enter.pseq})}">
+					<div class="hover-effect">
+					  <h6>바로보기</h6>
+					</div>
+				  </a>
+				</div>
+			  <h4>[[${enter.p_title}]]</h4>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	
+	 
+	<!-- 시사/교양 -->
+	
+	<div class="row">
+	  <div class="col-lg-12">
+		<div class="featured-contents header-text">
+		  <div class="heading-section">
+			<h3>시사/교양</h3>
+		  </div>
+
+		  <div class="owl-features owl-carousel">
+		<div th:each="current, state : ${currentList}" class="item">
+			  <div class="thumb">
+				<img th:src="@{'/assets/images/tv/' + ${current.image_path}}" alt="">
+				  <a th:href="@{tvdetail(pseq=${current.pseq})}">
+					<div class="hover-effect">
+					  <h6>바로보기</h6>
+					</div>
+				  </a>
+				</div>
+			  <h4>[[${current.p_title}]]</h4>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	  
+	<!-- 애니메이션 -->
+	
+	<div class="row">
+	  <div class="col-lg-12">
+		<div class="featured-contents header-text">
+		  <div class="heading-section">
+			<h3>애니메이션</h3>
+		  </div>
+
+		  <div class="owl-features owl-carousel">
+		<div th:each="ani, state : ${aniList}" class="item">
+			  <div class="thumb">
+				<img th:src="@{'/assets/images/tv/' + ${ani.image_path}}" alt="">
+				  <a th:href="@{tvdetail(pseq=${ani.pseq})}">
+					<div class="hover-effect">
+					  <h6>바로보기</h6>
+					</div>
+				  </a>
+				</div>
+			  <h4>[[${ani.p_title}]]</h4>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	  
+	  <!--해외 시리즈 -->
+	
+	<div class="row">
+	  <div class="col-lg-12">
+		<div class="featured-contents header-text">
+		  <div class="heading-section">
+			<h3>해외시리즈</h3>
+		  </div>
+
+		  <div class="owl-features owl-carousel">
+		<div th:each="fore, state : ${foreList}" class="item">
+			  <div class="thumb">
+				<img th:src="@{'/assets/images/tv/' + ${fore.image_path}}" alt="">
+				  <a th:href="@{tvdetail(pseq=${fore.pseq})}">
+					<div class="hover-effect">
+					  <h6>바로보기</h6>
+					</div>
+				  </a>
+				</div>
+			  <h4>[[${fore.p_title}]]</h4>
+			</div>
+		  </div>
+		</div>
+	  </div>
+
+
+  </div>
+</div>
+		<th:block th:replace="fragments/footer :: footer"></th:block>
+
+</body>
+
+</html>

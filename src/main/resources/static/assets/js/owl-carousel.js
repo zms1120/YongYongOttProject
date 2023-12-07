@@ -186,16 +186,20 @@
 	Owl.Defaults = {
 		items: 3,
 		loop: false,
-		center: true,
+		center: false,
 		rewind: false,
 		checkVisibility: true,
+
+		mouseDrag: true,
+		touchDrag: true,
+		pullDrag: true,
+		freeDrag: false,
 
 		margin: 0,
 		stagePadding: 0,
 
 		merge: false,
 		mergeFit: true,
-	
 		autoWidth: false,
 
 		startPosition: 0,
