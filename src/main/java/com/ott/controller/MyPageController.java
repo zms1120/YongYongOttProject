@@ -28,13 +28,15 @@ public class MyPageController {
    private MemberService memberService;
    
 // 로그인
-   @GetMapping("/layout/login")
-   public void loginView() {
+   @GetMapping("login")
+   public String loginView() {
       System.out.println("---> 로그인 페이지 이동");
+      
+      return "layout/login";
    }
 
    // 로그인 session에 로그인 유지
-   @PostMapping("/layout/login")
+   @PostMapping("/login")
    public String loginAction(Member member, Model model, HttpSession session) {
        System.out.println("---> 로그인 내용 받기");
 
@@ -56,26 +58,26 @@ public class MyPageController {
            System.out.println("로그인 아이디 : " + findMember.getId());
 
            // 로그인 성공했으니 메인으로 이동
-           return "redirect:/mypage";
+           return "redirect:/main";
 
        } else {// 로그인 실패(없는 고객)
            System.out.println("로그인 실패이름 : " + member.getId());
            System.out.println("로그인 실패아이디 : " + member.getPassword());
            System.out.println(findMember);
 
-           return "redirect:/layout/login";
+           return "redirect:/login";
        }
    }
 
    
-   @GetMapping("/mypage")
+   @GetMapping("mypage")
    public String myPage(Model model, Board board, Member member, HttpSession session) {
        // 세션에서 로그인한 사용자 정보 가져오기
        Member loggedInMember = (Member) session.getAttribute("member");
 
        // 로그인한 사용자가 없다면 로그인 페이지로 리다이렉트
        if (loggedInMember == null) {
-           return "redirect:/layout/login";
+           return "redirect:/login";
        }
 
        // 로그인한 사용자의 ID로 Member 객체를 가져옴
@@ -85,7 +87,7 @@ public class MyPageController {
        model.addAttribute("member", member);
 
        // 게시판 목록 가져오기
-       List<Board> boardList = boardService.findByMemberIdAndAllBCategory(member.getId());
+       List<Board> boardList = boardService.getBoardList(board);
        model.addAttribute("myboard", boardList);
 
        // QnA 목록 가져오기
@@ -96,12 +98,13 @@ public class MyPageController {
    }
    
 // 회원정보 수정페이지 이동
-   @GetMapping("/layout/modify")
-   public void modifyView() {
+   @GetMapping("modify")
+   public String modifyView() {
       System.out.println("---> 회원 변경 페이지로 가기");
+      return "layout/modify";
    }
 
-   @PostMapping("/layout/modify")
+   @PostMapping("/modify")
    public String modifyAction(Member member) {
       System.out.println("---> 회원 변경 내용 저장");
 
@@ -159,5 +162,7 @@ public class MyPageController {
 	   }
 	   */
 
+   
+   
 }
 

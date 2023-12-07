@@ -31,7 +31,7 @@ public class MovieController {
     }
 
     
-    @GetMapping("/detail")
+    @GetMapping("detail")
     public String getMovie(Model model, @RequestParam("movie_code") String movie_code) {
         // 새로운 Movie 객체를 생성하고 movieCode를 설정
     	Movie movie = new Movie();
@@ -68,7 +68,7 @@ public class MovieController {
 			
 	}
 	
-	@GetMapping("/movie")
+	@GetMapping("allmovie")
 	public String findByGenreContaining(@RequestParam(name = "genre", required = false)String genre, Model model, Movie movie) {
 		   	List<Movie> movieList = movieService.getMovieList(movie);
 		    List<Movie> romanceList = movieService.findByKeywordContaining("로맨스");

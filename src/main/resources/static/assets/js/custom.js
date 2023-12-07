@@ -119,13 +119,17 @@
 	})
 
 	$('.owl-banner').owlCarousel({
-		items:4,
-        loop:false,
-        center:true,
-        margin:10,
-        URLhashListener:true,
-        autoplayHoverPause:true,
-        startPosition: 'URLHash'
+		items: 1,
+		loop: true,
+		margin: 10,
+		nav: true,
+		navText:  ["<div class='nav-button owl-prev'>‹</div>", "<div class='nav-button owl-next'>›</div>"],
+		autoplay: true,
+		responsive: {
+			0: {
+				items: 1
+			},
+		}
 	})
 
 	
@@ -263,3 +267,20 @@
 
 
 })(window.jQuery);
+
+
+// 전화번호 마스킹 함수
+function maskPhoneNumber(phoneNumber) {
+	var parts = phoneNumber.split('-');
+	if (parts.length === 3 && parts[1].length === 4) {
+		parts[1] = "*".repeat(parts[1].length);
+  		return parts.join("-");
+	}
+	return phoneNumber; // 잘못된 형식의 번호인 경우 그대로 반환
+}
+
+// 전화번호 요소 선택 후 마스킹 처리
+var phoneNumberElement = document.getElementById('phone_number');
+if (phoneNumberElement) {
+	phoneNumberElement.innerHTML = maskPhoneNumber(phoneNumberElement.innerHTML);
+}

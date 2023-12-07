@@ -33,11 +33,7 @@ public class BoardServiceImpl implements BoardService {
 		return boardRepository.findAll();
 	}
 
-	@Override
-	public List<Board> findByMemberIdAndAllBCategory(String memberId) {
-		
-		return boardRepository.findAll();
-	}
+
 
 	
 }

@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ott.entity.BroadcastEpisode;
 import com.ott.entity.TVProgram;
+import com.ott.episode.BroadcastEpisodeService;
 import com.ott.tvprogram.TVProgramService;
 
 //@RequestMapping("/tvprogram")
@@ -22,17 +24,12 @@ public class TVProgramController {
 
 	@Autowired
 	private TVProgramService tvProgramService;
+	@Autowired
+	private BroadcastEpisodeService broadcastEpisodeService;
 
-	@GetMapping("/TVProgramList")
-	public String getAllTVPrograms(Model model, TVProgram tvProgram) {
-		List<TVProgram> tvProgramList = tvProgramService.getTVProgramList(tvProgram);
-		model.addAttribute("tvProgramList", tvProgramList);
 
-		return "tvprogram/TVProgramList";
-	}
-	
-	  @GetMapping("/tvdetail")
-	    public String getTVProgram(Model model, @RequestParam("pseq") int pseq) {
+	  @GetMapping("tvdetail")
+	    public String getTVProgram(Model model, @RequestParam("pseq") int pseq, BroadcastEpisode episode) {
 	        // 새로운 Movie 객체를 생성하고 movieCode를 설정
 	         TVProgram tvProgram = new TVProgram();
 	         tvProgram.setPseq(pseq);
@@ -41,11 +38,12 @@ public class TVProgramController {
 	        tvProgram = tvProgramService.getTVProgram(tvProgram);
 	        // 동영상 경로 가져오기
 	        String videoPath = tvProgramService.getVideoPath(pseq);
+	       List<BroadcastEpisode> epiList = broadcastEpisodeService.getEpList(pseq);
 	        
 	        // 모델에 추가
 	        model.addAttribute("tvProgram", tvProgram);
 	        model.addAttribute("videoPath", videoPath);
-	        
+	        model.addAttribute("epiList", epiList);
 	        return "layout/tvdetail";
 	  }
 	@PostMapping("/insertTVProgram")

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+ <th:block th:replace="fragments/header :: header"></th:block>
+
+
+<body>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-content">
+
+		<!-- join page start -->
+		<div class="join">
+          <div class="col-lg-6">
+			<div class="join join-section">
+				<p>STEP 1</p>
+				<div class="heading-section">
+                  <h2>이메일과 비밀번호로 <br>
+                  	<em th:style="'color: #9ADBE8'">용용플레이</em>를 즐길 수 있어용!</h2>
+                </div>
+				<div class="join join-form">
+					<!--action : form에 작성한 데이터를 member/join으로 보냄 -->
+					<!-- name : 서버로 전송 할 때 변수의 역할이라고 생각해줘-->
+					<form th:action="@{/join}" method="post" id="join" onsubmit="return go_save();" name="fr">
+						<div class="input_block">
+							<input type="email" id="id" name="id" placeholder="yongyong@example.com">
+							<span class="join-info">로그인, 비밀번호 찾기, 알림에 사용되니 정확한 이메일 주소를 입력해주세요.</span>
+						</div>
+						<div class="input_block">
+							<input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요." >
+							<span class="join-info">비밀번호는 8-20자 이내로 영문 대소문자, 숫자, 특수문자를 반드시 하나씩 포함하여 입력해주세요.</span>
+						</div>
+						<div class="input_block">
+							<div class="input_block password_ck">
+							  <input type="password" name="password_ck" id="password_ck" placeholder="비밀번호를 다시 입력해주세요.">
+							</div>
+						</div>
+						<div class="ck-button">
+							<input type="button" value="다음" onclick="checkDuplicateId()">
+						</div>
+				
+					</form>
+				</div>
+				
+				<!-- separator -->
+				<div class="separator">
+					다른 서비스 계정으로 회원가입
+				</div>
+				
+				<!-- button -->
+				<button class="google__btn">
+					<i class="fa fa-google"></i>
+				</button>
+				</div>
+		    </div>
+		  </div>
+          
+  <th:block th:replace="fragments/footer :: footer"></th:block>
+  
+
+  </body>
+
+</html>
