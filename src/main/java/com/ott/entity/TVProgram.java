@@ -3,6 +3,7 @@ package com.ott.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,16 +36,18 @@ public class TVProgram {
 	private String airing_period;	//방영기간
 	private String p_director;		//감독
 	private String p_writer;		//작가
+	@Column(length = 4000)
 	private String p_cast;			//출연진
 	private	String p_category;		//프로그램카테고리
 	private String nation;			//나라
 	private String rating;			//등급
+	@Column(length = 4000)
 	private String description;		//줄거리
 	private String image_path;		//썸네일
 	private String banner_path; //배너 이미지 경로
 
 	@OneToMany(mappedBy = "tvProgram")
-	private List<BroadcastEpisode> broadcastEpisodes = new ArrayList<>();
+	private List<Episode> broadcastEpisodes = new ArrayList<>();
 	
 	
 }

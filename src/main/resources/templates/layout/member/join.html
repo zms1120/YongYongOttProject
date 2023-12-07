@@ -24,7 +24,7 @@
 				<div class="join join-form">
 					<!--action : form에 작성한 데이터를 member/join으로 보냄 -->
 					<!-- name : 서버로 전송 할 때 변수의 역할이라고 생각해줘-->
-					<form th:action="@{/join}" method="post" id="join" onsubmit="return go_save();" name="fr">
+					<form th:action="@{/member/join}" method="post" id="join" onsubmit="return go_save();" name="fr">
 						<div class="input_block">
 							<input type="email" id="id" name="id" placeholder="yongyong@example.com">
 							<span class="join-info">로그인, 비밀번호 찾기, 알림에 사용되니 정확한 이메일 주소를 입력해주세요.</span>

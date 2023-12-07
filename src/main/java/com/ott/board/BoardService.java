@@ -14,6 +14,9 @@ public interface BoardService {
 	 
 	List<Board> findByMemberIdAndBCategory(String memberId,String bCategory);
 	
+	List<Board> getBoardByBCategory(String bCategory);
 	
+	 List<Board> findAllOrderByCntDesc(Board board);
+	 
 
 }

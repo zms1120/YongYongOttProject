@@ -37,8 +37,6 @@ public class QMovie extends EntityPathBase<Movie> {
 
     public final StringPath m_title_ko = createString("m_title_ko");
 
-    public final StringPath m_title_ori = createString("m_title_ori");
-
     public final StringPath movie_code = createString("movie_code");
 
     public final StringPath nation = createString("nation");

@@ -33,11 +33,11 @@ public class Member {
 	private String phone_number;		//전화번호
 	private String position;		//회원구분
 	private String email;			//이메일
-	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date reg_date;			//가입날짜
-	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date renew_date;		//이용권갱신날짜
-	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date end_date;			//이용권종료날짜
 	
 	@OneToMany(mappedBy = "member")

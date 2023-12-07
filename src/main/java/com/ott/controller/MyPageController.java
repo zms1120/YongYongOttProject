@@ -27,12 +27,12 @@ public class MyPageController {
    @Autowired
    private MemberService memberService;
    
-// 로그인
+   // 로그인
    @GetMapping("login")
    public String loginView() {
       System.out.println("---> 로그인 페이지 이동");
       
-      return "layout/login";
+      return "layout/member/login";
    }
 
    // 로그인 session에 로그인 유지
@@ -65,11 +65,11 @@ public class MyPageController {
            System.out.println("로그인 실패아이디 : " + member.getPassword());
            System.out.println(findMember);
 
-           return "redirect:/login";
+           return "redirect:/member/login";
        }
    }
-
    
+   //mypage 
    @GetMapping("mypage")
    public String myPage(Model model, Board board, Member member, HttpSession session) {
        // 세션에서 로그인한 사용자 정보 가져오기
@@ -94,19 +94,19 @@ public class MyPageController {
        List<Board> qna = boardService.findByMemberIdAndBCategory(member.getId(), "qna");
        model.addAttribute("myqna", qna);
 
-       return "layout/mypage";
+       return "layout/member/mypage";
    }
    
-// 회원정보 수정페이지 이동
-   @GetMapping("modify")
-   public String modifyView() {
-      System.out.println("---> 회원 변경 페이지로 가기");
-      return "layout/modify";
-   }
+   // 회원정보 수정페이지 이동
+	   @GetMapping("modify")
+	   public String modifyView() {
+	      System.out.println("---> 회원 변경 페이지로 가기");
+	      return "layout/member/modify";
+	   }
 
-   @PostMapping("/modify")
-   public String modifyAction(Member member) {
-      System.out.println("---> 회원 변경 내용 저장");
+	   @PostMapping("/modify")
+	   public String modifyAction(Member member) {
+	      System.out.println("---> 회원 변경 내용 저장");
 
       // 수정된 내용 저장
       memberService.modifyMember(member);
@@ -119,48 +119,7 @@ public class MyPageController {
       return "redirect:/mypage";
    }
 
-	/*
-	@GetMapping("/mypage")
-	   public String mypageView(Model model) {
-	      
-	      Member member = new Member();
-	      member.setId("member123");
-	      member.setPassword("1111");
-	      member.setEmail("member123@gmail.com");
-	      member.setName("정민수");
-	      member.setPhone_number("010-1234-1234");
-	      member.setPosition("BASIC");
-	      
-	      Date today = new Date();
-	      
-	      member.setReg_date(today);
-	      member.setRenew_date(today);
-	      
-	      Calendar calendar = Calendar.getInstance();
-	      calendar.setTime(today);
-	      calendar.add(Calendar.MONTH, 1);
-	      member.setEnd_date(calendar.getTime());
-	      
-	      model.addAttribute("member", member);
-	     
-	      Board board = new Board();
-	      board.setB_seq(1);
-	      board.setTitle("새글");
-	      board.setWrite_date(today);
-	      model.addAttribute("myboard", board);
-	      
-	      Board qna = new Board();
-	      
-	      qna.setB_seq(2);
-	      qna.setTitle("새문의글");
-	      qna.setWrite_date(today);
-	      
-	      
-	      model.addAttribute("myqna", qna);
-	      
-	      return "layout/mypage";
-	   }
-	   */
+	
 
    
    

@@ -40,27 +40,26 @@
 							<div class="community hot-post">
 							  <h3>인기글</h3>
 					
-								<div class="owl-features owl-carousel">
-									<div class="community hot-post-section">
-										<th:block th:each="hot, state : ${hotBoardList}">
-											<a th:href="@{gopost(b_seq=${hot.b_seq})}">
-												<div class="community post-mini">
-													<span class="item" th:text="${hot.b_category}"></span>
-													<h4 th:text="${hot.title}"></h4>
-													<div class="post-mini-bottom">
-														<i class="fa fa-bullseye" th:text="${hot.cnt}"></i>
-														<i class="fa fa-thumbs-up" th:text="${hot.b_like}"></i>
-														<i class="fa fa-message" th:text="${hot.replies.size()}"></i>
-													</div>
+								<div class="owl-features owl-carousel owl-theme">
+									<div th:each="hot, state : ${hotBoardList}" class="community hot-post-section">
+										<a th:href="@{gopost(b_seq=${hot.b_seq})}">
+											<div class="community post-mini">
+												<span class="item" th:text="${hot.b_category}"></span>
+												<h4 th:text="${hot.title}"></h4>
+												<div class="post-mini-bottom">
+													<i class="fa fa-bullseye" th:text="${hot.cnt}"></i>
+													<i class="fa fa-thumbs-up" th:text="${hot.b_like}"></i>
+													<i class="fa fa-message" th:text="${hot.replies.size()}"></i>
 												</div>
-											 </a>
-										</th:block>
+											</div>
+										</a>
 									</div>
 								</div>
 					
 							</div>
 						</div>
 					</div>
+					<!--  ***** Hot Post End  ***** -->
           	
           	<hr>
           	

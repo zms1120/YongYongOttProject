@@ -89,5 +89,21 @@ public class MemberServiceImpl implements MemberService {
       }
 
    }
+   
+// 이용권 수정
+   @Override
+   public void changeMembership (Member member) {
+      // 아이디로
+      Member findMember = memberRepository.findById(member.getId()).get();
+
+      System.out.println("아이디" + member.getId());
+
+      // 포지션, 갱신 구입날짜, 이용권 종료 날짜만 수정가능
+      findMember.setPosition(member.getPosition());
+      findMember.setRenew_date(member.getRenew_date()); 
+      findMember.setEnd_date(member.getEnd_date());
+
+      memberRepository.save(findMember);
+   }
 
 }

@@ -4,6 +4,8 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.ott.entity.Board;
@@ -32,6 +34,23 @@ public class BoardServiceImpl implements BoardService {
 		
 		return boardRepository.findAll();
 	}
+
+	@Override
+	public List<Board> getBoardByBCategory(String bCategory) {
+		
+		return boardRepository.getBoardByBCategory(bCategory);
+		
+		
+	}
+
+	@Override
+	public List<Board> findAllOrderByCntDesc(Board board) {
+		
+		return boardRepository.findAllOrderByCntDesc(board);
+	}
+
+	
+	
 
 
 

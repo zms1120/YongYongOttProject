@@ -16,29 +16,28 @@
 <!-- 전체 목록 -->
 
 <div class="row">
-  <div class="col-lg-12">
-    <div class="featured-contents header-text">
-      <div class="heading-section">
-        <h3>전체 목록</h3>
-      </div>
+	<div class="col-lg-12">
+		<div class="featured-contents header-text">
+			<div class="heading-section">
+				<h3>전체 목록</h3>
+			</div>
 
-      <div class="owl-features owl-carousel">
-        <div th:each="tvProgram, state : ${tvProgramList}" class="item">
-          <div class="thumb">
-            <img th:src="@{'/assets/images/tv/' + ${tvProgram.image_path}}" alt="">
-            <a th:href="@{tvdetail(pseq=${tvProgram.pseq})}">
-              <div class="hover-effect">
-                <h6>바로보기</h6>
-              </div>
-            </a>
-          </div>
-          <h4 th:text="${tvProgram.p_title}"></h4>
-        </div>
-      </div>
-    </div>
-  </div>
+			<div class="owl-features owl-carousel owl-theme">
+				<div th:each="tvProgram, state : ${tvProgramList}" class="item">
+					<div class="thumb">
+						<img th:src="@{'/assets/images/tv/' + ${tvProgram.image_path}}" alt="">
+						<a th:href="@{tvdetail(pseq=${tvProgram.pseq})}">
+							<div class="hover-effect">
+								<h6>바로보기</h6>
+							</div>
+						</a>
+					</div>
+					<h4>[[${tvProgram.p_title}]]</h4>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-
 	
 	<!-- 드라마 -->
 	
@@ -166,6 +165,9 @@
 		</div>
 	  </div>
 
+
+  </div>
+</div>
 		<th:block th:replace="fragments/footer :: footer"></th:block>
 
 </body>

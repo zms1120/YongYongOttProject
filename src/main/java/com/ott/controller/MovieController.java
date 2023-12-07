@@ -21,16 +21,24 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
-    @GetMapping("/main")
-    public String mainView(Model model, Movie movie) {
-        List<Movie> movieList = movieService.getMovieList(movie);
-        System.out.println(movieList);
-        model.addAttribute("movieList", movieList);
-        
-        return "layout/main";
-    }
-
+    // 영화 전체 목록
+    @GetMapping("allmovie")
+	public String findByGenreContaining(@RequestParam(name = "genre", required = false)String genre, Model model, Movie movie) {
+		   	List<Movie> movieList = movieService.getMovieList(movie);
+		    List<Movie> romanceList = movieService.findByKeywordContaining("로맨스");
+		    List<Movie> fantasyList = movieService.findByKeywordContaining("판타지");
+		    List<Movie> actionList = movieService.findByKeywordContaining("액션");
+		    List<Movie> dramaList = movieService.findByKeywordContaining("드라마");
+		    
+		    model.addAttribute("romanceList", romanceList);
+		    model.addAttribute("fantasyList", fantasyList);
+		    model.addAttribute("actionList", actionList);
+		    model.addAttribute("dramaList", dramaList);
+		    model.addAttribute("movieList", movieList);
+		    return "layout/contents/allmovie";
+	}
     
+    //영화 상세 보기
     @GetMapping("detail")
     public String getMovie(Model model, @RequestParam("movie_code") String movie_code) {
         // 새로운 Movie 객체를 생성하고 movieCode를 설정
@@ -48,39 +56,9 @@ public class MovieController {
         model.addAttribute("videoPath", videoPath);
       
 
-        return "layout/detail";
+        return "layout/contents/detail";
     }
-    @GetMapping("/insertMovie")
-	public void insertMovieView() {
-		
-		
-	}
+
 
 	
-	@PostMapping("/insertMovie")
-	@Transactional
-	public String insertMovieAction(Movie movie) {
-		
-		
-		movieService.insertMovie(movie);
-		
-		return "redirect:getMovieList";
-			
-	}
-	
-	@GetMapping("allmovie")
-	public String findByGenreContaining(@RequestParam(name = "genre", required = false)String genre, Model model, Movie movie) {
-		   	List<Movie> movieList = movieService.getMovieList(movie);
-		    List<Movie> romanceList = movieService.findByKeywordContaining("로맨스");
-		    List<Movie> fantasyList = movieService.findByKeywordContaining("판타지");
-		    List<Movie> actionList = movieService.findByKeywordContaining("액션");
-		    List<Movie> dramaList = movieService.findByKeywordContaining("드라마");
-		    
-		    model.addAttribute("romanceList", romanceList);
-		    model.addAttribute("fantasyList", fantasyList);
-		    model.addAttribute("actionList", actionList);
-		    model.addAttribute("dramaList", dramaList);
-		    model.addAttribute("movieList", movieList);
-		    return "layout/allmovie";
-	}
 }

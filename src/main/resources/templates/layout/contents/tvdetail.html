@@ -61,9 +61,11 @@
 				<img th:src="@{'/assets/images/tv/' + ${tvProgram.image_path}}" alt="">
 					<div class="play">
 					    <a th:href="'https://www.youtube.com/watch?v=' + ${episode.video_path}" target="_blank">
+					     <span th:text="${#dates.format(episode.airing_date, 'yyyy-MM-dd')}"></span>
 							<p class="play-text">재생하기</p>
 				   		</a>
 				   </div>
+				     
 				  </a>
 				</div>
 			  <h4>[[${episode.ep_title}]]</h4>

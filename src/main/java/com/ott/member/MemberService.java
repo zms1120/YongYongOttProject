@@ -24,6 +24,6 @@ public interface MemberService {
    // 비번 찾기 핸드폰 번호와 이메일로 찾기
    String getIdPhone (Member member);
    
-
+   void changeMembership (Member member);
 
 }

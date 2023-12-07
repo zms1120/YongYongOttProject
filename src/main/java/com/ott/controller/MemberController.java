@@ -25,7 +25,7 @@ public class MemberController {
    public String joinView() {
       System.out.println("---> 회원 가입 페이지 이동");
       
-      return "layout/join";
+      return "layout/member/join";
 
    }
 
@@ -37,45 +37,9 @@ public class MemberController {
       memberService.joinMember(member);
 
       // 로그인페이지로 이동
-      return "redirect:/layout/login";
+      return "redirect:/layout/member/login";
    }
-   /*
-   // 잘됨
-   // 로그인
-   @GetMapping("login")
-   public String loginView() {
-      System.out.println("---> 로그인 페이지 이동");
-      return "layout/login";
-   }
-
-   // 로그인
-   @PostMapping("/login")
-   public String loginAction(Member member, Model model, HttpSession session) {
-      System.out.println("---> 로그인 내용 받기");
-      Member findMember = memberService.getMember(member); // findMember에 정보 다 있음
-
-      if (findMember != null && findMember.getPassword().equals(member.getPassword())) {
-         // 로그인 인증 성공(있는 고객)
-         model.addAttribute("member", findMember);
-
-         // 세션에 사용자 정보 저장
-         session.setAttribute("member", findMember);
-
-         System.out.println("로그인 이름 : " + findMember.getName());
-         System.out.println("로그인 아이디 : " + findMember.getId());
-
-         // 로그인성공했으니 메인으로 이동
-         return "redirect:/layout/main";
-
-      } else {// 로그인 실패(없는 고객)
-         System.out.println("로그인 실패이름 : " + member.getId());
-         System.out.println("로그인 실패아이디 : " + member.getPassword());
-         System.out.println(findMember.getId());
-         // 로그인 페이지로 이동
-         return "redirect:/layout/login";
-      }
-   }
-*/
+  
    // 로그아웃
    @GetMapping("/logout")
    public String logout(HttpSession session) {
@@ -84,27 +48,9 @@ public class MemberController {
       session.invalidate();
 
       // 메인 페이지로 이동
-      return "layout/login";
-   }
-/*
-   // 회원정보 수정페이지 이동
-   @GetMapping("/modify")
-   public String modifyView() {
-      System.out.println("---> 회원 변경 페이지로 가기");
-      return "layout/modify";
+      return "layout/member/login";
    }
 
-   @PostMapping("/modify")
-   public String modifyAction(Member member) {
-      System.out.println("---> 회원 변경 내용 저장");
-
-      // 수정된 내용 저장
-      memberService.modifyMember(member);
-
-      // 메인페이지로 리다이렉트
-      return "redirect:/layout/mypage";
-   }
-*/
    // 아이디 중복 페이지
    @RequestMapping("/check_id")
    public String idCheckView(@RequestParam(name = "id") String id, Model model, Member member) {
@@ -124,7 +70,7 @@ public class MemberController {
          System.out.println("사용 불가능");
       }
       // 아이디 체크로 이동
-      return "/member/check_id";
+      return "layout/member/check_id";
    }
 
    // 아이디 찾기 이동
@@ -154,7 +100,7 @@ public class MemberController {
          model.addAttribute("message", 0);
       }
       //아이디 찾기 이동
-      return "/member/check_find_id";
+      return "layout/member/check_find_id";
    }
    
    // 비번 찾기 찾기 이동
@@ -185,7 +131,7 @@ public class MemberController {
             model.addAttribute("message", 0);
          }
          // 비번 찾기로 이동
-         return "/member/check_find_pwd";
+         return "layout/member/check_find_pwd";
       }
    
 
@@ -202,7 +148,28 @@ public class MemberController {
       //세션 종료! 얏호
       session.invalidate();
       // 로그인 페이지로
-      return "/member/login";
+      return "layout/member/login";
+   }
+   
+// 이용권 수정페이지 이동
+   @GetMapping("/change")
+   public String changeView(Member member) {
+      System.out.println("---> 이용 변경 페이지로 가기");
+      return "layout/member/change";
+      
+   }
+
+   @PostMapping("/change")
+   public String changeAction(Member member) {
+      System.out.println("---> 이용 변경 내용 저장");      
+
+      // 수정된 내용 저장
+     
+      memberService.changeMembership(member);
+    
+    	 
+  
+      return "redirect:/mypage";
    }
 
 }

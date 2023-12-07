@@ -1,5 +1,6 @@
 package com.ott.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,6 +31,7 @@ public class Reply {
 	@SequenceGenerator(name = "rep_seq_generator", sequenceName = "rep_seq", allocationSize = 1)
 	@Id
 	private int r_seq;										//댓글 번호
+	@Column(length = 4000)
 	private String content;									//댓글 내용
 	private int r_like;										//댓글 추천수
 	private String report;									//댓글 신고

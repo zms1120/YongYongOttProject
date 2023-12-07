@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>이용권 변경</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript">
+//페이지 로드 시 가입일만 자동으로 계산
+window.onload = function () {
+   calculateRegDate();
+}
+
+function calculateRegDate() { // 페이지 로드되면 바로 가입일은 현재 날짜로 작성됨
+   var today = new Date();
+   var change_dateInput = document.getElementById("change_date");
+   change_dateInput.value = formatDate(today);
+}
+
+// 날짜를 "yyyy-MM-dd" 형식으로 변환
+function formatDate(date) {
+
+   var year = date.getFullYear();
+   var month = (date.getMonth() + 1).toString().padStart(2, '0');
+   var day = date.getDate().toString().padStart(2, '0');
+   return year + "-" + month + "-" + day;
+}  
+        
+ // 회원 버튼 누르면 자동으로 들어감 
+        function setMembership(position) {
+            var positionSelect = document.getElementById('positionSelect');
+            var options = positionSelect.options;
+            for (var i = 0; i < options.length; i++) {
+                if (options[i].value === position) {
+                    positionSelect.value = position;
+                    break;
+                }
+            }
+            
+         // 누른 버튼에 따라 changeDate 함수 호출
+            changeDate();
+        }
+        
+        function changeDate() {
+            // 변경일 가져오기
+            var change_dateString = document.getElementById("change_date").value;
+
+            // 문자열을 Date 객체로 변환
+            var change_dateObj = new Date(change_dateString);
+
+            // 날짜를 "yyyy-MM-dd" 형식으로 변환
+            var renewDateObj = new Date(change_dateObj);
+            var endDateObj = new Date(change_dateObj);
+
+            if (change_dateObj) {
+                var position = document.getElementById("positionSelect").value;
+
+                // 이용권 종료날짜 계산 (방문자는 8일, 나머지는 31일)
+                if (position === "GUEST") {
+                    endDateObj.setDate(change_dateObj.getDate() + 7);
+                } else {
+                    endDateObj.setDate(change_dateObj.getDate() + 30);
+                }
+
+                // 각 입력 날짜 설정
+                document.getElementById("renew_date").value = formatDate(renewDateObj);
+                document.getElementById("end_date").value = formatDate(endDateObj);
+                console.log("renew_date"+document.getElementById("renew_date").value); 
+                console.log("end_date"+document.getElementById("end_date").value); 
+            }
+        }
+    </script>
+</head>
+
+<body>
+   <th:block th:fragment="content">
+
+      <h1>이용권 변경</h1>
+      <br>
+      <form th:action="@{/change}" method="post" id="change">
+         <table th:align="left" border="1" th:cellpadding="0" th:cellspacing="0">
+            <tr>
+               <th></th>
+               <th><button type="button" onclick="setMembership('GUEST')">GUEST</button></th>
+               <th><button type="button" onclick="setMembership('BASIC')">BASIC</button></th>
+               <th><button type="button" onclick="setMembership('PREMIUM')">PREMIUM</button></th>
+            </tr>
+            <tr>
+               <td>월간 이용 금액</td>
+               <td>0원(가입 후 7일동안 이용 가능)</td>
+               <td>9,500원</td>
+               <td>13,500원</td>
+            </tr>
+            <tr>
+               <td>모바일+태블릿+PC</td>
+               <td>○</td>
+               <td>○</td>
+               <td>○</td>
+            </tr>
+            <tr>
+               <td>TV</td>
+               <td>○</td>
+               <td>○</td>
+               <td>○</td>
+            </tr>
+            <tr>
+               <td>VOD 30만편 이상</td>
+               <td>○</td>
+               <td>○</td>
+               <td>○</td>
+            </tr>
+            <tr>
+               <td>영화 6천편 무제한 시청</td>
+               <td>X</td>
+               <td>X</td>
+               <td>○</td>
+            </tr>
+            </table>
+            
+         	<!-- 로그인 되었을때만 보이게 -->   
+       		  <table th:if="${session.member != null}" th:align="left" border="1" th:cellpadding="0" th:cellspacing="0" >
+            <tr>
+               <td bgcolor="lightcyan" th:text="회원구분"></td>
+               <td>
+                        <select id="positionSelect" name="position" th:value="${session.member.position}">
+                            <option value="GUEST" th:selected="${session.member.position == 'GUEST'}">GUEST</option>
+                            <option value="BASIC" th:selected="${session.member.position == 'BASIC'}">BASIC</option>
+                            <option value="PREMIUM" th:selected="${session.member.position == 'PREMIUM'}">PREMIUM</option>
+                        </select>                      
+                        
+                    </td>
+            </tr>
+            <tr>
+               <td bgcolor="lightcyan" th:text="'변경 날짜'"></td>
+               <td><input type="date" name="change_date" id="change_date" readonly></td>
+            </tr>
+            <tr>
+            <td bgcolor="lightcyan" th:text="가입일"></td>
+            <td><input type="date" name="reg_date" id="reg_date" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" pattern="yyyy-MM-dd" readonly></td>
+         </tr>
+            <tr>
+               <td bgcolor="lightcyan" th:text="이용권갱신날짜"></td>
+            <td><input type="date" name="renew_date" id="renew_date" pattern="yyyy-MM-dd" readonly>
+            </tr>
+            <tr>
+               <td bgcolor="lightcyan" th:text="이용권종료날짜"></td>
+            <td><input type="date" name="end_date" id="end_date" pattern="yyyy-MM-dd" readonly></td>
+            </tr>
+            
+            <tr>
+               <td bgcolor="lightcyan" th:text="아이디"></td>
+               <td><input type="text" name="id" th:value="${session.member.id}" size="12" readonly></td>
+            </tr>
+            
+            
+         </table>
+         <input type="submit" value="이용권 변경 완료">
+      </form>
+      <a th:href="@{/member/main}">취소->메인 페이지로</a>
+      <br>
+      <a th:href="@{/member/delete}">탈퇴 -> 로그인 페이지</a>
+   </th:block>
+</body>
+
+</html>
