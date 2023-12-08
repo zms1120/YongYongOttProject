@@ -26,7 +26,7 @@
 			<div th:each="movie, state : ${movieList}" class="item">
 			  <div class="thumb">
 				<img th:src="@{'/assets/images/movie/' + ${movie.image_path}}" alt="">
-				  <a th:href="@{detail(movie_code=${movie.movie_code})}">
+				  <a th:href="@{moviedetail(movie_code=${movie.movie_code})}">
 					<div class="hover-effect">
 					  <h6>바로보기</h6>
 					</div>
@@ -50,7 +50,7 @@
 			<div th:each="romance, state : ${romanceList}" class="item">
 			  <div class="thumb">
 				<img th:src="@{'/assets/images/movie/' + ${romance.image_path}}" alt="">
-				  <a th:href="@{detail(movie_code=${romance.movie_code})}">
+				  <a th:href="@{moviedetail(movie_code=${romance.movie_code})}">
 					<div class="hover-effect">
 					  <h6>바로보기</h6>
 					</div>
@@ -74,7 +74,7 @@
 			<div th:each="fantasy, state : ${fantasyList}" class="item">
 			  <div class="thumb">
 				<img th:src="@{'/assets/images/movie/' + ${fantasy.image_path}}" alt="">
-				  <a th:href="@{detail(movie_code=${fantasy.movie_code})}">
+				  <a th:href="@{moviedetail(movie_code=${fantasy.movie_code})}">
 					<div class="hover-effect">
 					  <h6>바로보기</h6>
 					</div>
@@ -99,7 +99,7 @@
 			<div th:each="action, state : ${actionList}" class="item">
 			  <div class="thumb">
 				<img th:src="@{'/assets/images/movie/' + ${action.image_path}}" alt="">
-				  <a th:href="@{detail(movie_code=${action.movie_code})}">
+				  <a th:href="@{moviedetail(movie_code=${action.movie_code})}">
 					<div class="hover-effect">
 					  <h6>바로보기</h6>
 					</div>
@@ -123,7 +123,7 @@
 			<div th:each="drama, state : ${dramaList}" class="item">
 			  <div class="thumb">
 				<img th:src="@{'/assets/images/movie/' + ${drama.image_path}}" alt="">
-				  <a th:href="@{detail(movie_code=${drama.movie_code})}">
+				  <a th:href="@{moviedetail(movie_code=${drama.movie_code})}">
 					<div class="hover-effect">
 					  <h6>바로보기</h6>
 					</div>

@@ -21,7 +21,7 @@
               <div class="main-profile ">
 				  <div class="row">
 				    <div class="col-lg-4">
-					  <img src="assets/images/avatar-01.jpg" alt="">
+					  <img src="assets/images/profile.jpg" alt="">
 				    </div>
                     <div class="col-lg-4 align-self-center">
                       <div class="main-info header-text">
@@ -124,7 +124,7 @@
 								   <td th:if="${qna.replies != null and not #lists.isEmpty(qna.replies)}" th:style="'color: #ec6090'">답변완료</td>
 								   <td th:unless="${qna.replies != null and not #lists.isEmpty(qna.replies)}">답변미완료</td>
 								   <!-- <td th:unless="${qna.repliesreplies.size() == 0}">답변미완료</td> -->
-								   <td><div class="main-border-button border-no-active"><a href="getboard(b_seq=${qna.b_seq})">go</a></div></td>
+								   <td><div class="main-border-button border-no-active"><a th:href="@{/gopost(b_seq=${qna.b_seq})}">go</a></div></td>
 							   </tr>
 							 </table>
 						  </div>
@@ -149,7 +149,7 @@
 								   <td th:text="${board.title}"></td>
 								   <td th:if="${board.report != null and board.report != ''}"></td> <!-- 신고 안들어옴 -->
 								   <td th:unless="${board.report != null and board.report != ''}" th:style="'color: #ec6090'">숨김처리</td> <!-- 신고 들어옴 -->
-								   <td><div class="main-border-button border-no-active"><a href="getboard(b_seq=${board.b_seq})">go</a></div></td>
+								   <td><div class="main-border-button border-no-active"><a th:href="@{/gopost(b_seq=${board.b_seq})}">go</a></div></td>
 							   </tr>
 						   </table>
 						  </div>

@@ -43,7 +43,7 @@
                
                         <div class="owl-features owl-carousel owl-theme">
                            <div th:each="hot, state : ${hotBoardList}" th:if="${hot.b_category ne 'qna' and hot.b_category ne 'info'}" class="community hot-post-section" >
-                              <a th:href="@{gopost(b_seq=${hot.b_seq})}">
+                              <a th:href="@{/gopost(b_seq=${hot.b_seq})}">
                                  <div class="community post-mini">
                                     <span class="item" th:text="${hot.b_category}"></span>
                                     <h4 th:text="${hot.title}"></h4>
@@ -100,7 +100,7 @@
 					  <table>
 						  <tr th:each="board, state : ${boardList}">
 							<td>
-							  <a th:href="@{gopost(b_seq=${board.b_seq})}">
+							  <a th:href="@{/gopost(b_seq=${board.b_seq})}">
 								  <div class="community board">
 									<span class="item" th:text="${board.b_category}"></span>
 									<div class="board-info">

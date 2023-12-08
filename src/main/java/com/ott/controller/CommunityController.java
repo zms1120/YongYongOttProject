@@ -43,4 +43,12 @@ public class CommunityController {
 	    return "layout/community/community";
 	}
  
+	@GetMapping("/gopost")
+	public String getBoard(Board board, Model model) {
+		
+		model.addAttribute("board", boardService.getBoard(board));
+		System.out.println();
+		
+		return "layout/community/getBoard";
+	}
 }
