@@ -87,8 +87,8 @@ public class MyPageController {
        model.addAttribute("member", member);
 
        // 게시판 목록 가져오기
-       List<Board> myboard = boardService.findByIdBoardList(member.getId());
-       model.addAttribute("myboard", myboard);
+       List<Board> boardList = boardService.getBoardList(board);
+       model.addAttribute("myboard", boardList);
 
        // QnA 목록 가져오기
        List<Board> qna = boardService.findByMemberIdAndBCategory(member.getId(), "qna");

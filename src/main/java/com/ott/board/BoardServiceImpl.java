@@ -49,12 +49,6 @@ public class BoardServiceImpl implements BoardService {
 		return boardRepository.findAllOrderByCntDesc(board);
 	}
 
-	@Override
-	public List<Board> findByIdBoardList(String memberId) {
-	
-		return boardRepository.findByIdBoardList(memberId);
-	}
-
 	
 	
 

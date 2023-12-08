@@ -2,7 +2,6 @@ package com.ott.board;
 
 import java.util.List;
 
-import org.springframework.data.repository.query.Param;
 
 import com.ott.entity.Board;
 import com.ott.entity.Member;
@@ -19,6 +18,5 @@ public interface BoardService {
 	
 	 List<Board> findAllOrderByCntDesc(Board board);
 	 
-	List<Board> findByIdBoardList(String memberId);
 
 }

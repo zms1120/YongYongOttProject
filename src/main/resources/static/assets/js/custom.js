@@ -275,30 +275,3 @@ var phoneNumberElement = document.getElementById('phone_number');
 if (phoneNumberElement) {
 	phoneNumberElement.innerHTML = maskPhoneNumber(phoneNumberElement.innerHTML);
 }
-
-
-// jQuery를 사용하여 div를 토글 형식
-$(document).ready(function() {
-    var maxVisibleEpisodes = 8; // 보이는 최대 div의 개수
-    var $episodes = $('.episode');
-
-    // 처음에는 일정 개수 이후의 div를 숨김
-    $episodes.slice(maxVisibleEpisodes).hide();
-     $('#close').hide();
-
-    // 버튼을 클릭하면 숨겨진 div를 보이게 하거나 숨기게 하기
-    $('#showmore').on('click', function() {
-        // 'showmore' 버튼을 클릭했을 때
-        $episodes.slice(maxVisibleEpisodes).toggle(); // 일정 개수 이후의 div를 토글
-        $(this).hide(); // 'showmore' 버튼 숨김
-        $('#close').show(); // 'close' 버튼 보임
-    });
-
-    $('#close').on('click', function() {
-        // 'close' 버튼을 클릭했을 때
-        $episodes.slice(maxVisibleEpisodes).hide(); // 일정 개수 이후의 div를 숨김
-        $(this).hide(); // 'close' 버튼 숨김
-        $('#showmore').show(); // 'showmore' 버튼 보임
-    });
-});
-

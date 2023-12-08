@@ -419,15 +419,70 @@ Header Style
 *** background-header ***
 */
 .background-header {
-	background-color: transparent;
-	height: 15px !important;
+	background-color: #27292a;
+	flood-opacity: 50%;
+	height: 90px !important;
+	position: fixed !important;
 	top: 20px !important;
 	left: 0;
 	right: 0;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15) !important;
 	-webkit-transition: all .5s ease 0s;
 	-moz-transition: all .5s ease 0s;
 	-o-transition: all .5s ease 0s;
 	transition: all .5s ease 0s;
+}
+
+
+.background-header .main-nav {
+	padding: 0px;
+	background-color: transparent;
+}
+
+.background-header .upper-nav {
+	padding: 0px;
+	background-color: transparent;
+}
+
+.background-header .main-nav .logo {
+	margin-top: 5px;
+}
+
+.background-header .main-nav .logo img {
+	width: 180px;
+}
+
+
+.background-header .main-nav .nav li:hover a,
+.background-header .main-nav .nav li a.active{
+  color: #fff;
+  opacity: 1;
+}
+
+.background-header .main-nav .nav li.has-sub ul.sub-menu li:last-child a:hover {
+  padding-left: 25px !important;
+}
+
+.background-header .main-nav .menu-trigger {
+  top: 17px;
+}
+
+.background-header .main-nav .menu-trigger span,
+.background-header .main-nav .menu-trigger span:before,
+.background-header .main-nav .menu-trigger span:after {
+  background-color: #e75e8d;
+}
+
+.background-header .main-nav .menu-trigger span:before,
+.background-header .main-nav .menu-trigger span:after {
+  background-color: #e75e8d;
+}
+
+.background-header .main-nav .menu-trigger.active span:before {
+  background-color: #e75e8d;
+}
+.background-header .main-nav .menu-trigger.active span:after {
+  background-color: #e75e8d;
 }
 
 
@@ -457,8 +512,6 @@ Header Style
 
 .header-area .upper-nav {
 	display: flex;
-	min-width: 360px;
-	max-height: 70px;
 	flex-basis: 70%;
 	justify-content: flex-end;
 	vertical-align: middle;
@@ -698,7 +751,22 @@ Header Style
 }
 
 @media (max-width: 992px) {
-
+/*
+*** background-header ***
+*/
+/*
+.background-header .main-nav .logo {
+    top: 0px;
+  }
+  .background-header .main-nav .border-button {
+    top: 0px !important;
+  }
+  
+  .background-header.header-sticky .nav {
+    margin-top: 70px !important;
+  }
+  */
+	
   .header-area {
     top: 0;
   }
@@ -900,75 +968,73 @@ Gaming Library Style
 */
 
 .gaming-library {
-	margin-top: 10px;
-	padding: 30px;
-	background-color: #1f2122;
-	border-radius: 23px;
+   margin-top: 10px;
+   padding: 30px;
+   background-color: #1f2122;
+   border-radius: 23px;
 }
 
 .gaming-library .heading-section {
-	display: inline-block;
+   display: inline-block;
 }
 
 .gaming-library .main-button {
-	display: inline-block;
-	margin-bottom: -30px;
-	margin-left:30px
+   display: inline-block;
+   margin-bottom: -30px;
+   margin-left:30px
 }
 
 .gaming-library .item {
-	margin-bottom: 20px;
-	padding-bottom: 20px;
+   margin-bottom: 20px;
+   padding-bottom: 20px;
 }
 
 .gaming-library .last-item {
-	border-radius: 23px;
-	padding: 30px 30px;
-	background-color: #27292a;
-	margin-bottom: 30px;
+   border-radius: 23px;
+   padding: 30px 30px;
+   background-color: #27292a;
+   margin-bottom: 30px;
 }
 
 .gaming-library .last-item .my-board {
-	position: relative;
+   position: relative;
 }
 
 .gaming-library .last-item .my-board h6{
-	color: #ec6090;
-	margin-bottom: 15px;
+   color: #ec6090;
+   margin-bottom: 15px;
 }
 
 .gaming-library .last-item .table-content {
-	width: 100%;
+   width: 100%;
 }
 
 .gaming-library .last-item table {
-	text-align: center;
-	color: #ffff;
-	font-size: 14px;
+   text-align: center;
+   color: #ffff;
+   font-size: 14px;
 }
 
 .gaming-library .item table tr {
-	width:100%;
-	margin-top: 5px;
-	border-bottom: 1px solid #666;
+   width:100%;
+   margin-top: 5px;
+   border-bottom: 1px solid #666;
 }
 
 .gaming-library .item table tr td {
-	width:17%;
-	margin-right: 10px;
+   width:17%;
+   margin-right: 10px;
 }
 
 .gaming-library .item ul li h4 {
-	font-size: 15px;
-	margin-bottom: 5px;
+   font-size: 15px;
+   margin-bottom: 5px;
 }
 
 .gaming-library .item ul li span {
-	color: #666;
-	font-size: 14px;
+   color: #666;
+   font-size: 14px;
 }
-
-
 
 /* 
 ---------------------------------------------
@@ -1159,98 +1225,15 @@ detail information Style
 	font-weight: 400;
 	margin-top: 30px;
 	border-spacing: 0 10px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 }
 
 .episode-table table{
-  width: 80%;
-}
-
-.episode-table .episode{
-  position: relative;
   width: 90%;
-  min-height: 170px;
-  border-bottom: 1px solid #353637;
-  padding-top:20px;
-  padding-bottom: 20px;
+  margin-left: 50px;
+  border-collapse: separate;
+  border-spacing: 0 30px;
 }
 
-.episode-table .episode .ep-image {
-  position: absolute;
-  display: inline-block;
-  width: 210px;
-}
-
-.episode-table .episode .ep-image .play{
-	position: absolute;
-	width: 100%;
-	bottom: 45px;
-	left: 100px;
-	opacity: 0;
-	visibility: hidden;
-	transition: all .4s;
-}
-
-.episode-table .episode .ep-image:hover .play,
-.episode-table .episode:hover .play {
-	opacity: 1;
-	visibility: visible;
-	color:#f7f7f7;
-}
-
-.episode-table .episode .ep-image:hover img,
-.episode-table .episode:hover img{
-	filter: brightness(80%);
-}
-
-.episode-table .episode .ep-info{
-  position: relative;
-  width: 80%;
-  display: inline-block;
-  flex-direction: column;
-  left: 240px;
-}
-
-.episode-table .episode .ep-info p{
-  position: relative;
-  display: inline-block;
-  margin-right: 15px;
-}
-
-.episode-table .episode .ep-info {
-  overflow: hidden;
-}
-
-.episode-table .toggle-btn{
-  background-color: transparent;
-  font-size: 20px;
-  font-weight: 600;
-  text-align: center;
-  margin-top: 20px;
-}
-
-.episode-table .toggle-btn .showmore {
-  background-color: transparent;
-  border: 5px solid #9ADBE8;
-  border-radius: 23px;
-  color: #9ADBE8;
-  width: 120px;
-  padding: 5px 7px;
-  cursor: pointer;
-}
-
-.episode-table .toggle-btn .close {
-  background-color: transparent;
-  border: 5px solid #e75e8d;
-  border-radius: 23px;
-  color: #e75e8d;
-  width: 120px;
-  padding: 5px 7px;
-  cursor: pointer;
-}
 
 
 /* 
@@ -1755,7 +1738,7 @@ Join Style
 }
 
  .join .input_block .password_ck{
-  visibility: hidden;
+  display: none;
 }
 
 .join form .input_block input {
@@ -2111,10 +2094,11 @@ body {
 }
 
 @media (max-width: 992px) {
-	
+	/*
 	.background-header {
 		display: inline-block;
 	}
+	*/
 	
 
 	.header-area .main-nav #search {
@@ -2164,4 +2148,129 @@ body {
 	.gaming-library .item tr td {
 		width: 16%;
 	}
+}
+
+/*
+---------------------------------------------
+Modify Style
+--------------------------------------------- 
+*/
+.modify {
+  margin-top: 70px;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modify .modify-section {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-color: #353637;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40px;
+}
+
+.modify .heading-section{
+  width: 330px;
+  margin-top: 50px;
+}
+.modify .heading-section h2{
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 36px;
+  font-weight: 500px;
+}
+
+.modify .heading-section h4{
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+.modify .heading-section h5{
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.modify .form-section {
+  width: 330px;
+  margin-top: 10px;
+}
+
+.modify .form {
+  width:100%;
+  max-width:330px;
+  margin: 0 auto;
+}
+
+.modify .input_block h5{
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.modify form .input_block {
+  margin: 20px 5px;
+  display: block;
+  position: relative;
+  border-radius: 15px;
+}
+
+.modify form .input_block input {
+  display: block;
+  width: 120%;
+  max-width: 330px;
+  height: 40px;
+  margin: 0 auto;
+  border-radius: 8px;
+  border: none;
+  background: #f7f7f7;
+  opacity: 90%;
+  color: #666;
+  padding: 0 0 0 15px;
+  font-size: 14px;
+}
+
+ .modify form .input__block input:focus,
+ .modify form .input__block input:active {
+  outline: none;
+  border: none;
+  color: rgba(15, 19, 42, 1);
+}
+
+ .modify form .signin_btn {
+  background: #9ADBE8;
+  color: #1e1e1e;
+  display: block;
+  width: 100%;
+  max-width: 680px;
+  height: 45px;
+  border-radius: 8px;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 500px;
+  transition: 0.2s linear;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+ .modify form .signin_btn:hover {
+  border-color: #fff;
+  background-color: #fff;
+  color: #1e1e1e;
+}
+
+.modify .link-block {
+   position: relative;
+    justify-content: center;
+    align-items: center;
+   text-align: center;
+   margin-left: 10px;
 }

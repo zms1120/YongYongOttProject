@@ -11,130 +11,163 @@
         <div class="page-content">
 			
 		<div class="main-title">
-		  <h1>영화</h1>
+		  <h1>TV프로그램</h1>
 		</div>
+<!-- 전체 목록 -->
 
-	<!-- 영화 전체 목록 -->
+<div class="row">
+	<div class="col-lg-12">
+		<div class="featured-contents header-text">
+			<div class="heading-section">
+				<h3>전체 목록</h3>
+			</div>
+
+			<div class="owl-features owl-carousel owl-theme">
+				<div th:each="tvProgram, state : ${tvProgramList}" class="item">
+					<div class="thumb">
+						<img th:src="@{'/assets/images/tv/' + ${tvProgram.image_path}}" alt="">
+						<a th:href="@{tvdetail(pseq=${tvProgram.pseq})}">
+							<div class="hover-effect">
+								<h6>바로보기</h6>
+							</div>
+						</a>
+					</div>
+					<h4>[[${tvProgram.p_title}]]</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	
+	<!-- 드라마 -->
+	
 	<div class="row">
 	  <div class="col-lg-12">
 		<div class="featured-contents header-text">
 		  <div class="heading-section">
-			<h3>영화 전체 목록</h3>
+			<h3>드라마</h3>
 		  </div>
 
 		  <div class="owl-features owl-carousel">
-			<div th:each="movie, state : ${movieList}" class="item">
+		<div th:each="drama, state : ${dramaList}" class="item">
 			  <div class="thumb">
-				<img th:src="@{'/assets/images/movie/' + ${movie.image_path}}" alt="">
-				  <a th:href="@{detail(movie_code=${movie.movie_code})}">
+				<img th:src="@{'/assets/images/tv/' + ${drama.image_path}}" alt="">
+				  <a th:href="@{tvdetail(pseq=${drama.pseq})}">
 					<div class="hover-effect">
 					  <h6>바로보기</h6>
 					</div>
 				  </a>
 				</div>
-			  <h4>[[${movie.m_title_ko}]]</h4>
+			  <h4>[[${drama.p_title}]]</h4>
 			</div>
 		  </div>
 		</div>
 	  </div>
 	  
-	<!-- 로맨스 -->
+	<!-- 예능 -->
+	
 	<div class="row">
 	  <div class="col-lg-12">
 		<div class="featured-contents header-text">
 		  <div class="heading-section">
-			<h3>로맨스 영화</h3>
+			<h3>예능</h3>
 		  </div>
 
 		  <div class="owl-features owl-carousel">
-			<div th:each="romance, state : ${romanceList}" class="item">
+		<div th:each="enter, state : ${enterList}" class="item">
 			  <div class="thumb">
-				<img th:src="@{'/assets/images/movie/' + ${romance.image_path}}" alt="">
-				  <a th:href="@{detail(movie_code=${romance.movie_code})}">
+				<img th:src="@{'/assets/images/tv/' + ${enter.image_path}}" alt="">
+				  <a th:href="@{tvdetail(pseq=${enter.pseq})}">
 					<div class="hover-effect">
 					  <h6>바로보기</h6>
 					</div>
 				  </a>
 				</div>
-			  <h4>[[${romance.m_title_ko}]]</h4>
+			  <h4>[[${enter.p_title}]]</h4>
 			</div>
 		  </div>
 		</div>
 	  </div>
-	  
-	<!-- 판타지 -->
+	
+	 
+	<!-- 시사/교양 -->
+	
 	<div class="row">
 	  <div class="col-lg-12">
 		<div class="featured-contents header-text">
 		  <div class="heading-section">
-			<h3>판타지 영화</h3>
+			<h3>시사/교양</h3>
 		  </div>
 
 		  <div class="owl-features owl-carousel">
-			<div th:each="fantasy, state : ${fantasyList}" class="item">
+		<div th:each="current, state : ${currentList}" class="item">
 			  <div class="thumb">
-				<img th:src="@{'/assets/images/movie/' + ${fantasy.image_path}}" alt="">
-				  <a th:href="@{detail(movie_code=${fantasy.movie_code})}">
+				<img th:src="@{'/assets/images/tv/' + ${current.image_path}}" alt="">
+				  <a th:href="@{tvdetail(pseq=${current.pseq})}">
 					<div class="hover-effect">
 					  <h6>바로보기</h6>
 					</div>
 				  </a>
 				</div>
-			  <h4>[[${fantasy.m_title_ko}]]</h4>
+			  <h4>[[${current.p_title}]]</h4>
 			</div>
 		  </div>
 		</div>
 	  </div>
 	  
-	  
-	  <!-- 액션 -->
+	<!-- 애니메이션 -->
+	
 	<div class="row">
 	  <div class="col-lg-12">
 		<div class="featured-contents header-text">
 		  <div class="heading-section">
-			<h3>액션 영화</h3>
+			<h3>애니메이션</h3>
 		  </div>
 
 		  <div class="owl-features owl-carousel">
-			<div th:each="action, state : ${actionList}" class="item">
+		<div th:each="ani, state : ${aniList}" class="item">
 			  <div class="thumb">
-				<img th:src="@{'/assets/images/movie/' + ${action.image_path}}" alt="">
-				  <a th:href="@{detail(movie_code=${action.movie_code})}">
+				<img th:src="@{'/assets/images/tv/' + ${ani.image_path}}" alt="">
+				  <a th:href="@{tvdetail(pseq=${ani.pseq})}">
 					<div class="hover-effect">
 					  <h6>바로보기</h6>
 					</div>
 				  </a>
 				</div>
-			  <h4>[[${action.m_title_ko}]]</h4>
+			  <h4>[[${ani.p_title}]]</h4>
 			</div>
 		  </div>
 		</div>
 	  </div>
 	  
-	  <!-- 드라마 -->
+	  <!--해외 시리즈 -->
+	
 	<div class="row">
 	  <div class="col-lg-12">
 		<div class="featured-contents header-text">
 		  <div class="heading-section">
-			<h3>드라마 장르</h3>
+			<h3>해외시리즈</h3>
 		  </div>
 
 		  <div class="owl-features owl-carousel">
-			<div th:each="drama, state : ${dramaList}" class="item">
+		<div th:each="fore, state : ${foreList}" class="item">
 			  <div class="thumb">
-				<img th:src="@{'/assets/images/movie/' + ${drama.image_path}}" alt="">
-				  <a th:href="@{detail(movie_code=${drama.movie_code})}">
+				<img th:src="@{'/assets/images/tv/' + ${fore.image_path}}" alt="">
+				  <a th:href="@{tvdetail(pseq=${fore.pseq})}">
 					<div class="hover-effect">
 					  <h6>바로보기</h6>
 					</div>
 				  </a>
 				</div>
-			  <h4>[[${drama.m_title_ko}]]</h4>
+			  <h4>[[${fore.p_title}]]</h4>
 			</div>
 		  </div>
 		</div>
 	  </div>
 
+
+  </div>
+</div>
 		<th:block th:replace="fragments/footer :: footer"></th:block>
 
 </body>
