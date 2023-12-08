@@ -39,7 +39,7 @@ public class MovieController {
 	}
     
     //영화 상세 보기
-    @GetMapping("detail")
+    @GetMapping("moviedetail")
     public String getMovie(Model model, @RequestParam("movie_code") String movie_code) {
         // 새로운 Movie 객체를 생성하고 movieCode를 설정
     	Movie movie = new Movie();
@@ -56,7 +56,7 @@ public class MovieController {
         model.addAttribute("videoPath", videoPath);
       
 
-        return "layout/contents/detail";
+        return "layout/contents/moviedetail";
     }
 
 

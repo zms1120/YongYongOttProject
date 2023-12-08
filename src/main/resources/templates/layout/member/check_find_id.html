@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>아이디 찾기</title>
+    <script type="text/javascript">
+        function redirectToLogin() {  
+        	var idValue = document.fr.id.value;
+            console.log("현재 찾은 아이디 값:", idValue);
+        	window.opener.document.fr.id.value = idValue;
+            // 현재 창 닫기
+           window.close();
+        }
+    </script>
+</head>
+<body>
+    <h1>아이디 찾기 입니다.</h1>
+    <form th:action="check_find_id" name="fr" method="post">
+        <div id="checkIdResult">
+            <th:block th:if="${message == 1}" >
+                <div>
+                    찾으시는 아이디는 <br>
+                    <input type="text" name="id" th:value="${id}" readonly>입니다.<br>
+                    <input type='button' value='닫기' onclick='redirectToLogin()'>
+                </div>
+            </th:block>
+            <th:block th:if="${message == 0}">
+                <div>
+                    없는 아이디 입니다.<br> 다시 입력해주세요.
+                </div>
+            </th:block>
+        </div>
+    </form>
+</body>
+</html>

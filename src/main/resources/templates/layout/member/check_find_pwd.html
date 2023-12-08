@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>비번 찾기</title>
+
+</head>
+<body>
+	<h1>비번 찾기 입니다.</h1>
+	<form action="check_find_pwd" name="fr" method="post">
+		<div id="checkIdResult">
+			<th:block th:if="${message == 1}" >
+				<div>
+				찾으시는 비번은 <span th:text="${password}"></span> 입니다.
+				</div>
+			</th:block>
+			<th:block th:if="${message == 0}">
+				<div>
+					찾을수 없습니다.<br> 다시 입력해주세요.
+				</div>
+			</th:block>
+		</div>
+		</th:block>
+	</form>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>아이디 찾기</title>
+	<script type="text/javascript">
+		// 아이디 찾기
+		function check_find_id() {
+			// 이름랑 이메일
+			var phone_numberValue = document.getElementById("phone_number").value;
+			var emailValue = document.getElementById("email").value;
+			// 이메일과 아이디를 모두 확인하려면 URL에 두 값을 추가
+			var url = "check_find_id?phone_number=" + phone_numberValue + "&email=" + emailValue;
+			console.log(url); // 확인을 위한 로그
+			// 새 창으로 열기
+			window.open(url, "_blank", "width=400,height=300");
+		}		 
+	</script>
+</head>
+<body>
+    <h2>아이디 찾기 페이지</h2>
+    <form th:action="@{/member/find_id}" method="post" name="fr">
+        <label>이메일</label>
+        <input type="email" name="email" id="email">
+        <label>핸드폰 번호</label>
+        <input type="text" name="phone_number" id="phone_number">
+        <input type="button" value="아이디 찾기" onclick="check_find_id()"><br><br>
+        찾은 아이디
+       <input type="text" name="id" id="id" readonly>
+    </form>
+    
+    
+    <a th:href="@{/member/login}">로그인 페이지로</a>
+</body>
+</html>
