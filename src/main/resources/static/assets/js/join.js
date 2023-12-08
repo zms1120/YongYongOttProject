@@ -63,5 +63,11 @@ function selectDate() { // 옵션에 따라 갱신일과 종료일이 다름
 		document.getElementById("renew_date").value = formatDate(renewDateObj);
 		document.getElementById("end_date").value = formatDate(endDateObj);
 	}
+	
+	
 }
-
+// 아이디 중복 확인
+      function checkDuplicateId() {
+         var url = "check_id?id=" + id.value;
+         window.open(url, "_blank", "width=400,height=300");
+      }

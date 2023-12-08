@@ -75,8 +75,10 @@ public class MemberController {
 
    // 아이디 찾기 이동
    @GetMapping("/find_id")
-   public void findIdCheckView() {
+   public String findIdCheckView() {
       System.out.println("---> 아이디 찾기 페이지 이동");
+      return "layout/member/find_id";
+      
    }
    // 아이디 찾기 이메일로 핸드폰 번호로 찾기
    @RequestMapping("/check_find_id")

@@ -2164,4 +2164,146 @@ body {
 	.gaming-library .item tr td {
 		width: 16%;
 	}
+	
+	/* 
+---------------------------------------------
+change Style
+--------------------------------------------- 
+*/ 
+.change {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.change .chage-section {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-color: #353637;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40px;
+}
+.change .heading-section{
+  width: 300px;
+  margin-top: 50px;
+}
+.change .heading-section h2{
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 36px;
+  font-weight: 500px;
+}
+.change .heading-section h5{
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+.change-use-button {
+   font-size: 14px;
+   color: #ec6090;
+   background-color: transparent;
+   border: 1px solid #ec6090;
+   padding: 12px 30px;
+   display: inline-block;
+   border-radius: 25px;
+   font-weight: 400;
+   text-transform: capitalize;
+   letter-spacing: 0.5px;
+   transition: all .3s;
+   position: relative;
+   overflow: hidden;
+}
+.change-use-button:hover {
+   border-color: #fff;
+   background-color: #fff;
+   color: #1e1e1e;
+}
+.change .link-block {
+   position: relative;
+    justify-content: center;
+    align-items: center;
+   text-align: center;
+   margin-left: 10px;   
+}
+.use-table {
+   font-size: 18px;
+   color: #fff;
+   font-weight: 400;
+   margin-top: 100px;
+   border-spacing: 0 10px;
+   text-align: center;
+}
+.use-table table{
+  width: 90%;
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0 30px;
+}
+.use-table th, .use-table td {
+    padding: 10px;
+}
+.change .input_block h5{
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+.change form .input_block input {
+  display: block;
+  width: 120%;
+  max-width: 330px;
+  height: 40px;
+  margin: 0 auto;
+  border-radius: 8px;
+  border: none;
+  background: #f7f7f7;
+  opacity: 90%;
+  color: #666;
+  padding: 0 0 0 15px;
+  font-size: 14px;
+}
+ .change form .input__block input:focus,
+ .change form .input__block input:active {
+  outline: none;
+  border: none;
+  color: rgba(15, 19, 42, 1);
+}
+.change form select {
+  display: block;
+  width: 120%;
+  max-width: 330px;
+  height: 40px;
+  margin: 0 auto;
+  border-radius: 8px;
+  border: none;
+  background: #f7f7f7;
+  opacity: 90%;
+  color: #666;
+  padding: 0 0 0 15px;
+  font-size: 14px;
+}
+ .change form .signin_btn {
+  background: #9ADBE8;
+  color: #1e1e1e;
+  display: block;
+  width: 100%;
+  max-width: 680px;
+  height: 45px;
+  border-radius: 8px;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 500px;
+  transition: 0.2s linear;
+ }
+  .change form .signin_btn:hover {
+  border-color: #fff;
+  background-color: #fff;
+  color: #1e1e1e;
+}
 }
