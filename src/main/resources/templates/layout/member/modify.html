@@ -5,29 +5,7 @@
 <head>
 <title>회원 정보 수정</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript">
-   // 저장하기전 빈칸(수정에서는 비번, 이름, 핸드폰번호 변경 가능)
-   function modify_save() {
-      var password = document.getElementById("password");
-      var name = document.getElementById("name");
-      var phone_number = document.getElementById("phone_number");
-      console.log("update 성공"+phone_number);
-
-    
-    
-    	 if (name.value == "" || name.length == 0) {
-         alert("이름 입력해주세요.")
-         name.focus();
-         return false;
-      } else if (phone_number.value == "" || phone_number.length == 0) {
-         alert("핸드폰 번호를 입력해주세요.")
-         phone_number.focus();
-         return false;
-      } else {
-         return true;
-      }
-   }
-</script>
+<script type="text/javascript" th:src="@{/assets/js/member.js}"></script>
 </head>
 <!-- header -->
 <th:block th:replace="fragments/header :: header"></th:block>
@@ -51,7 +29,7 @@
                                  <h5>아이디</h5>
                                  <input type="text" name="id" th:value="${session.member.id}" readonly>
                               </div>
-                           	 <div class="input_block">
+                               <div class="input_block">
                                  <h5>비밀번호</h5>
                                  <input type="password" name="password" id="password" th:value="${session.member.password}">
                               </div>

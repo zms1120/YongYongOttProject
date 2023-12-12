@@ -55,6 +55,24 @@ public class BoardServiceImpl implements BoardService {
 		return boardRepository.findByIdBoardList(memberId);
 	}
 
+	@Override
+	public void insertBoard(Board board) {
+		boardRepository.save(board);
+		
+	}
+
+	@Override
+	public void updateBoard(Board board) {
+		boardRepository.save(board);
+		
+	}
+
+	@Override
+	public void deleteBoard(Board board) {
+		boardRepository.deleteById(board.getB_seq());
+		
+	}
+
 	
 	
 

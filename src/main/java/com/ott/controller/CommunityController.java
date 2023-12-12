@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -50,5 +51,35 @@ public class CommunityController {
 		System.out.println();
 		
 		return "layout/community/getBoard";
+	}
+	
+	@GetMapping("/insertBoard")
+	public String insertBoardView() {
+		return "layout/community/insertBoard";
+	}
+	
+	@PostMapping("/insertBoard")
+	public String insertBoard(Board board) {
+		boardService.insertBoard(board);
+		
+		return "redirect:/community";
+	}
+	@GetMapping("updateBoard")
+	public String updateBoardView() {
+		return "layout/community/updateBoard";
+		
+	}
+	@PostMapping("updateBoard")
+	public String updateBoard(Board board) {
+		boardService.updateBoard(board);
+		
+		return "redirect:/community";
+	}
+	
+	@PostMapping("/deleteBoard")
+	public String deleteBoard(Board board) {
+		boardService.deleteBoard(board);
+		
+		return "layout/community/community";
 	}
 }

@@ -2164,8 +2164,9 @@ body {
 	.gaming-library .item tr td {
 		width: 16%;
 	}
-	
-	/* 
+}
+
+/* 
 ---------------------------------------------
 change Style
 --------------------------------------------- 
@@ -2305,5 +2306,4 @@ change Style
   border-color: #fff;
   background-color: #fff;
   color: #1e1e1e;
-}
 }
