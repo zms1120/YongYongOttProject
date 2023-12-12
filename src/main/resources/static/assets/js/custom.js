@@ -284,7 +284,7 @@ $(document).ready(function() {
 
     // 처음에는 일정 개수 이후의 div를 숨김
     $episodes.slice(maxVisibleEpisodes).hide();
-     $('#close').hide();
+    $('#close').hide();
 
     // 버튼을 클릭하면 숨겨진 div를 보이게 하거나 숨기게 하기
     $('#showmore').on('click', function() {
@@ -302,3 +302,149 @@ $(document).ready(function() {
     });
 });
 
+// 비밀번호 입력시 비밀번호 체크하는 input 나타남
+$('#password').on('input', function() {
+    var passwordInput = $(this).val().trim();
+    var $passwordCkInput = $('#password_ck');
+
+    if (passwordInput.length > 0) {
+        $passwordCkInput.parent().show(); // password_ck input을 보이게 함
+    } else {
+        $passwordCkInput.parent().hide(); // password_ck input을 숨김
+    }
+});
+
+//email 입력시 확인
+$(document).ready(function() {
+	$('#id').on('focusout', function(e) {
+		e.preventDefault();
+		
+		var email = $('#id').val().trim();
+	
+		$.ajax({
+			url: '/check_id',
+			data: {
+				id: email
+			},
+			type: 'GET',
+			dataType: 'text',
+			success: function(result) {
+				if (result == "사용가능") {
+					$("#message").css("color", "aquamarine").text("사용 가능한 이메일입니다.");
+				} else if (result == "불가능") {
+					$("#message").css("color", "#ec6090").text("이미 사용중인 이메일입니다..");
+				}
+				else {
+					$("#message").css("color", "#ec6090").text("로그인, 비밀번호 찾기, 알림에 사용되니 정확한 이메일 주소를 입력해주세요.");
+				}
+			}
+		});
+	
+	});
+});
+
+
+
+
+// next를 누를 때마다 다른 div로 넘어감
+$(document).ready(function() {
+	$('#next-to-step2').on('click', function(e) {
+		e.preventDefault();
+		$('.step1').hide();
+		$('.step2').show();
+	});
+	
+	$('#next-to-step3').on('click', function(e) {
+		e.preventDefault();
+		$('.step2').hide();
+		$('.step3').show();
+	});
+	
+	$('#next-to-step4').on('click', function(e) {
+		e.preventDefault();
+		$('.step3').hide();
+		$('.step4').show();
+	});
+});
+
+// prev를 누를 때마다 이전 div로 넘어감
+$(document).ready(function() {
+	$('#prev-to-step1').on('click', function(e) {
+		e.preventDefault();
+		$('.step2').hide();
+		$('.step1').show();
+	});
+	
+	$('#prev-to-step2').on('click', function(e) {
+		e.preventDefault();
+		$('.step3').hide();
+		$('.step2').show();
+	});
+	
+	$('#prev-to-step3').on('click', function(e) {
+		e.preventDefault();
+		$('.step4').hide();
+		$('.step3').show();
+	});
+	
+});
+
+// checked 이벤트 처리
+$(document).ready(function() {
+	$('#age-restriction').change(function() {
+		if (this.checked) {
+			$('.age-restriction').css('background-color', '#1f2122');
+		} else {
+			$('.age-restriction').css('background-color', ''); // 기본값으로 돌리거나 다른 배경색 지정 가능
+		}
+	});
+	
+	$('#service').change(function() {
+		if (this.checked) {
+			$('.service').css('background-color', '#1f2122');
+		} else {
+			$('.service').css('background-color', ''); // 기본값으로 돌리거나 다른 배경색 지정 가능
+		}
+	});
+	
+	$('#member_privacy').change(function() {
+		if (this.checked) {
+			$('.member_privacy').css('background-color', '#1f2122');
+		} else {
+			$('.member_privacy').css('background-color', ''); // 기본값으로 돌리거나 다른 배경색 지정 가능
+		}
+	});
+	
+	$('#member_payment').change(function() {
+		if (this.checked) {
+			$('.member_payment').css('background-color', '#1f2122');
+		} else {
+			$('.member_payment').css('background-color', ''); // 기본값으로 돌리거나 다른 배경색 지정 가능
+		}
+	});
+	
+	$('#member_event').change(function() {
+		if (this.checked) {
+			$('.member_event').css('background-color', '#1f2122');
+		} else {
+			$('.member_event').css('background-color', ''); // 기본값으로 돌리거나 다른 배경색 지정 가능
+		}
+	});
+	
+	$('#member_ad').change(function() {
+		if (this.checked) {
+			$('.member_ad').css('background-color', '#1f2122');
+		} else {
+			$('.member_ad').css('background-color', ''); // 기본값으로 돌리거나 다른 배경색 지정 가능
+		}
+	});
+	
+	$('#member_target').change(function() {
+		if (this.checked) {
+			$('.member_target').css('background-color', '#1f2122');
+		} else {
+			$('.member_target').css('background-color', ''); // 기본값으로 돌리거나 다른 배경색 지정 가능
+		}
+	});
+	
+});
