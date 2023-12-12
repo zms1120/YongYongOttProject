@@ -1,0 +1,89 @@
+<html xmlns:th="http://www.thymeleaf.org"
+   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+<title>게시글 작성</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- header -->
+<th:block th:replace="fragments/header :: header"></th:block>
+   <script type="text/javascript" th:src="@{/assets/js/community.js}"></script>
+</head>
+<body th:align="center">
+
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-12">
+            <div class="page-content">
+               <!-- 게시판 작성 시작 -->
+            
+               <div class="insert">
+                  <div class="insert insert-section">
+                     <!-- 로그인을 해야 작성이 가능함 -->
+                     <!-- 작성 테이블 시작 -->
+                     <div class="form-section" th:if="${session.member != null}">
+                        <div class="heading-section">
+                           <h4>게시글을 작성 할 수 있어용</h4>
+                           <h5>비방과 욕설 스포는 삭제가 될 수 있어용</h5>
+                        </div>
+                        <form th:action="@{/insertBoard}" method="post" id="insert" onsubmit="return board_save()">
+                           <div class="input-table">
+                              <table class="insertBoard" th:align="center" 
+                                 th:cellpadding="0" th:cellspacing="0">
+                                 <tr>
+                                    <td>카테고리</td>
+                                    <td><select id="b_category" name="b_category">
+                                          <option placeholder="선택해주세요."></option>
+                                          <option th:value="qna">Q&A</option>
+                                          <option th:value="talk">수다</option>
+                                          <option th:value="review">후기</option>
+                                    </select></td>
+                                 </tr>
+                                 <tr>
+                                    <td>작성자(ID)</td>
+                                    <td><input type="text" name="id"
+                                       th:value="${session.member.id}" readonly></td>
+                                 </tr>
+                                 <tr>
+                                    <td>제목</td>
+                                    <td><input type="text" name="title" id="title"
+                                       placeholder="제목을 입력해주세요."></td>
+                                 </tr>
+
+                                 <tr>
+                                    <td>내용</td>
+                                    <td><textarea name="content" id="content" cols="50"
+                                          rows="20" placeholder="내용을 입력해주세요."></textarea></td>
+                                 </tr>
+                              </table>
+                           </div>
+                           <div class="link-block">
+                              <a th:href="@{/main}">메인으로</a> &nbsp; &nbsp; <a
+                                 th:href="@{/community}">취소</a> <br>
+                           </div>
+                           <br>
+                           <input class="insert_btn" type="submit" value="등록하기">
+                        </form>
+                     </div>
+                     <!-- 로그인 안했을 경우 -->
+                     <div th:if="${session.member == null}">
+                        <div class="heading-section">
+                           <h4>게시글을 작성은 로그인 한 후 가능해용</h4>
+                           <h5>로그인으로 이동해주세용</h5>
+                        </div>
+
+                        <div class="link-block">
+                           <a th:href="@{/community}">취소</a> &nbsp; &nbsp; <a
+                              th:href="@{/login}">로그인 하기</a> <br>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <!-- footer -->
+   <th:block th:replace="fragments/footer :: footer"></th:block>
+</body>
+</html>

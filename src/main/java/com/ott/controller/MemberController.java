@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ott.entity.Member;
 import com.ott.member.MemberService;
@@ -52,7 +53,9 @@ public class MemberController {
    }
 
    // 아이디 중복 페이지
+   // ajax 연결
    @RequestMapping("/check_id")
+   @ResponseBody
    public String idCheckView(@RequestParam(name = "id") String id, Model model, Member member) {
       System.out.println("---> 아이디 중복 페이지");
       System.out.println("입력값 " + id);
@@ -63,14 +66,11 @@ public class MemberController {
 
       if (searchId == null && member.getId() != "") {   // 사용 가능한 경우
          System.out.println("사용 가능");
-         model.addAttribute("id", id);
-         model.addAttribute("message", 1);
+         return "사용가능";
       } else { // 사용 불가능한 경우
-         model.addAttribute("message", 0);
          System.out.println("사용 불가능");
+         return "불가능";
       }
-      // 아이디 체크로 이동
-      return "layout/member/check_id";
    }
 
    // 아이디 찾기 이동
@@ -174,4 +174,34 @@ public class MemberController {
       return "redirect:/mypage";
    }
 
+
+   //이용약관 관련 메소드
+   @GetMapping("/age-restriction")
+	public String ageRestriction() {
+		return "layout/member/terms/age-restriction";
+	}
+	@GetMapping("/service")
+	public String service() {
+		return "layout/member/terms/service";
+	}
+	@GetMapping("/member_privacy")
+	public String memberPrivacy() {
+		return "layout/member/terms/member_privacy";
+	}
+	@GetMapping("/member_payment")
+	public String memberPayment() {
+		return "layout/member/terms/member_payment";
+	}
+	@GetMapping("/member_event")
+	public String memberEvent() {
+		return "layout/member/terms/member_event";
+	}
+	@GetMapping("/member_ad")
+	public String memberAdvertise() {
+		return "layout/member/terms/member_ad";
+	}
+	@GetMapping("/member_target")
+	public String memberTarget() {
+		return "layout/member/terms/member_target";
+	}
 }

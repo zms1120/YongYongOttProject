@@ -41,12 +41,12 @@ public class Board {
 	private String title;					//게시글 제목
 	@Column(length = 4000)
 	private String content;					//게시글 내용
-	private int cnt;						//게시글 조회수
+	private int cnt = 0;						//게시글 조회수
 	private String b_category;				//게시글 항목
 	private int b_like;						//게시글 추천수
 	private String report;					// 게시글 신고
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date write_date;   				//게시글 등록일
+	private Date write_date= new Date();   				//게시글 등록일
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id")		
