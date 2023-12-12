@@ -1655,7 +1655,7 @@ Login Style
   top: 13px;
   background:  #f7f7f7;
   height: 1px;
-  width: 25%;
+  width: 23%;
 }
 
 .login .separator::before,
@@ -1704,6 +1704,15 @@ Join Style
 */
 
 .join {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.join .step1,
+.join .step2,
+.join .step3,
+.join .step4 {
   margin-top: 70px;
   margin-bottom: 100px;
   display: flex;
@@ -1722,10 +1731,9 @@ Join Style
 }
 
 .join .heading-section{
-  width: 90%;
+  width: 80%;
   margin-top: 50px;
-  position: relative;
-  text-align: center;
+  position: relative
 }
 
 .join .heading-section h2{
@@ -1734,33 +1742,31 @@ Join Style
   line-height: 1.8;
 }
 
-.join .join-form {
+.join .join-section .join-form {
   width: 100%;
   margin-top: 10px;
   position: relative;
-}
-
-.join .join-form form{
   display: flex;
   flex-direction: column;
-  margin-left: 15%
- }
+  justify-content: center;
+  margin-left: 20%;
+}
 
 
-.join form .input_block {
+.join .join-form .input_block {
   margin: 10px 5px;
   display: block;
   position: relative;
   border-radius: 15px;
 }
 
- .join .input_block .password_ck{
-  visibility: hidden;
+ .join .join-form .input_block .password_ck{
+  display: none;
 }
 
-.join form .input_block input {
+.join .join-form .input_block input {
   display: block;
-  width: 80%;
+  width: 70%;
   height: 40px;
   border-radius: 8px;
   border: none;
@@ -1771,24 +1777,27 @@ Join Style
   font-size: 14px;
 }
 
-.join form .input_block .join-info {
+.join .join-form .input_block .join-info {
   margin-top: 15px;
   display: block;
   position: relative;
-  color: #f7f7f7;
-  opacity: 50%;
+  color: #eee;
   width: 80%;
 }
 
-
- .join form .input__block input:focus,
- .join form .input__block input:active {
+ .join .join-form .input_block input:focus,
+ .join .join-form .input_block input:active {
   outline: none;
   border: none;
   color: rgba(15, 19, 42, 1);
 }
 
-.join form .ck-button input {
+.join .join-form .button-div {
+	display: block;
+	justify-content: space-between;
+}
+
+.join .join-form .ck-button {
     font-size: 20px;
 	color: #ec6090;
 	background-color: transparent;
@@ -1804,16 +1813,135 @@ Join Style
     align-items: center;
 	overflow: hidden;
 	cursor: pointer;
-	width: 80%;
+	width: 40%;
   	height: 45px;
   	margin-top: 30px;
 }
 
- .join form .ck-button input:hover {
+ .join .button-div .ck-button:hover {
+  border-color: #fff;
+  background-color: #fff;
+  color: #1e1e1e;
+  
+}
+
+.join .join-form .button-div .prev-button {
+    font-size: 20px;
+	color: #9ADBE8;
+	background-color: transparent;
+	border: 1px solid #9ADBE8;
+	display: inline-block;
+	border-radius: 8px;
+	font-weight: 500;
+	text-transform: capitalize;
+	letter-spacing: 0.5px;
+	transition: all .3s;
+	position: relative;
+	justify-content: center;
+    align-items: center;
+	overflow: hidden;
+	cursor: pointer;
+	width: 40%;
+  	height: 45px;
+  	margin-top: 30px;
+}
+
+ .join .button-div .prev-button:hover {
   border-color: #fff;
   background-color: #fff;
   color: #1e1e1e;
 }
+
+.join .join-form .submit-button {
+    font-size: 20px;
+	color: #1e1e1e;
+	background-color: #9ADBE8;
+	display: inline-block;
+	border-radius: 8px;
+	font-weight: 500;
+	text-transform: capitalize;
+	letter-spacing: 0.5px;
+	transition: all .3s;
+	position: relative;
+	justify-content: center;
+    align-items: center;
+	overflow: hidden;
+	cursor: pointer;
+	width: 40%;
+  	height: 45px;
+  	margin-top: 30px;
+}
+
+ .join .ck-button:hover {
+  border-color: #fff;
+  background-color: #fff;
+  color: #1e1e1e;
+}
+
+.join .join-form .checkbox {
+  margin: 10px 5px;
+  padding: 10px 12px;
+  display: block;
+  position: relative;
+  border-radius: 8px;
+  background-color:#666;
+  width: 80%;
+}
+
+.join .join-form .checkbox .detail{
+  position: absolute;
+  display: inline-block;
+  right:30px;
+}
+
+.join .join-form .checkbox .detail i{
+  color: #f7f7f7;
+  right:0;
+}
+
+.join .join-form .checkbox .detail i:hover {
+  cursor: pointer;
+}
+
+.join .join-form .checkbox input[type="checkbox"] {
+  display: none;
+}
+
+.join .join-form .checkbox input[type="checkbox"] + label {
+  position: relative;
+  border: 2px solid #f7f7f7;
+  width: 15px;
+  height: 15px;
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f7f7f7;
+}
+
+.join .join-form .checkbox input[type="checkbox"] + label:hover {
+	cursor: pointer;
+}
+
+.join .join-form .checkbox input[type="checkbox"]:checked + label::after {
+	content: '\2714'; /* 체크표시 유니코드 */
+	text-align: center;
+	position: absolute;
+	top: -10px;
+	color: #e75e8d;
+	background-color: transparent;
+}
+
+.join .join-form .checkbox .checkbox-info {
+  margin-left: 7px;
+  color: #f7f7f7;
+}
+
+.join .step2,
+.join .step3,
+.join .step4 {
+	display: none;
+}
+
 
 /* 
 ---------------------------------------------

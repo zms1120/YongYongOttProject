@@ -14,49 +14,209 @@
 
 		<!-- join page start -->
 		<div class="join">
-          <div class="col-lg-6">
-			<div class="join join-section">
-				<p>STEP 1</p>
-				<div class="heading-section">
-                  <h2>이메일과 비밀번호로 <br>
-                  	<em th:style="'color: #9ADBE8'">용용플레이</em>를 즐길 수 있어용!</h2>
-                </div>
-				<div class="join join-form">
-					<!--action : form에 작성한 데이터를 member/join으로 보냄 -->
-					<!-- name : 서버로 전송 할 때 변수의 역할이라고 생각해줘-->
-					<form th:action="@{/member/join}" method="post" id="join" onsubmit="return go_save();" name="fr">
+          <div class="col-lg-8">
+			<form th:action="@{/join}" method="post" id="join" onsubmit="return go_save();" name="fr">
+			
+			<!-- *** STEP 1 *** -->
+			<div class="join step1">
+				<div class="join join-section">
+					<p>STEP 1</p>
+					<div class="heading-section">
+						<h2>이메일과 비밀번호로 <br>
+							<em th:style="'color: #9ADBE8'">용용플레이</em>를 즐길 수 있어용!
+						</h2>
+					</div>
+					<div class="join-form">
+						<!--action : form에 작성한 데이터를 member/join으로 보냄 -->
+						<!-- name : 서버로 전송 할 때 변수의 역할이라고 생각해줘-->
 						<div class="input_block">
 							<input type="email" id="id" name="id" placeholder="yongyong@example.com">
-							<span class="join-info">로그인, 비밀번호 찾기, 알림에 사용되니 정확한 이메일 주소를 입력해주세요.</span>
+							<span class="join-info" id="message">로그인, 비밀번호 찾기, 알림에 사용되니 정확한 이메일 주소를 입력해주세요.</span>
 						</div>
 						<div class="input_block">
-							<input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요." >
+							<input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요.">
 							<span class="join-info">비밀번호는 8-20자 이내로 영문 대소문자, 숫자, 특수문자를 반드시 하나씩 포함하여 입력해주세요.</span>
 						</div>
 						<div class="input_block">
 							<div class="input_block password_ck">
-							  <input type="password" name="password_ck" id="password_ck" placeholder="비밀번호를 다시 입력해주세요.">
+								<input type="password" name="password_ck" id="password_ck" placeholder="비밀번호를 다시 입력해주세요.">
 							</div>
 						</div>
-						<div class="ck-button">
-							<input type="button" value="다음" onclick="checkDuplicateId()">
+						<div class="button-div">
+							<button class="ck-button" id="next-to-step2" th:style="'width: 80%'">다음</button>
 						</div>
-				
-					</form>
+					</div>
+			
+			
+					<!-- separator -->
+					<div class="separator">
+						다른 서비스 계정으로 가입
+					</div>
+			
+					<!-- button -->
+					<button class="google__btn">
+						<i class="fa fa-google"></i>
+					</button>
 				</div>
+			</div>
+			<!-- *** STEP 1 END *** -->
 				
-				<!-- separator -->
-				<div class="separator">
-					다른 서비스 계정으로 회원가입
-				</div>
+				<!-- *** STEP 2 *** -->
 				
-				<!-- button -->
-				<button class="google__btn">
-					<i class="fa fa-google"></i>
-				</button>
+				  <div class="join step2">
+					<div class="join join-section">
+						<p>STEP 2</p>
+						<div class="heading-section">
+							<h2>이메일 확인</h2>
+							<h6>이메일로 인증코드를 전송했습니다.</h6>
+						</div>
+						<div class="join-form">
+							<div class="input_block">
+								<input type="text" id="auth" name="auth">
+							</div>
+							<div class="button-div">
+							<button class="prev-button" id="prev-to-step1">Back</button>
+							<button class="ck-button" id="next-to-step3">다음</button>
+						</div>
+						</div>
+					</div>
+				  </div>
+				
+				<!-- *** STEP 2 END *** -->
+				
+				<!-- *** STEP 3 *** -->
+				<div class="join step3">
+					<div class="join join-section">
+						<p>STEP 3</p>
+						<div class="heading-section">
+							<h2>조금 더 남았어용:)</h2>
+						</div>
+						<div class="join-form">
+							<!--action : form에 작성한 데이터를 member/join으로 보냄 -->
+							<!-- name : 서버로 전송 할 때 변수의 역할이라고 생각해줘-->
+							<div class="input_block">
+								<span class="join-info">이름</span>
+								<input type="text" id="name" name="name" placeholder="ex) 홍길동">
+							</div>
+							<div class="input_block">
+								<span class="join-info">번호</span>
+								<input type="tel" name="phone_number" id="phone_number">
+							</div>
+							<div class="input_block">
+								<span class="join-info">나이</span>
+								<input type="text" name="phone_number" id="phone_number">
+							</div>
+							<div>
+								이용권 안내
+							</div>
+							<div class="button-div">
+							  <button class="prev-button" id="prev-to-step2">Back</button>
+							  <button class="ck-button" id="next-to-step4">다음</button>
+							</div>
+						</div>
+					</div>
 				</div>
+				<!-- *** STEP 3 END *** -->
+				
+				<!-- *** STEP 4 *** -->
+				<div class="join step4">
+					<div class="join join-section">
+						<p>STEP 4</p>
+						<div class="heading-section">
+							<h2>이용약관에 동의하시면<br>
+								회원가입이 완료됩니다.
+							</h2>
+						</div>
+						<div class="join-form">
+				
+							<div class="checkbox age-restriction">
+								<input type="checkbox" class="terms-of-service" id="age-restriction">
+								<label for="age-restriction"></label>
+								<span class="checkbox-info">만 14세 이상입니다.
+									<span th:style="'color: aquamarine'">(필수)</span>
+								</span>
+								<a th:href="age-restriction">
+									<div class="detail"><i class="fas fa-chevron-right"></i></div>
+								</a>
+							</div>
+							<div class="checkbox service">
+								<input type="checkbox" class="terms-of-service" id="service">
+								<label for="service"></label>
+								<span class="checkbox-info">서비스 이용약관
+									<span th:style="'color: aquamarine'">(필수)</span>
+								</span>
+								<a th:href="join">
+									<div class="detail"><i class="fas fa-chevron-right"></i></div>
+								</a>
+							</div>
+							<div class="checkbox member_privacy">
+								<input type="checkbox" class="terms-of-service" id="member_privacy">
+								<label for="member_privacy"></label>
+								<span class="checkbox-info">개인정보 수집 이용 동의
+									<span th:style="'color: aquamarine'">(필수)</span>
+								</span>
+								<a th:href="join">
+									<div class="detail"><i class="fas fa-chevron-right"></i></div>
+								</a>
+							</div>
+							<div class="checkbox member_payment">
+								<input type="checkbox" class="terms-of-service" id="member_payment">
+								<label for="member_payment"></label>
+								<span class="checkbox-info">유료상품 이용약관
+									<span th:style="'color: aquamarine'">(필수)</span>
+								</span>
+								<a th:href="join">
+									<div class="detail"><i class="fas fa-chevron-right"></i></div>
+								</a>
+							</div>
+							<div class="checkbox member_event">
+								<input type="checkbox" class="terms-of-service" id="member_event">
+								<label for="member_event"></label>
+								<span class="checkbox-info">신작 콘텐츠 및 이벤트 정보 수신 동의
+									<span>(선택)</span>
+								</span>
+								<a th:href="join">
+									<div class="detail"><i class="fas fa-chevron-right"></i></div>
+								</a>
+							</div>
+							<div class="checkbox member_ad">
+								<input type="checkbox" class="terms-of-service" id="member_ad">
+								<label for="member_ad"></label>
+								<span class="checkbox-info">광고성 정보 수신
+									<span>(선택)</span>
+								</span>
+								<a th:href="join">
+									<div class="detail"><i class="fas fa-chevron-right"></i></div>
+								</a>
+							</div>
+							<div class="checkbox member_target">
+								<input type="checkbox" class="terms-of-service" id="member_target">
+								<label for="member_target"></label>
+								<span class="checkbox-info">맞춤형 서비스 제공을 위한 제3자 제공 동의
+									<span>(선택)</span>
+								</span>
+								<a th:href="join">
+									<div class="detail"><i class="fas fa-chevron-right"></i></div>
+								</a>
+							</div>
+							<div class="button-div">
+							  <button class="prev-button" id="prev-to-step3">Back</button>
+							  <button type="submit" class="submit-button">완료</button>
+							</div>
+				
+						</div>
+					</div>
+				</div>
+				<!-- *** STEP 4 END *** -->
+				
+			  </form>
 		    </div>
 		  </div>
+		</div>
+		
+      </div>
+    </div>
+  </div>
           
   <th:block th:replace="fragments/footer :: footer"></th:block>
   
