@@ -20,5 +20,10 @@ public interface BoardService {
 	 List<Board> findAllOrderByCntDesc(Board board);
 	 
 	List<Board> findByIdBoardList(String memberId);
-
+	
+	void insertBoard(Board board);
+	
+	void updateBoard(Board board);
+	
+	void deleteBoard(Board board);
 }

@@ -34,8 +34,8 @@ public class TVProgramServiceImpl implements TVProgramService {
 	}
 
 	@Override
-	public void deleteTVProgram(int pseq) {
-		tvProgramRepository.deleteById(pseq);
+	public void deleteTVProgram(TVProgram tvProgram) {
+		tvProgramRepository.deleteById(tvProgram.getPseq());
 
 	}
 
@@ -49,7 +49,7 @@ public class TVProgramServiceImpl implements TVProgramService {
 			int pseq = tvProgram.getPseq();
 
 			// pseq를 파일 이름으로 사용하여 이미지 저장
-			String filePath = uploadDirectory + File.separator + pseq + ".png";
+			String filePath = uploadDirectory + File.separator + pseq + ".jpg";
 			imageFile.transferTo(new File(filePath));
 
 			// 이미지 경로를 TV 프로그램에 저장
