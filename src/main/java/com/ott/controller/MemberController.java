@@ -174,4 +174,34 @@ public class MemberController {
       return "redirect:/mypage";
    }
 
+
+   //이용약관 관련 메소드
+   @GetMapping("/age-restriction")
+	public String ageRestriction() {
+		return "layout/member/terms/age-restriction";
+	}
+	@GetMapping("/service")
+	public String service() {
+		return "layout/member/terms/service";
+	}
+	@GetMapping("/member_privacy")
+	public String memberPrivacy() {
+		return "layout/member/terms/member_privacy";
+	}
+	@GetMapping("/member_payment")
+	public String memberPayment() {
+		return "layout/member/terms/member_payment";
+	}
+	@GetMapping("/member_event")
+	public String memberEvent() {
+		return "layout/member/terms/member_event";
+	}
+	@GetMapping("/member_ad")
+	public String memberAdvertise() {
+		return "layout/member/terms/member_ad";
+	}
+	@GetMapping("/member_target")
+	public String memberTarget() {
+		return "layout/member/terms/member_target";
+	}
 }

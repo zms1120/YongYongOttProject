@@ -2,6 +2,8 @@ package com.ott.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,10 +61,14 @@ public class CommunityController {
 	}
 	
 	@PostMapping("/insertBoard")
-	public String insertBoard(Board board) {
-		boardService.insertBoard(board);
-		
-		return "redirect:/community";
+	public String insertBoard(@RequestParam(name = "id") String id,Board board, Model model, Member member) {
+	      member.setId(id);
+	      board.setMember(member);
+	      model.addAttribute("id", id);
+
+	      boardService.insertBoard(board);
+	       return "redirect:/community";
+
 	}
 	@GetMapping("updateBoard")
 	public String updateBoardView() {
@@ -82,4 +88,5 @@ public class CommunityController {
 		
 		return "layout/community/community";
 	}
+	
 }

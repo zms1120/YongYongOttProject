@@ -16,6 +16,11 @@
 			<div class="detail-table">
 				<table>
 					<tr>
+						<td class="em" th:text="카테고리"></td>  
+						<td th:text="${board.b_category}"></td>
+					</tr>
+					
+					<tr>
 						<td class="em" th:text="제목"></td>
 						<td class="em" th:text="${board.title}" width="80" colspan="2"></td>
 					</tr>
