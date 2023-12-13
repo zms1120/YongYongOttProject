@@ -320,8 +320,14 @@ $(document).ready(function() {
 		e.preventDefault();
 		
 		var email = $('#id').val().trim();
-	
-		$.ajax({
+		
+		// 유효한 이메일 주소 형식인지 확인
+        var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        if (!emailPattern.test(email)) {
+            $("#message").css("color", "#ec6090").text("올바른 이메일 형식으로 작성해주세요.");
+            return;
+        } else(
+			$.ajax({
 			url: '/check_id',
 			data: {
 				id: email
@@ -332,13 +338,12 @@ $(document).ready(function() {
 				if (result == "사용가능") {
 					$("#message").css("color", "aquamarine").text("사용 가능한 이메일입니다.");
 				} else if (result == "불가능") {
-					$("#message").css("color", "#ec6090").text("이미 사용중인 이메일입니다..");
+					$("#message").css("color", "#ec6090").text("이미 사용중인 이메일입니다.");
 				}
-				else {
-					$("#message").css("color", "#ec6090").text("로그인, 비밀번호 찾기, 알림에 사용되니 정확한 이메일 주소를 입력해주세요.");
-				}
-			}
-		});
+			  }
+			  
+			})
+		)
 	
 	});
 });
@@ -350,8 +355,16 @@ $(document).ready(function() {
 $(document).ready(function() {
 	$('#next-to-step2').on('click', function(e) {
 		e.preventDefault();
-		$('.step1').hide();
-		$('.step2').show();
+		
+		if($('#id').val().trim() != ''){
+			$('.step1').hide();
+			$('.step2').show();
+			
+			sendMail();
+		}
+		else{
+			$("#message").css("color", "#ec6090").text("이메일을 입력해 주세요");
+		}
 	});
 	
 	$('#next-to-step3').on('click', function(e) {
@@ -447,4 +460,38 @@ $(document).ready(function() {
 		}
 	});
 	
+});
+
+function sendMail() {
+	// 이메일 인증
+	var email = $('#id').val().trim();
+	//alert(email);
+	
+	$.ajax({
+		url: '/email_auth',
+		data: {
+			email: email
+		},
+		type: 'post',
+		dataType: 'text',
+		success: function(result) {
+			$('#number').attr("value",result);
+		}
+	});
+}
+
+$(document).ready(function() {
+	$(document).on('click', '.auth-button', function(e) {
+		e.preventDefault();
+		var user_input = $("#auth_num").val();
+		var number = $("#number").val();
+		
+		//alert("user_input = " + user_input + "number = " + number);
+	
+		if (user_input == number) {
+			$('.auth-message').css("color", "aquamarine").text("인증되었습니다.");
+		} else {
+			$('.auth-message').css("color", "#ec6090").text("번호가 다릅니다.");
+		}
+	});
 });
