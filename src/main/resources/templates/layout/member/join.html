@@ -69,15 +69,19 @@
 						<div class="heading-section">
 							<h2>이메일 확인</h2>
 							<h6>이메일로 인증코드를 전송했습니다.</h6>
+							<input type="hidden" id="number" name="number" value="">
 						</div>
 						<div class="join-form">
 							<div class="input_block">
-								<input type="text" id="auth" name="auth">
+								<input type="text" id="auth_num" name="auth_num">
+								<button class="auth-button">인증</button>
 							</div>
+							<div class="auth-message"></div>
+							<br>
 							<div class="button-div">
-							<button class="prev-button" id="prev-to-step1">Back</button>
-							<button class="ck-button" id="next-to-step3">다음</button>
-						</div>
+							  <button class="prev-button" id="prev-to-step1">Back</button>
+							  <button class="ck-button" id="next-to-step3">다음</button>
+							</div>
 						</div>
 					</div>
 				  </div>

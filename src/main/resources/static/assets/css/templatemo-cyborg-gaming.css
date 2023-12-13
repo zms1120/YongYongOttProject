@@ -1765,8 +1765,8 @@ Join Style
 }
 
 .join .join-form .input_block input {
-  display: block;
-  width: 70%;
+  display: inline-block;
+  width: 60%;
   height: 40px;
   border-radius: 8px;
   border: none;
@@ -1775,7 +1775,31 @@ Join Style
   color: #666;
   padding: 0 0 0 15px;
   font-size: 14px;
+  margin-right: 30px;
 }
+
+.join .join-form .input_block .auth-button {
+  display: inline-block;
+  cursor: pointer;
+  width: 10%;
+  height: 25px;
+  border-radius: 8px;
+  background-color: #f7f7f7;
+  color: #1e1e1e;
+  font-size: 14px;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  margin-left: 20px;
+}
+
+.join .join-form .input_block .auth-button:hover {
+  background-color: #9ADBE8;
+  color: #1e1e1e;
+}
+
 
 .join .join-form .input_block .join-info {
   margin-top: 15px;
