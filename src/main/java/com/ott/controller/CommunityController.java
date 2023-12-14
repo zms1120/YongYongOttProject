@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.MatrixVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,12 +18,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ott.board.BoardService;
 import com.ott.entity.Board;
 import com.ott.entity.Member;
+import com.ott.entity.Reply;
+import com.ott.reply.ReplyService;
 
 @Controller
 public class CommunityController {
 
 	@Autowired
 	private BoardService boardService;
+	@Autowired
+	private ReplyService replyService;
 	
 
 	@GetMapping("/community")
@@ -46,14 +51,17 @@ public class CommunityController {
 	    return "layout/community/community";
 	}
  
-	@GetMapping("/gopost")
-	public String getBoard(Board board, Model model) {
-		
-		model.addAttribute("board", boardService.getBoard(board));
-		System.out.println();
-		
-		return "layout/community/getBoard";
-	}
+	// 게시판 상세 및 댓글까지 보이기(댓글은 로그인시에만)
+	   @GetMapping("/gopost")
+	   public String getBoard(Board board, Model model, Reply reply, @RequestParam(name = "b_seq")int boardSeq) {
+		  Board selectedBoard = boardService.getBoard(board);
+		  boardService.increaseViewCount(boardSeq);
+	      model.addAttribute("board", selectedBoard);
+	      model.addAttribute("reply", replyService.getReply(boardSeq));
+	      
+	      return "layout/community/getBoard";
+	   }
+
 	
 	@GetMapping("/insertBoard")
 	public String insertBoardView() {
@@ -89,4 +97,21 @@ public class CommunityController {
 		return "layout/community/community";
 	}
 	
+	// 댓글 등록하기
+	@PostMapping("/insertReply")
+	public String replyAction(@RequestParam(name = "id") String id, @ModelAttribute("newReply") Reply reply,
+	        Model model, Member member, Board board) {
+
+	    member.setId(id);
+	    reply.setMember(member);
+	    reply.setBoard(board);
+	    model.addAttribute("id", id);
+	    model.addAttribute("b_seq", board.getB_seq());
+
+	    replyService.insertReply(reply);
+
+	    // 댓글이 등록된 후 해당 게시글의 상세 페이지로 이동
+	    return "redirect:/gopost?b_seq=" + board.getB_seq();
+	}
+
 }
