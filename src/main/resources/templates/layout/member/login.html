@@ -1,54 +1,144 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
- <th:block th:replace="fragments/header :: header"></th:block>
+<th:block th:replace="fragments/header :: header"></th:block>
 
+<!-- Google 로그인 API 스크립트 추가 -->
+<script
+	src="https://apis.google.com/js/platform.js?apikey=AIzaSyABZcGiylkxAV0j0A3eqw-nrEbv2d8A7eg"
+	async defer></script>
+<!-- 네이버 로그인 API 스크립트 추가 -->
+<script type="text/javascript"
+	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
+	charset="UTF-8"></script>
+<!-- 카카오톡 로그인 API 스크립트 추가 -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+	// Google 로그인 API 초기화
+	function initializeGoogleSignIn() {
+		gapi
+				.load(
+						'auth2',
+						function() {
+							gapi.auth2
+									.init({
+										client_id : '565042519356-nil3g4008pq0e0ls0hdmm4mgs56h5qq9.apps.googleusercontent.com', // 여기에 클라이언트 ID를 넣어주세요
+									});
+						});
+	}
+
+	// Google 로그인 성공 시 호출되는 함수
+	function onSignIn(googleUser) {
+		var profile = googleUser.getBasicProfile();
+		console.log('ID: ' + profile.getId());
+		console.log('Name: ' + profile.getName());
+		console.log('Image URL: ' + profile.getImageUrl());
+		console.log('Email: ' + profile.getEmail());
+	}
+
+	// 문서가 로드된 후 초기화 수행
+	document.addEventListener('DOMContentLoaded', function() {
+		initializeGoogleSignIn();
+	});
+
+	// 카카오톡 로그인 초기화
+	Kakao.init('d255d0e68a759a78133299917d445cc6');
+
+	document.addEventListener('DOMContentLoaded', function() {
+		// 카카오 로그인 버튼 클릭 이벤트
+		document.getElementById('kakao-login-btn').addEventListener('click',
+				function() {
+					Kakao.Auth.login({
+						success : function(authObj) {
+							console.log(authObj);
+							// 로그인 성공 시 처리할 코드 추가
+						},
+						fail : function(err) {
+							console.error(err);
+							// 로그인 실패 시 처리할 코드 추가
+						},
+					});
+				});
+	});
+
+	document.addEventListener('DOMContentLoaded', function() {
+		// 네이버 로그인 초기화 코드
+		var naverLogin = new naver.LoginWithNaverId({
+			clientId : 'EBMwOMopjh_cuRmIkmFn',
+			callbackUrl : 'http://localhost:8080/main',
+			isPopup : true,
+			loginButton : {
+				color : 'white',
+				type : 2,
+				height : 35
+
+			},
+		});
+
+		// 네이버 로그인 초기화 코드 호출
+		naverLogin.init();
+	});
+</script>
 <body>
 
 
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="page-content">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="page-content">
 
-		<!-- login page start -->
-		<div class="login">
-          <div class="col-lg-8">
-			<div class="login login-section">
-				<div class="heading-section">
-                  <h2>로그인</h2>
-                  <h4>용용플레이 계정으로 시작하기</h4>
-                </div>
-	            <div class="form-section">
-					<form th:action="@{/login}" method="post">
-						<div class="input_block"><input type="text" name="id" placeholder="id"/></div>
-						<div class="input_block"><input type="password" name="password" placeholder="Password"/></div>
-						<div class="link-block">
-						  <a href="join">회원가입</a> &nbsp; &nbsp;
-						  <a href="#">아이디/비밀번호 찾기</a>
+					<!-- login page start -->
+					<div class="login">
+						<div class="col-lg-8">
+							<div class="login login-section">
+								<div class="heading-section">
+									<h2>로그인</h2>
+									<h4>용용플레이 계정으로 시작하기</h4>
+								</div>
+								<div class="form-section">
+									<form th:action="@{/login}" method="post">
+										<div class="input_block">
+											<input type="text" name="id" placeholder="id" />
+										</div>
+										<div class="input_block">
+											<input type="password" name="password" placeholder="Password" />
+										</div>
+										<div class="link-block">
+											<a href="join">회원가입</a> &nbsp; &nbsp; <a href="find_id">아이디/비밀번호
+												찾기</a>
+										</div>
+										<button class="signin_btn" type="submit">로그인</button>
+									</form>
+								</div>
+								<br> <br>
+								<!-- separator -->
+
+								<div class="separator">다른 서비스 계정으로 간편로그인</div>
+
+								<div class="social-login-buttons"
+									style="display: flex; gap: 10px;">
+									<!-- Google 로그인 버튼 -->
+
+									<div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+									<!-- 네이버 로그인 버튼 -->
+									<div style="width: 120px;">
+										<div id="naverIdLogin"></div>
+									</div>
+									<!-- 카카오톡 로그인 버튼 -->
+									<a id="kakao-login-btn"> <img
+										src="assets/images/kakao_login.png" alt="카카오톡으로 로그인"
+										style="cursor: pointer; width: 120px; height: 35px;" />
+									</a>
+
+								</div>
+
+							</div>
 						</div>
-						<button class="signin_btn" type="submit">로그인</button>
-					</form>
-				</div>
-				<br>
-				<br>
-				<!-- separator -->
-				<div class="separator">
-				    다른 서비스 계정으로 간편로그인
-				</div>
-				
-				<!-- button -->
-				<button class="google__btn">
-				    <i class="fa fa-google"></i>
-				</button>
+					</div>
 
-				
-		      </div>
-		    </div>
-		  </div>
-          
-  <th:block th:replace="fragments/footer :: footer"></th:block>
-
-  </body>
+					<th:block th:replace="fragments/footer :: footer"></th:block>
+</body>
 
 </html>
