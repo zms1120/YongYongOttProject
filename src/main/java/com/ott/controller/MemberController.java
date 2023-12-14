@@ -50,7 +50,7 @@ public class MemberController {
       memberService.joinMember(member);
 
       // 로그인페이지로 이동
-      return "redirect:/layout/member/login";
+      return "redirect:/login";
    }
   
    // 로그아웃
@@ -164,8 +164,10 @@ public class MemberController {
    
    // 비번 찾기 찾기 이동
       @GetMapping("/find_pwd")
-      public void findPwdCheckView() {
+      public String findPwdCheckView() {
          System.out.println("---> 비번 찾기 페이지 이동");
+         
+         return "layout/member/find_pwd";
       }
       // 비번 찾기 아이디와 핸드폰 번호로 찾기
       @RequestMapping("/check_find_pwd")

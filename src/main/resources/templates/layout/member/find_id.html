@@ -20,7 +20,7 @@
 </head>
 <body>
     <h2>아이디 찾기 페이지</h2>
-    <form th:action="@{/member/find_id}" method="post" name="fr">
+    <form th:action="@{/find_id}" method="post" name="fr">
         <label>이메일</label>
         <input type="email" name="email" id="email">
         <label>핸드폰 번호</label>
@@ -31,6 +31,7 @@
     </form>
     
     
-    <a th:href="@{/member/login}">로그인 페이지로</a>
+    <a th:href="@{/login}">로그인 페이지로</a>
+    <a th:href="@{/find_pwd}">비밀번호 찾기</a>
 </body>
 </html>

@@ -3,6 +3,83 @@
 
  <th:block th:replace="fragments/header :: header"></th:block>
 
+<!-- Google 로그인 API 스크립트 추가 -->
+<script
+	src="https://apis.google.com/js/platform.js?apikey=AIzaSyABZcGiylkxAV0j0A3eqw-nrEbv2d8A7eg"
+	async defer></script>
+<!-- 네이버 로그인 API 스크립트 추가 -->
+<script type="text/javascript"
+	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
+	charset="UTF-8"></script>
+<!-- 카카오톡 로그인 API 스크립트 추가 -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script >
+// Google 로그인 API 초기화
+function initializeGoogleSignIn() {
+	gapi
+			.load(
+					'auth2',
+					function() {
+						gapi.auth2
+								.init({
+									client_id : '565042519356-nil3g4008pq0e0ls0hdmm4mgs56h5qq9.apps.googleusercontent.com', // 여기에 클라이언트 ID를 넣어주세요
+								});
+					});
+}
+
+// Google 로그인 성공 시 호출되는 함수
+function onSignIn(googleUser) {
+	var profile = googleUser.getBasicProfile();
+	console.log('ID: ' + profile.getId());
+	console.log('Name: ' + profile.getName());
+	console.log('Image URL: ' + profile.getImageUrl());
+	console.log('Email: ' + profile.getEmail());
+}
+
+// 문서가 로드된 후 초기화 수행
+document.addEventListener('DOMContentLoaded', function() {
+	initializeGoogleSignIn();
+});
+
+// 카카오톡 로그인 초기화
+Kakao.init('d255d0e68a759a78133299917d445cc6');
+
+document.addEventListener('DOMContentLoaded', function() {
+	// 카카오 로그인 버튼 클릭 이벤트
+	document.getElementById('kakao-login-btn').addEventListener('click',
+			function() {
+				Kakao.Auth.login({
+					success : function(authObj) {
+						console.log(authObj);
+						// 로그인 성공 시 처리할 코드 추가
+					},
+					fail : function(err) {
+						console.error(err);
+						// 로그인 실패 시 처리할 코드 추가
+					},
+				});
+			});
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+	// 네이버 로그인 초기화 코드
+	var naverLogin = new naver.LoginWithNaverId({
+		clientId : 'EBMwOMopjh_cuRmIkmFn',
+		callbackUrl : 'http://localhost:8080/main',
+		isPopup : true,
+		loginButton : {
+			color : 'white',
+			type : 2,
+			height : 35
+			
+		},
+	});
+
+
+	// 네이버 로그인 초기화 코드 호출
+	naverLogin.init();
+});
+</script>
 
 <body>
 
@@ -48,15 +125,29 @@
 					</div>
 			
 			
-					<!-- separator -->
-					<div class="separator">
-						다른 서비스 계정으로 가입
-					</div>
-			
-					<!-- button -->
-					<button class="google__btn">
-						<i class="fa fa-google"></i>
-					</button>
+				
+									<!-- separator -->
+								
+									<div class="separator">
+									다른 서비스 계정으로 가입
+							</div>
+							
+						<div class="social-login-buttons" style="display: flex; gap: 10px;">
+							<!-- Google 로그인 버튼 -->
+							
+							<div class="g-signin2" data-onsuccess="onSignIn" ></div>
+							
+								<!-- 네이버 로그인 버튼 -->
+								<div style="width:120px;" >
+							<div id="naverIdLogin"></div>
+						    </div>
+							<!-- 카카오톡 로그인 버튼 -->
+							<a id="kakao-login-btn"> <img
+								src="assets/images/kakao_login.png" alt="카카오톡으로 로그인"
+								style="cursor: pointer; width: 120px; height: 35px;" />
+							</a>
+
+							</div>
 				</div>
 			</div>
 			<!-- *** STEP 1 END *** -->
@@ -108,7 +199,7 @@
 							</div>
 							<div class="input_block">
 								<span class="join-info">나이</span>
-								<input type="text" name="phone_number" id="phone_number">
+								<input type="text" name="age" id="age">
 							</div>
 							<div>
 								이용권 안내
