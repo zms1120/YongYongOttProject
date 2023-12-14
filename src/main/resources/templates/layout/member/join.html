@@ -3,84 +3,6 @@
 
  <th:block th:replace="fragments/header :: header"></th:block>
 
-<!-- Google 로그인 API 스크립트 추가 -->
-<script
-	src="https://apis.google.com/js/platform.js?apikey=AIzaSyABZcGiylkxAV0j0A3eqw-nrEbv2d8A7eg"
-	async defer></script>
-<!-- 네이버 로그인 API 스크립트 추가 -->
-<script type="text/javascript"
-	src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js"
-	charset="UTF-8"></script>
-<!-- 카카오톡 로그인 API 스크립트 추가 -->
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script >
-// Google 로그인 API 초기화
-function initializeGoogleSignIn() {
-	gapi
-			.load(
-					'auth2',
-					function() {
-						gapi.auth2
-								.init({
-									client_id : '565042519356-nil3g4008pq0e0ls0hdmm4mgs56h5qq9.apps.googleusercontent.com', // 여기에 클라이언트 ID를 넣어주세요
-								});
-					});
-}
-
-// Google 로그인 성공 시 호출되는 함수
-function onSignIn(googleUser) {
-	var profile = googleUser.getBasicProfile();
-	console.log('ID: ' + profile.getId());
-	console.log('Name: ' + profile.getName());
-	console.log('Image URL: ' + profile.getImageUrl());
-	console.log('Email: ' + profile.getEmail());
-}
-
-// 문서가 로드된 후 초기화 수행
-document.addEventListener('DOMContentLoaded', function() {
-	initializeGoogleSignIn();
-});
-
-// 카카오톡 로그인 초기화
-Kakao.init('d255d0e68a759a78133299917d445cc6');
-
-document.addEventListener('DOMContentLoaded', function() {
-	// 카카오 로그인 버튼 클릭 이벤트
-	document.getElementById('kakao-login-btn').addEventListener('click',
-			function() {
-				Kakao.Auth.login({
-					success : function(authObj) {
-						console.log(authObj);
-						// 로그인 성공 시 처리할 코드 추가
-					},
-					fail : function(err) {
-						console.error(err);
-						// 로그인 실패 시 처리할 코드 추가
-					},
-				});
-			});
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-	// 네이버 로그인 초기화 코드
-	var naverLogin = new naver.LoginWithNaverId({
-		clientId : 'EBMwOMopjh_cuRmIkmFn',
-		callbackUrl : 'http://localhost:8080/main',
-		isPopup : true,
-		loginButton : {
-			color : 'white',
-			type : 2,
-			height : 35
-			
-		},
-	});
-
-
-	// 네이버 로그인 초기화 코드 호출
-	naverLogin.init();
-});
-</script>
-
 <body>
 
 
@@ -108,15 +30,16 @@ document.addEventListener('DOMContentLoaded', function() {
 						<!-- name : 서버로 전송 할 때 변수의 역할이라고 생각해줘-->
 						<div class="input_block">
 							<input type="email" id="id" name="id" placeholder="yongyong@example.com">
-							<span class="join-info" id="message">로그인, 비밀번호 찾기, 알림에 사용되니 정확한 이메일 주소를 입력해주세요.</span>
+							<span class="join-info" id="id-message">로그인, 비밀번호 찾기, 알림에 사용되니 정확한 이메일 주소를 입력해주세요.</span>
 						</div>
 						<div class="input_block">
 							<input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요.">
-							<span class="join-info">비밀번호는 8-20자 이내로 영문 대소문자, 숫자, 특수문자를 반드시 하나씩 포함하여 입력해주세요.</span>
+							<p class="join-info" id="pwd-message">비밀번호는 8-20자 이내로 영문 대소문자, 숫자, 특수문자를 반드시 하나씩 포함하여 입력해주세요.</p>
 						</div>
 						<div class="input_block">
 							<div class="input_block password_ck">
 								<input type="password" name="password_ck" id="password_ck" placeholder="비밀번호를 다시 입력해주세요.">
+								<span class="join-info" id="pwdck-message"></span>
 							</div>
 						</div>
 						<div class="button-div">
@@ -160,7 +83,6 @@ document.addEventListener('DOMContentLoaded', function() {
 						<div class="heading-section">
 							<h2>이메일 확인</h2>
 							<h6>이메일로 인증코드를 전송했습니다.</h6>
-							<input type="hidden" id="number" name="number" value="">
 						</div>
 						<div class="join-form">
 							<div class="input_block">
@@ -187,19 +109,20 @@ document.addEventListener('DOMContentLoaded', function() {
 							<h2>조금 더 남았어용:)</h2>
 						</div>
 						<div class="join-form">
-							<!--action : form에 작성한 데이터를 member/join으로 보냄 -->
-							<!-- name : 서버로 전송 할 때 변수의 역할이라고 생각해줘-->
 							<div class="input_block">
 								<span class="join-info">이름</span>
-								<input type="text" id="name" name="name" placeholder="ex) 홍길동">
+								<input type="text" id="name" name="name" placeholder="ex) 김용용">
 							</div>
 							<div class="input_block">
 								<span class="join-info">번호</span>
-								<input type="tel" name="phone_number" id="phone_number">
+								<input type="tel" name="phone_number" id="phone_number" placeholder="">
 							</div>
+							
 							<div class="input_block">
 								<span class="join-info">나이</span>
-								<input type="text" name="age" id="age">
+								<select name="age" id="age">
+									<option th:each="i : ${#numbers.sequence(18, 100)}" th:value="${i}" th:text="${i}"></option>
+								</select>
 							</div>
 							<div>
 								이용권 안내
@@ -294,9 +217,12 @@ document.addEventListener('DOMContentLoaded', function() {
 									<div class="detail"><i class="fas fa-chevron-right"></i></div>
 								</a>
 							</div>
+							
+							<div class="join-info" id="checkbox-message"></div>
+							
 							<div class="button-div">
 							  <button class="prev-button" id="prev-to-step3">Back</button>
-							  <button type="submit" class="submit-button">완료</button>
+							  <button type="button" class="submit-button" id="submit-button">완료</button>
 							</div>
 				
 						</div>

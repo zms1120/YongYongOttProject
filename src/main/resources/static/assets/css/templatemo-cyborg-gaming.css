@@ -1728,6 +1728,7 @@ Join Style
   align-items: center; 
   padding-bottom: 40px;
   padding-top: 20px;
+  min-width: 720px;
 }
 
 .join .heading-section{
@@ -1766,7 +1767,7 @@ Join Style
 
 .join .join-form .input_block input {
   display: inline-block;
-  width: 60%;
+  width: 70%;
   height: 40px;
   border-radius: 8px;
   border: none;
@@ -1806,7 +1807,7 @@ Join Style
   display: block;
   position: relative;
   color: #eee;
-  width: 80%;
+  width: 340px;
 }
 
  .join .join-form .input_block input:focus,
@@ -1960,12 +1961,13 @@ Join Style
   color: #f7f7f7;
 }
 
+/*
 .join .step2,
 .join .step3,
 .join .step4 {
 	display: none;
 }
-
+*/
 
 /* 
 ---------------------------------------------
