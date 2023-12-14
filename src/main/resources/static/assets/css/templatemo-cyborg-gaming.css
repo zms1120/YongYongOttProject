@@ -2601,3 +2601,61 @@ community insert Board Style
   background-color: #fff;
   color: #1e1e1e;
 }
+/* 
+---------------------------------------------
+community getBoard & reply Style
+--------------------------------------------- 
+*/
+.getBoard {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.getBoard .getBoard-section {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-color: #353637;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40px;
+   width: 1000px; 
+}
+.getBoard .form-section {
+  width: 900px;
+  margin: 10px auto;
+}
+
+.getBoard .heading-section{
+  width: 900px;
+  margin-top: 50px;
+}
+
+.getBoard .heading-section h5{
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+.getBoard {
+   font-size: 15px;
+   color: #fff;
+   font-weight: 400;
+   margin-top: 50px;
+   border-spacing: 0 10px;
+   text-align: center;
+}
+.getBoard table{
+  width: 200%; 
+  max-width: 950px; 
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0 30px;
+}
+
+.getBoard tr, .getBoard td {
+    padding: 15px;
+}

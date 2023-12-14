@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ott.entity.Board;
 import com.ott.entity.Member;
@@ -70,6 +71,13 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void deleteBoard(Board board) {
 		boardRepository.deleteById(board.getB_seq());
+		
+	}
+	
+	@Transactional
+	@Override
+	public void increaseViewCount(int boardSeq) {
+		boardRepository.increaseViewCount(boardSeq);
 		
 	}
 

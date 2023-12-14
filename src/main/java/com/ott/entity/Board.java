@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
 
@@ -27,7 +28,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
+@ToString(exclude = {"replies","member"})
 @Entity
 @Builder
 @AllArgsConstructor
@@ -52,7 +53,6 @@ public class Board {
 	@JoinColumn(name = "id")		
 	private Member member;					// 게시글 작성자
 	
-
 	@OneToMany(mappedBy = "board")
 	private List<Reply> replies = new ArrayList<>();
 	
