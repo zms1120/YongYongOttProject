@@ -2674,6 +2674,7 @@ community getBoard & reply Style
   flex-direction: column;
   padding-bottom: 40px;
    width: 1000px; 
+   margin-top: 200px;
 }
 .getBoard .form-section {
   width: 900px;
@@ -2681,31 +2682,88 @@ community getBoard & reply Style
 }
 
 .getBoard .heading-section{
-  width: 900px;
-  margin-top: 50px;
+  width: 1000px;
+  margin-top: 25px;
 }
 
+.getBoard .heading-section h4{
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 25px;
+  font-weight: 500px;
+}
 .getBoard .heading-section h5{
   text-align: center;
   margin-bottom: 10px;
   font-size: 15px;
 }
+
 .getBoard {
    font-size: 15px;
    color: #fff;
    font-weight: 400;
-   margin-top: 50px;
+   margin-top: 10px;
    border-spacing: 0 10px;
    text-align: center;
 }
 .getBoard table{
-  width: 200%; 
+  width: 100%; 
+  font-size: 15px;
   max-width: 950px; 
   margin: 0 auto;
   border-collapse: separate;
-  border-spacing: 0 30px;
+  border-spacing: 0 10px;
+}
+
+.getBoardTitle {
+    white-space: nowrap;
+    font-weight: bold;
 }
 
 .getBoard tr, .getBoard td {
-    padding: 15px;
+    padding: 20px;   
+}
+
+.getBoard form .replywrite-reply textarea {
+  display: block;
+  width:550px;
+  height:100px;
+  margin: 0 auto;
+  border-radius: 8px;
+  border: none;
+  background: #f7f7f7;
+  opacity: 90%;
+  color: #666;
+  padding: 0 0 0 15px;
+  font-size: 14px;
+}
+
+.getBoard-view,  td {
+  font-size: 20px; 
+}
+
+.detail-table,  td {
+  font-size: 20px; 
+}
+
+.getBoard form .modify_btn {
+  background: #9ADBE8;
+  color: #1e1e1e;
+  display: block;
+  width: 100%;
+  max-width: 150px;
+  height: 40px;
+  border-radius: 8px;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500px;
+  transition: 0.2s linear;
+  margin: 0 auto;
+ }
+  .getBoard form .modify_btn:hover {
+  border-color: #fff;
+  background-color: #fff;
+  color: #1e1e1e;
 }
