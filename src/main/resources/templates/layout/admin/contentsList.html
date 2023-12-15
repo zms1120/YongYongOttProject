@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<body>
+<a th:href="@{/insertMovie}">영화 등록하기</a>
+<a th:href="@{/insertTVProgram}">TV프로그램 등록하기</a>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-content">
+			
+		<div class="main-title">
+		  <h1>영화</h1>
+		</div>
+
+	<!-- 영화 전체 목록 -->
+	<div class="row">
+	  <div class="col-lg-12">
+		<div class="featured-contents header-text">
+		  <div class="heading-section">
+			<h3>영화 목록</h3>
+		  </div>
+
+		  <div class="owl-features owl-carousel">
+			<div th:each="movie, state : ${movieList}" class="item">
+			  <div class="thumb">
+				<img th:src="@{'/assets/images/movie/' + ${movie.image_path}}" alt="">
+				  <a th:href="@{getMovie(movie_code=${movie.movie_code})}">
+					<div class="hover-effect">
+					  <h6>상세보기</h6>
+					</div>
+				  </a>
+				</div>
+			  <h4>[[${movie.m_title_ko}]]</h4>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	  
+	 <!-- TV프로그램 목록 -->
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="featured-contents header-text">
+      <div class="heading-section">
+        <h3>TV프로그램 목록</h3>
+      </div>
+
+      <div class="owl-features owl-carousel">
+        <div th:each="tvProgram, state : ${tvProgramList}" class="item">
+          <div class="thumb">
+            <img th:src="@{'/assets/images/tv/' + ${tvProgram.image_path}}" alt="">
+            <a th:href="@{getTVProgram(pseq=${tvProgram.pseq})}">
+              <div class="hover-effect">
+                <h6>상세보기</h6>
+              </div>
+            </a>
+          </div>
+          <h4 th:text="${tvProgram.p_title}"></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+		
+
+</body>
+
+</html>

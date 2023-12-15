@@ -28,4 +28,6 @@ public interface BoardService {
 	void deleteBoard(Board board);
 	
 	void increaseViewCount(int boardSeq);
+	
+	void increaseLikeCount(int bSeq);
 }

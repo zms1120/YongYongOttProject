@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="page-content">
+            
+                 <img th:src="@{'/assets/images/movie/' + ${movie.banner_path}}" alt="">
+            
+                 <!-- ***** image End ***** -->
+			<!-- detail information -->
+			<div class="detail-table">
+				<table>
+					<tr>
+						<td class="em" th:text="${movie.m_title_ko}" width="80" colspan="2"></td>
+					</tr>
+					<tr>
+						<td th:text="${movie.description}" colspan="2"></td>
+					</tr>
+					<tr>
+						<td class="em" th:text="개요"></td>
+						<td>[[${movie.nation}]], [[${movie.open_year}]]</td>
+					</tr>
+					<tr>
+						<td class="em" th:text="장르"></td>
+						<td th:text="${movie.genre}"></td>
+					</tr>
+					<tr>
+						<td class="em" th:text="출연"></td>
+						<td th:text="${movie.cast}"></td>
+					</tr>
+					<tr>
+						<td class="em" th:text="감독"></td>
+						<td th:text="${movie.director}"></td>
+					</tr>
+					<tr>
+						<td class="em" th:text="등급"></td>
+						<td th:text="${movie.rating}"></td>
+					</tr>
+				</table>
+            </div>
+            	<a th:href="@{/updateMovie}">수정하기</a>
+            	<a th:href="@{/deleteMovie}">삭제하기</a>
+             </div>
+          </div>
+        </div>
+      </div>
+    </body>
+    
+</html>  

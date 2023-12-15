@@ -12,7 +12,7 @@ public interface TVProgramService {
     
     TVProgram getTVProgram(TVProgram tvProgram);
     
-    void insertTVProgram(TVProgram tvProgram, MultipartFile imageFile);
+    void insertTVProgram(TVProgram tvProgram,  MultipartFile imageFile, MultipartFile bannerFile);
     
     void updateTVProgram(TVProgram tvProgram,  MultipartFile imageFile);
     

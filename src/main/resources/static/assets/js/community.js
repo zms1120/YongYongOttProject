@@ -21,3 +21,38 @@
          return true;
       }
    }
+   // 좋아요 버튼 누르면 카운드 =======================================================
+function likePlus() {
+    var likecount = document.getElementById("like_count");
+    var likeButton = document.getElementById("like_button");
+    var currentCount = parseInt(likecount.innerText);
+
+    // 좋아요 수 증가
+    likecount.innerText = currentCount + 1;
+
+    // 버튼 비활성화
+    likeButton.disabled = true;
+
+    // 좋아요 숫자 +1하기
+    var boardSeq = document.getElementById("b_seq").value;
+    console.log(boardSeq); // 확인용 출력
+    sendLikeRequest(boardSeq);
+}
+
+function sendLikeRequest(boardSeq) {
+   var boardSeqLong = Number(boardSeq);
+
+    $.ajax({
+        url: '/like',
+        type: 'POST',
+        contentType: 'application/json',
+        dataType: 'text',
+        data: JSON.stringify({ b_seq: boardSeqLong }), // Request Body에 데이터 추가
+        success: function () {
+            console.log('좋아요 수 증가 요청 성공');
+        },
+        error: function () {
+            console.log('좋아요 수 증가 요청 실패');
+        }
+    });
+} 

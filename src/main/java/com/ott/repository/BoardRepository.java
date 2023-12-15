@@ -33,6 +33,9 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
 	@Query("UPDATE Board b SET b.cnt = b.cnt + 1 WHERE b.b_seq = :b_seq")
 	void increaseViewCount(@Param("b_seq") int boardSeq);
 	
+	@Modifying
+	@Query("UPDATE Board b SET b.b_like = b.b_like + 1 WHERE b.b_seq = :b_seq")
+	void increaseLikeCount(@Param("b_seq") int b_seq);
 
 
 }

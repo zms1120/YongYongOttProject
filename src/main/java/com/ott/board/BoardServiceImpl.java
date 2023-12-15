@@ -81,7 +81,10 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 
-	
+	@Transactional
+	   public void increaseLikeCount(int bSeq) {
+	       boardRepository.increaseLikeCount(bSeq);
+	   }
 	
 
 
