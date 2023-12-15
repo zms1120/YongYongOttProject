@@ -1699,6 +1699,8 @@ Login Style
 
 /*
 ---------------------------------------------
+/*
+---------------------------------------------
 Join Style
 --------------------------------------------- 
 */
@@ -1712,7 +1714,8 @@ Join Style
 .join .step1,
 .join .step2,
 .join .step3,
-.join .step4 {
+.join .step4,
+.join .step5 {
   margin-top: 70px;
   margin-bottom: 100px;
   display: flex;
@@ -1728,6 +1731,7 @@ Join Style
   align-items: center; 
   padding-bottom: 40px;
   padding-top: 20px;
+  min-width: 720px;
 }
 
 .join .heading-section{
@@ -1760,13 +1764,13 @@ Join Style
   border-radius: 15px;
 }
 
- .join .join-form .input_block .password_ck{
+ .step1 .join-form .input_block .password_ck{
   display: none;
 }
 
 .join .join-form .input_block input {
   display: inline-block;
-  width: 60%;
+  width: 70%;
   height: 40px;
   border-radius: 8px;
   border: none;
@@ -1775,10 +1779,85 @@ Join Style
   color: #666;
   padding: 0 0 0 15px;
   font-size: 14px;
-  margin-right: 30px;
 }
 
-.join .join-form .input_block .auth-button {
+.join .join-form .input_block .join-info {
+  margin-top: 15px;
+  display: block;
+  position: relative;
+  color: #eee;
+  width: 340px;
+}
+
+ .join .join-form .input_block input:focus,
+ .join .join-form .input_block input:active {
+  outline: none;
+  border: none;
+  color: rgba(15, 19, 42, 1);
+}
+
+
+.join .join-form .button-div {
+   display: block;
+   justify-content: space-between;
+}
+
+.join .button-div .ck-button {
+    font-size: 20px;
+   color: #ec6090;
+   background-color: transparent;
+   border: 1px solid #ec6090;
+   display: inline-block;
+   border-radius: 8px;
+   font-weight: 500;
+   text-transform: capitalize;
+   letter-spacing: 0.5px;
+   transition: all .3s;
+   position: relative;
+   justify-content: center;
+    align-items: center;
+   overflow: hidden;
+   cursor: pointer;
+   width: 40%;
+     height: 45px;
+     margin-top: 30px;
+}
+
+ .join .button-div .ck-button:hover {
+  border-color: #fff;
+  background-color: #fff;
+  color: #1e1e1e;
+  
+}
+
+.join .button-div .prev-button {
+    font-size: 20px;
+   color: #9ADBE8;
+   background-color: transparent;
+   border: 1px solid #9ADBE8;
+   display: inline-block;
+   border-radius: 8px;
+   font-weight: 500;
+   text-transform: capitalize;
+   letter-spacing: 0.5px;
+   transition: all .3s;
+   position: relative;
+   justify-content: center;
+    align-items: center;
+   overflow: hidden;
+   cursor: pointer;
+   width: 40%;
+     height: 45px;
+     margin-top: 30px;
+}
+
+ .join .button-div .prev-button:hover {
+  border-color: #fff;
+  background-color: #fff;
+  color: #1e1e1e;
+}
+
+.step2 .join-form .input_block .auth-button {
   display: inline-block;
   cursor: pointer;
   width: 10%;
@@ -1792,117 +1871,88 @@ Join Style
   align-items: center;
   text-align: center;
   overflow: hidden;
-  margin-left: 20px;
+  margin-left: 1%;
 }
 
-.join .join-form .input_block .auth-button:hover {
+.step2 .join-form .input_block .auth-button:hover {
   background-color: #9ADBE8;
   color: #1e1e1e;
 }
 
 
-.join .join-form .input_block .join-info {
-  margin-top: 15px;
-  display: block;
+.step3 .join-form .age {
+  display: flex;
+  align-items: center
+}
+
+.step3 .join-form .age .join-info{
+  width: 60px;
+  flex: 0 0 auto;
+}
+
+.step3 .join-form .age .selection {
   position: relative;
-  color: #eee;
-  width: 80%;
+  width: 150px;
+  height: 35px;
+  border-radius: 8px;
+  border: 2px solid #666;
+  background-color: #eee;
+  flex: 0 auto;
+  top: 7px;
 }
 
- .join .join-form .input_block input:focus,
- .join .join-form .input_block input:active {
-  outline: none;
-  border: none;
-  color: rgba(15, 19, 42, 1);
+.step3 .join-form .age select {
+  width: inherit;
+  height: inherit;
+  background: transparent;
+  border: 0 none;
+  outline: 0 none;
+  padding: 0 5px;
+  position: relative;
+  z-index: 3;
 }
 
-.join .join-form .button-div {
-	display: block;
-	justify-content: space-between;
+.step3 .join-form .age option {
+  background: #1e1e1e;
+  color: #f7f7f7;
+  padding: 3px 0;
+  font-size: 16px;
 }
 
-.join .join-form .ck-button {
+.step4 .use-table .change-use-button:hover {
+  border-color: #ec6090;
+  background-color: #ec6090;
+  color: #f7f7f7;
+}
+
+.step5 .submit-button {
     font-size: 20px;
-	color: #ec6090;
-	background-color: transparent;
-	border: 1px solid #ec6090;
-	display: inline-block;
-	border-radius: 8px;
-	font-weight: 500;
-	text-transform: capitalize;
-	letter-spacing: 0.5px;
-	transition: all .3s;
-	position: relative;
-	justify-content: center;
+   color: #1e1e1e;
+   background-color: #9ADBE8;
+   display: inline-block;
+   border-radius: 8px;
+   font-weight: 500;
+   text-transform: capitalize;
+   letter-spacing: 0.5px;
+   transition: all .3s;
+   position: relative;
+   justify-content: center;
     align-items: center;
-	overflow: hidden;
-	cursor: pointer;
-	width: 40%;
-  	height: 45px;
-  	margin-top: 30px;
+   overflow: hidden;
+   cursor: pointer;
+   width: 40%;
+     height: 45px;
+     margin-top: 30px;
 }
 
- .join .button-div .ck-button:hover {
-  border-color: #fff;
-  background-color: #fff;
-  color: #1e1e1e;
-  
-}
-
-.join .join-form .button-div .prev-button {
-    font-size: 20px;
-	color: #9ADBE8;
-	background-color: transparent;
-	border: 1px solid #9ADBE8;
-	display: inline-block;
-	border-radius: 8px;
-	font-weight: 500;
-	text-transform: capitalize;
-	letter-spacing: 0.5px;
-	transition: all .3s;
-	position: relative;
-	justify-content: center;
-    align-items: center;
-	overflow: hidden;
-	cursor: pointer;
-	width: 40%;
-  	height: 45px;
-  	margin-top: 30px;
-}
-
- .join .button-div .prev-button:hover {
+.step5 .join-form .submit-button::after {
+  content: '';
   border-color: #fff;
   background-color: #fff;
   color: #1e1e1e;
 }
 
-.join .join-form .submit-button {
-    font-size: 20px;
-	color: #1e1e1e;
-	background-color: #9ADBE8;
-	display: inline-block;
-	border-radius: 8px;
-	font-weight: 500;
-	text-transform: capitalize;
-	letter-spacing: 0.5px;
-	transition: all .3s;
-	position: relative;
-	justify-content: center;
-    align-items: center;
-	overflow: hidden;
-	cursor: pointer;
-	width: 40%;
-  	height: 45px;
-  	margin-top: 30px;
-}
-
- .join .ck-button:hover {
-  border-color: #fff;
-  background-color: #fff;
-  color: #1e1e1e;
-}
-
-.join .join-form .checkbox {
+.step5 .join-form .checkbox {
   margin: 10px 5px;
   padding: 10px 12px;
   display: block;
@@ -1912,26 +1962,26 @@ Join Style
   width: 80%;
 }
 
-.join .join-form .checkbox .detail{
+.step5 .join-form .checkbox .detail{
   position: absolute;
   display: inline-block;
   right:30px;
 }
 
-.join .join-form .checkbox .detail i{
+.step5 .join-form .checkbox .detail i{
   color: #f7f7f7;
   right:0;
 }
 
-.join .join-form .checkbox .detail i:hover {
+.step5 .join-form .checkbox .detail i:hover {
   cursor: pointer;
 }
 
-.join .join-form .checkbox input[type="checkbox"] {
+.step5 .join-form .checkbox input[type="checkbox"] {
   display: none;
 }
 
-.join .join-form .checkbox input[type="checkbox"] + label {
+.step5 .join-form .checkbox input[type="checkbox"] + label {
   position: relative;
   border: 2px solid #f7f7f7;
   width: 15px;
@@ -1942,31 +1992,31 @@ Join Style
   background-color: #f7f7f7;
 }
 
-.join .join-form .checkbox input[type="checkbox"] + label:hover {
-	cursor: pointer;
+.step5 .join-form .checkbox input[type="checkbox"] + label:hover {
+   cursor: pointer;
 }
 
-.join .join-form .checkbox input[type="checkbox"]:checked + label::after {
-	content: '\2714'; /* 체크표시 유니코드 */
-	text-align: center;
-	position: absolute;
-	top: -10px;
-	color: #e75e8d;
-	background-color: transparent;
+.step5 .join-form .checkbox input[type="checkbox"]:checked + label::after {
+   content: '\2714'; /* 체크표시 유니코드 */
+   text-align: center;
+   position: absolute;
+   top: -10px;
+   color: #e75e8d;
+   background-color: transparent;
 }
 
-.join .join-form .checkbox .checkbox-info {
+.step5 .join-form .checkbox .checkbox-info {
   margin-left: 7px;
   color: #f7f7f7;
 }
 
+
 .join .step2,
 .join .step3,
-.join .step4 {
-	display: none;
+.join .step4,
+.join .step5 {
+   display: none;
 }
-
-
 /* 
 ---------------------------------------------
 Community Style

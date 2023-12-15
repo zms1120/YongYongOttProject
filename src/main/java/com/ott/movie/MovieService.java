@@ -13,7 +13,7 @@ public interface MovieService {
     
     Movie getMovie(Movie movie);
     
-    void insertMovie(Movie movie, MultipartFile imageFile);
+    void insertMovie(Movie movie, MultipartFile imageFile, MultipartFile bannerFile);
     
     void deleteMovie(Movie movie);
     

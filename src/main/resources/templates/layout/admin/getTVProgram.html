@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <body>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="page-content">
+            
+                 <img th:src="@{'/assets/images/tv/' + ${tvProgram.banner_path}}" alt="">
+            
+                 <!-- ***** image End ***** -->
+			<!-- detail information -->
+			<div class="detail-table">
+				<table>
+					<tr>
+						<td class="em" th:text="${tvProgram.p_title}" width="80" colspan="2"></td>
+					</tr>
+					<tr>
+						<td th:text="${tvProgram.description}" colspan="2"></td>
+					</tr>
+					<tr>
+						<td class="em" th:text="개요"></td>
+						<td th:text="${tvProgram.nation} + ', ' + ${tvProgram.airing_period}"></td>
+					</tr>
+					<tr>
+						<td class="em" th:text="장르"></td>
+						<td th:text="${tvProgram.p_category}"></td>
+					</tr>
+					<tr>
+						<td class="em" th:text="출연"></td>
+						<td th:text="${tvProgram.p_cast}"></td>
+					</tr>
+					<tr>
+						<td class="em" th:text="감독"></td>  
+						<td th:text="${tvProgram.p_director}"></td>
+					</tr>
+					<tr>
+						<td class="em" th:text="등급"></td>
+						<td th:text="${tvProgram.rating}"></td>
+					</tr>
+				</table>
+         
+            </div>
+            	<a th:href="@{/updateTVProgram}">수정하기</a>
+            	<a th:href="@{/deleteTVProgram}">삭제하기</a>
+            	<a th:href="@{/insertEpisode}">회차정보 등록하기</a>
+             </div>
+          </div>
+        </div>
+      </div>
+    </body>
+    
+</html>  

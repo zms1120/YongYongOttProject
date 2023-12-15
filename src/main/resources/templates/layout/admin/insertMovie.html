@@ -1,0 +1,111 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+<title>무비 컨텐츠 등록</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- header -->
+
+</head>
+
+<body th:align="center">
+
+	
+					<!-- 무비 insert 시작 -->
+
+					<div class="insert">
+						<div class="insert insert-section">
+
+							<form th:action="@{/insertMovie}" method="post" id="insert"
+								enctype="multipart/form-data">
+								<table class="insertMovie" th:align="center" th:cellpadding="0"
+									th:cellspacing="0">
+									<tr>
+										<td>카테고리</td>
+										<td>
+											<!-- 고정된 카테고리 값을 여기에 입력 --> <input type="text"
+											name="category" id="category" value="영화" readonly>
+										</td>
+
+										<td>일련번호</td>
+										<td><input type="text" name="movie_code" id="movie_code"
+											placeholder="일련번호를 입력해주세요."></td>
+									</tr>
+									<tr>
+										<td>장르</td>
+										<td><input type="text" name="genre" id="genre"
+											placeholder="장르를 입력해주세요."></td>
+
+										<td>제목</td>
+										<td><input type="text" name="m_title_ko" id="m_title_ko"
+											placeholder="제목을 입력해주세요."></td>
+									</tr>
+									<tr>
+										<td>감독</td>
+										<td><input type="text" name="director" id="director"
+											placeholder="감독을 입력해주세요."> </textarea></td>
+
+										<td>국가</td>
+										<td><input type="text" name="nation" id="nation"
+											placeholder="국가를 입력해주세요."> </textarea></td>
+									</tr>
+									<tr>
+										<td>개봉년도</td>
+										<td><input type="text" name="open_year" id="open_year"
+											placeholder="개봉년도를 입력해주세요."> </textarea></td>
+
+										<td>상영시간</td>
+										<td><input type="text" name="running_time"
+											id="running_time" placeholder="상영시간을 입력해주세요."> </textarea></td>
+									</tr>
+									<tr>
+										<td>등급</td>
+										<td><input type="text" name="rating" id="rating"
+											placeholder="등급을 입력해주세요."> </textarea></td>
+
+										<td>키워드</td>
+										<td><input type="text" name="keyword" id="keyword"
+											cols="50" rows="1" placeholder="키워드를 입력해주세요."> </textarea></td>
+									</tr>
+									<tr>
+										<td>출연진</td>
+										<td><textarea name="cast" id="cast" cols="50"
+												rows="10" placeholder="출연진을 입력해주세요."></textarea></td>
+
+										<td>줄거리</td>
+										<td><textarea name="description" id="description"
+												cols="50" rows="10" placeholder="줄거리를 입력해주세요."></textarea></td>
+									</tr>
+									<tr>
+									<td>영상주소</td>
+										<td><input type="text" name="video_path" id="video_path"
+											placeholder="영상주소를 입력해주세요."> </textarea></td>
+									</tr>
+									<!-- 이미지 및 배너 업로드 필드 추가 -->
+									<tr>
+										<td colspan="2"><label for="image">이미지 업로드:</label> <input
+											type="file" name="imageFile" id="image" accept="image/*">
+										</td>
+										<td colspan="2"><label for="banner">배너 업로드:</label> <input
+											type="file" name="bannerFile" id="banner" accept="image/*">
+										</td>
+									</tr>
+
+								</table>
+
+								<div class="link-block">
+									<a th:href="@{/adminPage}">메인으로</a> &nbsp; &nbsp;
+								</div>
+								<br> <input type="submit" value="등록하기">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- footer -->
+		
+</body>
+
+</html>

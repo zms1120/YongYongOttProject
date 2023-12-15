@@ -1,10 +1,12 @@
 package com.ott.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -55,6 +58,7 @@ public class CommunityController {
 	   @GetMapping("/gopost")
 	   public String getBoard(Board board, Model model, Reply reply, @RequestParam(name = "b_seq")int boardSeq) {
 		  Board selectedBoard = boardService.getBoard(board);
+		  // 게시글 조회수 증가
 		  boardService.increaseViewCount(boardSeq);
 	      model.addAttribute("board", selectedBoard);
 	      model.addAttribute("reply", replyService.getReply(boardSeq));
@@ -113,5 +117,13 @@ public class CommunityController {
 	    // 댓글이 등록된 후 해당 게시글의 상세 페이지로 이동
 	    return "redirect:/gopost?b_seq=" + board.getB_seq();
 	}
+	
+	@PostMapping("/like")
+	   public ResponseEntity<String> likeAction(@RequestBody Map<String, Object> likeCount) {
+	      int b_seq = Integer.parseInt(likeCount.get("b_seq").toString());
+	       System.out.println("번호: " + b_seq);
+	       boardService.increaseLikeCount(b_seq);
+	       return ResponseEntity.ok("Liked successfully");
+	   }
 
 }
