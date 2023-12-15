@@ -334,6 +334,12 @@ $(document).ready(function() {
 		$('.step3').show();
 	});
 	
+	$('#prev-to-step4').on('click', function(e) {
+		e.preventDefault();
+		$('.step5').hide();
+		$('.step4').show();
+	});
+	
 });
 
 // checked 이벤트 처리
@@ -396,4 +402,75 @@ $(document).ready(function() {
 	
 });
 
-
+$(document).ready(function() {
+	
+	$('#guest-btn').on('click', function(e) {
+		e.preventDefault();
+		var position = $('#position').val();
+		
+		if(position === "" || position !== 'GUEST'){
+			 $(this).css({
+	            'border-color': '#ec6090',
+	            'background-color': '#ec6090',
+	            'color': '#f7f7f7'
+        	});
+        	
+        	$('#premium-btn, #basic-btn').css({
+	            'border-color': '',
+	            'background-color': '',
+	            'color': ''
+	        });
+        	
+			$('.guest').css('color', '#9ADBE8');
+			$('.basic').css('color', '#f7f7f7');
+			$('.premium').css('color', '#f7f7f7');
+			
+			$('#position').val('GUEST');
+		}
+	});
+	
+	$('#basic-btn').on('click', function(e) {
+		e.preventDefault();
+		var position = $('#position').val();
+		
+		if(position === "" || position !== 'BASIC'){
+			$(this).css({
+	            'border-color': '#ec6090',
+	            'background-color': '#ec6090',
+	            'color': '#f7f7f7'
+        	});
+        	$('#guest-btn, #premium-btn').css({
+	            'border-color': '',
+	            'background-color': '',
+	            'color': ''
+	        });
+			$('.basic').css('color', '#9ADBE8');
+			$('.guest').css('color', '#f7f7f7');
+			$('.premium').css('color', '#f7f7f7');
+			$('#position').val('BASIC');
+		}
+	});
+	
+	$('#premium-btn').on('click', function(e) {
+		e.preventDefault();
+		var position = $('#position').val();
+		
+		if(position === "" || position !== 'PREMIUM'){
+			$(this).css({
+	            'border-color': '#ec6090',
+	            'background-color': '#ec6090',
+	            'color': '#f7f7f7'
+        	});
+        	$('#guest-btn, #basic-btn').css({
+	            'border-color': '',
+	            'background-color': '',
+	            'color': ''
+	        });
+			
+			$('.premium').css('color', '#9ADBE8');
+			$('.guest').css('color', '#f7f7f7');
+			$('.basic').css('color', '#f7f7f7');
+			$('#position').val('PREMIUM');
+		}
+	});
+});

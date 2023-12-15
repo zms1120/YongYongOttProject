@@ -73,11 +73,9 @@ $(document).ready(function() {
 			!specialCharRegex.test(password)
 		) {
 			$('#pwd-message').css("color", "#ec6090").text("비밀번호 형식에 맞게 입력해주세요");
-			$('#pwd-checker').text("0");
 			pwd_checker = 0;
 		} else {
 			$('#pwd-message').css("color", "aquamarine").text("확인되었습니다.");
-			$('#pwd-checker').text("1");
 			pwd_checker = 1;
 		}
 	});
@@ -149,17 +147,6 @@ $(document).ready(function() {
 /*
 *** STEP3 ***
 */
-$('#phone_number').on('input', function(e) {
-    let inputValue = e.target.value.replace(/[^0-9]/g, ''); // 입력된 값 중 숫자만 남기기
-
-    if (inputValue.length <= 11) {
-        inputValue = inputValue.replace(/(\d{0,3})(\d{0,4})(\d{0,4})/, '$1-$2-$3'); // 전화번호 형식에 맞게 변환
-    } else if (inputValue.length > 11) {
-        inputValue = inputValue.substring(0, 11).replace(/(\d{0,3})(\d{0,4})(\d{0,4})/, '$1-$2-$3'); 
-    }
-
-    e.target.value = inputValue.trim(); // 변환된 값으로 입력란 업데이트
-});
 
 
 // next를 누를 때마다 다른 div로 넘어감
@@ -171,10 +158,12 @@ $(document).ready(function() {
 		if(id_checker == 1 
 			&& pwd_checker == 1
 			&& pwdck_checker == 1){
-			$('.step1').hide();
-			$('.step2').show();
-			
-			sendMail();
+				$('#email').val($('#id').val());
+				alert("id: " + $('#id').val() + " email: " + $('#email').val());
+				$('.step1').hide();
+				$('.step2').show();
+				
+				sendMail();
 		} else{
 			return;
 		}
@@ -193,26 +182,73 @@ $(document).ready(function() {
 	
 	$('#next-to-step4').on('click', function(e) {
 		e.preventDefault();
-		$('.step3').hide();
-		$('.step4').show();
+		var name = $('#name').val();
+		var phone_number = $('#phone_number').val();
+		var age = $('#age').val();
+		
+		//alert(name + ", " + phone_number + ", " + age);
+		
+		if(name !== "" && phone_number !== "" && age !== ""){
+			$('.step3').hide();
+			$('.step4').show();
+		} else {
+			$('#step3-message').css("color", "#ec6090").text("*입력사항을 확인해주세요.");
+		}
+	});
+	
+	$('#next-to-step5').on('click', function(e) {
+		e.preventDefault(); 
+		
+		if($('#position').val() !== ""){
+			
+			//alert("position: " +  $('#position').val());
+			$('.step4').hide();
+			$('.step5').show();
+		} else {
+			$('#membership-message').css("color", "#ec6090").text("*이용권은 반드시 선택하셔야 합니다.");
+		}
 	});
 	
 	$('#submit-button').on('click', function(e) {
 		e.preventDefault();
 		
-		if ($('#age-restriction').checked
-			&& $('#service').checked
-			&& $('#member_privacy').checked
-			&& $('#member_payment').checked) {
-				
-			var sendform = document.getElementById("fr");
-
-			sendform.action = "/join";
-			sendform.mothod = "post";
-			sendform.submit();
+		if (!$('#age-restriction').prop('checked')
+	        || !$('#service').prop('checked')
+	        || !$('#member_privacy').prop('checked')
+	        || !$('#member_payment').prop('checked')) {
+			$('#checkbox-message').css("color", "#ec6090").text("*필수 항목은 반드시 동의하셔야 합니다.");
 
 		} else {
-			$('#checkbox-message').css("color", "#ec6090").text("*필수 항목은 반드시 동의하셔야 합니다.");
+			var phone = change_number($('#phone_number').val());
+			$('#phone_number').val(phone);
+			//alert("before: " +$('#phone_number').val() + " after: " + phone);
+			
+			save();
 		}
 	});
+	
 });
+	
+function change_number(phone_number) {
+    let inputValue = phone_number.replace(/[^0-9]/g, ''); // 입력된 값 중 숫자만 남기기
+
+    if (inputValue.length <= 11) {
+        inputValue = inputValue.replace(/(\d{0,3})(\d{0,4})(\d{0,4})/, '$1-$2-$3'); // 전화번호 형식에 맞게 변환
+    } else if (inputValue.length > 11) {
+        inputValue = inputValue.substring(0, 11).replace(/(\d{0,3})(\d{0,4})(\d{0,4})/, '$1-$2-$3'); 
+    }
+    
+    return inputValue;
+}
+
+function save() {
+	var sendform = document.getElementById("join");
+
+	if (sendform) {
+		sendform.action = "/join";
+		sendform.method = "post";
+		sendform.submit();
+	} else {
+		alert("폼을 찾을 수 없습니다.");
+	}
+}
