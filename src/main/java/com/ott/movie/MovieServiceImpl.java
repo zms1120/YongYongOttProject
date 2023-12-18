@@ -56,19 +56,49 @@ public class MovieServiceImpl implements MovieService {
 
 
 	
-
+	@Transactional
 	@Override
-	public void updateMovie(Movie movie, MultipartFile imageFile) {
-		movieRepository.save(movie);
-		
+	public void updateMovie(Movie movie, MultipartFile imageFile, MultipartFile bannerFile) {
+	    try {
+	        // 이미지 파일명을 그대로 사용
+	        String imageFileName = imageFile.getOriginalFilename();
+	        
+	        // 이미지 파일이 비어 있는지 확인
+	        if (!imageFile.isEmpty()) {
+	            // movie_code를 파일 이름으로 사용하여 이미지 저장
+	            String imagePath = saveFile(imageFile, imageFileName);
+	            System.out.println("파일이 저장될 위치: " + imagePath);
+	            
+	            // 이미지 경로를 Movie에 저장
+	            movie.setImage_path(imagePath);
+	        }
+
+	        // 배너 파일명을 그대로 사용
+	        String bannerFileName = bannerFile.getOriginalFilename();
+	        
+	        // 배너 파일이 비어 있는지 확인
+	        if (!bannerFile.isEmpty()) {
+	            // movie_code를 파일 이름으로 사용하여 배너 이미지 저장
+	            String bannerPath = saveFile(bannerFile, bannerFileName);
+	            
+	            // 배너 이미지 경로를 Movie에 저장
+	            movie.setBanner_path(bannerPath);
+	        }
+
+	        // Movie 저장 (이미 저장된 엔터티를 다시 저장할 필요 없음)
+	        movieRepository.save(movie);
+
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	        throw new RuntimeException("이미지 저장 중 오류 발생");
+	    }
 	}
 
 
-	 // 이미지 파일을 문자열로 변환하여 반환
-    private String convertImageToString(MultipartFile imageFile) throws IOException {
-        byte[] bytes = imageFile.getBytes();
-        return new String(bytes);
-    }
+
+
+
+	
 
     @Transactional
     @Override
@@ -107,18 +137,25 @@ public class MovieServiceImpl implements MovieService {
             throw new RuntimeException("이미지 저장 중 오류 발생");
         }
     }
-
     private String saveFile(MultipartFile file, String fileName) throws IOException {
-        String filePath = uploadDirectory + File.separator + fileName;
+        String filePath = "src/main/resources/static/" + uploadDirectory + File.separator + fileName;
         try (OutputStream os = new FileOutputStream(new File(filePath))) {
             os.write(file.getBytes());
         }
         return fileName;
     }
 
+
 	@Override
 	public List<Movie> findByKeywordContaining(String keyword) {
 		
 		return movieRepository.findByKeywordContaining(keyword); 
+	}
+
+
+	@Override
+	public Movie getMovieByCode(String movieCode) {
+		  // movieRepository를 사용하여 영화 코드에 해당하는 영화 정보를 가져옴
+		 return movieRepository.findById(movieCode).orElse(null);
 	}
 }

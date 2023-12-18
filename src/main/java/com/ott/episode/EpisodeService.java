@@ -7,5 +7,7 @@ import com.ott.entity.Episode;
 public interface EpisodeService {
 
 	List<Episode> getEpList(int pseq);
+	
+	void insertEpisode(Episode episode);
 
 }

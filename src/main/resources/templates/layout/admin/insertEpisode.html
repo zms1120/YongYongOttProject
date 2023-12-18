@@ -1,0 +1,73 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+<title>무비 컨텐츠 등록</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- header -->
+
+</head>
+
+<body th:align="center">
+
+	
+					<!-- 무비 insert 시작 -->
+
+					<div class="insert">
+						<div class="insert insert-section">
+
+							<form th:action="@{/insertEpisode}" method="post" id="insert"
+								enctype="multipart/form-data">
+								<table class="insertEpisode" th:align="center" th:cellpadding="0"
+									th:cellspacing="0">
+									<tr>
+										<td>회차</td>
+										<td><input type="text" name="episode_num" id="episode_num"
+											placeholder="회차를 입력해주세요."></td>
+									</tr>
+									
+										<td>회차별 제목</td>
+										<td><input type="text" name="ep_title" id="ep_title"
+											placeholder="제목을 입력해주세요."></td>
+									</tr>
+									
+									<tr>
+										<td>방영날짜</td>
+										<td><input type="date" name="airing_date"
+											id="airing_date" placeholder="방영날짜를 입력해주세요."></textarea></td>
+									</tr>
+									<tr>
+										<td>방영시간</td>
+										<td><input type="text" name="running_time"
+											id="running_time" placeholder="방영시간을 입력해주세요."> </textarea></td>
+									</tr>
+									<tr>
+										<td>줄거리</td>
+										<td><textarea name="description" id="description"
+												cols="50" rows="10" placeholder="줄거리를 입력해주세요."></textarea></td>
+									</tr>
+									<tr>
+									<td>영상주소</td>
+										<td><input type="text" name="video_path" id="video_path"
+											placeholder="영상주소를 입력해주세요."> </textarea></td>
+									</tr>
+									<!-- 이미지 및 배너 업로드 필드 추가 -->
+								</table>
+								 <!-- pseq를 숨은 필드로 추가 -->
+   								 <input type="hidden" name="pseq" th:value="${pseq}" />
+								<div class="link-block">
+									<a th:href="@{/adminPage}">메인으로</a> &nbsp; &nbsp;
+								</div>
+								<br> <input type="submit" value="등록하기">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- footer -->
+		
+</body>
+
+</html>

@@ -17,10 +17,12 @@ public interface MovieService {
     
     void deleteMovie(Movie movie);
     
-    void updateMovie(Movie movie, MultipartFile imageFile);
+    void updateMovie(Movie movie, MultipartFile imageFile, MultipartFile bannerFile);
     
     String getVideoPath(String movieCode);
     
     List<Movie> findByKeywordContaining(String keyword);
+    
+    Movie getMovieByCode(String movieCode);
 }
 

@@ -41,7 +41,7 @@
 					</tr>
 				</table>
             </div>
-            	<a th:href="@{/updateMovie}">수정하기</a>
+            	<a th:href="@{'/updateMovie?movie_code=' + ${movie.movie_code}}">수정하기</a>
             	<a th:href="@{/deleteMovie}">삭제하기</a>
              </div>
           </div>
