@@ -29,7 +29,7 @@ public class TVProgramController {
 	@Autowired
 	private TVProgramService tvProgramService;
 	@Autowired
-	private EpisodeService broadcastEpisodeService;
+	private EpisodeService episodeService;
 
 	// TVProgram 전체목록 
 	@GetMapping("/tvprogram")
@@ -69,7 +69,7 @@ public class TVProgramController {
 	        tvProgram = tvProgramService.getTVProgram(tvProgram);
 	        // 동영상 경로 가져오기
 	        String videoPath = tvProgramService.getVideoPath(pseq);
-	       List<Episode> epiList = broadcastEpisodeService.getEpList(pseq);
+	       List<Episode> epiList = episodeService.getEpList(pseq);
 	     
 	      
 	        // 모델에 추가

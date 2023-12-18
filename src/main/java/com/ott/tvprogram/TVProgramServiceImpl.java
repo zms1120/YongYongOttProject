@@ -122,4 +122,10 @@ public class TVProgramServiceImpl implements TVProgramService {
 		return tvProgramRepository.findByCategoryContaining(category);
 	}
 
+	@Override
+	public TVProgram getTVProgramByPseq(int pseq) {
+		
+		 return tvProgramRepository.findById(pseq).orElse(null);
+	}
+
 }

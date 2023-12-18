@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+<title>무비 컨텐츠 수정</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- header -->
+</head>
+
+<body th:align="center">
+
+	<!-- 무비 update 시작 -->
+	<div class="update">
+		<div class="update update-section">
+
+			<form th:action="@{/updateMovie}" method="post" id="update"
+				enctype="multipart/form-data">
+				<table class="updateMovie" th:align="center" th:cellpadding="0"
+					th:cellspacing="0">
+					<tr>
+						<td>카테고리</td>
+						<td><input type="text" name="category" id="category"
+							value="영화" readonly></td>
+
+						<td>일련번호</td>
+						<td><input type="text" name="movie_code" id="movie_code"
+							placeholder="일련번호를 입력해주세요." th:value="${movie.movie_code}"></td>
+					</tr>
+					<tr>
+						<td>장르</td>
+						<td><input type="text" name="genre" id="genre"
+							placeholder="장르를 입력해주세요." th:value="${movie.genre}"></td>
+
+						<td>제목</td>
+						<td><input type="text" name="m_title_ko" id="m_title_ko"
+							placeholder="제목을 입력해주세요." th:value="${movie.m_title_ko}"></td>
+					</tr>
+					<tr>
+						<td>감독</td>
+						<td><input type="text" name="director" id="director"
+							placeholder="감독을 입력해주세요." th:value="${movie.director}"> </textarea></td>
+
+						<td>국가</td>
+						<td><input type="text" name="nation" id="nation"
+							placeholder="국가를 입력해주세요." th:value="${movie.nation}"> </textarea></td>
+					</tr>
+					<tr>
+						<td>개봉년도</td>
+						<td><input type="text" name="open_year" id="open_year"
+							placeholder="개봉년도를 입력해주세요." th:value="${movie.open_year}">
+							</textarea></td>
+
+						<td>상영시간</td>
+						<td><input type="text" name="running_time" id="running_time"
+							placeholder="상영시간을 입력해주세요." th:value="${movie.running_time}">
+							</textarea></td>
+					</tr>
+					<tr>
+						<td>등급</td>
+						<td><input type="text" name="rating" id="rating"
+							placeholder="등급을 입력해주세요." th:value="${movie.rating}"> </textarea></td>
+
+						<td>키워드</td>
+						<td><input type="text" name="keyword" id="keyword" cols="50"
+							rows="1" placeholder="키워드를 입력해주세요." th:value="${movie.keyword}">
+							</textarea></td>
+					</tr>
+					<tr>
+						<td>출연진</td>
+						<td><textarea name="cast" id="cast" cols="50" rows="10"
+								placeholder="출연진을 입력해주세요." th:text="${movie.cast}"></textarea></td>
+
+						<td>줄거리</td>
+						<td><textarea name="description" id="description" cols="50"
+								rows="10" placeholder="줄거리를 입력해주세요."
+								th:text="${movie.description}"></textarea></td>
+					</tr>
+					<tr>
+						<td>영상주소</td>
+						<td><input type="text" name="video_path" id="video_path"
+							placeholder="영상주소를 입력해주세요." th:value="${movie.video_path}">
+							</textarea></td>
+					</tr>
+					<tr>
+						<th>이미지 업로드</th>
+						<td colspan="5">
+							<!-- 기존 이미지 파일이 있을 경우에 이미지 표시 --> <img
+							th:src="@{'/assets/images/movie/' + ${originalImagePath}}"
+							width="200pt" th:if="${not #strings.isEmpty(originalImagePath)}">
+							<!-- 이미지 업로드 필드 --> <input type="file" name="imageFile"
+							id="imageFile"
+							th:required="${#strings.isEmpty(originalImagePath)}"> <!-- 기존 이미지 파일명을 hidden 필드로 전송 -->
+							<input type="hidden" name="originalImageFile"
+							th:if="${not #strings.isEmpty(originalImagePath)}"
+							th:value="${originalImagePath}">
+						</td>
+					</tr>
+
+					<tr>
+						<th>배너 업로드</th>
+						<td colspan="5">
+							<!-- 기존 배너 이미지 파일이 있을 경우에 이미지 표시 --> <img
+							th:src="@{'/assets/images/movie/' + ${originalBannerPath}}"
+							width="200pt" th:if="${not #strings.isEmpty(originalBannerPath)}">
+							<!-- 이미지 업로드 필드 --> <input type="file" name="bannerFile"
+							id="bannerFile"
+							th:required="${#strings.isEmpty(originalBannerPath)}"> <!-- 기존 이미지 파일명을 hidden 필드로 전송 -->
+							<!-- 기존 배너 이미지 파일명을 hidden 필드로 전송 --> <input type="hidden"
+							name="originalBannerFile"
+							th:if="${not #strings.isEmpty(movie.banner_path)}"
+							th:value="${movie.banner_path}">
+
+						</td>
+					</tr>
+				</table>
+
+				<div class="link-block">
+					<a th:href="@{/adminPage}">메인으로</a> &nbsp; &nbsp;
+				</div>
+				<br> <input type="submit" value="수정하기">
+			</form>
+		</div>
+	</div>
+	</div>
+	</div>
+
+	<!-- footer -->
+
+</body>
+
+</html>

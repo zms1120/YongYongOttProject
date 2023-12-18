@@ -44,11 +44,37 @@
             </div>
             	<a th:href="@{/updateTVProgram}">수정하기</a>
             	<a th:href="@{/deleteTVProgram}">삭제하기</a>
-            	<a th:href="@{/insertEpisode}">회차정보 등록하기</a>
+            	<a th:href="@{/insertEpisode(pseq=${tvProgram.pseq})}">회차정보 등록하기</a>
              </div>
           </div>
         </div>
       </div>
+      
+       <!-- episope -->
+            <div class="episode-table">
+            	<table>
+            		<tr th:each="epi, state : ${epiList}">
+            			<div class="episode">
+							<div class="ep-info">
+															
+							    <h5 th:text="${epi.ep_title}"></h5>
+							    <div class="ep">
+									<p th:text="${epi.running_time}"></p>
+									<!--<p th:text="${epi.airing_date}"></p>-->
+									<p th:text="${#dates.format(epi.airing_date, 'yyyy-MM-dd')}"></p>
+								 </div>
+								<span th:text="${epi.description}" class="ep-desc"></span>
+								</a>
+							</div>
+							
+						</div>
+            		</tr>
+            	</table>
+            	<div class="toggle-btn">
+	            	<buttton class="showmore" id="showmore">더보기</buttton>
+	            	<buttton class="close" id="close">닫기</buttton>
+            	</div>
+            </div>
     </body>
     
 </html>  

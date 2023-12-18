@@ -11,10 +11,16 @@ import com.ott.repository.EpisodeRepository;
 public class EpisodeServiceImpl implements EpisodeService {
 
 	@Autowired
-	private EpisodeRepository broadcastEpisodeRepository;
+	private EpisodeRepository episodeRepository;
 	
 	@Override
 	public List<Episode> getEpList(int pseq){
-		return broadcastEpisodeRepository.getEpList(pseq);
+		return episodeRepository.getEpList(pseq);
+	}
+
+	@Override
+	public void insertEpisode(Episode episode) {
+		
+		episodeRepository.save(episode);
 	}
 }

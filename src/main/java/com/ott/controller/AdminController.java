@@ -1,5 +1,6 @@
 package com.ott.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ott.entity.Episode;
 import com.ott.entity.Movie;
 import com.ott.entity.TVProgram;
+import com.ott.episode.EpisodeService;
 import com.ott.movie.MovieService;
 import com.ott.tvprogram.TVProgramService;
 
@@ -29,6 +32,8 @@ public class AdminController {
 	private MovieService movieService;
 	@Autowired
 	private TVProgramService tvProgramService;
+	@Autowired
+	private EpisodeService episodeService;
 	
 	@GetMapping("/adminPage")
 	public String adminMain() {
@@ -70,20 +75,63 @@ public class AdminController {
 		return "redirect:/contentsList";
 	}
 
+
+	// 업데이트 폼을 보여주는 페이지로 이동
 	@GetMapping("/updateMovie")
-	public String updateMovieView() {
-		return "layout/admin/insertmovie";
+	public String updateMovieForm(@RequestParam("movie_code") String movieCode, Model model) {
+	    Movie movie = movieService.getMovieByCode(movieCode);
+
+	    // 기존 이미지와 배너의 경로를 모델에 추가
+	    model.addAttribute("originalImagePath", movie.getImage_path());
+	    model.addAttribute("originalBannerPath", movie.getBanner_path());
+
+	    model.addAttribute("movie", movie);
+	    return "/layout/admin/updateMovie";
 	}
+
 
 	@PostMapping("/updateMovie")
-	public void updateMovie(Movie movie, MultipartFile imageFile) {
-		movieService.updateMovie(movie, imageFile);
+	public String updateMovie(@ModelAttribute("movie") Movie movie,
+	                          @RequestParam(value = "imageFile", required = false) MultipartFile imageFile,
+	                          @RequestParam(value = "bannerFile", required = false) MultipartFile bannerFile,
+	                          @RequestParam("originalImageFile") String originalImageFile,
+	                          @RequestParam("originalBannerFile") String originalBannerFile) {
+	    File directory = new File("src/main/resources/static/assets/images/movie");
+	    if (!directory.exists()) {
+	        directory.mkdirs();
+	    }
+
+	    // 이미지 파일이 선택되었을 경우에만 업데이트 수행
+	    if (imageFile != null && !imageFile.isEmpty()) {
+	        // 새 이미지 파일이 선택된 경우 처리
+	        // ...
+	    } else {
+	        // 이미지 파일이 선택되지 않은 경우, 기존 이미지 파일명을 사용
+	        movie.setImage_path(originalImageFile);
+	    }
+
+	    // 배너 파일도 동일하게 처리
+	    if (bannerFile != null && !bannerFile.isEmpty()) {
+	        // 새 이미지 파일이 선택된 경우 처리
+	        // ...
+	    } else {
+	        // 이미지 파일이 선택되지 않은 경우, 기존 이미지 파일명을 사용
+	        movie.setBanner_path(originalBannerFile);
+	    }
+
+	    try {
+	        // MovieService를 사용하여 영화 정보 및 파일 업데이트
+	        movieService.updateMovie(movie, imageFile, bannerFile);
+	        // 업데이트된 영화의 상세 페이지로 리다이렉트
+	        return "redirect:/getMovie?movie_code=" + movie.getMovie_code();
+	    } catch (Exception e) {
+	        // 예외 처리 (예: 로깅, 에러 페이지로 리다이렉트 등)
+	        e.printStackTrace();
+	        return "error";
+	    }
 	}
 
-	@GetMapping("/updateTVProgram")
-	public String updateTVProgramView() {
-		return "layout/admin/inserttvProgram";
-	}
+
 
 	@PostMapping("/updateTVProgram")
 	public void updateTVProgram(TVProgram tvProgram, MultipartFile imageFile) {
@@ -124,9 +172,38 @@ public class AdminController {
       
         // movieService.getMovie에 올바른 Movie 객체를 전달
     	tvProgram = tvProgramService.getTVProgram(tvProgram);
-        
+    	 List<Episode> epiList = episodeService.getEpList(pseq);
+    	 
         model.addAttribute("tvProgram", tvProgram);
+        model.addAttribute("epiList", epiList);
         
         return "layout/admin/getTVProgram";
     }
+	@GetMapping("/insertEpisode")
+	public String insertEpisode(@RequestParam("pseq") int pseq, Model model) {
+	    // pseq를 모델에 추가하여 Thymeleaf에서 사용할 수 있도록 함
+	    model.addAttribute("pseq", pseq);
+	    return "layout/admin/insertEpisode";
+	}
+
+	
+	@PostMapping("/insertEpisode")
+	public String insertEpisode(@ModelAttribute("episode") Episode episode, @RequestParam("pseq") int pseq) {
+	    // pseq를 사용하여 TVProgram 객체를 가져옴
+	    TVProgram tvProgram = tvProgramService.getTVProgramByPseq(pseq);
+	    
+	    // episode 객체에 TVProgram 설정
+	    episode.setTvProgram(tvProgram);
+
+	    // episode 객체를 이용하여 에피소드 정보 저장 로직 수행
+	    episodeService.insertEpisode(episode);
+
+	    // pseq 값을 가져와서 리다이렉트 URL에 포함시킴
+	    pseq = episode.getTvProgram().getPseq();
+	    
+	    return "redirect:/getTVProgram?pseq=" + pseq;
+	}
+
+
+	
 }
