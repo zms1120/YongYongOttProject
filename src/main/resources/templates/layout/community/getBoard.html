@@ -19,7 +19,7 @@
                <h4>댓글은 로그인 후 작성 할 수 있어용</h4>
                <h5>비방과 욕설 스포는 삭제가 될 수 있어용</h5>
             </div>
-            <form th:action="@{/modifyBoard}" method="post" id="modify">
+            <form th:action="@{/updateBoard}" method="post" id="update">
                <div class="detail-table">
                   <table class="getBoardDetail">
                      <tr>
@@ -29,7 +29,7 @@
 
                      <tr>
                         <td class="getBoardTitle" th:text="내용"></td>
-                        <td th:text="${board.content}" colspan="2"></td>
+                        <td align="left"><textarea name="content" cols="100" rows="100" th:text="${board.content}"></textarea></td>
                      </tr>
                      <tr>
                         <td class="getBoardTitle" th:text="작성일"></td>
@@ -53,9 +53,8 @@
                      </tr>
                   </table>
                </div>
-               <div
-                  th:if="${session.member != null and session.member.id == board.member.id}">
-                  <input class="modify_btn" type="submit" value="수정하기">
+               <div th:if="${session.member != null and session.member.id == board.member.id}">
+                  <a th:href="@{'/updateBoard?b_seq=' + ${board.b_seq}}" style="font-size: 20px;">수정하기</a>
                </div>
             </form>
          </div>
@@ -104,7 +103,7 @@
                      <textarea rows="3" cols="30" id="content" name="content"
                         placeholder="악성 댓글과 스포는 싫어용."></textarea>
                      <input type="hidden" name="id" th:value="${session.member.id}"
-                        readonly><br> <input class="modify_btn"
+                        readonly><br> <input class="update_btn"
                         type="submit" value="댓글등록하기">
                   </div>
                </form>
