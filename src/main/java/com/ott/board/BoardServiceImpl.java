@@ -64,7 +64,14 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void updateBoard(Board board) {
-		boardRepository.save(board);
+
+		Board updateBoard = boardRepository.findById(board.getB_seq()).get();
+
+		updateBoard.setB_category(board.getB_category());
+		updateBoard.setTitle(board.getTitle());
+		updateBoard.setContent(board.getContent());
+		
+		boardRepository.save(updateBoard);
 		
 	}
 

@@ -2406,7 +2406,7 @@ change Style
   font-size: 15px;
 }
 .change-use-button {
-   font-size: 14px;
+   font-size: 20px;
    color: #ec6090;
    background-color: transparent;
    border: 1px solid #ec6090;
@@ -2433,7 +2433,7 @@ change Style
    margin-left: 10px;   
 }
 .use-table {
-   font-size: 18px;
+   font-size: 20px;
    color: #fff;
    font-weight: 400;
    margin-top: 100px;
@@ -2453,7 +2453,7 @@ change Style
   text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
-  font-size: 15px;
+  font-size: 20px;
 }
 .change form .input_block input {
   display: block;
@@ -2467,7 +2467,7 @@ change Style
   opacity: 90%;
   color: #666;
   padding: 0 0 0 15px;
-  font-size: 14px;
+  font-size: 20px;
 }
  .change form .input__block input:focus,
  .change form .input__block input:active {
@@ -2487,7 +2487,7 @@ change Style
   opacity: 90%;
   color: #666;
   padding: 0 0 0 15px;
-  font-size: 14px;
+  font-size: 20px;
 }
  .change form .signin_btn {
   background: #9ADBE8;
@@ -2512,7 +2512,7 @@ change Style
 
 /* 
 ---------------------------------------------
-community insert Board Style
+community insert Board & update Board Style
 --------------------------------------------- 
 */ 
 
@@ -2564,7 +2564,7 @@ community insert Board Style
 }
 
 .insertBoard {
-   font-size: 15px;
+   font-size: 20px;
    color: #fff;
    font-weight: 400;
    margin-top: 50px;
@@ -2593,7 +2593,7 @@ community insert Board Style
   opacity: 90%;
   color: #666;
   padding: 0 0 0 15px;
-  font-size: 14px;
+  font-size: 20px;
 }
 
 .insert form .input-table input {
@@ -2607,7 +2607,7 @@ community insert Board Style
   opacity: 90%;
   color: #666;
   padding: 0 0 0 15px;
-  font-size: 14px;
+  font-size: 20px;
 }
  .insert form .input-table input:focus,
  .insert form .input-table input:active {
@@ -2626,9 +2626,9 @@ community insert Board Style
   opacity: 90%;
   color: #666;
   padding: 0 0 0 15px;
-  font-size: 14px;
-}
+  font-size: 20px;
 
+}
 
  .insert form .insert_btn {
   background: #9ADBE8;
@@ -2699,7 +2699,7 @@ community getBoard & reply Style
 }
 
 .getBoard {
-   font-size: 15px;
+   font-size: 20px;
    color: #fff;
    font-weight: 400;
    margin-top: 10px;
@@ -2708,7 +2708,7 @@ community getBoard & reply Style
 }
 .getBoard table{
   width: 100%; 
-  font-size: 15px;
+  font-size: 20px;
   max-width: 950px; 
   margin: 0 auto;
   border-collapse: separate;
@@ -2724,6 +2724,22 @@ community getBoard & reply Style
     padding: 20px;   
 }
 
+.getBoard form .detail-table textarea {
+  display: block;
+  width:750px;
+  height: 350px;
+  margin: 0 auto;
+  border-radius: 8px;
+  border: none;
+  background-color: #353637;
+  opacity: 90%;
+  color: #fff;
+  padding: 0 0 0 15px;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+}
+
 .getBoard form .replywrite-reply textarea {
   display: block;
   width:550px;
@@ -2735,18 +2751,14 @@ community getBoard & reply Style
   opacity: 90%;
   color: #666;
   padding: 0 0 0 15px;
-  font-size: 14px;
+  font-size: 20px;
 }
 
 .getBoard-view,  td {
   font-size: 20px; 
 }
 
-.detail-table,  td {
-  font-size: 20px; 
-}
-
-.getBoard form .modify_btn {
+.getBoard form .update_btn {
   background: #9ADBE8;
   color: #1e1e1e;
   display: block;
@@ -2757,12 +2769,12 @@ community getBoard & reply Style
   margin-top: 20px;
   border: none;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 500px;
   transition: 0.2s linear;
   margin: 0 auto;
  }
-  .getBoard form .modify_btn:hover {
+  .getBoard form .update_btn:hover {
   border-color: #fff;
   background-color: #fff;
   color: #1e1e1e;
