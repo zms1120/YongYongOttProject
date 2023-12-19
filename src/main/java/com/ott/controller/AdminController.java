@@ -131,12 +131,60 @@ public class AdminController {
 	    }
 	}
 
+	// 업데이트 폼을 보여주는 페이지로 이동
+		@GetMapping("/updateTVProgram")
+		public String updateTVForm(@RequestParam("pseq") int pseq, Model model) {
+		    TVProgram tvProgram = tvProgramService.getTVProgramByPseq(pseq);
+
+		    // 기존 이미지와 배너의 경로를 모델에 추가
+		    model.addAttribute("originalImagePath", tvProgram.getImage_path());
+		    model.addAttribute("originalBannerPath", tvProgram.getBanner_path());
+
+		    model.addAttribute("tvProgram", tvProgram);
+		    return "/layout/admin/updateTV";
+		}
 
 
-	@PostMapping("/updateTVProgram")
-	public void updateTVProgram(TVProgram tvProgram, MultipartFile imageFile) {
-		tvProgramService.updateTVProgram(tvProgram, imageFile);
-	}
+		@PostMapping("/updateTVProgram")
+		public String updateMovie(@ModelAttribute("tvProgram") TVProgram tvProgram,
+		                          @RequestParam(value = "imageFile", required = false) MultipartFile imageFile,
+		                          @RequestParam(value = "bannerFile", required = false) MultipartFile bannerFile,
+		                          @RequestParam("originalImageFile") String originalImageFile,
+		                          @RequestParam("originalBannerFile") String originalBannerFile) {
+		    File directory = new File("src/main/resources/static/assets/images/tv");
+		    if (!directory.exists()) {
+		        directory.mkdirs();
+		    }
+
+		    // 이미지 파일이 선택되었을 경우에만 업데이트 수행
+		    if (imageFile != null && !imageFile.isEmpty()) {
+		        // 새 이미지 파일이 선택된 경우 처리
+		        // ...
+		    } else {
+		        // 이미지 파일이 선택되지 않은 경우, 기존 이미지 파일명을 사용
+		        tvProgram.setImage_path(originalImageFile);
+		    }
+
+		    // 배너 파일도 동일하게 처리
+		    if (bannerFile != null && !bannerFile.isEmpty()) {
+		        // 새 이미지 파일이 선택된 경우 처리
+		        // ...
+		    } else {
+		        // 이미지 파일이 선택되지 않은 경우, 기존 이미지 파일명을 사용
+		        tvProgram.setBanner_path(originalBannerFile);
+		    }
+
+		    try {
+		        // MovieService를 사용하여 영화 정보 및 파일 업데이트
+		        tvProgramService.updateTVProgram(tvProgram, imageFile, bannerFile);
+		        // 업데이트된 영화의 상세 페이지로 리다이렉트
+		        return "redirect:/getTVProgram?pseq=" + tvProgram.getPseq();
+		    } catch (Exception e) {
+		        // 예외 처리 (예: 로깅, 에러 페이지로 리다이렉트 등)
+		        e.printStackTrace();
+		        return "error";
+		    }
+		}
 
 	@PostMapping("/deleteMovie")
 	public void deleteMovie(Movie movie) {

@@ -138,7 +138,7 @@ public class MovieServiceImpl implements MovieService {
         }
     }
     private String saveFile(MultipartFile file, String fileName) throws IOException {
-        String filePath = "src/main/resources/static/" + uploadDirectory + File.separator + fileName;
+    	String filePath = uploadDirectory + "assets/images/movie" + File.separator + fileName;
         try (OutputStream os = new FileOutputStream(new File(filePath))) {
             os.write(file.getBytes());
         }
