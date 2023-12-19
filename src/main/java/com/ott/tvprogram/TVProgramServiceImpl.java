@@ -56,10 +56,10 @@ public class TVProgramServiceImpl implements TVProgramService {
             String imagePath = saveFile(imageFile, imageFileName);
 
             // 이미지 경로를 Movie에 저장
-            TVProgram savedTVProgram = tvProgramRepository.findById(pseq).orElse(null);
-            if (savedTVProgram != null) {
-            	savedTVProgram.setImage_path(imagePath);
-                tvProgramRepository.save(savedTVProgram);
+            TVProgram savedTV = tvProgramRepository.findById(pseq).orElse(null);
+            if (savedTV != null) {
+            	savedTV.setImage_path(imagePath);
+                tvProgramRepository.save(savedTV);
             }
 
             // 배너 파일명 그대로 사용
@@ -68,9 +68,9 @@ public class TVProgramServiceImpl implements TVProgramService {
             String bannerPath = saveFile(bannerFile, bannerFileName);
 
             // 배너 이미지 경로를 Movie에 저장
-            if (savedTVProgram != null) {
-            	savedTVProgram.setBanner_path(bannerPath);
-                tvProgramRepository.save(savedTVProgram);
+            if (savedTV != null) {
+            	savedTV.setBanner_path(bannerPath);
+                tvProgramRepository.save(savedTV);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -78,38 +78,49 @@ public class TVProgramServiceImpl implements TVProgramService {
         }
     }
 
-    private String saveFile(MultipartFile file, String fileName) throws IOException {
-        String filePath = uploadDirectory + File.separator + fileName;
-        try (OutputStream os = new FileOutputStream(new File(filePath))) {
-            os.write(file.getBytes());
-        }
-        return fileName;
+	  private String saveFile(MultipartFile file, String fileName) throws IOException {
+	    	String filePath = uploadDirectory + "assets/images/tv" + File.separator + fileName;
+	        try (OutputStream os = new FileOutputStream(new File(filePath))) {
+	            os.write(file.getBytes());
+	        }
+	        return fileName;
 	    }
 	@Override
-	public void updateTVProgram(TVProgram tvProgram, MultipartFile imageFile) {
+	public void updateTVProgram(TVProgram tvProgram, MultipartFile imageFile, MultipartFile bannerFile) {
 		try {
-			// TV 프로그램을 저장
-			tvProgramRepository.save(tvProgram);
+	        // 이미지 파일명을 그대로 사용
+	        String imageFileName = imageFile.getOriginalFilename();
+	        
+	        // 이미지 파일이 비어 있는지 확인
+	        if (!imageFile.isEmpty()) {
+	            // movie_code를 파일 이름으로 사용하여 이미지 저장
+	            String imagePath = saveFile(imageFile, imageFileName);
+	            System.out.println("파일이 저장될 위치: " + imagePath);
+	            
+	            // 이미지 경로를 Movie에 저장
+	             tvProgram.setImage_path(imagePath);
+	        }
 
-			// 저장된 TV 프로그램의 pseq를 가져옴
-			int pseq = tvProgram.getPseq();
+	        // 배너 파일명을 그대로 사용
+	        String bannerFileName = bannerFile.getOriginalFilename();
+	        
+	        // 배너 파일이 비어 있는지 확인
+	        if (!bannerFile.isEmpty()) {
+	            // movie_code를 파일 이름으로 사용하여 배너 이미지 저장
+	            String bannerPath = saveFile(bannerFile, bannerFileName);
+	            
+	            // 배너 이미지 경로를 Movie에 저장
+	            tvProgram.setBanner_path(bannerPath);
+	        }
 
-			// pseq를 파일 이름으로 사용하여 이미지 저장
-			String filePath = uploadDirectory + File.separator + pseq + ".jpg";
-			imageFile.transferTo(new File(filePath));
+	        // Movie 저장 (이미 저장된 엔터티를 다시 저장할 필요 없음)
+	        tvProgramRepository.save(tvProgram);
 
-			// 이미지 경로를 TV 프로그램에 저장
-			TVProgram savedTVProgram = tvProgramRepository.findById(pseq).orElse(null);
-			if (savedTVProgram != null) {
-				savedTVProgram.setImage_path(filePath);
-				tvProgramRepository.save(savedTVProgram);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new RuntimeException("이미지 저장 중 오류 발생");
-		}
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	        throw new RuntimeException("이미지 저장 중 오류 발생");
+	    }
 	}
-
 	@Override
 	public String getVideoPath(int pseq) {
 

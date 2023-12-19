@@ -14,7 +14,7 @@ public interface TVProgramService {
     
     void insertTVProgram(TVProgram tvProgram,  MultipartFile imageFile, MultipartFile bannerFile);
     
-    void updateTVProgram(TVProgram tvProgram,  MultipartFile imageFile);
+    void updateTVProgram(TVProgram tvProgram,  MultipartFile imageFile, MultipartFile bannerFile);
     
     void deleteTVProgram(TVProgram tvProgram);
     
@@ -23,4 +23,6 @@ public interface TVProgramService {
     List<TVProgram> findByCategoryContaining(String category);
     
     TVProgram getTVProgramByPseq(int pseq);
+    
+   
 }
