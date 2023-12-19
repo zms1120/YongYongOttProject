@@ -3,6 +3,7 @@ package com.ott.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString(exclude = "broadcastEpisodes")
+@ToString(exclude = "Episodes")
 @Entity
 @Builder
 @AllArgsConstructor
@@ -30,7 +31,8 @@ public class TVProgram {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tvprog_seq_generator")
 	@SequenceGenerator(name = "tvprog_seq_generator", sequenceName = "tvprog_seq", allocationSize = 1)
-	private int pseq;				//프로그램일련번호
+	@Column(name = "pseq", updatable = false, insertable = false)
+	private int pseq; // 프로그램일련번호
 	private String p_title;			//프로그램제목
 	private String p_board_casting;   //방송사
 	private String airing_period;	//방영기간
@@ -46,8 +48,8 @@ public class TVProgram {
 	private String image_path;		//썸네일
 	private String banner_path; //배너 이미지 경로
 
-	@OneToMany(mappedBy = "tvProgram")
-	private List<Episode> broadcastEpisodes = new ArrayList<>();
+	@OneToMany(mappedBy = "tvProgram", cascade = CascadeType.ALL)
+	private List<Episode> Episodes = new ArrayList<>();
 	
 	
 }

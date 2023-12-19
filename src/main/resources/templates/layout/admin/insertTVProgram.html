@@ -8,12 +8,12 @@
 <body th:align="center">
 
 
-	<!-- 무비 insert 시작 -->
+	<!-- TV insert 시작 -->
 
-	<div class="insert">
-		<div class="insert insert-section">
+	<div class="update">
+		<div class="update update-section">
 
-			<form th:action="@{/insertTVProgram}" method="post" id="insert"
+			<form th:action="@{/insertTVProgram}" method="post" id="update"
 				enctype="multipart/form-data">
 				<table class="insertTVProgram" th:align="center" th:cellpadding="0"
 					th:cellspacing="0">
@@ -37,34 +37,34 @@
 						<td>감독</td>
 						<td><input type="text" name="p_director" id="p_director"
 							placeholder="감독을 입력해주세요.">
-						</textarea></td>
+						</td>
 
 						<td>작가</td>
 						<td><input type="text" name="p_writer" id="p_writer"
 							placeholder="작가를 입력해주세요.">
-						</textarea></td>
+						</td>
 					</tr>
 					<tr>
 						<td>방영기간</td>
 						<td><input type="text" name="airing_period"
 							id="airing_period" placeholder="방영기간을 입력해주세요.">
-						</textarea></td>
+						</td>
 
 						<td>방송사</td>
 						<td><input type="text" name="p_board_casting"
 							id="p_board_casting" placeholder="방송사를 입력해주세요.">
-						</textarea></td>
+						</td>
 					</tr>
 					<tr>
 						<td>국가</td>
 						<td><input type="text" name="nation" id="nation"
 							placeholder="국가를 입력해주세요.">
-						</textarea></td>
+						</td>
 
 						<td>등급</td>
 						<td><input type="text" name="rating" id="rating"
 							placeholder="등급을 입력해주세요.">
-						</textarea></td>
+						</td>
 					</tr>
 
 					<tr>
@@ -95,12 +95,7 @@
 		</div>
 
 	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
+	
 
 	<!-- footer -->
 

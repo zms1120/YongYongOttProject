@@ -85,6 +85,7 @@ public class TVProgramServiceImpl implements TVProgramService {
 	        }
 	        return fileName;
 	    }
+	@Transactional
 	@Override
 	public void updateTVProgram(TVProgram tvProgram, MultipartFile imageFile, MultipartFile bannerFile) {
 		try {
