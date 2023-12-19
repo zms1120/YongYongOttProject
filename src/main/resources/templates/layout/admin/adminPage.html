@@ -1,12 +1,170 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>관리자 페이지</title>
+<!-- header 입니다. -->
+<th:block th:replace="fragments/adminheader :: adminheader"></th:block>
 </head>
-<body>
-<h1>관리자 페이지입니다</h1>
-<a th:href="@{/contentsList}">컨텐츠 목록보기</a>
+<body class="sb-nav-fixed">
 
+	<div id="layoutSidenav">
+		<!-- mid 입니다. -->
+		<th:block th:replace="fragments/adminmid :: adminmid"></th:block>
+		<!--  <div id="layoutSidenav">와 중간은 꼭 넣어주어야 함.-->
+
+		<div id="layoutSidenav_content">
+			<main>
+				<div class="container-fluid px-4">
+					<h1 class="mt-4">용용플레이</h1>
+					<ol class="breadcrumb mb-4">
+						<li class="breadcrumb-item active">Dashboard</li>
+					</ol>
+					<div class="row">
+						<div class="col-xl-3 col-md-6">
+							<div class="card bg-primary text-white mb-4">
+								<div class="card-body">전체 영화 보기</div>
+								<div
+									class="card-footer d-flex align-items-center justify-content-between">
+									<a class="small text-white stretched-link" th:href="@{/getMovieList}">View Details</a>
+									<div class="small text-white">
+										<i class="fas fa-angle-right"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-md-6">
+							<div class="card bg-warning text-white mb-4">
+								<div class="card-body">전체 TV프로그램 보기</div>
+								<div
+									class="card-footer d-flex align-items-center justify-content-between">
+									<a class="small text-white stretched-link" th:href="@{/getTVProgramList}">View Details</a>
+									<div class="small text-white">
+										<i class="fas fa-angle-right"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-md-6">
+							<div class="card bg-success text-white mb-4">
+								<div class="card-body">Q&A</div>
+								<div
+									class="card-footer d-flex align-items-center justify-content-between">
+									<a class="small text-white stretched-link" href="#">View Details</a> 
+									<div class="small text-white">
+										<i class="fas fa-angle-right"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-md-6">
+							<div class="card bg-danger text-white mb-4">
+								<div class="card-body">가입 통계??? 넣는건 어떤지</div>
+								<div
+									class="card-footer d-flex align-items-center justify-content-between">
+									<a class="small text-white stretched-link" href="#">View Details</a>
+									<div class="small text-white">
+										<i class="fas fa-angle-right"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					<div class="row">
+						<div class="col-xl-6">
+							<div class="card mb-4">
+								<div class="card-header">
+									<i class="fas fa-chart-area me-1"></i> 전체 계시물
+								</div>
+								<div class="card-body">
+									<canvas id="myAreaChart" width="100%" height="40"></canvas>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-6">
+							<div class="card mb-4">
+								<div class="card-header">
+									<i class="fas fa-chart-bar me-1"></i> 미답변 게시물
+								</div>
+								<div class="card-body">
+									<canvas id="myBarChart" width="100%" height="40"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--  영화 -->
+					<div class="card mb-4">
+						<div class="card-header">
+							<i class="fas fa-table me-1"></i> 영화
+						</div>
+						<div class="card-body">
+							<table id="datatablesSimple">
+								<thead>
+									<tr>
+										<th>일련번호</th>
+										<th>제목</th>
+										<th>카테고리</th>
+										<th>장르</th>
+										<th>출연진</th>
+										<th>관람등급</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="movie, state : ${movieList}">
+										<td th:text="${movie.movie_code}"></td>
+										<td th:text="${movie.m_title_ko}"></td>
+										<td th:text="${movie.category}"></td>
+										<td th:text="${movie.genre}"></td>
+										<td th:text="${movie.cast}"></td>
+										<td th:text="${movie.rating}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!--  티비 프로그램 -->
+					<div class="card mb-4">
+						<div class="card-header">
+							<i class="fas fa-table me-1"></i> 드라마
+						</div>
+						<div class="card-body">
+							<table id="datatablesSimple">
+								<thead>
+									<tr>
+										<th>일련번호</th>
+										<th>제목</th>
+										<th>방송사</th>
+										<th>감독</th>
+										<th>출연진</th>
+										<th>등급</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="tvProgram, state : ${tvProgramList}">
+										<td th:text="${tvProgram.pseq}"></td>
+										<td th:text="${tvProgram.p_title}"></td>
+										<td th:text="${tvProgram.p_board_casting}"></td>
+										<td th:text="${tvProgram.p_director}"></td>
+										<td th:text="${tvProgram.p_cast}"></td>
+										<td th:text="${tvProgram.rating}"></td>								
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					
+					
+				</div>
+			</main>
+		</div>
+	</div>
+
+
+
+
+
+	<!-- footer 입니다. -->
+	<th:block th:replace="fragments/adminfooter :: adminfooter"></th:block>
 </body>
 </html>
