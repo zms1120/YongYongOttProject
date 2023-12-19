@@ -46,11 +46,14 @@ https://templatemo.com/tm-579-cyborg-gaming
             <div class="col-12">
 				
 				<div>
-					<ul class="upper-nav">
-						<li th:if="${session.member == null}"><a href="login">로그인</a></li>
-						<li th:unless="${session.member == null}"><a href="logout">로그아웃</a></li>
-						<li th:if="${session.member == null}"><a href="change">이용권안내</a></li>
-						<li th:unless="${session.member == null}"><a href="change">이용권변경</a></li>
+					<ul class="upper-nav" th:if="${session.member == null}">
+						<li><a href="login">로그인</a></li>
+						<li ><a href="change">이용권안내</a></li>
+					</ul>
+					<ul class="upper-nav" th:unless="${session.member == null}">
+						<li th:if="${session.member.position == 'ADMIN'}"><a href="admin">관리자 페이지 이동</a></li>
+						<li><a href="logout">로그아웃</a></li>
+						<li><a href="change">이용권변경</a></li>
 					</ul>
 					<hr>
 				</div>
