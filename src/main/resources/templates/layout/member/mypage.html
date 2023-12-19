@@ -28,8 +28,9 @@
                         <h4>[[${member.name}]] 님</h4>
                         <h6><em>ID:</em> &nbsp; [[${member.id}]]</h6>
                         <h6><em>e-mail:</em> &nbsp; [[${member.email}]]</h6>
-                        <h6><em>전화번호:</em> &nbsp; <span id="phone_number">[[${member.phone_number}]]</span></h6>
-                        <p>[[${#dates.format(member.reg_date, 'yyyy-MM-dd')}]] 부터 사용중입니다.</p>
+                        <h6><em>전화번호:</em> &nbsp; <span id="phone_num">[[${member.phone_number}]]</span></h6>
+                        <p th:if="${member.position == 'ADMIN'}"></p>
+                        <p th:unless="${member.position == 'ADMIN'}">[[${#dates.format(member.reg_date, 'yyyy-MM-dd')}]] 부터 사용중입니다.</p>
                       </div>
                       <div class="main-border-button">
                         <a href="modify">회원정보 수정하기</a>

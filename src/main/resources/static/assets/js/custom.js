@@ -271,7 +271,7 @@ function maskPhoneNumber(phoneNumber) {
 }
 
 // 전화번호 요소 선택 후 마스킹 처리
-var phoneNumberElement = document.getElementById('phone_number');
+var phoneNumberElement = document.getElementById('phone_num');
 if (phoneNumberElement) {
 	phoneNumberElement.innerHTML = maskPhoneNumber(phoneNumberElement.innerHTML);
 }

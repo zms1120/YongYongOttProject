@@ -492,7 +492,7 @@ Header Style
 	height: 46px;
 	border-radius: 23px;
 	border: 3px solid #353637;
-	color: #666;
+	color: #f7f7f7;
 	font-size: 18px;
 	padding: 0px 0px 0px 100px;
 }
@@ -1111,12 +1111,8 @@ Featured Banner Style
 	font-weight: 600;
 }
   
-.feature-banner .movie:hover {
+.movie:hover {
   filter: brightness(60%);
-}
-
-.feature-banner .tvhover{
-  filter: brightness(100%);
 }
 
 .feature-banner:hover .play {
@@ -1317,6 +1313,7 @@ Profile Style
 	color: #9ADBE8;
 	margin-bottom: 20px;
 	letter-spacing: 2px;
+	display: inline-block;
 }
 
 .main-profile .main-info h6 {
@@ -1334,8 +1331,8 @@ Profile Style
 	background-color: #27292a;
 	font-size: 14px;
 	font-weight: 400px;
-	margin-bottom: 20px;
 	letter-spacing: 2px;
+	margin-bottom: -10px;
 }
 
 
