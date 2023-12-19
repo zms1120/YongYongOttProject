@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,9 +37,16 @@ public class AdminController {
 	private EpisodeService episodeService;
 	
 	@GetMapping("/adminPage")
-	public String adminMain() {
-		return "layout/admin/adminPage";
-	}
+	   public String adminMain(Movie movie, TVProgram tvProgram, Model model) {
+	      
+	      List<Movie>movieList = movieService.getMovieList(movie);
+	      List<TVProgram> tvProgramList = tvProgramService.getTVProgramList(tvProgram);
+	      
+	      model.addAttribute("movieList", movieList);
+	      model.addAttribute("tvProgramList", tvProgramList);
+	      
+	      return "layout/admin/adminPage";
+	   }
 	@GetMapping("/contentsList")
 	public String movieList(Movie movie, TVProgram tvProgram, Model model) {
 		List<Movie>movieList = movieService.getMovieList(movie);
@@ -252,6 +260,82 @@ public class AdminController {
 	    return "redirect:/getTVProgram?pseq=" + pseq;
 	}
 
+	@GetMapping("/updateEpisode")
+	public String updateEpisodeForm(@RequestParam(name = "pseq", required = true) int pseq,
+	        @RequestParam(name = "episode_num", required = true) String episode_num,
+	        Model model, Episode episode) {
+	    try {
+	        // episode_num을 사용하여 에피소드 정보를 가져옴
+	        Optional<Episode> episodeOptional = episodeService.getEpisodeByPseqAndEpisodeNum(pseq, episode_num);
 
+	        // 해당 에피소드 정보가 존재하면 모델에 추가하여 Thymeleaf에서 사용할 수 있도록 함
+	        if (episodeOptional.isPresent()) {
+	            Episode existingEpisode = episodeOptional.get();
+	            model.addAttribute("episode", existingEpisode);
+	            model.addAttribute("pseq", pseq);
+	            return "layout/admin/updateEpisode";
+	        } else {
+	            // 에피소드 정보가 존재하지 않으면 에러 페이지로 이동
+	            return "error";
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return "error";
+	    }
+	}
+
+
+	@PostMapping("/updateEpisode")
+	public String updateEpisode(@ModelAttribute("episode") Episode episode,
+	                            @RequestParam("pseq") int pseq) {
+	    try {
+	        // pseq를 사용하여 TVProgram 객체를 가져옴
+	        TVProgram tvProgram = tvProgramService.getTVProgramByPseq(pseq);
+
+	        // 해당 에피소드가 실제로 존재하는지 확인
+	        Optional<Episode> existingEpisodeOptional = episodeService.getEpisodeByPseqAndEpisodeNum(pseq, episode.getEpisode_num());
+
+	        if (existingEpisodeOptional.isPresent()) {
+	            Episode existingEpisode = existingEpisodeOptional.get();
+	            
+	            // episode 객체에 TVProgram 설정
+	            episode.setTvProgram(tvProgram);
+
+	            // episode 객체를 이용하여 에피소드 정보 업데이트 로직 수행
+	            episodeService.updateEpisode(episode);
+
+	            // pseq 값을 가져와서 리다이렉트 URL에 포함시킴
+	            pseq = existingEpisode.getTvProgram().getPseq();
+
+	            // episode_num 값을 가져와서 리다이렉트 URL에 포함시킴
+	            String episodeNum = existingEpisode.getEpisode_num();
+
+	            return "redirect:/getTVProgram?pseq=" + pseq;
+	        } else {
+	            // 에피소드 정보가 존재하지 않으면 에러 페이지로 이동
+	            return "error";
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return "error";
+	    }
+	}
+
+	@GetMapping("/getEpisode")
+    public String getEpisode(Model model, @RequestParam("episode_num") String episode_num) {
+        // 새로운 Episode 객체를 생성하고 Episode_num를 설정
+    	Episode episode = new Episode();
+    	
+    	episode.setEpisode_num(episode_num);
+      
+        // episodeService.getEpisode에 올바른 episode 객체를 전달
+    	episode = episodeService.getEpisode(episode);
+        
+        model.addAttribute("episode", episode);
+        
+        return "layout/admin/getEpisode";
+    }
+
+	}
 	
-}
+

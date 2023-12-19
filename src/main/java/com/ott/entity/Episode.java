@@ -41,7 +41,9 @@ public class Episode {
 	private String video_path; // 영상 주소 경로
 	
     @ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "pseq")		
+	@JoinColumn(name = "pseq")			
 	private TVProgram tvProgram;	
+    
+   
 	
 }

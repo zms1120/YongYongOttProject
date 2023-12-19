@@ -1,6 +1,7 @@
 package com.ott.episode;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,23 @@ public class EpisodeServiceImpl implements EpisodeService {
 	public void insertEpisode(Episode episode) {
 		
 		episodeRepository.save(episode);
+	}
+
+	@Override
+	public void updateEpisode(Episode episode) {
+		episodeRepository.save(episode);
+		
+	}
+
+	  @Override
+	    public Optional<Episode> getEpisodeByPseqAndEpisodeNum(int pseq, String episode_num) {
+	        return episodeRepository.findByPseqAndEpisodeNum(pseq, episode_num);
+	
+	  }
+
+	@Override
+	public Episode getEpisode(Episode episode) {
+		// TODO Auto-generated method stub
+		return episodeRepository.findById(episode.getEpisode_num()).get();
 	}
 }
