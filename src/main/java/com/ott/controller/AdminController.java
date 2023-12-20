@@ -1,10 +1,7 @@
 package com.ott.controller;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -15,9 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
@@ -47,21 +42,24 @@ public class AdminController {
 	@Autowired
 	private MemberService memberService;
 
+	// 관리자 메인페이지
 	@GetMapping("/adminPage")
-    public String adminMain(Movie movie, TVProgram tvProgram,Member member,Board board, Model model) {
-       
-    List<Board> boardList = boardService.getBoardList(board);
-    List<Member> memberList = memberService.getMemberList(member);
-    List<Movie> movieList = movieService.getMovieList(movie);
-     List<TVProgram> tvProgramList = tvProgramService.getTVProgramList(tvProgram);
-     
-     model.addAttribute("boardList", boardList);
-     model.addAttribute("memberList", memberList);         
-     model.addAttribute("movieList", movieList);
-     model.addAttribute("tvProgramList", tvProgramList);
-       
-     return "layout/admin/adminPage";
-    }
+	public String adminMain(Movie movie, TVProgram tvProgram, Member member, Board board, Model model) {
+
+		List<Board> boardList = boardService.getBoardList(board);
+		List<Member> memberList = memberService.getMemberList(member);
+		List<Movie> movieList = movieService.getMovieList(movie);
+		List<TVProgram> tvProgramList = tvProgramService.getTVProgramList(tvProgram);
+
+		model.addAttribute("boardList", boardList);
+		model.addAttribute("memberList", memberList);
+		model.addAttribute("movieList", movieList);
+		model.addAttribute("tvProgramList", tvProgramList);
+
+		return "layout/admin/adminPage";
+	}
+
+	// 영화 리스트
 	@GetMapping("/getMovieList")
 	public String movieList(Movie movie, Model model) {
 		List<Movie> movieList = movieService.getMovieList(movie);
@@ -71,20 +69,28 @@ public class AdminController {
 		return "layout/admin/getMovieList";
 	}
 
-	@GetMapping("/getTVProgramList")
-	public String movieList(TVProgram tvProgram, Model model) {
+	// 영화 상세정보 화면
+	@GetMapping("/getMovie")
+	public String getMovie(Model model, @RequestParam("movie_code") String movie_code) {
+		// 새로운 Movie 객체를 생성하고 movieCode를 설정
+		Movie movie = new Movie();
 
-		List<TVProgram> tvProgramList = tvProgramService.getTVProgramList(tvProgram);
+		movie.setMovie_code(movie_code);
 
-		model.addAttribute("tvProgramList", tvProgramList);
-		return "layout/admin/getTVProgramList";
+		// movieService.getMovie에 올바른 Movie 객체를 전달
+		movie = movieService.getMovie(movie);
+
+		model.addAttribute("movie", movie);
+
+		return "layout/admin/getMovie";
 	}
 
+	// 영화 등록폼
 	@GetMapping("/insertMovie")
 	public String insertMovieView() {
 		return "layout/admin/insertmovie";
 	}
-
+	//영화 등록하기
 	@PostMapping("/insertMovie")
 	public String insertMovie(@ModelAttribute("movie") Movie movie, @RequestPart("imageFile") MultipartFile imageFile,
 			@RequestPart("bannerFile") MultipartFile bannerFile) {
@@ -92,19 +98,8 @@ public class AdminController {
 		return "redirect:/getMovieList";
 	}
 
-	@GetMapping("/insertTVProgram")
-	public String insertTVProgramView() {
-		return "layout/admin/inserttvProgram";
-	}
-
-	@PostMapping("/insertTVProgram")
-	public String insertTVProgram(@ModelAttribute("tvProgram") TVProgram tvProgram,
-			@RequestPart("imageFile") MultipartFile imageFile, @RequestPart("bannerFile") MultipartFile bannerFile) {
-		tvProgramService.insertTVProgram(tvProgram, imageFile, bannerFile);
-		return "redirect:/getTVProgramList";
-	}
-
-	// 업데이트 폼을 보여주는 페이지로 이동
+	
+	// 영화 수정폼
 	@GetMapping("/updateMovie")
 	public String updateMovieForm(@RequestParam("movie_code") String movieCode, Model model) {
 		Movie movie = movieService.getMovieByCode(movieCode);
@@ -116,7 +111,7 @@ public class AdminController {
 		model.addAttribute("movie", movie);
 		return "/layout/admin/updateMovie";
 	}
-
+	// 영화 수정하기
 	@PostMapping("/updateMovie")
 	public String updateMovie(@ModelAttribute("movie") Movie movie,
 			@RequestParam(value = "imageFile", required = false) MultipartFile imageFile,
@@ -158,6 +153,38 @@ public class AdminController {
 		}
 	}
 
+	// 영화 삭제하기
+	@GetMapping("/deleteMovie/{movie_code}")
+	public String deleteMovie(@PathVariable("movie_code") String movie_code) {
+
+		movieService.deleteMovieByMovieCode(movie_code);
+		return "redirect:/getMovieList";
+	}
+
+	// TV프로그램 리스트
+	@GetMapping("/getTVProgramList")
+	public String movieList(TVProgram tvProgram, Model model) {
+
+		List<TVProgram> tvProgramList = tvProgramService.getTVProgramList(tvProgram);
+
+		model.addAttribute("tvProgramList", tvProgramList);
+		return "layout/admin/getTVProgramList";
+	}
+
+	// TV프로그램 등록 폼
+	@GetMapping("/insertTVProgram")
+	public String insertTVProgramView() {
+		return "layout/admin/inserttvProgram";
+	}
+	// TV프로그램 등록하기
+	@PostMapping("/insertTVProgram")
+	public String insertTVProgram(@ModelAttribute("tvProgram") TVProgram tvProgram,
+			@RequestPart("imageFile") MultipartFile imageFile, @RequestPart("bannerFile") MultipartFile bannerFile) {
+		tvProgramService.insertTVProgram(tvProgram, imageFile, bannerFile);
+		return "redirect:/getTVProgramList";
+	}
+	
+	//TV프로그램 수정 폼
 	// 업데이트 폼을 보여주는 페이지로 이동
 	@GetMapping("/updateTVProgram")
 	public String updateTVForm(@RequestParam("pseq") int pseq, Model model) {
@@ -170,7 +197,7 @@ public class AdminController {
 		model.addAttribute("tvProgram", tvProgram);
 		return "/layout/admin/updateTV";
 	}
-
+	//TV프로그램 수정하기
 	@PostMapping("/updateTVProgram")
 	public String updateMovie(@ModelAttribute("tvProgram") TVProgram tvProgram,
 			@RequestParam(value = "imageFile", required = false) MultipartFile imageFile,
@@ -211,37 +238,15 @@ public class AdminController {
 			return "error";
 		}
 	}
-
-	@GetMapping("/deleteMovie/{movie_code}")
-	public String deleteMovie(@PathVariable("movie_code") String movie_code) {
-
-
-		movieService.deleteMovieByMovieCode(movie_code);
-		return "redirect:/getMovieList";
-	}
-
+	
+	//TV프로그램 삭제하기
 	@GetMapping("/deleteTVProgram/{pseq}")
-	public String deleteTVProgram(@PathVariable("pseq")int pseq) {
+	public String deleteTVProgram(@PathVariable("pseq") int pseq) {
 		tvProgramService.deleteTVProgramByPseq(pseq);
-		
+
 		return "redirect:/getTVProgramList";
 	}
-
-	@GetMapping("/getMovie")
-	public String getMovie(Model model, @RequestParam("movie_code") String movie_code) {
-		// 새로운 Movie 객체를 생성하고 movieCode를 설정
-		Movie movie = new Movie();
-
-		movie.setMovie_code(movie_code);
-
-		// movieService.getMovie에 올바른 Movie 객체를 전달
-		movie = movieService.getMovie(movie);
-
-		model.addAttribute("movie", movie);
-
-		return "layout/admin/getMovie";
-	}
-
+	// TV프로그램 상세정보 및 에피소드 목록 화면
 	@GetMapping("/getTVProgram")
 	public String getTVProgram(Model model, @RequestParam("pseq") int pseq) {
 		// 새로운 Movie 객체를 생성하고 movieCode를 설정
@@ -258,14 +263,15 @@ public class AdminController {
 
 		return "layout/admin/getTVProgram";
 	}
-
+	
+	//에피소드 등록 폼 
 	@GetMapping("/insertEpisode")
 	public String insertEpisode(@RequestParam("pseq") int pseq, Model model) {
 		// pseq를 모델에 추가하여 Thymeleaf에서 사용할 수 있도록 함
 		model.addAttribute("pseq", pseq);
 		return "layout/admin/insertEpisode";
 	}
-
+	//에피소드 등록하기
 	@PostMapping("/insertEpisode")
 	public String insertEpisode(@ModelAttribute("episode") Episode episode, @RequestParam("pseq") int pseq) {
 		// pseq를 사용하여 TVProgram 객체를 가져옴
@@ -282,7 +288,8 @@ public class AdminController {
 
 		return "redirect:/getTVProgram?pseq=" + pseq;
 	}
-
+	
+	//에피소드 수정 폼
 	@GetMapping("/updateEpisode")
 	public String updateEpisodeForm(@RequestParam(name = "pseq", required = true) int pseq,
 			@RequestParam(name = "episode_num", required = true) String episode_num, Model model, Episode episode) {
@@ -305,7 +312,7 @@ public class AdminController {
 			return "error";
 		}
 	}
-
+	//에피소드 수정하기
 	@PostMapping("/updateEpisode")
 	public String updateEpisode(@ModelAttribute("episode") Episode episode, @RequestParam("pseq") int pseq) {
 		try {
@@ -341,26 +348,22 @@ public class AdminController {
 			return "error";
 		}
 	}
-
-	@GetMapping("/getEpisode")
-	public String getEpisode(Model model, @RequestParam("episode_num") String episode_num) {
-		// 새로운 Episode 객체를 생성하고 Episode_num를 설정
-		Episode episode = new Episode();
-
-		episode.setEpisode_num(episode_num);
-
-		// episodeService.getEpisode에 올바른 episode 객체를 전달
-		episode = episodeService.getEpisode(episode);
-
-		model.addAttribute("episode", episode);
-
-		return "layout/admin/getEpisode";
-	}
+	
+	//에피소드 삭제하기
 	@GetMapping("/deleteEpisode/{episode_num}")
-	public String deleteEpisode(@PathVariable("episode_num")String episode_num, @RequestParam("pseq") int pseq) {
+	public String deleteEpisode(@PathVariable("episode_num") String episode_num, @RequestParam("pseq") int pseq) {
 		episodeService.deleteEpisodeByEpisodeNum(episode_num);
-		
+
 		return "redirect:/getTVProgram?pseq=" + pseq;
 	}
+	
+	//커뮤티니 qna 리스트
+	@GetMapping("/qnaList")
+	public String qnaList(Board board, Model model) {
+		List<Board> qnaList = boardService.getBoardListByQna(board);
 
+		model.addAttribute("qnaList", qnaList);
+
+		return "layout/admin/qnaList";
+	}
 }
