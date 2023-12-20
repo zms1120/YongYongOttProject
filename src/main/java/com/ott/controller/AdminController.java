@@ -47,14 +47,22 @@ public class AdminController {
 	      
 	      return "layout/admin/adminPage";
 	   }
-	@GetMapping("/contentsList")
-	public String movieList(Movie movie, TVProgram tvProgram, Model model) {
+	@GetMapping("/getMovieList")
+	public String movieList(Movie movie, Model model) {
 		List<Movie>movieList = movieService.getMovieList(movie);
-		List<TVProgram> tvProgramList = tvProgramService.getTVProgramList(tvProgram);
 		
 		model.addAttribute("movieList", movieList);
+	
+		return "layout/admin/getMovieList";
+	}
+
+	@GetMapping("/getTVProgramList")
+	public String movieList(TVProgram tvProgram, Model model) {
+		
+		List<TVProgram> tvProgramList = tvProgramService.getTVProgramList(tvProgram);
+		
 		model.addAttribute("tvProgramList", tvProgramList);
-		return "layout/admin/contentsList";
+		return "layout/admin/getTVProgramList";
 	}
 
 	@GetMapping("/insertMovie")
