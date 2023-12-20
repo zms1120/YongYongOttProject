@@ -48,7 +48,7 @@ public class TVProgram {
 	private String image_path;		//썸네일
 	private String banner_path; //배너 이미지 경로
 
-	@OneToMany(mappedBy = "tvProgram", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "tvProgram", cascade = CascadeType.REMOVE)
 	private List<Episode> Episodes = new ArrayList<>();
 	
 	

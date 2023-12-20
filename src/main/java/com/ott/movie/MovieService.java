@@ -15,7 +15,7 @@ public interface MovieService {
     
     void insertMovie(Movie movie, MultipartFile imageFile, MultipartFile bannerFile);
     
-    void deleteMovie(Movie movie);
+    void deleteMovieByMovieCode(String movie_code);
     
     void updateMovie(Movie movie, MultipartFile imageFile, MultipartFile bannerFile);
     

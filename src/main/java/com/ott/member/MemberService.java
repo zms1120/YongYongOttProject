@@ -1,6 +1,8 @@
 package com.ott.member;
 
 
+import java.util.List;
+
 import com.ott.entity.Member;
 
 public interface MemberService {
@@ -25,5 +27,8 @@ public interface MemberService {
    String getIdPhone (Member member);
    
    void changeMembership (Member member);
+   
+   List<Member> getMemberList(Member member);
+   
 
 }
