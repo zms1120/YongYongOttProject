@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- header 입니다. -->
+<th:block th:replace="fragments/adminheader :: adminheader"></th:block>
+</head>
+<body class="sb-nav-fixed">
 
-<body>
+   <div id="layoutSidenav">
+      <!-- mid 입니다. -->
+      <th:block th:replace="fragments/adminmid :: adminmid"></th:block>
+      <div id="layoutSidenav_content">
+         <main>
+         <!-- 여기까지는 꼭 넣어주기(어드민) 아래 footer도 있음 -->
+         
 <a th:href="@{/insertTVProgram}">TV프로그램 등록하기</a>
-<a th:href="@{/adminPage}">메인화면</a>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="page-content">
-			
-		<div class="main-title">
-		  
-	 <!-- TV프로그램 목록 -->
+  
+        
+    <!-- TV프로그램 목록 -->
 
 <div class="row">
   <div class="col-lg-12">
@@ -37,8 +42,12 @@
   </div>
 </div>
 
+</main>
+</div>
+</div>
 
-		
+   <!-- footer 입니다. -->
+   <th:block th:replace="fragments/adminfooter :: adminfooter"></th:block>   
 
 </body>
 
