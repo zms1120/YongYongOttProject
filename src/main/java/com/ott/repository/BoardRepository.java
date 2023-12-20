@@ -36,6 +36,11 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
 	@Modifying
 	@Query("UPDATE Board b SET b.b_like = b.b_like + 1 WHERE b.b_seq = :b_seq")
 	void increaseLikeCount(@Param("b_seq") int b_seq);
+	
+	@Query("SELECT b FROM Board b WHERE b.b_category = 'qna'")
+	List<Board> getBoardListByQna(Board board);
 
+	
+	
 
 }

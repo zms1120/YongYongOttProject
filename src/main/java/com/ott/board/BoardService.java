@@ -30,4 +30,7 @@ public interface BoardService {
 	void increaseViewCount(int boardSeq);
 	
 	void increaseLikeCount(int bSeq);
+	
+	List<Board> getBoardListByQna(Board board);
 }
+
