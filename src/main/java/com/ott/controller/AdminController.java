@@ -356,5 +356,11 @@ public class AdminController {
 
 		return "layout/admin/getEpisode";
 	}
+	@GetMapping("/deleteEpisode/{episode_num}")
+	public String deleteEpisode(@PathVariable("episode_num")String episode_num, @RequestParam("pseq") int pseq) {
+		episodeService.deleteEpisodeByEpisodeNum(episode_num);
+		
+		return "redirect:/getTVProgram?pseq=" + pseq;
+	}
 
 }
