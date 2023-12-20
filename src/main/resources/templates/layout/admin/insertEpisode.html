@@ -1,14 +1,18 @@
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>무비 컨텐츠 등록</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- header -->
-
+<!-- header 입니다. -->
+<th:block th:replace="fragments/adminheader :: adminheader"></th:block>
 </head>
+<body class="sb-nav-fixed">
 
-<body th:align="center">
+	<div id="layoutSidenav">
+		<!-- mid 입니다. -->
+		<th:block th:replace="fragments/adminmid :: adminmid"></th:block>
+
+		<div id="layoutSidenav_content">
+			<main>
+			<!-- 여기까지는 꼭 넣어주기(어드민) 아래 footer도 있음 -->
 
 	
 					<!-- 무비 insert 시작 -->
@@ -62,11 +66,12 @@
 							</form>
 						</div>
 					</div>
+					</main>
 				</div>
 			</div>
-		</div>
 
-		<!-- footer -->
+		<!-- footer 입니다. -->
+	<th:block th:replace="fragments/adminfooter :: adminfooter"></th:block>
 		
 </body>
 

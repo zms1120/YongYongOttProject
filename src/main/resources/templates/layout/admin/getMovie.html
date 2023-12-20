@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- header 입니다. -->
+<th:block th:replace="fragments/adminheader :: adminheader"></th:block>
+</head>
+<body class="sb-nav-fixed">
 
-    <body>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="page-content">
+	<div id="layoutSidenav">
+		<!-- mid 입니다. -->
+		<th:block th:replace="fragments/adminmid :: adminmid"></th:block>
+		<div id="layoutSidenav_content">
+			<main>
+			<!-- 여기까지는 꼭 넣어주기(어드민) 아래 footer도 있음 -->
+			
+				<div class="container-fluid px-4">
+					<h1 class="mt-4">용용플레이</h1>
+					<ol class="breadcrumb mb-4">
+						<li class="breadcrumb-item active">영화 상세페이지</li>
+					</ol>
             
                  <img th:src="@{'/assets/images/movie/' + ${movie.banner_path}}" alt="">
             
@@ -45,9 +57,9 @@
             	<a th:href="@{/deleteMovie/{movie_code}(movie_code=${movie.movie_code})}">삭제하기</a>
 				<a th:href="@{/getMovieList}">목록으로</a>
              </div>
-          </div>
-        </div>
-      </div>
+       
+       <!-- footer 입니다. -->
+	<th:block th:replace="fragments/adminfooter :: adminfooter"></th:block>
     </body>
     
 </html>  

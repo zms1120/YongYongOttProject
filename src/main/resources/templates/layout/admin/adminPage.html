@@ -9,10 +9,11 @@
 	<div id="layoutSidenav">
 		<!-- mid 입니다. -->
 		<th:block th:replace="fragments/adminmid :: adminmid"></th:block>
-		<!--  <div id="layoutSidenav">와 중간은 꼭 넣어주어야 함.-->
 
 		<div id="layoutSidenav_content">
 			<main>
+			<!-- 여기까지는 꼭 넣어주기(어드민) 아래 footer도 있음 -->
+			
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">용용플레이</h1>
 					<ol class="breadcrumb mb-4">
@@ -45,10 +46,10 @@
 						</div>
 						<div class="col-xl-3 col-md-6">
 							<div class="card bg-success text-white mb-4">
-								<div class="card-body">Q&A</div>
+								<div class="card-body">게시판 전체 보기</div>
 								<div
 									class="card-footer d-flex align-items-center justify-content-between">
-									<a class="small text-white stretched-link" href="#">View Details</a> 
+									<a class="small text-white stretched-link" th:href="@{/getBoardList}">View Details</a> 
 									<div class="small text-white">
 										<i class="fas fa-angle-right"></i>
 									</div>
@@ -57,10 +58,10 @@
 						</div>
 						<div class="col-xl-3 col-md-6">
 							<div class="card bg-danger text-white mb-4">
-								<div class="card-body">가입 통계??? 넣는건 어떤지</div>
+								<div class="card-body">회원 관리</div>
 								<div
 									class="card-footer d-flex align-items-center justify-content-between">
-									<a class="small text-white stretched-link" href="#">View Details</a>
+									<a class="small text-white stretched-link" th:href="@{/getMemberList}">View Details</a>
 									<div class="small text-white">
 										<i class="fas fa-angle-right"></i>
 									</div>
@@ -68,9 +69,8 @@
 							</div>
 						</div>
 					</div>
-					
-					
-					
+									
+					<!--  커뮤니티 -->
 					<div class="row">
 						<div class="col-xl-6">
 							<div class="card mb-4">
@@ -78,28 +78,75 @@
 									<i class="fas fa-chart-area me-1"></i> 전체 게시물
 								</div>
 								<div class="card-body">
-									<canvas id="myAreaChart" width="100%" height="40"></canvas>
+									<table id="boardTable">
+								<thead>
+									<tr>
+										<th>번호</th>
+										<th>제목</th>
+										<th>작성자</th>
+										<th>게시글 항목</th>
+										<th>추천수</th>
+										<th>신고수</th>									
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="board, state : ${boardList}">
+										<td th:text="${board.b_seq}"></td>
+										<td th:text="${board.title}"></td>
+										<td th:text="${board.member.id}"></td>
+										<td th:text="${board.b_category}"></td>
+										<td th:text="${board.b_like}"></td>
+										<td th:text="${board.report}"></td>										
+									</tr>
+								</tbody>
+							</table>
 								</div>
 							</div>
 						</div>
+						<!--  회원 -->
 						<div class="col-xl-6">
 							<div class="card mb-4">
 								<div class="card-header">
-									<i class="fas fa-chart-bar me-1"></i> 미답변 게시물
+									<i class="fas fa-chart-bar me-1"></i> 회원
 								</div>
 								<div class="card-body">
-									<canvas id="myBarChart" width="100%" height="40"></canvas>
+									<table id="memberTable">
+								<thead>
+									<tr>
+										<th>아이디</th>
+										<th>이름</th>
+										<th>이용권</th>
+										<th>가입일</th>
+										<th>갱신일</th>
+										<th>종료일</th>								
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="member, state : ${memberList}">
+										<td th:text="${member.id}"></td>
+										<td th:text="${member.name}"></td>
+										<td th:text="${member.position}"></td>
+										<td th:text="${#dates.format(member.reg_date, 'yyyy-MM-dd')}"></td>
+										<td th:text="${#dates.format(member.renew_date, 'yyyy-MM-dd')}"></td>
+										<td th:text="${#dates.format(member.end_date, 'yyyy-MM-dd')}"></td>
+									</tr>
+								</tbody>
+							</table>
 								</div>
 							</div>
 						</div>
 					</div>
+					
+					
+					
+					
 					<!--  영화 -->
 					<div class="card mb-4">
 						<div class="card-header">
 							<i class="fas fa-table me-1"></i> 영화
 						</div>
 						<div class="card-body">
-							<table id="datatablesSimple">
+							<table id="movieTable">
 								<thead>
 									<tr>
 										<th>일련번호</th>
@@ -123,13 +170,14 @@
 							</table>
 						</div>
 					</div>
+					
 					<!--  티비 프로그램 -->
 					<div class="card mb-4">
 						<div class="card-header">
 							<i class="fas fa-table me-1"></i> 드라마
 						</div>
 						<div class="card-body">
-							<table id="datatablesSimple">
+							<table id="tvProgramTable">
 								<thead>
 									<tr>
 										<th>일련번호</th>

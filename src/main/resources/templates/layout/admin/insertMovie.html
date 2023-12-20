@@ -1,20 +1,29 @@
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>무비 컨텐츠 등록</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- header -->
-
+<!-- header 입니다. -->
+<th:block th:replace="fragments/adminheader :: adminheader"></th:block>
+<!-- CSS Files -->
+ <link rel="stylesheet" href="assets/css/admin.css" />
 </head>
+<body class="sb-nav-fixed">
 
-<body th:align="center">
+	<div id="layoutSidenav">
+		<!-- mid 입니다. -->
+		<th:block th:replace="fragments/adminmid :: adminmid"></th:block>
 
+		<div id="layoutSidenav_content">
+			<main>
+			<!-- 여기까지는 꼭 넣어주기(어드민) 아래 footer도 있음 -->
 	
 					<!-- 무비 insert 시작 -->
-
 					<div class="insert">
 						<div class="insert insert-section">
+						<div class="form-section">
+                        <div class="heading-section">
+                           <h4>영화 등록 페이지 입니다.</h4>
+                           <h5>일련번호는 중복이 불가합니다.</h5>
+                        </div>
 
 							<form th:action="@{/insertMovie}" method="post" id="insert"
 								enctype="multipart/form-data">
@@ -23,8 +32,8 @@
 									<tr>
 										<td>카테고리</td>
 										<td>
-											<!-- 고정된 카테고리 값을 여기에 입력 --> <input type="text"
-											name="category" id="category" value="영화" readonly>
+											<!-- 고정된 카테고리 값을 여기에 입력 -->
+											<input type="text" name="category" id="category" value="영화" readonly>
 										</td>
 
 										<td>일련번호</td>
@@ -83,11 +92,11 @@
 									</tr>
 									<!-- 이미지 및 배너 업로드 필드 추가 -->
 									<tr>
-										<td colspan="2"><label for="image">이미지 업로드:</label> <input
-											type="file" name="imageFile" id="image" accept="image/*">
+										<td colspan="2"><label for="image">이미지 업로드:</label>
+										<input type="file" name="imageFile" id="image" accept="image/*">
 										</td>
-										<td colspan="2"><label for="banner">배너 업로드:</label> <input
-											type="file" name="bannerFile" id="banner" accept="image/*">
+										<td colspan="2"><label for="banner">배너 업로드:</label> 
+										<input type="file" name="bannerFile" id="banner" accept="image/*">
 										</td>
 									</tr>
 
@@ -96,15 +105,16 @@
 								<div class="link-block">
 									<a th:href="@{/adminPage}">메인으로</a> &nbsp; &nbsp;
 								</div>
-								<br> <input type="submit" value="등록하기">
+								<br> <input class="insert_btn" type="submit" value="등록하기">
 							</form>
 						</div>
 					</div>
+					</main>
 				</div>
 			</div>
-		</div>
 
-		<!-- footer -->
+	<!-- footer 입니다. -->
+	<th:block th:replace="fragments/adminfooter :: adminfooter"></th:block>
 		
 </body>
 
