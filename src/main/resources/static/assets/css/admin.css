@@ -23,6 +23,7 @@ community insert Board & update Board Style
   padding-bottom: 40px;
   width: 1200px; /* 조절된 부분: 기존 1000px에서 1200px로 변경 */
   margin: 0 auto; /* 중앙 정렬을 위해 추가 */
+  margin-bottom: 20px; /* 푸터와의 간격 조절 */
 }
 
 
