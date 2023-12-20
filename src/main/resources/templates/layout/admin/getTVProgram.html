@@ -47,9 +47,9 @@
 
 					</div>
 					<a th:href="@{'/updateTVProgram?pseq=' + ${tvProgram.pseq}}">수정하기</a>
-					<a th:href="@{/deleteTVProgram}">삭제하기</a> <a
-						th:href="@{/insertEpisode(pseq=${tvProgram.pseq})}">회차정보 등록하기</a>
-						<a th:href="@{/contentsList}">목록으로</a>
+					<a th:href="@{/deleteTVProgram/{pseq}(pseq=${tvProgram.pseq})}">삭제하기</a>
+						<a th:href="@{/insertEpisode(pseq=${tvProgram.pseq})}">회차정보 등록하기</a>
+						<a th:href="@{/getTVProgramList}">목록으로</a>
 				</div>
 			</div>
 		</div>
@@ -72,7 +72,8 @@
 						<span th:text="${epi.description}" class="ep-desc"></span>
 						<div>
 							<a th:with="episodeNum=${epi.episode_num}"
-								th:href="@{'/updateEpisode?pseq=' + ${epi.tvProgram.pseq} + '&episode_num=' + ${episodeNum}}">수정하기</a>
+								th:href="@{'/updateEpisode?pseq=' + ${epi.tvProgram.pseq} + '&episode_num=' + ${episode_num}}">수정하기</a>
+							<a th:href="@{/deleteEpisode/{episode_num}(episode_num=${episode.episode_num})}">삭제하기</a>
 						</div>
 						<div class="hover-effect"></div>
 					</div>

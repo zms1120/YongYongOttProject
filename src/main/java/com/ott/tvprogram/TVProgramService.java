@@ -16,7 +16,7 @@ public interface TVProgramService {
     
     void updateTVProgram(TVProgram tvProgram,  MultipartFile imageFile, MultipartFile bannerFile);
     
-    void deleteTVProgram(TVProgram tvProgram);
+    void deleteTVProgramByPseq(int pseq);
     
     String getVideoPath(int pseq);
    

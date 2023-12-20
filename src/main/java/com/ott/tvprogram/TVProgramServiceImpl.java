@@ -36,8 +36,8 @@ public class TVProgramServiceImpl implements TVProgramService {
 	}
 
 	@Override
-	public void deleteTVProgram(TVProgram tvProgram) {
-		tvProgramRepository.deleteById(tvProgram.getPseq());
+	public void deleteTVProgramByPseq(int pseq) {
+		tvProgramRepository.deleteById(pseq);
 
 	}
 	@Transactional

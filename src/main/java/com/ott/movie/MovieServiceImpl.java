@@ -38,8 +38,8 @@ public class MovieServiceImpl implements MovieService {
 
     
     @Override
-    public void deleteMovie(Movie movie) {
-        movieRepository.delete(movie);
+    public void deleteMovieByMovieCode(String movie_code) {
+        movieRepository.deleteById(movie_code);
     }
 
 	@Override

@@ -1,5 +1,6 @@
 package com.ott.member;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,4 +107,9 @@ public class MemberServiceImpl implements MemberService {
       memberRepository.save(findMember);
    }
 
+   @Override
+   public List<Member> getMemberList(Member member) {
+      
+      return (List<Member>) memberRepository.findAll();
+   }
 }
