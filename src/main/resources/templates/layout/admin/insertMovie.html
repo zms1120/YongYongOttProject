@@ -4,7 +4,7 @@
 <!-- header 입니다. -->
 <th:block th:replace="fragments/adminheader :: adminheader"></th:block>
 <!-- CSS Files -->
- <link rel="stylesheet" href="assets/css/admin.css" />
+<link rel="stylesheet" href="assets/css/admin.css" />
 </head>
 <body class="sb-nav-fixed">
 
@@ -14,108 +14,143 @@
 
 		<div id="layoutSidenav_content">
 			<main>
-			<!-- 여기까지는 꼭 넣어주기(어드민) 아래 footer도 있음 -->
-	
-					<!-- 무비 insert 시작 -->
-					<div class="insert">
-						<div class="insert insert-section">
+				<!-- 여기까지는 꼭 넣어주기(어드민) 아래 footer도 있음 -->
+
+				<!-- 무비 insert 시작 -->
+				<div class="insert">
+					<div class="insert insert-section">
 						<div class="form-section">
-                        <div class="heading-section">
-                           <h4>영화 등록 페이지 입니다.</h4>
-                           <h5>일련번호는 중복이 불가합니다.</h5>
-                        </div>
-
-							<form th:action="@{/insertMovie}" method="post" id="insert"
-								enctype="multipart/form-data">
-								<table class="insertMovie" th:align="center" th:cellpadding="0"
-									th:cellspacing="0">
-									<tr>
-										<td>카테고리</td>
-										<td>
-											<!-- 고정된 카테고리 값을 여기에 입력 -->
-											<input type="text" name="category" id="category" value="영화" readonly>
-										</td>
-
-										<td>일련번호</td>
-										<td><input type="text" name="movie_code" id="movie_code"
-											placeholder="일련번호를 입력해주세요."></td>
-									</tr>
-									<tr>
-										<td>장르</td>
-										<td><input type="text" name="genre" id="genre"
-											placeholder="장르를 입력해주세요."></td>
-
-										<td>제목</td>
-										<td><input type="text" name="m_title_ko" id="m_title_ko"
-											placeholder="제목을 입력해주세요."></td>
-									</tr>
-									<tr>
-										<td>감독</td>
-										<td><input type="text" name="director" id="director"
-											placeholder="감독을 입력해주세요."> </textarea></td>
-
-										<td>국가</td>
-										<td><input type="text" name="nation" id="nation"
-											placeholder="국가를 입력해주세요."> </textarea></td>
-									</tr>
-									<tr>
-										<td>개봉년도</td>
-										<td><input type="text" name="open_year" id="open_year"
-											placeholder="개봉년도를 입력해주세요."> </textarea></td>
-
-										<td>상영시간</td>
-										<td><input type="text" name="running_time"
-											id="running_time" placeholder="상영시간을 입력해주세요."> </textarea></td>
-									</tr>
-									<tr>
-										<td>등급</td>
-										<td><input type="text" name="rating" id="rating"
-											placeholder="등급을 입력해주세요."> </textarea></td>
-
-										<td>키워드</td>
-										<td><input type="text" name="keyword" id="keyword"
-											cols="50" rows="1" placeholder="키워드를 입력해주세요."> </textarea></td>
-									</tr>
-									<tr>
-										<td>출연진</td>
-										<td><textarea name="cast" id="cast" cols="50"
-												rows="10" placeholder="출연진을 입력해주세요."></textarea></td>
-
-										<td>줄거리</td>
-										<td><textarea name="description" id="description"
-												cols="50" rows="10" placeholder="줄거리를 입력해주세요."></textarea></td>
-									</tr>
-									<tr>
-									<td>영상주소</td>
-										<td><input type="text" name="video_path" id="video_path"
-											placeholder="영상주소를 입력해주세요."> </textarea></td>
-									</tr>
+							<div class="heading-section">
+								<h4>영화 등록 페이지 입니다.</h4>
+								<h5>일련번호는 중복이 불가합니다.</h5>
+							</div>
+							<form th:action="@{/insertMovie}" method="post" id="insert" enctype="multipart/form-data">
+								<div class="input-table">
+									<div class="insert-input">
+										<h5>카테고리</h5>
+									</div>
+									<div>
+										<input type="text" name="category" id="category" th:value="영화" 	readonly>
+									</div>
+									
+									<div class="insert-input">
+										<h5>일련번호</h5>
+									</div>
+									<div>
+										<input type="text" name="movie_code" id="movie_code" placeholder="일련번호를 입력해주세요.">
+									</div>
+									
+									<div class="insert-input">
+										<h5>장르</h5>
+									</div>
+									<div>
+										<input type="text" name="genre" id="genre" placeholder="장르를 입력해주세요.">
+									</div>
+									
+									<div class="insert-input">
+										<h5>제목</h5>
+									</div>
+									<div>
+										<input type="text" name="m_title_ko" id="m_title_ko" placeholder="제목을 입력해주세요.">
+									</div>
+																		
+									<div class="insert-input">
+										<h5>감독</h5>
+									</div>
+									<div>
+										<input type="text" name="director" id="director" placeholder="감독을 입력해주세요."> 
+									</div>
+									
+									<div class="insert-input">
+										<h5>국가</h5>
+									</div>
+									<div>
+										<input type="text" name="nation" id="nation" placeholder="국가를 입력해주세요.">
+									</div>
+									
+									<div class="insert-input">
+										<h5>개봉년도</h5>
+									</div>
+									<div>
+										<input type="text" name="open_year" id="open_year" placeholder="개봉년도를 입력해주세요.">
+									</div>
+									
+									<div class="insert-input">
+										<h5>상영시간</h5>
+									</div>
+									<div>
+										<input type="text" name="running_time" id="running_time" placeholder="상영시간을 입력해주세요.">
+									</div>
+									
+									<div class="insert-input">
+										<h5>등급</h5>
+									</div>
+									<div>
+										<input type="text" name="rating" id="rating" placeholder="등급을 입력해주세요.">
+									</div>
+									
+									<div class="insert-input">
+										<h5>키워드</h5>
+									</div>
+									<div>
+										<input type="text" name="keyword" id="keyword"  placeholder="키워드를 입력해주세요.">
+									</div>
+									
+									<div class="insert-input">
+										<h5>출연진</h5>
+									</div>
+									<div>
+										<textarea name="cast" id="cast" cols="30" rows="3" placeholder="출연진을 입력해주세요."></textarea>
+									</div>
+									
+									<div class="insert-input">
+										<h5>줄거리</h5>
+									</div>
+									<div>
+										<textarea name="description" id="description" cols="50" rows="10" placeholder="줄거리를 입력해주세요."></textarea>
+									</div>
+									
+									<div class="insert-input">
+										<h5>영상주소</h5>
+									</div>
+									<div>
+										<input type="text" name="video_path" id="video_path" placeholder="영상주소를 입력해주세요.">
+									</div>
+									
 									<!-- 이미지 및 배너 업로드 필드 추가 -->
-									<tr>
-										<td colspan="2"><label for="image">이미지 업로드:</label>
+									<div class="insert-input">
+										<h5><label for="image">포스터</label></h5>
+									</div>
+									<div>
 										<input type="file" name="imageFile" id="image" accept="image/*">
-										</td>
-										<td colspan="2"><label for="banner">배너 업로드:</label> 
+									</div>
+									<div class="insert-input">
+										<h5><label for="image"><label for="banner">배너</label></label></h5>
+									</div>
+									<div>
 										<input type="file" name="bannerFile" id="banner" accept="image/*">
-										</td>
-									</tr>
-
-								</table>
-
-								<div class="link-block">
-									<a th:href="@{/adminPage}">메인으로</a> &nbsp; &nbsp;
+									</div> 								
+																				
 								</div>
-								<br> <input class="insert_btn" type="submit" value="등록하기">
+									
+									<div class="link-block">
+									<br>	
+										<a th:href="@{/adminPage}">메인으로</a> &nbsp; &nbsp;
+									</div>
+									<br> 
+									<input class="insert_btn" type="submit" value="등록하기">
+								
 							</form>
 						</div>
 					</div>
-					</main>
 				</div>
-			</div>
+			</main>
+		</div>
+	</div>
 
 	<!-- footer 입니다. -->
 	<th:block th:replace="fragments/adminfooter :: adminfooter"></th:block>
-		
+
 </body>
 
 </html>

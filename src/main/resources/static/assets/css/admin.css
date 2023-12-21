@@ -4,27 +4,41 @@ community insert Board & update Board Style
 --------------------------------------------- 
 */ 
 
+a {
+	color: #080808;;
+	text-decoration: none !important;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+a:hover {
+	color: #587D84;
+}
+
 .insert {
   width: 100%;
-  margin-top: 50px;
+  margin-top: 30px;
   margin-bottom: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .insert .insert-section {
   position: relative;
   justify-content: center;
   align-items: center;
-  background-color: #F6F6F6;
+  background-color: #D1E4E8;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   padding-bottom: 40px;
-  width: 1200px; /* 조절된 부분: 기존 1000px에서 1200px로 변경 */
-  margin: 0 auto; /* 중앙 정렬을 위해 추가 */
+   width: 1000px; 
 }
-
+.insert .form-section {
+  width: 900px;
+  margin: 10px auto;
+}
 
 .insert .heading-section{
   width: 900px;
@@ -36,39 +50,21 @@ community insert Board & update Board Style
   font-size: 25px;
   font-weight: 500px;
 }
+
 .insert .heading-section h5{
   text-align: center;
   margin-bottom: 10px;
   font-size: 15px;
 }
-.insert .link-block {
-   position: relative;
-    justify-content: center;
-    align-items: center;
-   text-align: center;
-   margin-left: 10px;   
+
+.insert .insert-input h5{
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 18x;
 }
 
-.insertMovie {
-   font-size: 20px;
-   color: #080808;
-   font-weight: 400;
-   margin-top: 50px;
-   border-spacing: 0 10px;
-   text-align: center;
-}
-.insertBoard table{
-  width: 200%; 
-  max-width: 950px; 
-  margin: 0 auto;
-  border-collapse: separate;
-  border-spacing: 0 30px;
-}
-
-.insertBoard tr, .insertBoard td {
-    padding: 15px;
-}
-.insert form select {
+.insert form .input-table select {
   display: block;
   width:750px;
   height: 40px;
@@ -80,6 +76,15 @@ community insert Board & update Board Style
   color: #666;
   padding: 0 0 0 15px;
   font-size: 20px;
+}
+
+
+.insert .link-block {
+   position: relative;
+    justify-content: center;
+    align-items: center;
+   text-align: center;
+   margin-left: 10px;   
 }
 
 .insert form .input-table input {
@@ -104,7 +109,7 @@ community insert Board & update Board Style
 .insert form .input-table textarea {
   display: block;
   width:750px;
-  height: 350px;
+
   margin: 0 auto;
   border-radius: 8px;
   border: none;
@@ -112,12 +117,11 @@ community insert Board & update Board Style
   opacity: 90%;
   color: #666;
   padding: 0 0 0 15px;
-  font-size: 20px;
-
+  font-size: 18px;
 }
 
  .insert form .insert_btn {
-  background: #FFB2B2;
+  background: #9ADBE8;
   color: #1e1e1e;
   display: block;
   width: 100%;
@@ -127,7 +131,7 @@ community insert Board & update Board Style
   margin-top: 20px;
   border: none;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500px;
   transition: 0.2s linear;
   margin: 0 auto;
