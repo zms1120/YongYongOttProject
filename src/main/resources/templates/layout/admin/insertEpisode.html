@@ -3,6 +3,8 @@
 <head>
 <!-- header 입니다. -->
 <th:block th:replace="fragments/adminheader :: adminheader"></th:block>
+<!-- CSS Files -->
+<link rel="stylesheet" href="assets/css/admin.css" />
 </head>
 <body class="sb-nav-fixed">
 
@@ -12,67 +14,93 @@
 
 		<div id="layoutSidenav_content">
 			<main>
-			<!-- 여기까지는 꼭 넣어주기(어드민) 아래 footer도 있음 -->
+				<!-- 여기까지는 꼭 넣어주기(어드민) 아래 footer도 있음 -->
 
-	
-					<!-- 무비 insert 시작 -->
 
-					<div class="insert">
-						<div class="insert insert-section">
-
-							<form th:action="@{/insertEpisode}" method="post" id="insert"
-								enctype="multipart/form-data">
-								<table class="insertEpisode" th:align="center" th:cellpadding="0"
-									th:cellspacing="0">
-									<tr>
-										<td>회차</td>
-										<td><input type="text" name="episode_num" id="episode_num"
-											placeholder="회차를 입력해주세요."></td>
-									</tr>
-									<tr>
-										<td>회차별 제목</td>
-										<td><input type="text" name="ep_title" id="ep_title"
-											placeholder="제목을 입력해주세요."></td>
-									</tr>
-									
-									<tr>
-										<td>방영날짜</td>
-										<td><input type="date" name="airing_date"
-											id="airing_date" placeholder="방영날짜를 입력해주세요."></td>
-									</tr>
-									<tr>
-										<td>방영시간</td>
-										<td><input type="text" name="running_time"
-											id="running_time" placeholder="방영시간을 입력해주세요."></td>
-									</tr>
-									<tr>
-										<td>줄거리</td>
-										<td><textarea name="description" id="description"
-												cols="50" rows="10" placeholder="줄거리를 입력해주세요."></textarea></td>
-									</tr>
-									<tr>
-									<td>영상주소</td>
-										<td><input type="text" name="video_path" id="video_path"
-											placeholder="영상주소를 입력해주세요."></td>
-									</tr>
-									<!-- 이미지 및 배너 업로드 필드 추가 -->
-								</table>
-								 <!-- pseq를 숨은 필드로 추가 -->
-   								 <input type="hidden" name="pseq" th:value="${pseq}" />
-								<div class="link-block">
-									<a th:href="@{/adminPage}">메인으로</a> &nbsp; &nbsp;
+				<!-- Tv 에피소드 insert 시작 -->
+				<div class="insert">
+					<div class="insert insert-section">
+						<div class="form-section">
+							<div class="heading-section">
+								<h4>티비 프로그램 에피소드 등록 페이지 입니다.</h4>
+								<h5>모두 입력하세요.</h5>
+							</div>
+							<form th:action="@{/insertEpisode}" method="post" id="insert" enctype="multipart/form-data">
+								<div class="input-table">
+								
+								<div class="insert-input">
+									<h5>제목</h5>
 								</div>
-								<br> <input type="submit" value="등록하기">
-							</form>
+								<div>
+									<input type="text" name="episode_num" id="episode_num" placeholder="회차를 입력해주세요.">
+								</div>
+								
+								<div class="insert-input">
+									<h5>회차 제목</h5>
+								</div>
+								<div>
+									<input type="text" name="ep_title" id="ep_title" placeholder="제목을 입력해주세요.">
+								</div>	
+								
+								<div class="insert-input">
+									<h5>방영날짜</h5>
+								</div>
+								<div>
+									<input type="date" name="airing_date" id="airing_date" placeholder="방영날짜를 입력해주세요.">
+								</div>
+								
+								<div class="insert-input">
+									<h5>방영시간</h5>
+								</div>
+								<div>
+									<input type="text" name="running_time" id="running_time" placeholder="방영시간을 입력해주세요.">
+								</div>
+								
+								<div class="insert-input">
+									<h5>줄거리</h5>
+								</div>
+								<div>
+									<textarea name="description" id="description" cols="50" rows="10" placeholder="줄거리를 입력해주세요."></textarea>
+								</div>
+								
+								<div class="insert-input">
+									<h5>영상주소</h5>
+								</div>
+								<div>
+									<input type="text" name="video_path" id="video_path" placeholder="영상주소를 입력해주세요.">
+								</div>
+								
+								<div class="insert-input">
+									<h5>영상주소</h5>
+								</div>
+								<div>
+									<input type="text" name="video_path" id="video_path" placeholder="영상주소를 입력해주세요.">
+								</div>
+								
+								<!-- TV 프로그램 pseq를 숨은 필드로 추가 -->
+								<input type="hidden" name="pseq" th:value="${pseq}" />
+								
+								<div class="link-block">
+								<br>	
+										<a th:href="@{/adminPage}">메인으로</a> &nbsp; &nbsp;
+									</div>
+									<br> 
+									<input class="insert_btn" type="submit" value="등록하기">
 						</div>
-					</div>
-					</main>
-				</div>
-			</div>
+									</form>
+								
+						
+						</div>
+						</div>
+						</div>
+						
+			</main>
+		</div>
+	</div>
 
-		<!-- footer 입니다. -->
+	<!-- footer 입니다. -->
 	<th:block th:replace="fragments/adminfooter :: adminfooter"></th:block>
-		
+
 </body>
 
 </html>
