@@ -190,6 +190,10 @@
                                  </tr>
                               </table>
                               
+                              <input type="hidden" name="reg_date" id="reg_date">
+                              <input type="hidden" name="renew_date" id="renew_date">
+                              <input type="hidden" name="end_date" id="end_date">
+                              
                               <div class="join-info" id="membership-message"></div>
                               
                              <div class="button-div">
@@ -220,9 +224,9 @@
 								<span class="checkbox-info">만 14세 이상입니다.
 									<span th:style="'color: aquamarine'">(필수)</span>
 								</span>
-								<a th:href="age-restriction">
+								<span onclick="goWindow('/age-restriction')">
 									<div class="detail"><i class="fas fa-chevron-right"></i></div>
-								</a>
+								</span>
 							</div>
 							<div class="checkbox service">
 								<input type="checkbox" class="terms-of-service" id="service">
@@ -230,9 +234,9 @@
 								<span class="checkbox-info">서비스 이용약관
 									<span th:style="'color: aquamarine'">(필수)</span>
 								</span>
-								<a th:href="join">
+								<span onclick="goWindow('/service')">
 									<div class="detail"><i class="fas fa-chevron-right"></i></div>
-								</a>
+								</span>
 							</div>
 							<div class="checkbox member_privacy">
 								<input type="checkbox" class="terms-of-service" id="member_privacy">
@@ -240,9 +244,9 @@
 								<span class="checkbox-info">개인정보 수집 이용 동의
 									<span th:style="'color: aquamarine'">(필수)</span>
 								</span>
-								<a th:href="join">
+								<span onclick="goWindow('/member_privacy')">
 									<div class="detail"><i class="fas fa-chevron-right"></i></div>
-								</a>
+								</span>
 							</div>
 							<div class="checkbox member_payment">
 								<input type="checkbox" class="terms-of-service" id="member_payment">
@@ -250,9 +254,9 @@
 								<span class="checkbox-info">유료상품 이용약관
 									<span th:style="'color: aquamarine'">(필수)</span>
 								</span>
-								<a th:href="join">
+								<span onclick="goWindow('/member_payment')">
 									<div class="detail"><i class="fas fa-chevron-right"></i></div>
-								</a>
+								</span>
 							</div>
 							<div class="checkbox member_event">
 								<input type="checkbox" class="terms-of-service" id="member_event">
@@ -260,9 +264,9 @@
 								<span class="checkbox-info">신작 콘텐츠 및 이벤트 정보 수신 동의
 									<span>(선택)</span>
 								</span>
-								<a th:href="join">
+								<span onclick="goWindow('/member_event')">
 									<div class="detail"><i class="fas fa-chevron-right"></i></div>
-								</a>
+								</span>
 							</div>
 							<div class="checkbox member_ad">
 								<input type="checkbox" class="terms-of-service" id="member_ad">
@@ -270,9 +274,9 @@
 								<span class="checkbox-info">광고성 정보 수신
 									<span>(선택)</span>
 								</span>
-								<a th:href="join">
+								<span onclick="goWindow('/member_ad')">
 									<div class="detail"><i class="fas fa-chevron-right"></i></div>
-								</a>
+								</span>
 							</div>
 							<div class="checkbox member_target">
 								<input type="checkbox" class="terms-of-service" id="member_target">
@@ -280,9 +284,9 @@
 								<span class="checkbox-info">맞춤형 서비스 제공을 위한 제3자 제공 동의
 									<span>(선택)</span>
 								</span>
-								<a th:href="join">
+								<span onclick="goWindow('/member_target')">
 									<div class="detail"><i class="fas fa-chevron-right"></i></div>
-								</a>
+								</span>
 							</div>
 							
 							<div class="join-info" id="checkbox-message"></div>
