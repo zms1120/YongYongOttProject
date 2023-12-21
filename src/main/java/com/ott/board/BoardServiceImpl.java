@@ -92,6 +92,13 @@ public class BoardServiceImpl implements BoardService {
 	   public void increaseLikeCount(int bSeq) {
 	       boardRepository.increaseLikeCount(bSeq);
 	   }
+
+
+	@Override
+	public List<Board> getBoardListByQna(Board board) {
+		
+		return boardRepository.getBoardListByQna(board);
+	}
 	
 
 

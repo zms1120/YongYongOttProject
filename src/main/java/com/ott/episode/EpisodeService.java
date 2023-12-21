@@ -13,6 +13,8 @@ public interface EpisodeService {
 	
 	void updateEpisode(Episode episode);
 	
+	void deleteEpisodeByEpisodeNum(String episode_num);
+	
 	 Optional<Episode> getEpisodeByPseqAndEpisodeNum(int pseq, String episode_num);
 	 
 	 Episode getEpisode(Episode episode);

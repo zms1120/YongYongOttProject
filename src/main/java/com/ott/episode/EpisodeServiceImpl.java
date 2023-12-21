@@ -42,4 +42,10 @@ public class EpisodeServiceImpl implements EpisodeService {
 		// TODO Auto-generated method stub
 		return episodeRepository.findById(episode.getEpisode_num()).get();
 	}
+
+	@Override
+	public void deleteEpisodeByEpisodeNum(String episode_num) {
+		episodeRepository.deleteById(episode_num);
+		
+	}
 }

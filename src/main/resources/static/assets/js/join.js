@@ -191,6 +191,7 @@ $(document).ready(function() {
 		if(name !== "" && phone_number !== "" && age !== ""){
 			$('.step3').hide();
 			$('.step4').show();
+			calcRegDate();
 		} else {
 			$('#step3-message').css("color", "#ec6090").text("*입력사항을 확인해주세요.");
 		}
@@ -200,8 +201,8 @@ $(document).ready(function() {
 		e.preventDefault(); 
 		
 		if($('#position').val() !== ""){
-			
-			//alert("position: " +  $('#position').val());
+			dateCalculator();
+			//alert("regDate: " +  $('#reg_date').val() + " renewDate: " +  $('#renew_date').val() + " endDate: " +  $('#end_date').val());
 			$('.step4').hide();
 			$('.step5').show();
 		} else {
@@ -228,6 +229,52 @@ $(document).ready(function() {
 	});
 	
 });
+
+function calcRegDate() {
+   var today = new Date();
+
+   var reg_dateInput = document.getElementById("reg_date");
+   reg_dateInput.value = formatDate(today);
+}
+
+function dateCalculator() {
+   // 변경일 가져오기
+   var reg_dateString = document.getElementById("reg_date").value;
+   
+   // 문자열을 Date 객체로 변환
+   var reg_dateObj = new Date(reg_dateString);
+   var renewDateObj = new Date(reg_dateObj);
+   var endDateObj = new Date(reg_dateObj);
+
+   if (reg_dateObj) {
+      var position = document.getElementById("position").value;
+
+      // 이용권 종료날짜 계산 (방문자는 8일, 나머지는 31일)
+      if (position === "GUEST") {
+         endDateObj.setDate(renewDateObj.getDate() + 7);
+         
+      } else {
+         endDateObj.setDate(renewDateObj.getDate() + 30);
+         
+      }
+      // 각 입력 날짜 설정
+      var renewDateElement = document.getElementById("renew_date");
+      var endDateElement = document.getElementById("end_date");
+      
+      // 각 입력 날짜 설정
+      renewDateElement.value = formatDate(renewDateObj);
+      endDateElement.value = formatDate(endDateObj);
+   }
+}
+
+// 날짜를 "yyyy-MM-dd" 형식으로 변환
+function formatDate(date) {
+
+   var year = date.getFullYear();
+   var month = (date.getMonth() + 1).toString().padStart(2, '0');
+   var day = date.getDate().toString().padStart(2, '0');
+   return year + "-" + month + "-" + day;
+}
 	
 function change_number(phone_number) {
     let inputValue = phone_number.replace(/[^0-9]/g, ''); // 입력된 값 중 숫자만 남기기
@@ -251,4 +298,8 @@ function save() {
 	} else {
 		alert("폼을 찾을 수 없습니다.");
 	}
+}
+
+function goWindow(url){
+	window.open(url);
 }
