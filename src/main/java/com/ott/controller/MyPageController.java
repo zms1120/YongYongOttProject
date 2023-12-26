@@ -97,27 +97,35 @@ public class MyPageController {
        return "layout/member/mypage";
    }
    
-   // 회원정보 수정페이지 이동
-	   @GetMapping("modify")
-	   public String modifyView() {
-	      System.out.println("---> 회원 변경 페이지로 가기");
-	      return "layout/member/modify";
-	   }
+	// 회원정보 수정페이지 이동
+	@GetMapping("modify")
+	public String modifyView(Model model, HttpSession session) {
+		System.out.println("---> 회원 변경 페이지로 가기");
+		
+		// 세션에서 로그인한 사용자 정보 가져오기
+	    Member loggedInMember = (Member) session.getAttribute("member");
+		
+	    // 세션에 저장된 아이디 정보로 최신 회원 정보 불러오기
+		Member member = memberService.getMember(loggedInMember);
+		model.addAttribute("member", member);
+		
+		return "layout/member/modify";
+	}
 
-	   @PostMapping("/modify")
-	   public String modifyAction(Member member) {
-	      System.out.println("---> 회원 변경 내용 저장");
+	@PostMapping("/modify")
+	public String modifyAction(Member member) {
+		System.out.println("---> 회원 변경 내용 저장");
 
-      // 수정된 내용 저장
-      memberService.modifyMember(member);
+		// 수정된 내용 저장
+		memberService.modifyMember(member);
 
-      System.out.println("가입일" + member.getReg_date());
-      System.out.println("끝" + member.getEnd_date());
-      System.out.println("갱신" + member.getRenew_date());
+		System.out.println("가입일" + member.getReg_date());
+		System.out.println("끝" + member.getEnd_date());
+		System.out.println("갱신" + member.getRenew_date());
 
-      // 메인페이지로 리다이렉트
-      return "redirect:/mypage";
-   }
+		// 메인페이지로 리다이렉트
+		return "redirect:/mypage";
+	}
 
 	
 
