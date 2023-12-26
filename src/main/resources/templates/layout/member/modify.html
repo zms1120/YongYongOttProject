@@ -27,39 +27,39 @@
                            <form th:action="@{/modify}" method="post" id="modify" onsubmit="return modify_save()">
                               <div class="input_block">
                                  <h5>아이디</h5>
-                                 <input type="text" name="id" th:value="${session.member.id}" readonly>
+                                 <input type="text" name="id" th:value="${member.id}" readonly>
                               </div>
                                <div class="input_block">
                                  <h5>비밀번호</h5>
-                                 <input type="password" name="password" id="password" th:value="${session.member.password}">
+                                 <input type="password" name="password" id="password" th:value="${member.password}">
                               </div>
                               <div class="input_block">
                                  <h5 style="color: #ec6090;">이름</h5>
-                                 <input type="text" name="name" id="name" th:value="${session.member.name}">
+                                 <input type="text" name="name" id="name" th:value="${member.name}">
                               </div>
                               <div class="input_block">
                                  <h5 style="color: #ec6090;">핸드폰 번호</h5>
-                                 <input type="text" name="phone_number" id="phone_number" th:value="${session.member.phone_number}">
+                                 <input type="text" name="phone_number" id="phone_number" th:value="${member.phone_number}">
                               </div>
                               <div class="input_block">
                                  <h5 style="color: #ec6090;">이메일</h5>
-                                 <input type="text" name="email" th:value="${session.member.email}">
+                                 <input type="text" name="email" th:value="${member.email}">
                               </div>
                               <div class="input_block">
                                  <h5>이용권</h5>
-                                 <input type="text" name="position" th:value="${session.member.position}" readonly>
+                                 <input type="text" name="position" th:value="${member.position}" readonly>
                               </div>
                               <div class="input_block">
                                  <h5>가입일</h5>
-                                 <input type="date" name="reg_date" th:value="${#dates.format(session.member.reg_date, 'yyyy-MM-dd')}" readonly>
+                                 <input type="date" name="reg_date" th:value="${#dates.format(member.reg_date, 'yyyy-MM-dd')}" readonly>
                               </div>
                               <div class="input_block">
                                  <h5>이용권 갱신일</h5>
-                                 <input type="date" name="renew_date" th:value="${#dates.format(session.member.renew_date, 'yyyy-MM-dd')}" pattern="yyyy-MM-dd" readonly>
+                                 <input type="date" name="renew_date" th:value="${#dates.format(member.renew_date, 'yyyy-MM-dd')}" pattern="yyyy-MM-dd" readonly>
                               </div>
                               <div class="input_block">
                                  <h5>이용권 종료일</h5>
-                                 <input type="date" name="end_date" th:value="${#dates.format(session.member.end_date, 'yyyy-MM-dd')}" readonly>
+                                 <input type="date" name="end_date" th:value="${#dates.format(member.end_date, 'yyyy-MM-dd')}" readonly>
                               </div>
                               <div class="link-block">
                                  <a th:href="@{/main}">메인으로</a> &nbsp; &nbsp; <a th:href="@{/delete}">탈퇴</a>

@@ -20,8 +20,8 @@
 								<div class="heading-section">
 									<h3>영화</h3>
 								</div>
-								<div class="owl-features owl-carousel">
-									<div th:each="movie, state : ${movieResult}" class="item">
+								<div class="row">
+									<div th:each="movie, state : ${movieResult}" class="col-md-2 item">
 										<div class="thumb">
 											<img th:src="@{'/assets/images/movie/' + ${movie.image_path}}" alt="">
 											<a th:href="@{moviedetail(movie_code=${movie.movie_code})}">
@@ -44,8 +44,8 @@
 								<div class="heading-section">
 									<h3>TV프로그램</h3>
 								</div>
-								<div class="owl-features owl-carousel">
-									<div th:each="tvProgram, state : ${tvProgramResult}" class="item">
+								<div class="row">
+									<div th:each="tvProgram, state : ${tvProgramResult}" class="col-md-2 item">
 										<div class="thumb">
 											<img th:src="@{'/assets/images/tv/' + ${tvProgram.image_path}}" alt="">
 											<a th:href="@{tvdetail(pseq=${tvProgram.pseq})}">
