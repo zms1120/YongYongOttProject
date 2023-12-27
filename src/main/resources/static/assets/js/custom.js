@@ -474,3 +474,55 @@ $(document).ready(function() {
 		}
 	});
 });
+
+function goMovieVideo(movie, member){
+	var rating = movie.rating;
+	var videoPath = movie.video_path;
+	var member_age = member.age;
+	var position = member.position;
+	
+    if(position == null){
+		 // 로그인 하지 않은 사람
+		alert("로그인 후 이용해 주세요.");
+		window.location.href = "/login";
+	} else if(position != 'PREMIUM' && position != 'ADMIN'){
+		// 포지션 확인
+		alert("이 이용권은 해당 컨텐츠를 사용할 수 없습니다.");
+		return;
+	} else if(rating == '18' && member_age < 18){
+		alert("컨텐츠를 이용할 수 있는 연령이 아닙니다.");
+		return;
+	} else if(rating == '15' && member_age < 15){
+		alert("컨텐츠를 이용할 수 있는 연령이 아닙니다.");
+		return;
+	} else if(rating == '12' && member_age < 12){
+		alert("컨텐츠를 이용할 수 있는 연령이 아닙니다.");
+		return;
+	} else {
+		window.open("https://www.youtube.com/watch?v=" + videoPath);
+	}
+	
+}
+
+function goEpiVideo(videoPath, rating, member){
+	var member_age = member.age;
+	var position = member.position;
+	
+    if(position == null){
+		 // 로그인 하지 않은 사람
+		alert("로그인 후 이용해 주세요.");
+		window.location.href = "/login";
+	} else if(rating == '18' && member_age < 18){
+		alert("컨텐츠를 이용할 수 있는 연령이 아닙니다.");
+		return;
+	} else if(rating == '15' && member_age < 15){
+		alert("컨텐츠를 이용할 수 있는 연령이 아닙니다.");
+		return;
+	} else if(rating == '12' && member_age < 12){
+		alert("컨텐츠를 이용할 수 있는 연령이 아닙니다.");
+		return;
+	} else {
+		window.open("https://www.youtube.com/watch?v=" + videoPath);
+	}
+	
+}
