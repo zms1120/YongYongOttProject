@@ -1,18 +1,17 @@
 package com.ott.controller;
 
 import java.io.File;
-
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,10 +21,12 @@ import com.ott.entity.Board;
 import com.ott.entity.Episode;
 import com.ott.entity.Member;
 import com.ott.entity.Movie;
+import com.ott.entity.Reply;
 import com.ott.entity.TVProgram;
 import com.ott.episode.EpisodeService;
 import com.ott.member.MemberService;
 import com.ott.movie.MovieService;
+import com.ott.reply.ReplyService;
 import com.ott.tvprogram.TVProgramService;
 
 @Controller
@@ -41,6 +42,8 @@ public class AdminController {
 	private BoardService boardService;
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private ReplyService replyService;
 
 	// 관리자 메인페이지
 	@GetMapping("/adminPage")
@@ -357,13 +360,24 @@ public class AdminController {
 		return "redirect:/getTVProgram?pseq=" + pseq;
 	}
 	
-	//커뮤티니 qna 리스트
-	@GetMapping("/qnaList")
-	public String qnaList(Board board, Model model) {
-		List<Board> qnaList = boardService.getBoardListByQna(board);
+	//커뮤티니 board 리스트
+	@GetMapping("/boardList")
+	public String boardListAdmin(Board board, Model model) {
+		List<Board> boardList = boardService.getBoardList(board);		
 
-		model.addAttribute("qnaList", qnaList);
+		model.addAttribute("boardList", boardList);
 
-		return "layout/admin/qnaList";
+		return "layout/admin/boardList";
 	}
+	
+	//커뮤티니 qna board 리스트
+		@GetMapping("/qnaBoardList")
+		public String qnaList(Board board, Model model) {
+			List<Board> qna = boardService.getBoardByBCategory("qna");					
+			model.addAttribute("qna", qna);
+
+			return "layout/admin/qnaBoardList";
+		}
+	
+	
 }

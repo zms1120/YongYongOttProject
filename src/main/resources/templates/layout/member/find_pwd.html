@@ -1,34 +1,63 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<th:block th:replace="fragments/header :: header"></th:block>
 
 <head>
-	<meta charset="UTF-8">
-	<title>아이디 찾기</title>
-	<script type="text/javascript">
-		// 아이디 찾기
-		function check_find_pwd() {
-			// 아이디랑 이메일
-			var idValue = document.getElementById("id").value;
-			var emailValue = document.getElementById("email").value;
-			// 이메일과 아이디를 모두 확인하려면 URL에 두 값을 추가
-			var url = "check_find_pwd?id=" + idValue + "&email=" + emailValue;
-			// 새 창으로 열기
-			window.open(url, "_blank", "width=400,height=300");
-		}		
-	</script>
+<meta charset="UTF-8">
+<title>비밀번호 찾기</title>
+<script type="text/javascript">
+	// 비밀번호 찾기
+	function check_find_pwd() {
+		// 아이디랑 이메일
+		var idValue = document.getElementById("id").value;
+		var emailValue = document.getElementById("email").value;
+		// 이메일과 아이디를 모두 확인하려면 URL에 두 값을 추가
+		var url = "check_find_pwd?id=" + idValue + "&email=" + emailValue;
+		// 새 창으로 열기
+		window.open(url, "_blank", "width=400,height=300");
+	}
+</script>
 </head>
 
 <body>
-	<h2>비밀번호 찾기 찾기 페이지</h2>
-	<form th:action="@{/find_pwd}" method="post">
-		<label>아이디</label>
-		<input type="text" name="id" id="id">
-		<label>이메일</label>
-		<input type="email" name="email" id="email">
-		<input type="button" value="비밀번호 찾기" onclick="check_find_pwd()"><br><br>		
-	</form>
-	
-	<a th:href="@{/login}">로그인 페이지로</a>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="page-content">
+					<!-- 아이디 찾기 페이지 시작 -->
+					<div class="modify">
+						<div class="col-lg-8">
+							<div class="modify modify-section">
+								<div class="heading-section">
+									<h2>비밀번호 찾기</h2>
+									<h5>아이디와 이메일을 입력해주세용.</h5>
+								</div>
+								<div class="form-section">
+
+									<form th:action="@{/find_pwd}" method="post">
+										<div class="input_block">
+											<h5>아이디</h5>
+											<input type="email" name="id" id="id">
+										</div>
+										<div class="input_block">
+											<h5>이메일</h5>
+											<input type="email" name="email" id="email">
+										</div>
+										<input class="signin_btn" type="button" value="비밀번호 찾기"
+											onclick="check_find_pwd()"><br> <br>
+									</form>
+									<a th:href="@{/login}">로그인 페이지로</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- footer -->
+	<th:block th:replace="fragments/footer :: footer"></th:block>
 </body>
 </html>

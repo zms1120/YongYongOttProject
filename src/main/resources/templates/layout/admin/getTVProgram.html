@@ -3,6 +3,8 @@
 <head>
 <!-- header 입니다. -->
 <th:block th:replace="fragments/adminheader :: adminheader"></th:block>
+<!-- CSS Files -->
+<link rel="stylesheet" href="assets/css/admin.css" />
 </head>
 <body class="sb-nav-fixed">
 
@@ -11,101 +13,113 @@
 		<th:block th:replace="fragments/adminmid :: adminmid"></th:block>
 		<div id="layoutSidenav_content">
 			<main>
-			<!-- 여기까지는 꼭 넣어주기(어드민) 아래 footer도 있음 -->
-			
+				<!-- 여기까지는 꼭 넣어주기(어드민) 아래 footer도 있음 -->
+
 				<div class="container-fluid px-4">
 					<h1 class="mt-4">용용플레이</h1>
 					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item active"><a th:href="@{/getTVProgramList}">티비 프로그램 리스트</a></li>
+						<li class="breadcrumb-item active">
+						<a th:href="@{/getTVProgramList}">티비 프로그램 리스트</a></li>
 					</ol>
-					
-					
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="page-content">
 
-					<img th:src="@{'/assets/images/tv/' + ${tvProgram.banner_path}}"
-						alt="">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="page-content">
+									<img th:src="@{'/assets/images/tv/' + ${tvProgram.banner_path}}" alt=""><br>
 
-					<!-- ***** image End ***** -->
-					<!-- detail information -->
-					<div class="detail-table">
-						<table>
+									<!-- ***** image End ***** -->
+									<!-- detail information -->
+									<div class="detail-table">
+									<br>
+										<table>
+											<tr>
+												<td th:text="${tvProgram.p_title}" width="80" colspan="2"></td>
+											</tr>
+											<tr>
+												<td th:text="${tvProgram.description}" colspan="2"></td>
+											</tr>
+											<tr>
+												<td th:text="개요"></td>
+												<td th:text="${tvProgram.nation} + ', ' + ${tvProgram.airing_period}"></td>
+											</tr>
+											<tr>
+												<td th:text="장르"></td>
+												<td th:text="${tvProgram.p_category}"></td>
+											</tr>
+											<tr>
+												<td th:text="출연"></td>
+												<td th:text="${tvProgram.p_cast}"></td>
+											</tr>
+											<tr>
+												<td th:text="감독"></td>
+												<td th:text="${tvProgram.p_director}"></td>
+											</tr>
+											<tr>
+												<td th:text="등급"></td>
+												<td th:text="${tvProgram.rating}"></td>
+											</tr>
+										</table>
+
+									</div>
+									<br>
+									<a th:href="@{'/updateTVProgram?pseq=' + ${tvProgram.pseq}}">수정</a> |
+									<a th:href="@{/deleteTVProgram/{pseq}(pseq=${tvProgram.pseq})}">삭제</a> |
+									<a th:href="@{/insertEpisode(pseq=${tvProgram.pseq})}">회차 등록</a> |
+									<a th:href="@{/getTVProgramList}">목록으로</a>
+								</div>
+								<hr><br>
+								<h5>회차 정보</h5><hr><br>
+								
+								<!-- episope -->
+					<div class="episode-table">
+						<table th:each="epi, state : ${epiList}">
 							<tr>
-								<td class="em" th:text="${tvProgram.p_title}" width="80"
-									colspan="2"></td>
+								<td th:text="${epi.ep_title}"></td>
+							</tr>
+							
+							<tr>
+								<td th:text="${epi.running_time}"></td>
 							</tr>
 							<tr>
-								<td th:text="${tvProgram.description}" colspan="2"></td>
+								<td th:text="${#dates.format(epi.airing_date, 'yyyy-MM-dd')}"></td>
 							</tr>
 							<tr>
-								<td class="em" th:text="개요"></td>
-								<td
-									th:text="${tvProgram.nation} + ', ' + ${tvProgram.airing_period}"></td>
+								<td th:text="${epi.description}"></td>
 							</tr>
+							
 							<tr>
-								<td class="em" th:text="장르"></td>
-								<td th:text="${tvProgram.p_category}"></td>
-							</tr>
-							<tr>
-								<td class="em" th:text="출연"></td>
-								<td th:text="${tvProgram.p_cast}"></td>
-							</tr>
-							<tr>
-								<td class="em" th:text="감독"></td>
-								<td th:text="${tvProgram.p_director}"></td>
-							</tr>
-							<tr>
-								<td class="em" th:text="등급"></td>
-								<td th:text="${tvProgram.rating}"></td>
-							</tr>
+							<td>
+								<br>
+								<a th:with="episodeNum=${epi.episode_num}" th:href="@{'/updateEpisode?pseq=' + ${epi.tvProgram.pseq} + '&episode_num=' + ${episodeNum}}">수정하기</a> |
+								<a th:href="@{/deleteEpisode/{episode_num}(episode_num=${epi.episode_num}, pseq=${tvProgram.pseq})}">삭제하기</a>
+								<hr><br>
+							</td>	
+							</tr>					
 						</table>
-
+					
+					
+					
+						
 					</div>
-					<a th:href="@{'/updateTVProgram?pseq=' + ${tvProgram.pseq}}">수정하기</a>
-					<a th:href="@{/deleteTVProgram/{pseq}(pseq=${tvProgram.pseq})}">삭제하기</a>
-						<a th:href="@{/insertEpisode(pseq=${tvProgram.pseq})}">회차정보 등록하기</a>
-						<a th:href="@{/getTVProgramList}">목록으로</a>
+								
+								
+								
+								
+								
+							</div>
+						</div>
+					</div>
+					
+					<br>
+
+					
+					
 				</div>
-			</div>
+			</main>
 		</div>
 	</div>
 
-	<!-- episope -->
-	<div class="episode-table">
-		<table>
-			<tr th:each="epi, state : ${epiList}">
-				<div class="episode">
-					<div class="ep-info">
-
-						<h5 th:text="${epi.ep_title}"></h5>
-						<div class="ep">
-							<p th:text="${epi.running_time}"></p>
-							<!--<p th:text="${epi.airing_date}"></p>-->
-							<p th:text="${#dates.format(epi.airing_date, 'yyyy-MM-dd')}"></p>
-							
-						</div>
-						<span th:text="${epi.description}" class="ep-desc"></span>
-						<div>
-							<a th:with="episodeNum=${epi.episode_num}"
-								th:href="@{'/updateEpisode?pseq=' + ${epi.tvProgram.pseq} + '&episode_num=' + ${episodeNum}}">수정하기</a>
-								<a th:href="@{/deleteEpisode/{episode_num}(episode_num=${epi.episode_num}, pseq=${tvProgram.pseq})}">삭제하기</a>
-
-
-
-						</div>
-						<div class="hover-effect"></div>
-					</div>
-			</tr>
-		</table>
-	
-	</div>
-	</div>
-	</main>
-	</div>
-	</div>
-	
 	<!-- footer 입니다. -->
 	<th:block th:replace="fragments/adminfooter :: adminfooter"></th:block>
 </body>
