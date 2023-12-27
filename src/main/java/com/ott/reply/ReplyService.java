@@ -14,7 +14,7 @@ public interface ReplyService {
 	void updateReply(Reply reply);
 
 	// 댓글 삭제
-	void deleteReply(Reply reply);
+	void deleteReply(int r_seq);
 	
 	// 댓글 보기
 	List<Reply> getReply(int boardSeq);

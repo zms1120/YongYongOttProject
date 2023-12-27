@@ -7,18 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
-<script type="text/javascript">
-	// 비밀번호 찾기
-	function check_find_pwd() {
-		// 아이디랑 이메일
-		var idValue = document.getElementById("id").value;
-		var emailValue = document.getElementById("email").value;
-		// 이메일과 아이디를 모두 확인하려면 URL에 두 값을 추가
-		var url = "check_find_pwd?id=" + idValue + "&email=" + emailValue;
-		// 새 창으로 열기
-		window.open(url, "_blank", "width=400,height=300");
-	}
-</script>
 </head>
 
 <body>
@@ -35,20 +23,26 @@
 									<h5>아이디와 이메일을 입력해주세용.</h5>
 								</div>
 								<div class="form-section">
-
-									<form th:action="@{/find_pwd}" method="post">
+									<form th:action="@{/check_find_pwd}" method="post">
 										<div class="input_block">
 											<h5>아이디</h5>
-											<input type="email" name="id" id="id">
+											<input type="email" name="id" id="id" placeholder="yongyong@example.com">
+											<span id="findid-message"></span>
 										</div>
 										<div class="input_block">
 											<h5>이메일</h5>
-											<input type="email" name="email" id="email">
+											<input type="email" name="email" id="email" placeholder="yongyong@example.com">
+											<span id="findemail-message"></span>
 										</div>
-										<input class="signin_btn" type="button" value="비밀번호 찾기"
-											onclick="check_find_pwd()"><br> <br>
+										<input class="signin_btn" type="button" value="비밀번호 찾기" onclick="check_find_pwd()"><br> <br>
+										<div  th:align="center">
+										<span id="searchpwd-message"></span><br>
+										</div> 
 									</form>
-									<a th:href="@{/login}">로그인 페이지로</a>
+									<div class="link-block">
+									<a th:href="@{/login}">로그인</a> &nbsp; &nbsp; 
+									<a th:href="@{/find_id}">아이디 찾기</a>
+									</div>
 								</div>
 							</div>
 						</div>
