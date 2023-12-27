@@ -1,7 +1,9 @@
 package com.ott.controller;
 
 
+import com.ott.entity.Member;
 import com.ott.entity.Movie;
+import com.ott.member.MemberService;
 import com.ott.movie.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 //@RequestMapping("/layout/")
@@ -20,6 +23,9 @@ public class MovieController {
 
     @Autowired
     private MovieService movieService;
+    
+    @Autowired
+    private MemberService memberService;
 
     // 영화 전체 목록
     @GetMapping("allmovie")
@@ -40,7 +46,7 @@ public class MovieController {
     
     //영화 상세 보기
     @GetMapping("moviedetail")
-    public String getMovie(Model model, @RequestParam("movie_code") String movie_code) {
+    public String getMovie(Model model, @RequestParam("movie_code") String movie_code, HttpSession session) {
         // 새로운 Movie 객체를 생성하고 movieCode를 설정
     	Movie movie = new Movie();
     	
@@ -54,8 +60,20 @@ public class MovieController {
         // 모델에 추가
         model.addAttribute("movie", movie);
         model.addAttribute("videoPath", videoPath);
-      
+        
+        // 세션에서 로그인한 사용자 정보 가져오기
+	    Member loggedInMember = (Member) session.getAttribute("member");
 
+	    if (loggedInMember == null) { 
+	    	//로그인 한 사용자가 없다면
+	    	model.addAttribute("member", new Member());
+	    } else {
+	    	// 세션에 저장된 아이디 정보로 최신 회원 정보 불러오기
+			Member member = memberService.getMember(loggedInMember);
+			//System.out.println("movieDetail: " + member.getId());
+			model.addAttribute("member", member);
+	    }
+      
         return "layout/contents/moviedetail";
     }
 

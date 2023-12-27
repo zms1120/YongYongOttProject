@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -18,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ott.entity.Episode;
+import com.ott.entity.Member;
 import com.ott.entity.TVProgram;
 import com.ott.episode.EpisodeService;
+import com.ott.member.MemberService;
 import com.ott.tvprogram.TVProgramService;
 
 
@@ -28,8 +32,12 @@ public class TVProgramController {
 
 	@Autowired
 	private TVProgramService tvProgramService;
+	
 	@Autowired
 	private EpisodeService episodeService;
+	
+	@Autowired
+    private MemberService memberService;
 
 	// TVProgram 전체목록 
 	@GetMapping("/tvprogram")
@@ -60,7 +68,7 @@ public class TVProgramController {
 	
 	//TVProgram 상세화면
 	  @GetMapping("tvdetail")
-	    public String getTVProgram(Model model, @RequestParam("pseq") int pseq, Episode episode) {
+	    public String getTVProgram(Model model, @RequestParam("pseq") int pseq, Episode episode, HttpSession session) {
 	        // 새로운 TVProgram 객체를 생성하고 qseq를 설정
 	         TVProgram tvProgram = new TVProgram();
 	         tvProgram.setPseq(pseq);
@@ -76,6 +84,20 @@ public class TVProgramController {
 	        model.addAttribute("tvProgram", tvProgram);
 	        model.addAttribute("videoPath", videoPath);
 	        model.addAttribute("epiList", epiList);
+	        
+	     // 세션에서 로그인한 사용자 정보 가져오기
+		    Member loggedInMember = (Member) session.getAttribute("member");
+
+		    if (loggedInMember == null) { 
+		    	//로그인 한 사용자가 없다면
+		    	model.addAttribute("member", new Member());
+		    } else {
+		    	// 세션에 저장된 아이디 정보로 최신 회원 정보 불러오기
+				Member member = memberService.getMember(loggedInMember);
+				//System.out.println("movieDetail: " + member.getId());
+				model.addAttribute("member", member);
+		    }
+	        
 	        return "layout/contents/tvdetail";
 	  }
 	

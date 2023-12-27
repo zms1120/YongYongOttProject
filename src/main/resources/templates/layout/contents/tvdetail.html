@@ -62,7 +62,7 @@
             	<table>
             		<tr th:each="epi, state : ${epiList}">
             			<div class="episode">
-            					<a th:href="'https://www.youtube.com/watch?v=' + ${epi.video_path}" target="_blank">
+            					<span th:onclick="goEpiVideo([[${epi.video_path}]], [[${tvProgram.rating}]], [[${member}]])">
 							<div class="ep-image">
 								<img th:src="@{'/assets/images/tv/' + ${tvProgram.banner_path}}"> 
 								
@@ -78,7 +78,7 @@
 									<p th:text="${#dates.format(epi.airing_date, 'yyyy-MM-dd')}"></p>
 								 </div>
 								<span th:text="${epi.description}" class="ep-desc"></span>
-								</a>
+								</span>
 							</div>
 							
 						</div>

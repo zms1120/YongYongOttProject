@@ -18,9 +18,9 @@
                      <h6>[[${movie.open_year}]] &nbsp; [[${movie.running_time}]]분 &nbsp; [[${movie.genre}]]</h6>
                    </div>
                    <div class="play">
-					    <a th:href="'https://www.youtube.com/watch?v=' + ${movie.video_path}" target="_blank">
+					    <span th:onclick="goMovieVideo([[${movie}]], [[${member}]])">
 							<p class="play-text">재생하기</p>
-				   		</a>
+				   		</span>
 				   </div>
                  </div>
                </div>
