@@ -1,132 +1,157 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>TVProgram 컨텐츠 수정</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- header -->
+<!-- header 입니다. -->
+<th:block th:replace="fragments/adminheader :: adminheader"></th:block>
+<!-- CSS Files -->
+<link rel="stylesheet" href="assets/css/admin.css" />
 </head>
+<body class="sb-nav-fixed">
 
-<body th:align="center">
+	<div id="layoutSidenav">
+		<!-- mid 입니다. -->
+		<th:block th:replace="fragments/adminmid :: adminmid"></th:block>
 
-	<!-- TV update 시작 -->
+		<div id="layoutSidenav_content">
+			<main>
+				<!-- 여기까지는 꼭 넣어주기(어드민) 아래 footer도 있음 -->
 
-	<div class="update">
-		<div class="update update-section">
-
-			<form th:action="@{/updateTVProgram}" method="post" id="update"
-				enctype="multipart/form-data">
-				<table class="updateTVProgram" th:align="center" th:cellpadding="0"
-					th:cellspacing="0">
-					<!-- 기존의 pseq 값을 유지하는 hidden 필드 추가 -->
-					<input type="hidden" name="pseq" th:value="${tvProgram.pseq}">
-					
-					<!-- 기존 카테고리를 선택하도록 설정 -->
-					<tr>
-						<td>카테고리</td>
-						<td><select id="p_category" name="p_category">
-								<option th:value="드라마"
-									th:selected="${tvProgram.p_category == '드라마'}">드라마</option>
-								<option th:value="예능"
-									th:selected="${tvProgram.p_category == '예능'}">예능</option>
-								<option th:value="시사교양"
-									th:selected="${tvProgram.p_category == '시사교양'}">시사교양</option>
-								<option th:value="애니"
-									th:selected="${tvProgram.p_category == '애니'}">애니</option>
-								<option th:value="해외시리즈"
-									th:selected="${tvProgram.p_category == '해외시리즈'}">해외시리즈</option>
-						</select></td>
-					</tr>
-
-					<tr>
-						<td>제목</td>
-						<td><input type="text" name="p_title" id="p_title"
-							placeholder="제목을 입력해주세요." th:value="${tvProgram.p_title}"></td>
-					</tr>				
-					<tr>
-						<td>감독</td>
-						<td><input type="text" name="p_director" id="p_director"
-							placeholder="감독을 입력해주세요." th:value="${tvProgram.p_director}"></td>
-
-						<td>작가</td>
-						<td><input type="text" name="p_writer" id="p_writer"
-							placeholder="작가를 입력해주세요." th:value="${tvProgram.p_writer}"></td>
-					</tr>
-					<tr>
-						<td>방영기간</td>
-						<td><input type="text" name="airing_period"
-							id="airing_period" placeholder="방영기간을 입력해주세요."
-							th:value="${tvProgram.airing_period}"></td>
-
-						<td>방송사</td>
-						<td><input type="text" name="p_board_casting"
-							id="p_board_casting" placeholder="방송사를 입력해주세요."
-							th:value="${tvProgram.p_board_casting}"></td>
-					</tr>
-					<tr>
-						<td>국가</td>
-						<td><input type="text" name="nation" id="nation"
-							placeholder="국가를 입력해주세요." th:value="${tvProgram.nation}"></td>
-
-						<td>등급</td>
-						<td><input type="text" name="rating" id="rating"
-							placeholder="등급을 입력해주세요." th:value="${tvProgram.rating}"></td>
-					</tr>
-
-					<tr>
-						<td>출연진</td>
-						<td><textarea name="p_cast" id="p_cast" cols="50" rows="10"
-								placeholder="출연진을 입력해주세요." th:text="${tvProgram.p_cast}"></textarea></td>
-
-						<td>줄거리</td>
-						<td><textarea name="description" id="description" cols="50"
-								rows="10" placeholder="줄거리를 입력해주세요."
-								th:text="${tvProgram.description}"></textarea></td>
-					</tr>
-
-					<!-- 이미지 및 배너 업로드 필드 추가 -->
-					<tr>
-						<th>이미지 업로드</th>
-						<td colspan="5">
-							<!-- 기존 이미지 파일이 있을 경우에 이미지 표시 --> <img
-							th:src="@{'/assets/images/tv/' + ${originalImagePath}}"
-							width="200pt" th:if="${not #strings.isEmpty(originalImagePath)}">
-							<!-- 이미지 업로드 필드 --> <input type="file" name="imageFile"
-							id="imageFile"
-							th:required="${#strings.isEmpty(originalImagePath)}"> <!-- 기존 이미지 파일명을 hidden 필드로 전송 -->
-							<input type="hidden" name="originalImageFile"
-							th:if="${not #strings.isEmpty(originalImagePath)}"
-							th:value="${originalImagePath}">
-						</td>
-					</tr>
-
-					<tr>
-						<th>배너 업로드</th>
-						<td colspan="5">
-							<!-- 기존 배너 이미지 파일이 있을 경우에 이미지 표시 --> <img
-							th:src="@{'/assets/images/tv/' + ${originalBannerPath}}"
-							width="200pt" th:if="${not #strings.isEmpty(originalBannerPath)}">
-							<!-- 이미지 업로드 필드 --> <input type="file" name="bannerFile"
-							id="bannerFile"
-							th:required="${#strings.isEmpty(originalBannerPath)}"> <!-- 기존 이미지 파일명을 hidden 필드로 전송 -->
-							<!-- 기존 배너 이미지 파일명을 hidden 필드로 전송 --> <input type="hidden"
-							name="originalBannerFile"
-							th:if="${not #strings.isEmpty(tvProgram.banner_path)}"
-							th:value="${tvProgram.banner_path}">
-
-						</td>
-					</tr>
-				</table>
-				<div class="link-block">
-					<a th:href="@{/adminPage}">메인으로</a> &nbsp; &nbsp;
+				<!-- TV update 시작 -->
+				<div class="insert">
+					<div class="insert insert-section">
+						<div class="form-section">
+							<div class="heading-section">
+								<h4>TV프로그램 수정 페이지 입니다.</h4>
+								<h5>수정해주시고 수정하기 버튼을 눌러주세요.</h5>
+							</div>
+							
+						<form th:action="@{/updateTVProgram}" method="post" id="update" enctype="multipart/form-data">
+							<div class="input-table">
+								<!-- 기존의 pseq 값을 유지하는 hidden 필드 추가 -->
+								<input type="hidden" name="pseq" th:value="${tvProgram.pseq}">
+								
+								
+								<div class="insert-input">
+									<h5>카테고리</h5>
+								</div>
+								<div>
+									<!-- 기존 카테고리를 선택하도록 설정 -->
+									<select id="p_category" name="p_category">
+										<option th:value="드라마" th:selected="${tvProgram.p_category == '드라마'}">드라마</option>
+										<option th:value="예능" th:selected="${tvProgram.p_category == '예능'}">예능</option>
+										<option th:value="시사교양" th:selected="${tvProgram.p_category == '시사교양'}">시사교양</option>
+										<option th:value="애니" th:selected="${tvProgram.p_category == '애니'}">애니</option>
+										<option th:value="해외시리즈" th:selected="${tvProgram.p_category == '해외시리즈'}">해외시리즈</option>
+										</select>
+								</div>
+	
+								<div class="insert-input">
+									<h5>제목</h5>
+								</div>
+								<div>
+									<input type="text" name="p_title" id="p_title" placeholder="제목을 입력해주세요." th:value="${tvProgram.p_title}">
+								</div>
+								
+								<div class="insert-input">
+									<h5>감독</h5>
+								</div>
+								<div>
+									<input type="text" name="p_director" id="p_director" placeholder="감독을 입력해주세요." th:value="${tvProgram.p_director}">
+								</div>
+								
+								<div class="insert-input">
+									<h5>작가</h5>
+								</div>
+								<div>
+									<input type="text" name="p_director" id="p_director" placeholder="감독을 입력해주세요." th:value="${tvProgram.p_director}">
+								</div>
+								
+								<div class="insert-input">
+									<h5>방영기간</h5>
+								</div>
+								<div>
+									<input type="text" name="airing_period" id="airing_period" placeholder="방영기간을 입력해주세요." th:value="${tvProgram.airing_period}">
+								</div>
+								
+								<div class="insert-input">
+									<h5>방송사</h5>
+								</div>
+								<div>
+									<input type="text" name="p_board_casting" id="p_board_casting" placeholder="방송사를 입력해주세요." th:value="${tvProgram.p_board_casting}">
+								</div>
+																
+								<div class="insert-input">
+									<h5>국가</h5>
+								</div>
+								<div>
+									<input type="text" name="nation" id="nation" placeholder="국가를 입력해주세요." th:value="${tvProgram.nation}">
+								</div>
+								
+								<div class="insert-input">
+									<h5>등급</h5>
+								</div>
+								<div>
+									<input type="text" name="rating" id="rating" placeholder="등급을 입력해주세요." th:value="${tvProgram.rating}">
+								</div>
+								
+								<div class="insert-input">
+									<h5>출연진</h5>
+								</div>
+								<div>
+									<textarea name="p_cast" id="p_cast" cols="30" rows="3" placeholder="출연진을 입력해주세요." th:text="${tvProgram.p_cast}"></textarea>
+								</div>
+								
+								<div class="insert-input">
+									<h5>줄거리</h5>
+								</div>
+								<div>
+									<textarea name="description" id="description" cols="50" rows="10" placeholder="줄거리를 입력해주세요." th:text="${tvProgram.description}"></textarea>
+								</div>
+								
+								
+								<div class="insert-input">
+									<h5>이미지 업로드</h5>
+								</div>
+								<div>
+								<div class="image-upload-container">
+									<!-- 기존 이미지 파일이 있을 경우에 이미지 표시 -->
+									<img th:src="@{'/assets/images/tv/' + ${originalImagePath}}" width="200pt" th:if="${not #strings.isEmpty(originalImagePath)}">
+									<!-- 이미지 업로드 필드 -->
+									<input type="file" name="imageFile" id="imageFile" th:required="${#strings.isEmpty(originalImagePath)}">
+									<!-- 기존 이미지 파일명을 hidden 필드로 전송 -->
+									<input type="hidden" name="originalImageFile" th:if="${not #strings.isEmpty(originalImagePath)}" th:value="${originalImagePath}">
+								</div>									
+								</div>
+								
+								<div class="insert-input">
+									<h5>배너 업로드</h5>
+								</div>
+								<div>
+								<div class="image-upload-container">
+									<!-- 기존 배너 이미지 파일이 있을 경우에 이미지 표시 -->
+									<img th:src="@{'/assets/images/tv/' + ${originalBannerPath}}" width="200pt" th:if="${not #strings.isEmpty(originalBannerPath)}">
+									<!-- 이미지 업로드 필드 -->
+									<input type="file" name="bannerFile" id="bannerFile" th:required="${#strings.isEmpty(originalBannerPath)}">
+									<!-- 기존 배너 이미지 파일명을 hidden 필드로 전송 -->
+									<input type="hidden" name="originalBannerFile" th:if="${not #strings.isEmpty(tvProgram.banner_path)}" th:value="${tvProgram.banner_path}">
+								</div>									
+								</div>
+							</div>						
+						
+							<br>
+							<input class="insert_btn" type="submit" value="수정하기">			
+						</form>
+						</div>
+					</div>
 				</div>
-				<br> <input type="submit" value="수정하기">
-			</form>
+			</main>
 		</div>
 	</div>
 
-	<!-- footer -->
+
+	<!-- footer 입니다. -->
+	<th:block th:replace="fragments/adminfooter :: adminfooter"></th:block>
 
 </body>
+
 </html>

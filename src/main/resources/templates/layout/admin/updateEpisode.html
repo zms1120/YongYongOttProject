@@ -1,83 +1,104 @@
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>무비 컨텐츠 등록</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- header -->
-
+<!-- header 입니다. -->
+<th:block th:replace="fragments/adminheader :: adminheader"></th:block>
+<!-- CSS Files -->
+<link rel="stylesheet" href="assets/css/admin.css" />
 </head>
+<body class="sb-nav-fixed">
 
-<body th:align="center">
+	<div id="layoutSidenav">
+		<!-- mid 입니다. -->
+		<th:block th:replace="fragments/adminmid :: adminmid"></th:block>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<!-- 여기까지는 꼭 넣어주기(어드민) 아래 footer도 있음 -->
 
 
-	<!-- 무비 insert 시작 -->
+				<!-- 티비 에피소드 update 시작 -->
+				<div class="insert">
+					<div class="insert insert-section">
+						<div class="form-section">
+							<div class="heading-section">
+								<h4>TV프로그램 에피소드 수정 페이지 입니다.</h4>
+								<h5>수정해주시고 수정하기 버튼을 눌러주세요.</h5>
+							</div>
 
-	<div class="update">
-		<div class="update update-section">
-
-			<form th:action="@{/updateEpisode}" method="post" id="update"
-				enctype="multipart/form-data">
-				<table class="updateEpisode" th:align="center" th:cellpadding="0"
-					th:cellspacing="0">
-					<tr>
-						<td>회차</td>
-						<td><input type="text" name="episode_num" id="episode_num"
-							placeholder="회차를 입력해주세요." th:value="${episode.episode_num}"></td>
-					</tr>
-					<tr>
-						<td>회차별 제목</td>
-						<td><input type="text" name="ep_title" id="ep_title"
-							placeholder="제목을 입력해주세요." th:value="${episode.ep_title}"></td>
-					</tr>
-
-					<tr>
-						<td>방영날짜</td>
-						<td><input type="date" name="airing_date" id="airing_date" th:value="${#dates.format(episode.airing_date, 'yyyy-MM-dd')}"></td>
-					</tr>
-					<tr>
-						<td>방영시간</td>
-						<td><input type="text" name="running_time" id="running_time"
-							placeholder="방영시간을 입력해주세요." th:value="${episode.running_time}"></td>
-					</tr>
-					<tr>
-						<td>줄거리</td>
-						<td><textarea name="description" id="description" cols="50"
-								rows="10" placeholder="줄거리를 입력해주세요."
-								th:text="${episode.description}"></textarea></td>
-					</tr>
-					<tr>
-						<td>영상주소</td>
-						<td><input type="text" name="video_path" id="video_path"
-							placeholder="영상주소를 입력해주세요." th:value="${episode.video_path}"></td>
-					</tr>
-					<tr>
-					<tr>
-						<td>tv일련번호</td>
-						<td><input type="text" name="pseq" id="pseq"
-							th:if="${tvprogram != null}"
-							th:value="${episode.tvprogram.pseq}" readonly></td>
-					</tr>
-					<tr>
-						<!-- 이미지 및 배너 업로드 필드 추가 -->
-				</table>
-
-				<!-- episode_num을 숨은 필드로 추가 -->
-				<input type="hidden" name="hidden_episode_num"
-					th:value="${episode_num}" /> <input type="hidden" name="pseq"
-					th:value="${episode.tvProgram.pseq}" />
-				<div class="link-block">
-					<a th:href="@{/adminPage}">메인으로</a> &nbsp; &nbsp;
+						<form th:action="@{/updateEpisode}" method="post" id="update" enctype="multipart/form-data">
+							
+							<div class="input-table">
+							
+							<div class="insert-input">
+								<h5>회차</h5>
+							</div>
+							<div>
+								<input type="text" name="episode_num" id="episode_num" placeholder="회차를 입력해주세요." th:value="${episode.episode_num}">
+							</div>
+							
+							<div class="insert-input">
+								<h5>회차별 제목</h5>
+							</div>
+							<div>
+								<input type="text" name="ep_title" id="ep_title" placeholder="제목을 입력해주세요." th:value="${episode.ep_title}">
+							</div>
+							
+							<div class="insert-input">
+								<h5>방영날짜</h5>
+							</div>
+							<div>
+								<input type="date" name="airing_date" id="airing_date" th:value="${#dates.format(episode.airing_date, 'yyyy-MM-dd')}">
+							</div>
+							
+							<div class="insert-input">
+								<h5>방영시간</h5>
+							</div>
+							<div>
+								<input type="text" name="running_time" id="running_time" placeholder="방영시간을 입력해주세요." th:value="${episode.running_time}">
+							</div>
+							
+							<div class="insert-input">
+								<h5>줄거리</h5>
+							</div>
+							<div>
+								<textarea name="description" id="description" cols="50" rows="10" placeholder="줄거리를 입력해주세요." th:text="${episode.description}"></textarea>
+							</div>
+							
+							<div class="insert-input">
+								<h5>영상주소</h5>
+							</div>
+							<div>
+								<input type="text" name="video_path" id="video_path" placeholder="영상주소를 입력해주세요." th:value="${episode.video_path}">
+							</div>
+							<!--  
+							<div class="insert-input">
+								<h5>TV 일련번호</h5>
+							</div>
+							<div>
+								<input type="text" name="pseq" id="pseq" th:if="${tvprogram != null}"
+										th:value="${episode.tvprogram.pseq}" readonly>
+							</div>
+							-->
+							<!-- episode_num을 숨은 필드로 추가 -->
+							<input type="hidden" name="hidden_episode_num" th:value="${episode_num}" />
+							<input type="hidden" name="pseq" th:value="${episode.tvProgram.pseq}" />
+																		
+							</div>						
+								
+							<br>
+							<input class="insert_btn" type="submit" value="수정하기">			
+						</form>
+						</div>
+					</div>
 				</div>
-				<br> <input type="submit" value="등록하기">
-			</form>
+			</main>
 		</div>
 	</div>
-	</div>
-	</div>
-	</div>
 
-	<!-- footer -->
+
+	<!-- footer 입니다. -->
+	<th:block th:replace="fragments/adminfooter :: adminfooter"></th:block>
 
 </body>
 
