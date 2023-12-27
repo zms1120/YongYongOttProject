@@ -25,7 +25,7 @@ public interface BoardService {
 	
 	void updateBoard(Board board);
 	
-	void deleteBoard(Board board);
+	void deleteBoard(int b_seq);
 	
 	void increaseViewCount(int boardSeq);
 	

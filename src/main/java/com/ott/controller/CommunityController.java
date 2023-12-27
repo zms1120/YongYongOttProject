@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -93,12 +94,13 @@ public class CommunityController {
 		boardService.updateBoard(board);
 		return "redirect:/community";
 	}
-	
-	@PostMapping("/deleteBoard")
-	public String deleteBoard(Board board) {
-		boardService.deleteBoard(board);
+	//게시글 삭제
+	@GetMapping("/deleteBoard/{b_seq}")
+	public String deleteBoard(@PathVariable("b_seq") int b_seq) {
+		boardService.deleteBoard(b_seq);
+		System.out.println(b_seq);
 		
-		return "layout/community/community";
+		return "redirect:/community";
 	}
 	
 	// 댓글 등록하기
@@ -117,6 +119,15 @@ public class CommunityController {
 	    // 댓글이 등록된 후 해당 게시글의 상세 페이지로 이동
 	    return "redirect:/gopost?b_seq=" + board.getB_seq();
 	}
+		
+	//댓글 삭제
+	@GetMapping("/deleteReply/{r_seq}")
+	public String deleteReply(@PathVariable("r_seq") int r_seq, @RequestParam("b_seq") int b_seq) {
+		replyService.deleteReply(r_seq);
+		
+		return "redirect:/gopost?b_seq=" + b_seq;
+	}
+	
 	
 	@PostMapping("/like")
 	   public ResponseEntity<String> likeAction(@RequestBody Map<String, Object> likeCount) {
