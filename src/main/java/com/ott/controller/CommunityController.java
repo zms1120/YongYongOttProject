@@ -156,4 +156,9 @@ public class CommunityController {
 		       return ResponseEntity.ok("Liked successfully");
 		   }
 
+		@GetMapping("/faq")
+		   public String faq() {
+		      
+		      return "layout/community/faq";
+		   }
 }
