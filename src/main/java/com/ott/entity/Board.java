@@ -36,9 +36,9 @@ import lombok.ToString;
 @NoArgsConstructor
 public class Board {
 
+	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "board_seq_generator")
 	@SequenceGenerator(name = "board_seq_generator", sequenceName = "board_seq", allocationSize = 1)
-	@Id
 	private int b_seq;						//게시글 일련번호
 	private String title;					//게시글 제목
 	@Column(length = 4000)
