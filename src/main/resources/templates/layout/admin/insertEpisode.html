@@ -5,6 +5,8 @@
 <th:block th:replace="fragments/adminheader :: adminheader"></th:block>
 <!-- CSS Files -->
 <link rel="stylesheet" href="assets/css/admin.css" />
+<!-- js Files -->
+<script type="text/javascript" th:src="@{/assets/js/admin.js}"></script>
 </head>
 <body class="sb-nav-fixed">
 
@@ -25,7 +27,7 @@
 								<h4>티비 프로그램 에피소드 등록 페이지 입니다.</h4>
 								<h5>모두 입력하세요.</h5>
 							</div>
-							<form th:action="@{/insertEpisode}" method="post" id="insert" enctype="multipart/form-data">
+							<form th:action="@{/insertEpisode}" method="post" id="insert" enctype="multipart/form-data" onsubmit="return episode_save()">
 								<div class="input-table">
 								
 								<div class="insert-input">
