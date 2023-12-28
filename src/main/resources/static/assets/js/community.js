@@ -39,20 +39,31 @@ function likePlus() {
     sendLikeRequest(boardSeq);
 }
 
+
 function sendLikeRequest(boardSeq) {
-   var boardSeqLong = Number(boardSeq);
+    var boardSeqLong = Number(boardSeq);
+
+    // HTML 메타 태그에서 CSRF 토큰을 가져옵니다.
+    var csrfToken = $("meta[name='_csrf']").attr("content");
+    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
 
     $.ajax({
         url: '/like',
         type: 'POST',
         contentType: 'application/json',
         dataType: 'text',
-        data: JSON.stringify({ b_seq: boardSeqLong }), // Request Body에 데이터 추가
-        success: function () {
+        data: JSON.stringify({ b_seq: boardSeqLong }),
+        beforeSend: function (xhr) {
+            // AJAX 요청 헤더에 CSRF 토큰을 추가합니다.
+            xhr.setRequestHeader(csrfHeader, csrfToken);
+        },
+        success: function (response) {
             console.log('좋아요 수 증가 요청 성공');
+            console.log(response);
         },
         error: function () {
             console.log('좋아요 수 증가 요청 실패');
         }
     });
-} 
+}
+

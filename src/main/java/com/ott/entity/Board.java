@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -53,7 +54,7 @@ public class Board {
 	@JoinColumn(name = "id")		
 	private Member member;					// 게시글 작성자
 	
-	@OneToMany(mappedBy = "board")
+	@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
 	private List<Reply> replies = new ArrayList<>();
 	
 	 // 댓글 수를 나타내는 필드 추가

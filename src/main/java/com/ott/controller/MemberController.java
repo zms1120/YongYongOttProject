@@ -10,9 +10,17 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,13 +32,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ott.entity.Member;
 import com.ott.member.MemberService;
+import com.ott.security.SecurityUser;
 import com.util.mail.MailDTO;
+import com.util.mail.MailSender;
 
 @Controller
+@ComponentScan(basePackages = {"com.util.mail", "com.ott.controller"})
 public class MemberController {
 
    @Autowired
    private MemberService memberService;
+   @Autowired
+   private MailSender mailSender;
    
 
    // 회원가입 페이지 출력 요청
@@ -94,39 +107,10 @@ public class MemberController {
 	   System.out.println("mail: " + email);
 	   
        MailDTO mailDto = new MailDTO(email);
-		System.out.println(mailDto.getNumber());
-		
-		Properties props = new Properties();
-		
-		props.setProperty("mail.smtp.protocol", mailDto.getProtocol());
-       props.setProperty("mail.smtp.host", mailDto.getHost());
-       props.setProperty("mail.smtp.port", "587");
-       props.setProperty("mail.smtp.auth", "true");
-       props.setProperty("mail.smtp.starttls.enable", "true");
-       //props.setProperty("mail.smtp.timeout", "9000");
-		
-		// 보내는 사람 계정 정보 설정 
-       Session session = Session.getInstance(props, new Authenticator() {
-           protected PasswordAuthentication getPasswordAuthentication() {
-               return new PasswordAuthentication(mailDto.getFrom(), mailDto.getPassword());
-           }
-       });
-
-       // 메일 내용 작성
-       Message msg = new MimeMessage(session);
-       try {
-			msg.setFrom(new InternetAddress(mailDto.getFrom()));
-			msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailDto.getTo()));
-	        msg.setSubject("용용플레이 회원가입 인증");
-	        msg.setText("인증번호 입니다. \n\n " + mailDto.getNumber() +"\n\n화면으로 돌아가 인증번호를 입력해 주세요.");
-
-	        // 메일 보내기
-	        Transport.send(msg);
-	        
-		} catch (MessagingException e) {
-			e.printStackTrace();
-		}
+       System.out.println(mailDto.getNumber());
        
+       mailSender.mailSending(mailDto);
+        
 	   return mailDto.getNumber() + "";
    }
 
@@ -138,12 +122,13 @@ public class MemberController {
       
    }
    // 아이디 찾기 이메일로 핸드폰 번호로 찾기
+   @ResponseBody
    @RequestMapping("/check_find_id")
    public String findIdView(@RequestParam(name = "email") String email,
          @RequestParam(name = "phone_number") String phone_number, Model model, Member member) {
-      System.out.println("---> 아이디 찾기 오픈 페이지");
-      System.out.println("아이디 찾기 입력 핸드폰 번호 " + phone_number);
-      System.out.println("아이디 찾기 입력 이메일 " + email);
+	   System.out.println("---> 아이디 찾기 시작!");
+	      System.out.println("입력 핸드폰 번호 " + phone_number);
+	      System.out.println("입력 이메일 " + email);
       model.addAttribute("phone_number", phone_number);
       model.addAttribute("email", email);
 
@@ -151,31 +136,38 @@ public class MemberController {
 
       if (searchUserId != null) { // 아이디를 찾은 경우
          System.out.println("아이디 찾기 가능");
-         model.addAttribute("message", 1);
+        
          System.out.println("아이디 찾기 아이디 : " + searchUserId);
          model.addAttribute("id", searchUserId);// 아이디 값을 모델에 추가
+         
+
+         return searchUserId;
+         
       } else { // 아이디를 못찾은 경우
          System.out.println("없는 아이디");
          model.addAttribute("message", 0);
+         
+
+         return "불가능";
       }
-      //아이디 찾기 이동
-      return "layout/member/check_find_id";
+      
    }
    
    // 비번 찾기 찾기 이동
       @GetMapping("/find_pwd")
       public String findPwdCheckView() {
-         System.out.println("---> 비번 찾기 페이지 이동");
+    	  System.out.println("---> 비번 찾기 페이지 이동");
          
          return "layout/member/find_pwd";
       }
-      // 비번 찾기 아이디와 핸드폰 번호로 찾기
+      // 비번 찾기 아이디와 이메일로 비밀번호로 찾기
+      @ResponseBody
       @RequestMapping("/check_find_pwd")
       public String findpwdView(@RequestParam(name = "id") String id,
             @RequestParam(name = "email") String email, Model model, Member member) {
          System.out.println("---> 비번 찾기 오픈 페이지");
-         System.out.println("비번 찾기 입력 아이디 " + id);
-         System.out.println("비번 찾기 입력 이메일 " + email);
+         System.out.println("입력 아이디 " + id);
+         System.out.println("입력 이메일 " + email);
          
          model.addAttribute("id", id);
          model.addAttribute("email", email);
@@ -184,41 +176,66 @@ public class MemberController {
 
          if (searchUserPwd != null) { // 비번을 찾은 경우
             System.out.println("비번 찾기 가능");
-            model.addAttribute("message", 1);
             System.out.println("비번 찾기 비번 : " + searchUserPwd);
             model.addAttribute("password", searchUserPwd);// 비번 값을 모델에 넣기
+            
+            return searchUserPwd;
+            
          } else { // 아이디를 못찾은 경우
-            System.out.println("정보를 다시 입력하세요.");
-            model.addAttribute("message", 0);
+        	    System.out.println("비밀번호 찾을 수 없음");
+        	    
+        	    return "불가능";
          }
-         // 비번 찾기로 이동
-         return "layout/member/check_find_pwd";
+       
       }
    
 
    // 탈퇴
-   @GetMapping("/delete")
-   public String deleteAction(Member member, HttpSession session) {
-      System.out.println("---> 회원 탈퇴");
-      member= (Member) session.getAttribute("member");
-      System.out.println(member.getId());
-      System.out.println(member);   
-      
-      memberService.deleteMember(member);   
+      @GetMapping("/delete")
+      public String deleteAction(HttpServletRequest request, HttpServletResponse response, @AuthenticationPrincipal SecurityUser securityUser) {
+          System.out.println("---> 회원 탈퇴");
+          Member member = securityUser.getMember();
+          System.out.println(member.getId());
+          System.out.println(member);
 
-      //세션 종료! 얏호
-      session.invalidate();
-      // 로그인 페이지로
-      return "layout/member/login";
-   }
-   
+          // 회원 삭제 처리
+          memberService.deleteMember(member);
+
+          // Spring Security에서 제공하는 로그아웃 핸들러 사용
+          Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+          if (auth != null) {
+              new SecurityContextLogoutHandler().logout(request, response, auth);
+          }
+
+          // 세션 무효화
+          request.getSession().invalidate();
+
+          // 로그인 페이지로 리다이렉트
+          return "redirect:/login";
+      }
 // 이용권 수정페이지 이동
-   @GetMapping("/change")
-   public String changeView(Member member) {
-      System.out.println("---> 이용 변경 페이지로 가기");
-      return "layout/member/change";
-      
-   }
+      @GetMapping("/change")
+      public String changeView(Model model) {
+          System.out.println("---> 이용 변경 페이지로 가기");
+
+          Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+          // 사용자가 인증되어 있지 않다면, 로그인하지 않은 상태로 이용권 페이지 열기
+          if (authentication == null || !authentication.isAuthenticated()) {
+              return "layout/member/change";
+          }
+
+          // 사용자가 인증되어 있다면, 사용자 정보를 가져와서 모델에 추가
+          Object principal = authentication.getPrincipal();
+          if (principal instanceof SecurityUser) {
+              SecurityUser securityUser = (SecurityUser) principal;
+              Member member = securityUser.getMember();
+              model.addAttribute("member", member);
+          }
+
+          return "layout/member/change";
+      }
+
 
    @PostMapping("/change")
    public String changeAction(Member member) {

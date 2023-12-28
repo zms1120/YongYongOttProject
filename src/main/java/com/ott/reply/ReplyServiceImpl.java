@@ -30,8 +30,8 @@ public class ReplyServiceImpl implements ReplyService {
 
 	// 댓글 삭제
 	@Override
-	public void deleteReply(Reply reply) {
-		replyRepository.deleteById(reply.getR_seq());
+	public void deleteReply(int r_seq) {
+		replyRepository.deleteById(r_seq);
 	}
 	
 	// 댓글 보기

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 
 <th:block th:replace="fragments/header :: header"></th:block>
 
@@ -28,11 +30,18 @@
 											<input type="password" name="password" placeholder="Password" />
 										</div>
 										<div class="link-block">
-											<a href="join">회원가입</a> &nbsp; &nbsp; <a href="find_id">아이디/비밀번호
-												찾기</a>
+											<a href="join">회원가입</a> &nbsp; &nbsp; <a href="find_id">아이디 /</a><a href="find_pwd"> 비밀번호 찾기</a>
 										</div>
 										<button class="signin_btn" type="submit">로그인</button>
 									</form>
+									<div th:if="${#authorization.expression('isAuthenticated()')}">
+										<p>
+											사용자 ID: <span th:text="${#authentication?.name}"></span>
+										</p>
+									</div>
+
+
+
 								</div>
 								<br> <br>
 								<!-- separator -->

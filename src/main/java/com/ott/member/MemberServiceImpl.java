@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -14,14 +15,26 @@ import com.ott.repository.MemberRepository;
 public class MemberServiceImpl implements MemberService {
    @Autowired
    MemberRepository memberRepository;
+  
+   private final PasswordEncoder passwordEncoder;
 
+   public MemberServiceImpl(PasswordEncoder passwordEncoder) {
+       this.passwordEncoder = passwordEncoder;
+   }
+
+   
    // 회원 가입
    @Override
    public void joinMember(Member member) {
-      System.out.println("가입 작동");
-      
-      // 회원 저장
-      memberRepository.save(member);
+       System.out.println("가입 작동");
+
+       // 사용자로부터 받은 비밀번호를 암호화
+       String encodedPassword = passwordEncoder.encode(member.getPassword());
+       // 암호화된 비밀번호를 다시 설정
+       member.setPassword(encodedPassword);
+
+       // 회원 저장
+       memberRepository.save(member);
    }
 
    // 회원 정보 수정

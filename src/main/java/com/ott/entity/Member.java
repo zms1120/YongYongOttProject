@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -42,7 +43,14 @@ public class Member {
 	private Date end_date;			//이용권종료날짜
 	
 	
-	@OneToMany(mappedBy = "member")
+	
+
+	public List<Board> getBoards() {
+		return boards;
+	}
+
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "member")
 	private List<Board> boards = new ArrayList<>();
 	
 	

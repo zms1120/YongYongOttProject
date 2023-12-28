@@ -159,7 +159,7 @@ $(document).ready(function() {
 			&& pwd_checker == 1
 			&& pwdck_checker == 1){
 				$('#email').val($('#id').val());
-				alert("id: " + $('#id').val() + " email: " + $('#email').val());
+				//alert("id: " + $('#id').val() + " email: " + $('#email').val());
 				$('.step1').hide();
 				$('.step2').show();
 				
