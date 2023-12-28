@@ -94,11 +94,7 @@
          <artifactId>thymeleaf-extras-springsecurity5</artifactId>
          <version>3.0.5.RELEASE</version>
       </dependency>
-		<dependency>
-			<groupId>com.ezen</groupId>
-			<artifactId>Chap07</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		
 	</dependencies>
 
 	<build>
