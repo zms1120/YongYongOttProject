@@ -78,7 +78,7 @@
                                  <div class="input_block">
                                     <h5>변경 이용권</h5>
                                     <select id="positionSelect" name="position" th:value="${session.member.position}" onchange="setMembership(this.value)">
-                                       <option value="GUEST" th:selected="${session.member.position == 'GUEST'}">GUEST</option>
+                                       <!-- <option value="GUEST" th:selected="${session.member.position == 'GUEST'}">GUEST</option> -->
                                        <option value="BASIC" th:selected="${session.member.position == 'BASIC'}">BASIC</option>
                                        <option value="PREMIUM" th:selected="${session.member.position == 'PREMIUM'}">PREMIUM</option>
                                     </select>
