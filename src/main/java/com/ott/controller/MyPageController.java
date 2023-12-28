@@ -1,15 +1,13 @@
 package com.ott.controller;
-import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
@@ -17,15 +15,19 @@ import com.ott.board.BoardService;
 import com.ott.entity.Board;
 import com.ott.entity.Member;
 import com.ott.member.MemberService;
+import com.util.member.MemberUtil;
 
 
 @Controller
+@ComponentScan(basePackages = {"com.util.member", "com.ott.controller"})
 public class MyPageController {
 
    @Autowired
    private BoardService boardService;
    @Autowired
    private MemberService memberService;
+   @Autowired
+   private MemberUtil memberUtil;
    
    // 로그인
    @GetMapping("login")
@@ -36,7 +38,7 @@ public class MyPageController {
    }
 
    // 로그인 session에 로그인 유지
-   @PostMapping("/login")
+   @PostMapping("login")
    public String loginAction(Member member, Model model, HttpSession session) {
        System.out.println("---> 로그인 내용 받기");
 
@@ -48,7 +50,10 @@ public class MyPageController {
        Member findMember = memberService.getMember(member);
 
        if (findMember != null && findMember.getPassword().equals(member.getPassword())) {
-           // 로그인 인증 성공(있는 고객)
+    	   // 로그인 인증 성공(있는 고객)
+    	   findMember = memberUtil.checkPosition(findMember);
+    	   memberService.changeMembership(findMember);
+    	   System.out.println("갱신완료: " + findMember);
            model.addAttribute("member", findMember);
 
            // 세션에 사용자 정보 저장
@@ -65,7 +70,7 @@ public class MyPageController {
            System.out.println("로그인 실패아이디 : " + member.getPassword());
            System.out.println(findMember);
 
-           return "redirect:/member/login";
+           return "redirect:/login";
        }
    }
    
