@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MailSender {
- 
+
 	public void mailSending(MailDTO mailDto) {
 		Properties props = new Properties();
 

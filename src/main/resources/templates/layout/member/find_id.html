@@ -6,8 +6,8 @@
 
 <head>
 <meta charset="UTF-8">
-<title>아이디 찾기</title> 
 
+<title>아이디 찾기</title>
 </head>
 <body>
 	<div class="container">
@@ -23,11 +23,11 @@
 									<h5>이메일과 핸드폰번호를 입력해주세용.</h5>									
 								</div>
 								<div class="form-section">
-									<form th:action="@{/check_find_id}" method="post" name="fr">
+
+								<form th:action="@{/check_find_id}" method="post" name="fr">
 										<div class="input_block">
 											<h5>이메일</h5>
-											<input type="email" name="email" id="email" placeholder="yongyong@example.com">
-											<span id="email-message"></span>
+											<input type="email" name="email" id="email">
 										</div>
 										<div class="input_block">
 											<h5>핸드폰 번호</h5>
@@ -37,12 +37,11 @@
 										<input class="signin_btn" type="button" value="아이디 찾기" onclick="check_find_id()"><br>
 										<div  th:align="center">
 										<span id="searchid-message"></span><br>
-										</div> 																		
+										</div> 								
 									</form>
-									<div class="link-block">
 									<a th:href="@{/login}">로그인</a> &nbsp; &nbsp; 
-									<a th:href="@{/find_pwd}">비밀번호 찾기</a>
-									</div>								
+										<a th:href="@{/find_pwd}">비밀번호 찾기</a>
+									</div>					
 								</div>
 							</div>
 						</div>

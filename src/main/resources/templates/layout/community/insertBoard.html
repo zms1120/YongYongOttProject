@@ -21,7 +21,7 @@
                   <div class="insert insert-section">
                      <!-- 로그인을 해야 작성이 가능함 -->
                      <!-- 작성 테이블 시작 -->
-                     <div class="form-section" th:if="${session.member != null}">
+                     <div class="form-section" th:if="${member != null}">
                         <div class="heading-section">
                            <h4>게시글을 작성 할 수 있어용</h4>
                            <h5>비방과 욕설 스포는 삭제가 될 수 있어용</h5>
@@ -42,7 +42,7 @@
                                  <tr>
                                     <td>작성자(ID)</td>
                                     <td><input type="text" name="id"
-                                       th:value="${session.member.id}" readonly></td>
+                                       th:value="${member.id}" readonly></td>
                                  </tr>
                                  <tr>
                                     <td>제목</td>
@@ -66,7 +66,7 @@
                         </form>
                      </div>
                      <!-- 로그인 안했을 경우 -->
-                     <div th:if="${session.member == null}">
+                     <div th:if="${member.id == null}">
                         <div class="heading-section">
                            <h4>게시글을 작성은 로그인 한 후 가능해용</h4>
                            <h5>로그인으로 이동해주세용</h5>

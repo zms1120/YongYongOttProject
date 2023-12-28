@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 
 <th:block th:replace="fragments/header :: header"></th:block>
 
@@ -32,6 +34,14 @@
 										</div>
 										<button class="signin_btn" type="submit">로그인</button>
 									</form>
+									<div th:if="${#authorization.expression('isAuthenticated()')}">
+										<p>
+											사용자 ID: <span th:text="${#authentication?.name}"></span>
+										</p>
+									</div>
+
+
+
 								</div>
 								<br> <br>
 								<!-- separator -->

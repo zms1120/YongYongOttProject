@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
+
 </head>
 
 <body>
@@ -23,6 +24,7 @@
 									<h5>아이디와 이메일을 입력해주세용.</h5>
 								</div>
 								<div class="form-section">
+
 									<form th:action="@{/check_find_pwd}" method="post">
 										<div class="input_block">
 											<h5>아이디</h5>
@@ -31,14 +33,13 @@
 										</div>
 										<div class="input_block">
 											<h5>이메일</h5>
-											<input type="email" name="email" id="email" placeholder="yongyong@example.com">
+										<input type="email" name="email" id="email" placeholder="yongyong@example.com">
 											<span id="findemail-message"></span>
 										</div>
-										<input class="signin_btn" type="button" value="비밀번호 찾기" onclick="check_find_pwd()"><br> <br>
+											<input class="signin_btn" type="button" value="비밀번호 찾기" onclick="check_find_pwd()"><br> <br>
 										<div  th:align="center">
 										<span id="searchpwd-message"></span><br>
-										</div> 
-									</form>
+										</div> 									</form>
 									<div class="link-block">
 									<a th:href="@{/login}">로그인</a> &nbsp; &nbsp; 
 									<a th:href="@{/find_id}">아이디 찾기</a>

@@ -70,17 +70,17 @@
                            <br>
                            <div>
                            <!-- 로그인 되었을때만 보이게 이용권 변경 가능-->
-                              <div th:if="${session.member != null}">                                         
+                              <div th:if="${member != null}">                                         
                                  <div class="input_block">
                                     <h5>id</h5>
-                                    <input type="text" name="id" id="id" th:value="${session.member.id}" readonly>
+                                    <input type="text" name="id" id="id" th:value="${member.id}" readonly>
                                  </div>                     
                                  <div class="input_block">
                                     <h5>변경 이용권</h5>
-                                    <select id="positionSelect" name="position" th:value="${session.member.position}" onchange="setMembership(this.value)">
-                                       <!-- <option value="GUEST" th:selected="${session.member.position == 'GUEST'}">GUEST</option> -->
-                                       <option value="BASIC" th:selected="${session.member.position == 'BASIC'}">BASIC</option>
-                                       <option value="PREMIUM" th:selected="${session.member.position == 'PREMIUM'}">PREMIUM</option>
+                                    <select id="positionSelect" name="position" th:value="${member.position}" onchange="setMembership(this.value)">
+                                         <!-- <option value="GUEST" th:selected="${session.member.position == 'GUEST'}">GUEST</option> -->
+                                       <option value="BASIC" th:selected="${member.position == 'BASIC'}">BASIC</option>
+                                       <option value="PREMIUM" th:selected="${member.position == 'PREMIUM'}">PREMIUM</option>
                                     </select>
                                  </div>
                                  <div class="input_block">
@@ -89,11 +89,11 @@
                                  </div>
                                  <div class="input_block">
                                     <h5>이용권 갱신일</h5>
-                                    <input type="date" name="renew_date" id="renew_date" th:value="${#dates.format(session.member.renew_date, 'yyyy-MM-dd')}" readonly>
+                                    <input type="date" name="renew_date" id="renew_date" th:value="${#dates.format(member.renew_date, 'yyyy-MM-dd')}" readonly>
                                  </div>
                                  <div class="input_block">
                                     <h5>이용권 종료일</h5>
-                                    <input type="date" name="end_date"  id="end_date" th:value="${#dates.format(session.member.end_date, 'yyyy-MM-dd')}" readonly>
+                                    <input type="date" name="end_date"  id="end_date" th:value="${#dates.format(member.end_date, 'yyyy-MM-dd')}" readonly>
                                  </div>
                                  <br>
                                  <div class="link-block">

@@ -390,5 +390,15 @@ public class AdminController {
 			return "layout/admin/getMemberList";
 		}
 	
-	
+
+
+		// 멤버 리스트
+		@GetMapping("/getMemberList")
+		public String memberList(Member member, Model model) {
+			List<Member> memberList = memberService.getMemberList(member);
+
+			model.addAttribute("memberList", memberList);
+
+			return "layout/admin/getMemberList";
+		}
 }

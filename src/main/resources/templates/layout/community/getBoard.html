@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <title>게시글 작성</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta name="_csrf_header" th:content="${_csrf.headerName}" />
 <script type="text/javascript" th:src="@{/assets/js/community.js}"></script>
 <!-- header -->
 <th:block th:replace="fragments/header :: header"></th:block>
 </head>
 <body th:align="center">
 
-	<div class="getBoard">
+		<div class="getBoard">
 		<div class="getBoard getBoard-section">
 			<!-- Board 시작 -->
 			<div class="form-section">
@@ -46,15 +48,18 @@
 							</tr>
 							<tr>
 								<td class="getBoardTitle" th:text="좋아요"></td>
-								<td><i id="like_count" class="fa fa-thumbs-up" th:text="${board.b_like}"></i>
-									<input id="like_button" type="button" value="♥" onclick="likePlus()" th:if="${session.member != null}">
-									<input id="b_seq" type="hidden" th:value="${board.b_seq}"></td>
+								<td><i id="like_count" class="fa fa-thumbs-up"
+									th:text="${board.b_like}"></i> <input id="like_button"
+									type="button" value="♥" onclick="likePlus()"
+									th:if="${member != null}"> <input id="b_seq"
+									type="hidden" th:value="${board.b_seq}"></td>
 							</tr>
 						</table>
 					</div>
 					<div
-						th:if="${session.member != null and (session.member.id == board.member.id or session.member.position == 'ADMIN')}">
-						<a th:href="@{'/updateBoard?b_seq=' + ${board.b_seq}}" style="font-size: 20px;">수정하기</a>
+						th:if="${member != null and (member.id == member.id or member.position == 'ADMIN')}">
+						<a th:href="@{'/updateBoard?b_seq=' + ${board.b_seq}}"
+							style="font-size: 20px;">수정하기</a>
 						<a th:href="@{/deleteBoard/{b_seq}(b_seq=${board.b_seq})}">삭제하기</a>
 					</div>
 				</form>
@@ -67,10 +72,11 @@
 				<form action="@{/gopost}" method="post" id="gopost">
 					<table>
 						<tr th:each="reply : ${board.replies}">
-							<td><span th:text="${reply.content + ' - ' + reply.member.name}"></span>
-							<!-- 현재 로그인한 사용자와 댓글을 작성한 사용자가 같을 때만 삭제 링크를 표시 -->
-								<a th:if="${session.member != null and session.member.id == reply.member.id}"
-								th:href="@{/deleteReply/{r_seq}(r_seq=${reply.r_seq}, b_seq=${board.b_seq})}">삭제</a></td>
+							<td><span
+								th:text="${reply.content + ' - ' + reply.member.name}"></span> <!-- 현재 로그인한 사용자와 댓글을 작성한 사용자가 같을 때만 삭제 링크를 표시 -->
+								<a th:if="${member != null and member.id == reply.member.id}"
+								th:href="@{/deleteReply/{r_seq}(r_seq=${reply.r_seq}, b_seq=${board.b_seq})}">삭제</a>
+							</td>
 						</tr>
 					</table>
 				</form>
@@ -78,32 +84,41 @@
 			<!-- 댓글 작성 -->
 
 			<!-- 로그인 했을때에만 작성 가능-->
-			<div class="replywrite" th:if="${session.member != null}">
+			<div class="replywrite" th:if="${member != null}">
 				<!-- Q&A 카테고리이면서 position이 ADMIN인 경우에만 댓글 작성 폼 표시 -->
-				<div th:if="${board.b_category == 'qna' and session.member.position == 'ADMIN'}">
-					<form th:action="@{/insertReply}" method="post" id="reply" th:object="${newReply}">
+				<div
+					th:if="${board.b_category == 'qna' and member.position == 'ADMIN'}">
+					<form th:action="@{/insertReply}" method="post" id="reply"
+						th:object="${newReply}">
 						<div class="replywrite-reply">
-							<input type="hidden" name="b_seq" id="b_seq" th:value="${board.b_seq}">
-							<textarea rows="3" cols="30" id="content" name="content" placeholder="악성 댓글과 스포는 싫어용."></textarea>
-							<input type="hidden" name="id" th:value="${session.member.id}" readonly>
+							<input type="hidden" name="b_seq" id="b_seq"
+								th:value="${board.b_seq}">
+							<textarea rows="3" cols="30" id="content" name="content"
+								placeholder="악성 댓글과 스포는 싫어용."></textarea>
+							<input type="hidden" name="id" th:value="${member.id}" readonly>
 							<input class="modify_btn" type="submit" value="댓글등록하기">
 						</div>
 					</form>
 				</div>
 				<!-- 다른 카테고리의 경우 모든 멤버에게 댓글 작성 폼 표시 -->
-				<div class="replywrite" th:if="${board.b_category != 'qna'}">
-					<form th:action="@{/insertReply}" method="post" id="reply" th:object="${newReply}">
+				<div
+					th:unless="${board.b_category == 'qna' and member.position == 'ADMIN'}">
+					<form th:action="@{/insertReply}" method="post" id="reply"
+						th:object="${newReply}">
 						<div class="replywrite-reply">
-							<input type="hidden" name="b_seq" id="b_seq" th:value="${board.b_seq}">
-							<textarea rows="3" cols="30" id="content" name="content" placeholder="악성 댓글과 스포는 싫어용."></textarea>
-							<input type="hidden" name="id" th:value="${session.member.id}" readonly><br>
+							<input type="hidden" name="b_seq" id="b_seq"
+								th:value="${board.b_seq}">
+							<textarea rows="3" cols="30" id="content" name="content"
+								placeholder="악성 댓글과 스포는 싫어용."></textarea>
+							<input type="hidden" name="id" th:value="${member.id}" readonly><br>
 							<input class="update_btn" type="submit" value="댓글등록하기">
 						</div>
 					</form>
 				</div>
-
 			</div>
+
 		</div>
+	</div>
 	</div>
 
 

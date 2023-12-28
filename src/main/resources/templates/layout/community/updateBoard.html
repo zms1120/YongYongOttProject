@@ -19,7 +19,7 @@
 
 					<div class="insert">
 						<div class="insert insert-section">
-							<div class="form-section" th:if="${session.member != null}">
+							<div class="form-section" th:if="${member != null}">
 								<div class="heading-section">
 									<h4>게시글을 수정 할 수 있어용</h4>
 									<h5>비방과 욕설 스포는 삭제가 될 수 있어용</h5>
@@ -45,7 +45,7 @@
 											</tr>
 											<tr>
 												<td>작성자(ID)</td>
-												<td><input type="text" name="id" th:value="${session.member.id}" readonly></td>
+												<td><input type="text" name="id" th:value="${member.id}" readonly></td>
 											</tr>
 											<tr>
 												<td>제목</td>

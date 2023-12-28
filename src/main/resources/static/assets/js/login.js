@@ -106,7 +106,7 @@ function check_find_id() {
         $("#id").val('');
     } else {
         $("#searchid-message").css("color", "aquamarine").html("찾으시는 아이디는<br>" + result + "<br>입니다용");
-        
+
     }
         }
     });

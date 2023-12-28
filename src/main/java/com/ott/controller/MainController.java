@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ott.entity.Movie;
@@ -26,7 +27,7 @@ public class MainController {
 	}
 
 	// 메인 화면
-	@GetMapping("/main")
+	@RequestMapping({"/main","/"})
 	public String mainView(Model model, Movie movie) {
 		List<Movie> movieList = movieService.getMovieList(movie);
 		System.out.println(movieList);
@@ -48,4 +49,8 @@ public class MainController {
 		 return "layout/contents/search";
 	}
 
+	@GetMapping("/layout/accessDenied")
+	   public void accessDenied() {
+		   
+	   }
 }
