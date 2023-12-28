@@ -5,6 +5,8 @@
 <th:block th:replace="fragments/adminheader :: adminheader"></th:block>
 <!-- CSS Files -->
 <link rel="stylesheet" href="assets/css/admin.css" />
+<!-- js Files -->
+<script type="text/javascript" th:src="@{/assets/js/admin.js}"></script>
 </head>
 <body class="sb-nav-fixed">
 
@@ -24,7 +26,7 @@
 								<h4>영화 등록 페이지 입니다.</h4>
 								<h5>일련번호는 중복이 불가합니다.</h5>
 							</div>
-							<form th:action="@{/insertMovie}" method="post" id="insert" enctype="multipart/form-data">
+							<form th:action="@{/insertMovie}" method="post" id="insert" enctype="multipart/form-data" onsubmit="return movie_save()">
 								<div class="input-table">
 									<div class="insert-input">
 										<h5>카테고리</h5>

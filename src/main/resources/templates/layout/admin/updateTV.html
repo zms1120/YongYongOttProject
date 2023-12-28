@@ -25,7 +25,7 @@
 								<h5>수정해주시고 수정하기 버튼을 눌러주세요.</h5>
 							</div>
 							
-						<form th:action="@{/updateTVProgram}" method="post" id="update" enctype="multipart/form-data">
+						<form th:action="@{/updateTVProgram}" method="post" id="update" enctype="multipart/form-data" onsubmit="return tv_save()">
 							<div class="input-table">
 								<!-- 기존의 pseq 값을 유지하는 hidden 필드 추가 -->
 								<input type="hidden" name="pseq" th:value="${tvProgram.pseq}">
