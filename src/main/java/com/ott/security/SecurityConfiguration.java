@@ -26,7 +26,8 @@ public class SecurityConfiguration  {
 	    security.authorizeRequests()
 	    	.antMatchers("/").permitAll()
 	        .antMatchers("/mypage/**").authenticated()
-	        .antMatchers("/admin/**").hasRole("ADMIN")
+	        .antMatchers("/admin/**").access("hasAuthority('ADMIN')")
+	        .antMatchers("/adminPage/**").access("hasAuthority('ADMIN')")
 	        .and()
 	        .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 	        .and()
@@ -36,15 +37,15 @@ public class SecurityConfiguration  {
 	            .loginProcessingUrl("/login")
 	            .defaultSuccessUrl("/datecheck")
 	            .and()
-	        .sessionManagement().sessionFixation().migrateSession()
-	        .and()
-	        .logout().logoutUrl("/logout").invalidateHttpSession(true).logoutSuccessUrl("/")
+	        .sessionManagement().sessionFixation().migrateSession();
+	    security.exceptionHandling().accessDeniedPage("/layout/admin/accessDenied");
+	    security.logout().logoutUrl("/logout").invalidateHttpSession(true).logoutSuccessUrl("/login")
 	        .and()
 	        .userDetailsService(securityUserDetailsService);
-
+	    	
 	    return security.build();
 	}
-
+	
    /*
     * 비밀번호 암호화
     */

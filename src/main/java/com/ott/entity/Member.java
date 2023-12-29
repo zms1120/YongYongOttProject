@@ -11,6 +11,8 @@ import javax.persistence.OneToMany;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -51,6 +53,7 @@ public class Member {
 
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "member")
+	@JsonIgnore
 	private List<Board> boards = new ArrayList<>();
 	
 	
