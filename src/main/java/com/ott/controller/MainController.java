@@ -49,7 +49,7 @@ public class MainController {
 		 return "layout/contents/search";
 	}
 
-	@GetMapping("/layout/accessDenied")
+	@GetMapping("/layout/admin/accessDenied")
 	   public void accessDenied() {
 		   
 	   }
