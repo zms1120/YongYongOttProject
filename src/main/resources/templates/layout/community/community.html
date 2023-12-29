@@ -98,6 +98,20 @@
 					<div class="col-lg-12">
 					<div class="community board-section">
 					  <table>
+						  <tr>
+							<td>
+							  <a th:href="faq">
+								  <div class="community board">
+									<span class="item">공지</span>
+									<div class="board-info">
+										<h4>자주하는 질문입니다.</h4>
+										<span>Q&A에 망설이지 말고 질문해주세용</span>
+									</div>
+									<span class="id">관리자</span>
+								  </div>
+							  </a>
+							</td>
+						  </tr>
 						  <tr th:each="board, state : ${boardList}">
 							<td>
 							  <a th:href="@{/gopost(b_seq=${board.b_seq})}">
