@@ -38,20 +38,26 @@ public class MemberServiceImpl implements MemberService {
    }
 
    // 회원 정보 수정
-   @Override
    public void modifyMember(Member member) {
-      // 아이디로
-      Member findMember = memberRepository.findById(member.getId()).get();
+       // 아이디로 회원 조회
+       Member findMember = memberRepository.findById(member.getId()).orElseThrow(() -> new RuntimeException("해당 회원이 존재하지 않습니다."));
 
-      System.out.println("아이디" + member.getId());
+       System.out.println("아이디: " + member.getId());
 
-      // 비번, 이름, 핸드폰번호, 회원구분 변경 가능
-      findMember.setPassword(member.getPassword());
-      findMember.setName(member.getName());
-      findMember.setPhone_number(member.getPhone_number());
-      findMember.setPosition(member.getPosition());
+       // 비밀번호가 변경된 경우에만 암호화하여 저장
+       String newPassword = member.getPassword();
+       if (newPassword != null && !newPassword.isEmpty()) {
+           String encodedPassword = passwordEncoder.encode(newPassword);
+           findMember.setPassword(encodedPassword);
+       }
 
-      memberRepository.save(findMember);
+       // 나머지 정보 업데이트
+       findMember.setName(member.getName());
+       findMember.setPhone_number(member.getPhone_number());
+       findMember.setPosition(member.getPosition());
+
+       // 변경된 회원 정보 저장
+       memberRepository.save(findMember);
    }
 
    // 회원 탈퇴

@@ -31,13 +31,13 @@ public class PasswordEncoderTest {
 	@Test
 	public void testInsert() {
 		 Member member1 = Member.builder()
-		            .id("admin")
-		            .password(encoder.encode("1234"))
-		            .name("관리자")
-		            .position("ADMIN")
-		            .age(33)
-		            .email("admin@email.com")
-		            .phone_number("000-0000-0000")
+		            .id("ms1")
+		            .password(encoder.encode("123"))
+		            .name("회원1")
+		            .position("GUEST")
+		            .age(17)
+		            .email("ms1@email.com")
+		            .phone_number("000-1111-1111")
 		            .reg_date(new Date())
 		            .build();
 		      
