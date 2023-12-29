@@ -6,12 +6,14 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,7 +30,7 @@ import com.ott.member.MemberService;
 import com.ott.movie.MovieService;
 import com.ott.reply.ReplyService;
 import com.ott.tvprogram.TVProgramService;
-
+@RequestMapping("/admin")
 @Controller
 public class AdminController {
 
@@ -47,6 +49,7 @@ public class AdminController {
 
 	// 관리자 메인페이지
 	@GetMapping("/adminPage")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public String adminMain(Movie movie, TVProgram tvProgram, Member member, Board board, Model model) {
 
 		List<Board> boardList = boardService.getBoardList(board);

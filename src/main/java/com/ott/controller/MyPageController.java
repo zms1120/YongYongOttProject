@@ -121,7 +121,6 @@ public class MyPageController {
 	      memberService.changeMembership(member);
 	      return "redirect:/main";
 	   }
-
    
    
 }

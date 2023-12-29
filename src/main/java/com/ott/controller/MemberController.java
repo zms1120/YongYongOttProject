@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
-
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -224,22 +224,35 @@ public class MemberController {
               model.addAttribute("member", member);
           }
 
+          // 캐시를 비활성화하기 위해 "no-cache" 헤더를 추가하지 않고 바로 템플릿 리턴
           return "layout/member/change";
       }
 
 
-   @PostMapping("/change")
-   public String changeAction(Member member) {
-      System.out.println("---> 이용 변경 내용 저장");      
+      @PostMapping("/change")
+      public String changeAction(Member member, Authentication authentication) {
+         System.out.println("---> 이용 변경 내용 저장");      
 
-      // 수정된 내용 저장
-     
-      memberService.changeMembership(member);
-    
-    	 
-  
-      return "redirect:/mypage";
-   }
+         // 수정된 내용 저장
+         memberService.changeMembership(member);
+
+         // 세션 갱신
+         String newPosition = member.getPosition(); // 변경된 이용권 정보
+         updateAuthenticationWithNewPosition(authentication, newPosition);
+
+         return "redirect:/mypage";
+      }
+
+      private void updateAuthenticationWithNewPosition(Authentication authentication, String newPosition) {
+         // 사용자의 현재 인증 객체를 가져옴
+         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
+
+         // 사용자의 이용권 정보를 갱신
+         securityUser.getMember().setPosition(newPosition);
+
+         // 여기에서는 SecurityContextHolder를 직접 조작하지 않고, Spring Security가 제공하는
+         // Authentication 객체를 통해 간접적으로 세션을 갱신합니다.
+      }
 
 
    //이용약관 관련 메소드

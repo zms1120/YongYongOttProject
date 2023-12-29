@@ -9,7 +9,7 @@
         <meta name="author" content="" />
         <title>어드민</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="assets/css/styles.css" rel="stylesheet" />
+        <link th:href="@{/assets/css/styles.css}" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         
         
@@ -20,7 +20,7 @@
         
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" th:href="@{/adminPage}">용용플레이 어드민 페이지</a>
+            <a class="navbar-brand ps-3" th:href="@{/admin/adminPage}">용용플레이 어드민 페이지</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -38,7 +38,7 @@
                         <li class="dropdown-item">안녕하세요</li>
                         <li class="dropdown-item">관리자님</li>
                         <li><hr class="dropdown-divider" /></li>
-                     	<li class="dropdown-item"><a th:href="@{/logout}"
+                     	<li><a th:href="@{/logout}"
 									onclick="event.preventDefault(); document.getElementById('logout-form').submit();">로그아웃</a></li>
                     </ul>
                 </li>

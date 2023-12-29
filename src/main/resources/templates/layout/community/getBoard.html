@@ -13,7 +13,7 @@
 </head>
 <body th:align="center">
 
-		<div class="getBoard">
+	<div class="getBoard">
 		<div class="getBoard getBoard-section">
 			<!-- Board 시작 -->
 			<div class="form-section">
@@ -56,11 +56,14 @@
 							</tr>
 						</table>
 					</div>
-					<div
-						th:if="${member != null and (member.id == member.id or member.position == 'ADMIN')}">
-						<a th:href="@{'/updateBoard?b_seq=' + ${board.b_seq}}"
+					<div>
+						<span th:if="${member != null and (board.member.id == member.id)}">
+							<a th:href="@{'/updateBoard?b_seq=' + ${board.b_seq}}"
 							style="font-size: 20px;">수정하기</a>
-						<a th:href="@{/deleteBoard/{b_seq}(b_seq=${board.b_seq})}">삭제하기</a>
+						</span> &nbsp;
+						<span th:if="${member != null and (board.member.id == member.id or member.position == 'ADMIN')}">
+							<a th:href="@{/deleteBoard/{b_seq}(b_seq=${board.b_seq})}">삭제하기</a>
+						</span>
 					</div>
 				</form>
 			</div>
@@ -86,8 +89,9 @@
 			<!-- 로그인 했을때에만 작성 가능-->
 			<div class="replywrite" th:if="${member != null}">
 				<!-- Q&A 카테고리이면서 position이 ADMIN인 경우에만 댓글 작성 폼 표시 -->
-				<div th:if="${board.b_category == 'qna' && member.position == 'ADMIN'}">
-					
+				<div
+					th:if="${board.b_category == 'qna' && member.position == 'ADMIN'}">
+
 					<form th:action="@{/insertReply}" method="post" id="reply"
 						th:object="${newReply}">
 						<div class="replywrite-reply">

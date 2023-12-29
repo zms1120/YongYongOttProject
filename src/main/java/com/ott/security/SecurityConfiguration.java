@@ -27,7 +27,6 @@ public class SecurityConfiguration  {
 	    	.antMatchers("/").permitAll()
 	        .antMatchers("/mypage/**").authenticated()
 	        .antMatchers("/admin/**").access("hasAuthority('ADMIN')")
-	        .antMatchers("/adminPage/**").access("hasAuthority('ADMIN')")
 	        .and()
 	        .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 	        .and()
@@ -38,7 +37,7 @@ public class SecurityConfiguration  {
 	            .defaultSuccessUrl("/datecheck")
 	            .and()
 	        .sessionManagement().sessionFixation().migrateSession();
-	    security.exceptionHandling().accessDeniedPage("/layout/admin/accessDenied");
+	    security .exceptionHandling().accessDeniedPage("/layout/admin/accessDenied");
 	    security.logout().logoutUrl("/logout").invalidateHttpSession(true).logoutSuccessUrl("/login")
 	        .and()
 	        .userDetailsService(securityUserDetailsService);
