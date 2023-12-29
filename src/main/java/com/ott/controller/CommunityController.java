@@ -61,10 +61,7 @@ public class CommunityController {
 	@GetMapping("/gopost")
 	public String getBoard(Board board, Model model, Reply reply, @RequestParam(name = "b_seq") int boardSeq) {
 		Board selectedBoard = boardService.getBoard(board);
-		// 게시글 조회수 증가
-		boardService.increaseViewCount(boardSeq);
-		model.addAttribute("board", selectedBoard);
-		model.addAttribute("reply", replyService.getReply(boardSeq));
+		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		// 사용자가 인증되어 있지 않다면, 로그인하지 않은 상태로 이용권 페이지 열기
 		if (authentication == null || !authentication.isAuthenticated()) {
@@ -78,6 +75,10 @@ public class CommunityController {
 			Member member = securityUser.getMember();
 			model.addAttribute("member", member);
 		}
+		// 게시글 조회수 증가
+				boardService.increaseViewCount(boardSeq);
+				model.addAttribute("board", selectedBoard);
+				model.addAttribute("reply", replyService.getReply(boardSeq));
 		return "layout/community/getBoard";
 	}
 

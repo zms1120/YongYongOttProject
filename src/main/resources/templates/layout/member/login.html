@@ -34,11 +34,7 @@
 										</div>
 										<button class="signin_btn" type="submit">로그인</button>
 									</form>
-									<div th:if="${#authorization.expression('isAuthenticated()')}">
-										<p>
-											사용자 ID: <span th:text="${#authentication?.name}"></span>
-										</p>
-									</div>
+									
 
 
 

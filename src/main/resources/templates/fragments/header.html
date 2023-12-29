@@ -52,22 +52,30 @@ https://templatemo.com/tm-579-cyborg-gaming
 				<div class="row">
 					<div class="col-12">
 						<div>
-						
+
 							<!-- 메뉴 -->
-							<ul class="upper-nav"  sec:authorize="isAnonymous()">
+							<ul class="upper-nav" sec:authorize="isAnonymous()">
 								<li><a href="login">로그인</a></li>
 								<li><a href="change">이용권안내</a></li>
 							</ul>
 							<!-- 사용자 인증 상태에 따른 메뉴 -->
-							
+
 							<ul class="upper-nav" sec:authorize="isAuthenticated()">
-								<li sec:authorize="hasRole('ADMIN')"><a
+								<li sec:authorize="principal.member.position == 'ADMIN'"><a
 									href="adminPage">관리자 페이지 이동</a></li>
-								<li><a href="logout">로그아웃</a></li>
-								<li  sec:authorize="not hasRole('ADMIN')"><a
+								<li><a th:href="@{/logout}"
+									onclick="event.preventDefault(); document.getElementById('logout-form').submit();">로그아웃</a></li>
+								<li sec:authorize="principal.member.position != 'ADMIN'"><a
 									href="change">이용권변경</a></li>
 							</ul>
 							<hr>
+
+							<form id="logout-form" th:action="@{/logout}" method="post"
+								style="display: none;">
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" />
+							</form>
+
 						</div>
 
 

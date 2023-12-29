@@ -86,8 +86,8 @@
 			<!-- 로그인 했을때에만 작성 가능-->
 			<div class="replywrite" th:if="${member != null}">
 				<!-- Q&A 카테고리이면서 position이 ADMIN인 경우에만 댓글 작성 폼 표시 -->
-				<div
-					th:if="${board.b_category == 'qna' and member.position == 'ADMIN'}">
+				<div th:if="${board.b_category == 'qna' && member.position == 'ADMIN'}">
+					
 					<form th:action="@{/insertReply}" method="post" id="reply"
 						th:object="${newReply}">
 						<div class="replywrite-reply">
@@ -101,8 +101,7 @@
 					</form>
 				</div>
 				<!-- 다른 카테고리의 경우 모든 멤버에게 댓글 작성 폼 표시 -->
-				<div
-					th:unless="${board.b_category == 'qna' and member.position == 'ADMIN'}">
+				<div th:unless="${board.b_category == 'qna'}">
 					<form th:action="@{/insertReply}" method="post" id="reply"
 						th:object="${newReply}">
 						<div class="replywrite-reply">

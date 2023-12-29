@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     <th:block th:replace="fragments/header :: header"></th:block>
     <body>
       <div class="container">
@@ -62,7 +62,7 @@
             	<table>
             		<tr th:each="epi, state : ${epiList}">
             			<div class="episode">
-            					<span th:onclick="goEpiVideo([[${epi.video_path}]], [[${tvProgram.rating}]], [[${member}]])">
+            				<span th:onclick="goEpiVideo([[${epi.video_path}]], [[${tvProgram.rating}]], [[${member}]])">
 							<div class="ep-image">
 								<img th:src="@{'/assets/images/tv/' + ${tvProgram.banner_path}}"> 
 								

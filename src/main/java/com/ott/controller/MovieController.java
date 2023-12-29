@@ -5,7 +5,10 @@ import com.ott.entity.Member;
 import com.ott.entity.Movie;
 import com.ott.member.MemberService;
 import com.ott.movie.MovieService;
+import com.ott.security.SecurityUser;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -46,7 +49,7 @@ public class MovieController {
     
     //영화 상세 보기
     @GetMapping("moviedetail")
-    public String getMovie(Model model, @RequestParam("movie_code") String movie_code, HttpSession session) {
+    public String getMovie(Model model, @RequestParam("movie_code") String movie_code, @AuthenticationPrincipal SecurityUser securityUser) {
         // 새로운 Movie 객체를 생성하고 movieCode를 설정
     	Movie movie = new Movie();
     	
@@ -61,15 +64,13 @@ public class MovieController {
         model.addAttribute("movie", movie);
         model.addAttribute("videoPath", videoPath);
         
-        // 세션에서 로그인한 사용자 정보 가져오기
-	    Member loggedInMember = (Member) session.getAttribute("member");
-
-	    if (loggedInMember == null) { 
+      
+	    if (securityUser == null) { 
 	    	//로그인 한 사용자가 없다면
 	    	model.addAttribute("member", new Member());
 	    } else {
 	    	// 세션에 저장된 아이디 정보로 최신 회원 정보 불러오기
-			Member member = memberService.getMember(loggedInMember);
+			Member member = securityUser.getMember();
 			//System.out.println("movieDetail: " + member.getId());
 			model.addAttribute("member", member);
 	    }

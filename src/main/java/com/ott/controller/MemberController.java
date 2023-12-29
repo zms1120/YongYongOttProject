@@ -66,16 +66,7 @@ public class MemberController {
       return "redirect:/login";
    }
   
-   // 로그아웃
-   @GetMapping("/logout")
-   public String logout(HttpSession session) {
-      System.out.println("---> 로그아웃");
-      // 세션 끝
-      session.invalidate();
-
-      // 메인 페이지로 이동
-      return "layout/member/login";
-   }
+  
 
    // 아이디 중복 페이지
    // ajax 연결

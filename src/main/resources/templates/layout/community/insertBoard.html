@@ -37,6 +37,7 @@
                                           <option th:value="qna">Q&A</option>
                                           <option th:value="talk">수다</option>
                                           <option th:value="review">후기</option>
+                                          <option sec:authorize="principal.member.position == 'ADMIN'" th:value="info">공지</option>
                                     </select></td>
                                  </tr>
                                  <tr>

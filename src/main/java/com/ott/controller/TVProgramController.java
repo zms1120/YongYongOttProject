@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,7 @@ import com.ott.entity.Member;
 import com.ott.entity.TVProgram;
 import com.ott.episode.EpisodeService;
 import com.ott.member.MemberService;
+import com.ott.security.SecurityUser;
 import com.ott.tvprogram.TVProgramService;
 
 
@@ -66,39 +68,36 @@ public class TVProgramController {
 		return "layout/contents/alltv";
 	}
 	
-	//TVProgram 상세화면
-	  @GetMapping("tvdetail")
-	    public String getTVProgram(Model model, @RequestParam("pseq") int pseq, Episode episode, HttpSession session) {
-	        // 새로운 TVProgram 객체를 생성하고 qseq를 설정
-	         TVProgram tvProgram = new TVProgram();
-	         tvProgram.setPseq(pseq);
-	        
-	        // tvProgarmService.getTVProgram에 올바른 TVProgram 객체를 전달
-	        tvProgram = tvProgramService.getTVProgram(tvProgram);
-	        // 동영상 경로 가져오기
-	        String videoPath = tvProgramService.getVideoPath(pseq);
-	       List<Episode> epiList = episodeService.getEpList(pseq);
-	     
-	      
-	        // 모델에 추가
-	        model.addAttribute("tvProgram", tvProgram);
-	        model.addAttribute("videoPath", videoPath);
-	        model.addAttribute("epiList", epiList);
-	        
-	     // 세션에서 로그인한 사용자 정보 가져오기
-		    Member loggedInMember = (Member) session.getAttribute("member");
+	@GetMapping("tvdetail")
+	public String getTVProgram(Model model, @RequestParam("pseq") int pseq, Episode episode, 
+	                           @AuthenticationPrincipal SecurityUser securityUser) {
+	    // 새로운 TVProgram 객체를 생성하고 qseq를 설정
+	    TVProgram tvProgram = new TVProgram();
+	    tvProgram.setPseq(pseq);
 
-		    if (loggedInMember == null) { 
-		    	//로그인 한 사용자가 없다면
-		    	model.addAttribute("member", new Member());
-		    } else {
-		    	// 세션에 저장된 아이디 정보로 최신 회원 정보 불러오기
-				Member member = memberService.getMember(loggedInMember);
-				//System.out.println("movieDetail: " + member.getId());
-				model.addAttribute("member", member);
-		    }
-	        
-	        return "layout/contents/tvdetail";
-	  }
-	
+	    // tvProgarmService.getTVProgram에 올바른 TVProgram 객체를 전달
+	    tvProgram = tvProgramService.getTVProgram(tvProgram);
+
+	    // 동영상 경로 가져오기
+	    String videoPath = tvProgramService.getVideoPath(pseq);
+	    List<Episode> epiList = episodeService.getEpList(pseq);
+
+	    // 모델에 추가
+	    model.addAttribute("tvProgram", tvProgram);
+	    model.addAttribute("videoPath", videoPath);
+	    model.addAttribute("epiList", epiList);
+
+	    // Spring Security를 사용하여 인증된 사용자 정보 가져오기
+	   
+	    if (securityUser != null) {
+	        Member member = securityUser.getMember();
+	        model.addAttribute("member", member);
+	    } else {
+	        // 사용자가 인증되어 있지 않을 경우
+	        model.addAttribute("member", new Member());
+	    }
+
+	    return "layout/contents/tvdetail";
+	}
+
 }
