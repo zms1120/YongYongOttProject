@@ -101,7 +101,7 @@ public class MemberController {
    // 메일 인증 기능
    // ajax 연결
    @ResponseBody
-   @PostMapping("/email_auth")
+   @GetMapping("/email_auth")
    public String MailSend(@RequestParam("email") String email){
 
 	   System.out.println("mail: " + email);
