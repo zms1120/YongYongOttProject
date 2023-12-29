@@ -116,7 +116,7 @@ function sendMail() {
 		data: {
 			email: email
 		},
-		type: 'post',
+		type: 'get',
 		dataType: 'text',
 		success: function(result) {
 			number = result

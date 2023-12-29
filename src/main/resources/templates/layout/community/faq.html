@@ -22,14 +22,16 @@ a {
   width: 900px;
   overflow: hidden;
   margin: 25px auto;
+  color: #f7f7f7;
 }
 
 .menu > li {
   width: 100%;
   text-align: center;
   line-height: 40px;
-  background-color: #58C1D6;
-  border-radius: 10px;
+  background-color: transparent;
+  border-radius: 8px;
+  font-weight: 400;
 }
 
 .menu a {
@@ -38,7 +40,8 @@ a {
 
 .submenu>li {
    line-height: 50px;
-   background-color: 9ADBE8;
+   background-color: #1f2122;
+   color: #f7f7f7;
 }
 
 .submenu {
@@ -48,13 +51,15 @@ a {
 
 .menu>li:hover {
    height: auto;
-   background-color: 9ADBE8;
-   transition-duration: 0.5s;
+   background-color: #1f2122;
+   transition-duration: 0.5ms;
+   cursor: pointer;
+   color: #9ADBE8;
 }
 
 .menu>li:hover .submenu {
-   height: 250px; 
-   transition-duration: 1s;
+   height: auto; 
+   transition-duration: 2s;
 }
 </style>
 
@@ -73,8 +78,9 @@ a {
                      <div class="form-section">
                         <div class="heading-section">
                            <h4>자주하는 질문입니다.</h4>
-                           <h5>Q&A에 망설이지 질문해주세용</h5>
+                           <h5>Q&A에 망설이지 말고 질문해주세용</h5>
                         </div>
+                        <br>
                         
                         <!-- 자주하는 질문 시작 -->
                         <ul class="menu">
@@ -86,7 +92,7 @@ a {
                                  </li>
                               </ul>
                            </li>
-                           
+                           <hr>
                            <li>동영상을 보기 위한 PC 최소 사양을 알려주세용
                               <ul class="submenu">
                                  <li>
@@ -101,7 +107,7 @@ a {
                                  </li>                           
                               </ul>
                            </li>
-                           
+                           <hr>
                            <li>맥 사용자도 용용플레이를 이용할 수 있나용?
                               <ul class="submenu">
                                  <li>
@@ -110,7 +116,7 @@ a {
                                  </li>                                 
                               </ul>
                            </li>
-                           
+                           <hr>
                            <li>예고편이 안나와용.
                               <ul class="submenu">
                                  <li>
@@ -121,7 +127,7 @@ a {
                                  </li>                                 
                               </ul>
                            </li>                        
-                        
+                        <hr>
                         <li>영상은 멈춰있고 소리만 나오는 현상은용?
                               <ul class="submenu">
                                  <li>
@@ -132,7 +138,7 @@ a {
                                  </li>                                 
                               </ul>
                         </li>                        
-                        
+                        <hr>
                         <li>방송을 보다가 차단되는 때가 있어용. 왜 그런걸까용?
                               <ul class="submenu">
                                  <li>
@@ -143,7 +149,7 @@ a {
                                  </li>                                 
                               </ul>
                         </li>                  
-                        
+                        <hr>
                         <li>동영상 재생중 1분 후에 끊길때가 있어용.
                               <ul class="submenu">
                                  <li>
@@ -153,7 +159,7 @@ a {
                                  </li>                                 
                               </ul>
                         </li>
-                        
+                        <hr>
                         <li>다시보기가 업로드가 늦거나 업로드가 되지 않아용
                               <ul class="submenu">
                                  <li>
@@ -164,7 +170,7 @@ a {
                                  </li>                                 
                               </ul>
                         </li>                  
-                        
+                        <hr>
                         <li>다시보기가 업로드가 늦거나 업로드가 되지 않아용
                               <ul class="submenu">
                                  <li>
@@ -179,7 +185,7 @@ a {
                                  </li>                                 
                               </ul>
                         </li>
-                        
+                        <hr>
                         <li>UHD(4K)로 시청 가능한 콘텐츠는 어떻게 알 수 있나용?
                               <ul class="submenu">
                                  <li>
@@ -198,7 +204,7 @@ a {
                                  </li>                                 
                               </ul>
                         </li>
-                        
+                        <hr>
                         <li>브라우저 캐시 초기화 방법 안내해주세용
                               <ul class="submenu">
                                  <li>
@@ -226,7 +232,7 @@ a {
                                  </li>                                 
                               </ul>
                         </li>
-                        
+                        <hr>
                         <li>안드로이드 TV로도 용용플레이를 이용 할 수 있나요?
                               <ul class="submenu">
                                  <li>
@@ -251,7 +257,7 @@ a {
                                  </li>                                 
                               </ul>
                         </li>
-                        
+                        <hr>
                         <li>Wi-Fi 신호가 약해서 동영상이 잘 재생되지 않아요
                               <ul class="submenu">
                                  <li>
@@ -262,7 +268,7 @@ a {
                                  </li>                                 
                               </ul>
                         </li>
-                        
+                        <hr>
                         <li>한도 초과라는 메시지가 뜹니다.
                               <ul class="submenu">
                                  <li>
@@ -271,7 +277,7 @@ a {
                                  </li>                                 
                               </ul>
                         </li>
-                        
+                        <hr>
                         <li>해외에서 사용할 수 있나요?
                               <ul class="submenu">
                                  <li>
@@ -282,7 +288,7 @@ a {
                                  </li>                                 
                               </ul>
                         </li>
-                        
+                        <hr>
                         <li>용용플레이를 원활하게 이용하기 위한 인터넷 환경을 알려주세요
                               <ul class="submenu">
                                  <li>
@@ -291,7 +297,7 @@ a {
                                  </li>                                 
                               </ul>
                         </li>
-                        
+                        <hr>
                         <li>불량 이용자는 어떻게 되나요?
                               <ul class="submenu">
                                  <li>
@@ -299,7 +305,7 @@ a {
                                  </li>                                 
                               </ul>
                         </li>
-                        
+                        <hr>
                         <li>본인확인제를 관리, 감독하는 기관은 어디인가요?
                               <ul class="submenu">
                                  <li>
@@ -307,7 +313,7 @@ a {
                                  </li>                                 
                               </ul>
                         </li>
-                        
+                        <hr>
                         
                         <li>소리가 들리지 않아요.
                               <ul class="submenu">
@@ -317,8 +323,8 @@ a {
                                  </li>                                 
                               </ul>
                         </li>
-                        
-                        <li>와이파이 환경에서 데이터요금
+                        <hr>
+                        <li>와이파이 환경에서 데이터요금은 어떻게 되나요?
                               <ul class="submenu">
                                  <li>
                                  와이파이 환경에서는 데이터요금이 나가지않습니다.
@@ -326,7 +332,7 @@ a {
                                  </li>                                 
                               </ul>
                         </li>
-                        
+                        <hr>
                         <li>동영상을 개인 또는 학교 홈페이지에 올리고 싶어요.
                               <ul class="submenu">
                                  <li>
@@ -335,7 +341,7 @@ a {
                                  </li>                                 
                               </ul>
                         </li>
-                        
+                        <hr>
                         <li>예고편이 안나와요.
                               <ul class="submenu">
                                  <li>
@@ -345,7 +351,7 @@ a {
                                  </li>                                 
                               </ul>
                         </li>         
-                        
+                        <hr>
                         </ul>                  
                         
                         
