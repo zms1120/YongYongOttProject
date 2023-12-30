@@ -4,7 +4,7 @@
 <!-- header 입니다. -->
 <th:block th:replace="fragments/adminheader :: adminheader"></th:block>
 <!-- CSS Files -->
-<link rel="stylesheet" href="assets/css/admin.css" />
+<link rel="stylesheet" th:href="@{/assets/css/admin.css}" />
 </head>
 <body class="sb-nav-fixed">
 
@@ -26,7 +26,7 @@
 								<h5>수정해주시고 수정하기 버튼을 눌러주세요.</h5>
 							</div>
 
-						<form th:action="@{/updateEpisode}" method="post" id="update" enctype="multipart/form-data" onsubmit="return episode_save()">
+						<form th:action="@{/admin/updateEpisode}" method="post" id="update" enctype="multipart/form-data" onsubmit="return episode_save()">
 							
 							<div class="input-table">
 							

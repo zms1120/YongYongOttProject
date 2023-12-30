@@ -101,7 +101,7 @@ public class AdminController {
 	public String insertMovie(@ModelAttribute("movie") Movie movie, @RequestPart("imageFile") MultipartFile imageFile,
 			@RequestPart("bannerFile") MultipartFile bannerFile) {
 		movieService.insertMovie(movie, imageFile, bannerFile);
-		return "redirect:/getMovieList";
+		return "redirect:/admin/getMovieList";
 	}
 
 	
@@ -151,7 +151,7 @@ public class AdminController {
 			// MovieService를 사용하여 영화 정보 및 파일 업데이트
 			movieService.updateMovie(movie, imageFile, bannerFile);
 			// 업데이트된 영화의 상세 페이지로 리다이렉트
-			return "redirect:/getMovie?movie_code=" + movie.getMovie_code();
+			return "redirect:/admin/getMovie?movie_code=" + movie.getMovie_code();
 		} catch (Exception e) {
 			// 예외 처리 (예: 로깅, 에러 페이지로 리다이렉트 등)
 			e.printStackTrace();
@@ -164,7 +164,7 @@ public class AdminController {
 	public String deleteMovie(@PathVariable("movie_code") String movie_code) {
 
 		movieService.deleteMovieByMovieCode(movie_code);
-		return "redirect:/getMovieList";
+		return "redirect:/admin/getMovieList";
 	}
 
 	// TV프로그램 리스트
@@ -187,7 +187,7 @@ public class AdminController {
 	public String insertTVProgram(@ModelAttribute("tvProgram") TVProgram tvProgram,
 			@RequestPart("imageFile") MultipartFile imageFile, @RequestPart("bannerFile") MultipartFile bannerFile) {
 		tvProgramService.insertTVProgram(tvProgram, imageFile, bannerFile);
-		return "redirect:/getTVProgramList";
+		return "redirect:/admin/getTVProgramList";
 	}
 	
 	//TV프로그램 수정 폼
@@ -237,7 +237,7 @@ public class AdminController {
 			// MovieService를 사용하여 영화 정보 및 파일 업데이트
 			tvProgramService.updateTVProgram(tvProgram, imageFile, bannerFile);
 			// 업데이트된 영화의 상세 페이지로 리다이렉트
-			return "redirect:/getTVProgram?pseq=" + tvProgram.getPseq();
+			return "redirect:/admin/getTVProgram?pseq=" + tvProgram.getPseq();
 		} catch (Exception e) {
 			// 예외 처리 (예: 로깅, 에러 페이지로 리다이렉트 등)
 			e.printStackTrace();
@@ -250,7 +250,7 @@ public class AdminController {
 	public String deleteTVProgram(@PathVariable("pseq") int pseq) {
 		tvProgramService.deleteTVProgramByPseq(pseq);
 
-		return "redirect:/getTVProgramList";
+		return "redirect:/admin/getTVProgramList";
 	}
 	// TV프로그램 상세정보 및 에피소드 목록 화면
 	@GetMapping("/getTVProgram")
@@ -292,7 +292,7 @@ public class AdminController {
 		// pseq 값을 가져와서 리다이렉트 URL에 포함시킴
 		pseq = episode.getTvProgram().getPseq();
 
-		return "redirect:/getTVProgram?pseq=" + pseq;
+		return "redirect:/admin/getTVProgram?pseq=" + pseq;
 	}
 	
 	//에피소드 수정 폼
@@ -344,7 +344,7 @@ public class AdminController {
 				// episode_num 값을 가져와서 리다이렉트 URL에 포함시킴
 				String episodeNum = existingEpisode.getEpisode_num();
 
-				return "redirect:/getTVProgram?pseq=" + pseq;
+				return "redirect:/admin/getTVProgram?pseq=" + pseq;
 			} else {
 				// 에피소드 정보가 존재하지 않으면 에러 페이지로 이동
 				return "error";
@@ -360,7 +360,7 @@ public class AdminController {
 	public String deleteEpisode(@PathVariable("episode_num") String episode_num, @RequestParam("pseq") int pseq) {
 		episodeService.deleteEpisodeByEpisodeNum(episode_num);
 
-		return "redirect:/getTVProgram?pseq=" + pseq;
+		return "redirect:/admin/getTVProgram?pseq=" + pseq;
 	}
 	
 	//커뮤티니 board 리스트

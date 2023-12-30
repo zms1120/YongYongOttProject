@@ -19,7 +19,7 @@
 					<h1 class="mt-4">용용플레이</h1>
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item active">
-						<a th:href="@{/getTVProgramList}">티비 프로그램 리스트</a></li>
+						<a th:href="@{/admin/getTVProgramList}">티비 프로그램 리스트</a></li>
 					</ol>
 
 					<div class="container">
@@ -63,10 +63,10 @@
 
 									</div>
 									<br>
-									<a th:href="@{'/updateTVProgram?pseq=' + ${tvProgram.pseq}}">수정</a> |
-									<a th:href="@{/deleteTVProgram/{pseq}(pseq=${tvProgram.pseq})}">삭제</a> |
-									<a th:href="@{/insertEpisode(pseq=${tvProgram.pseq})}">회차 등록</a> |
-									<a th:href="@{/getTVProgramList}">목록으로</a>
+									<a th:href="@{'/admin/updateTVProgram?pseq=' + ${tvProgram.pseq}}">수정</a> |
+									<a th:href="@{/admin/deleteTVProgram/{pseq}(pseq=${tvProgram.pseq})}">삭제</a> |
+									<a th:href="@{/admin/insertEpisode(pseq=${tvProgram.pseq})}">회차 등록</a> |
+									<a th:href="@{/admin/getTVProgramList}">목록으로</a>
 								</div>
 								<hr><br>
 								<h5>회차 정보</h5><hr><br>
@@ -91,8 +91,8 @@
 							<tr>
 							<td>
 								<br>
-								<a th:with="episodeNum=${epi.episode_num}" th:href="@{'/updateEpisode?pseq=' + ${epi.tvProgram.pseq} + '&episode_num=' + ${episodeNum}}">수정하기</a> |
-								<a th:href="@{/deleteEpisode/{episode_num}(episode_num=${epi.episode_num}, pseq=${tvProgram.pseq})}">삭제하기</a>
+								<a th:with="episodeNum=${epi.episode_num}" th:href="@{'/admin/updateEpisode?pseq=' + ${epi.tvProgram.pseq} + '&episode_num=' + ${episodeNum}}">수정하기</a> |
+								<a th:href="@{/admin/deleteEpisode/{episode_num}(episode_num=${epi.episode_num}, pseq=${tvProgram.pseq})}">삭제하기</a>
 								<hr><br>
 							</td>	
 							</tr>					

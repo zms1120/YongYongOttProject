@@ -25,7 +25,7 @@
 								<div class="card-body">전체 영화 보기</div>
 								<div
 									class="card-footer d-flex align-items-center justify-content-between">
-									<a class="small text-white stretched-link" th:href="@{/getMovieList}">View Details</a>
+									<a class="small text-white stretched-link" th:href="@{/admin/getMovieList}">View Details</a>
 									<div class="small text-white">
 										<i class="fas fa-angle-right"></i>
 									</div>
@@ -37,7 +37,7 @@
 								<div class="card-body">전체 TV프로그램 보기</div>
 								<div
 									class="card-footer d-flex align-items-center justify-content-between">
-									<a class="small text-white stretched-link" th:href="@{/getTVProgramList}">View Details</a>
+									<a class="small text-white stretched-link" th:href="@{/admin/getTVProgramList}">View Details</a>
 									<div class="small text-white">
 										<i class="fas fa-angle-right"></i>
 									</div>
@@ -49,7 +49,7 @@
 								<div class="card-body">게시판 전체 보기</div>
 								<div
 									class="card-footer d-flex align-items-center justify-content-between">
-									<a class="small text-white stretched-link" th:href="@{/getBoardList}">View Details</a> 
+									<a class="small text-white stretched-link" th:href="@{/admin/boardList}">View Details</a> 
 									<div class="small text-white">
 										<i class="fas fa-angle-right"></i>
 									</div>
@@ -61,7 +61,7 @@
 								<div class="card-body">회원 관리</div>
 								<div
 									class="card-footer d-flex align-items-center justify-content-between">
-									<a class="small text-white stretched-link" th:href="@{/getMemberList}">View Details</a>
+									<a class="small text-white stretched-link" th:href="@{/admin/getMemberList}">View Details</a>
 									<div class="small text-white">
 										<i class="fas fa-angle-right"></i>
 									</div>
@@ -85,8 +85,7 @@
 										<th>제목</th>
 										<th>작성자</th>
 										<th>게시글 항목</th>
-										<th>추천수</th>
-										<th>신고수</th>									
+										<th>추천수</th>						
 									</tr>
 								</thead>
 								<tbody>
@@ -95,8 +94,7 @@
 										<td th:text="${board.title}"></td>
 										<td th:text="${board.member.id}"></td>
 										<td th:text="${board.b_category}"></td>
-										<td th:text="${board.b_like}"></td>
-										<td th:text="${board.report}"></td>										
+										<td th:text="${board.b_like}"></td>								
 									</tr>
 								</tbody>
 							</table>

@@ -46,7 +46,6 @@ public class Board {
 	private int cnt = 0;						//게시글 조회수
 	private String b_category;				//게시글 항목
 	private int b_like;						//게시글 추천수
-	private String report;					// 게시글 신고
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date write_date= new Date();   				//게시글 등록일
 	

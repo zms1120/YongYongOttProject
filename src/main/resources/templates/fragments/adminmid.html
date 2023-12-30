@@ -11,7 +11,7 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">용용플레이어</div>
-                            <a class="nav-link" th:href="@{/adminPage}">
+                            <a class="nav-link" th:href="@{/admin/adminPage}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
@@ -30,8 +30,8 @@
                                     </a>
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" th:href="@{/getMovieList}">영화 리스트</a>
-                                    		<a class="nav-link" th:href="@{/insertMovie}">영화 등록</a>
+                                            <a class="nav-link" th:href="@{/admin/getMovieList}">영화 리스트</a>
+                                    		<a class="nav-link" th:href="@{/admin/insertMovie}">영화 등록</a>
                                         </nav>
                                     </div>
                                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
@@ -40,8 +40,8 @@
                                     </a>
                                     <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" th:href="@{/getTVProgramList}">TV프로그램 리스트</a>
-                             			    <a class="nav-link" th:href="@{/insertTVProgram}">TV프로그램 등록</a>
+                                            <a class="nav-link" th:href="@{/admin/getTVProgramList}">TV프로그램 리스트</a>
+                             			    <a class="nav-link" th:href="@{/admin/insertTVProgram}">TV프로그램 등록</a>
                                         </nav>
                                     </div>
                                 </nav>
@@ -54,13 +54,13 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                               		<a class="nav-link" th:href="@{/boardList}">게시판 관리</a>
-                               		<a class="nav-link" th:href="@{/qnaBoardList}">Q&A 답변</a>
-                                    <a class="nav-link" th:href="@{/#}">자주하는 질문</a>                 
+                               		<a class="nav-link" th:href="@{/admin/boardList}">게시판 관리</a>
+                               		<a class="nav-link" th:href="@{/admin/qnaBoardList}">Q&A 답변</a>
+                                    <a class="nav-link" th:href="@{/faq}" target="_blank">자주하는 질문</a>                 
                                 </nav>
                             </div>
                               <div class="sb-sidenav-menu-heading">Member</div>
-                            <a class="nav-link" th:href="@{/getMemberList}">
+                            <a class="nav-link" th:href="@{/admin/getMemberList}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                회원관리
                             </a>
