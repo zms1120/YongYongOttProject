@@ -4,7 +4,7 @@
 <!-- header 입니다. -->
 <th:block th:replace="fragments/adminheader :: adminheader"></th:block>
 <!-- CSS Files -->
-<link rel="stylesheet" href="assets/css/admin.css" />
+<link rel="stylesheet" th:href="@{/assets/css/admin.css}" />
 <!-- js Files -->
 <script type="text/javascript" th:src="@{/assets/js/admin.js}"></script>
 </head>
@@ -26,7 +26,7 @@
 								<h4>티비 프로그램 등록 페이지 입니다.</h4>
 								<h5>일련번호는 자동으로 생성됩니다.</h5>
 							</div>
-							<form th:action="@{/insertTVProgram}" method="post" id="update" enctype="multipart/form-data" onsubmit="return tv_save()">
+							<form th:action="@{/admin/insertTVProgram}" method="post" id="update" enctype="multipart/form-data" onsubmit="return tv_save()">
 									<div class="input-table">
 									<div class="insert-input">
 										<h5>카테고리</h5>
@@ -125,7 +125,7 @@
 
 								<div class="link-block">
 								<br>	
-										<a th:href="@{/adminPage}">메인으로</a> &nbsp; &nbsp;
+										<a th:href="@{/admin/adminPage}">메인으로</a> &nbsp; &nbsp;
 									</div>
 									<br> 
 									<input class="insert_btn" type="submit" value="등록하기">

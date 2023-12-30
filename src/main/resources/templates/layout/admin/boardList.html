@@ -45,19 +45,17 @@ a:hover {
 										<th>게시글 항목</th>
 										<th>조회수</th>
 										<th>추천수</th>
-										<th>신고수</th>
 										<th>등록일</th>																	
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:each="board, state : ${boardList}">
+									<tr th:each="board, state : ${boardList}" th:unless="${board.b_category == 'qna'}" >
 										<td th:text="${board.b_seq}"></td>
 										<td><a th:href="@{/gopost(b_seq=${board.b_seq})}" th:text="${board.title}" target="_blank"></a></td>
 										<td th:text="${board.member.id}"></td>
 										<td th:text="${board.b_category}"></td>
 										<td th:text="${board.cnt}"></td>
 										<td th:text="${board.b_like}"></td>
-										<td th:text="${board.report}"></td>	
 										<td th:text="${board.write_date}"></td>	
 									</tr>
 								</tbody>

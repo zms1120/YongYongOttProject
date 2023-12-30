@@ -42,8 +42,7 @@ a:hover {
 										<th>번호</th>									
 										<th>제목</th>
 										<th>작성자</th>
-										<th>추천수</th>
-										<th>신고수</th>	
+										<th>추천수</th>	
 										<th>답변 상태</th>																
 									</tr>
 								</thead>
@@ -53,7 +52,6 @@ a:hover {
 										<td><a th:href="@{/gopost(b_seq=${qna.b_seq})}" th:text="${qna.title}" target="_blank"></a></td>
 										<td th:text="${qna.member.name}"></td>
 										<td th:text="${qna.b_like}"></td>
-										<td th:text="${qna.report}"></td>
 										<td th:if="${qna.replies != null and not #lists.isEmpty(qna.replies)}">답변완료</td>
 										<td th:unless="${qna.replies != null and not #lists.isEmpty(qna.replies)}">답변미완료</td>
 								</tr>
