@@ -54,15 +54,20 @@
                                  <h5>가입일</h5>
                                  <input type="date" name="reg_date" th:value="${#dates.format(member.reg_date, 'yyyy-MM-dd')}" readonly>
                               </div>
-                              <div th:unless="member.position=='ADMIN'">
-                              <div class="input_block">
-                                 <h5>이용권 갱신일</h5>
-                                 <input type="date" name="renew_date" th:value="${#dates.format(member.renew_date, 'yyyy-MM-dd')}" pattern="yyyy-MM-dd" readonly>
-                              </div>
-                              <div class="input_block">
-                                 <h5>이용권 종료일</h5>
-                                 <input type="date" name="end_date" th:value="${#dates.format(member.end_date, 'yyyy-MM-dd')}" readonly>
-                              </div>
+                              <div th:unless="${member.position=='ADMIN'}">
+											<div class="input_block">
+												<h5>이용권 갱신일</h5>
+												<input type="date" name="renew_date"
+													th:value="${#dates.format(member.renew_date, 'yyyy-MM-dd')}"
+													pattern="yyyy-MM-dd" readonly>
+											</div>
+											<div class="input_block">
+												<h5>이용권 종료일</h5>
+												<input type="date" name="end_date"
+													th:value="${#dates.format(member.end_date, 'yyyy-MM-dd')}"
+													readonly>
+											</div>
+										</div>
                               </div>
                               <div class="link-block">
                                  <a th:href="@{/main}">메인으로</a> &nbsp; &nbsp; <a th:href="@{/delete}">탈퇴</a>
