@@ -4,7 +4,7 @@
 <!-- header 입니다. -->
 <th:block th:replace="fragments/adminheader :: adminheader"></th:block>
 <!-- CSS Files -->
-<link rel="stylesheet" href="assets/css/admin.css" />
+<link rel="stylesheet" th:href="@{/assets/css/admin.css}" />
 <!-- js Files -->
 <script type="text/javascript" th:src="@{/assets/js/admin.js}"></script>
 </head>
@@ -31,7 +31,7 @@
 								<div class="input-table">
 								
 								<div class="insert-input">
-									<h5>제목</h5>
+									<h5>회차</h5>
 								</div>
 								<div>
 									<input type="text" name="episode_num" id="episode_num" placeholder="회차를 입력해주세요.">
