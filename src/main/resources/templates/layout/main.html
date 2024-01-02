@@ -13,18 +13,25 @@
 
 		<!-- ***** Banner Start ***** -->
 		<div class="owl-banner owl-carousel owl-theme">
-		  <div class="banners" th:style="'background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), 
-		  		url(/assets/images/banner-bg.jpg)'">
-			  <div class="header-text">
-				<h4>용용플레이</h4>
-			  </div>
+		  <div>
+			<a href="change">
+		  	  <div class="banners" th:style="'background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), 
+		  		url(/assets/images/main_banner.jpg)'">
+			    <div class="header-text">
+			    </div>
+		  	  </div>
+		  	</a>
 		  </div>
 		  
-		  <div class="banners" th:style="'background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), 
-		  		url(/assets/images/harry.jpg)'">
-			  <div class="header-text">
-				<h4>해리포터</h4>
-			  </div>
+		  <div th:each="banner, state : ${bannerList}">
+			<a th:href="@{moviedetail(movie_code=${banner.movie_code})}">
+		      <div class="banners" th:style="'background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), 
+		  		url(/assets/images/movie/' + ${banner.banner_path} + ')'">
+			     <div class="header-text">
+				  <h4>[[${banner.m_title_ko}]]</h4>
+			    </div>
+		      </div>
+		    </a>
 		  </div>
 		</div>
 		<!-- ***** Banner End ***** -->

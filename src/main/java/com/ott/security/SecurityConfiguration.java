@@ -35,6 +35,7 @@ public class SecurityConfiguration  {
 	            .usernameParameter("id")
 	            .loginProcessingUrl("/login")
 	            .defaultSuccessUrl("/datecheck")
+	            .failureUrl("/loginerror")
 	            .and()
 	        .sessionManagement().sessionFixation().migrateSession();
 	    security .exceptionHandling().accessDeniedPage("/layout/admin/accessDenied");

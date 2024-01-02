@@ -1619,12 +1619,19 @@ Login Style
   color: #1e1e1e;
 }
 
+.login .error {
+	text-align: center;
+	color: #e75e8d;
+}
+
+
 .login .link-block {
 	position: relative;
     justify-content: center;
     align-items: center;
 	text-align: center;
 	margin-left: 10px;
+	margin-top: 20px;
 }
 
 .login .separator,

@@ -46,10 +46,6 @@ public class MyPageController {
    }
 
 
-
-   
-
-
    @GetMapping("mypage")
    public String myPage(Model model, @AuthenticationPrincipal SecurityUser securityUser) {
        /*
@@ -84,44 +80,62 @@ public class MyPageController {
            return "redirect:/login";
        }
    }
+
 	// 회원정보 수정페이지 이동
 	@GetMapping("modify")
 	public String modifyView(Model model, @AuthenticationPrincipal SecurityUser securityUser) {
 		System.out.println("---> 회원 변경 페이지로 가기");
-		
+
 		// 세션에서 로그인한 사용자 정보 가져오기
-		
-	    // 세션에 저장된 아이디 정보로 최신 회원 정보 불러오기
-	    Member member = securityUser.getMember();
-        model.addAttribute("member", member);
-		
-		
+
+		// 세션에 저장된 아이디 정보로 최신 회원 정보 불러오기
+		Member member = securityUser.getMember();
+		model.addAttribute("member", member);
+
 		return "layout/member/modify";
 	}
 
 	@PostMapping("/modify")
-	public String modifyAction(Member member) {
+	public String modifyAction(Member member, Authentication authentication) {
 		System.out.println("---> 회원 변경 내용 저장");
 
 		// 수정된 내용 저장
 		memberService.modifyMember(member);
 
-		System.out.println("가입일" + member.getReg_date());
-		System.out.println("끝" + member.getEnd_date());
-		System.out.println("갱신" + member.getRenew_date());
+		// 세션 갱신
+		String newEmail = member.getEmail(); // 변경된 회원 email
+		String phoneNumber = member.getPhone_number();
+		updateAuthenticationWithNewPosition(authentication, newEmail, phoneNumber);
 
-		// 메인페이지로 리다이렉트
 		return "redirect:/mypage";
 	}
 
+	private void updateAuthenticationWithNewPosition(Authentication authentication, String newEmail,
+			String phoneNumber) {
+		// 사용자의 현재 인증 객체를 가져옴
+		SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
+
+		// 사용자의 이용권 정보를 갱신
+		securityUser.getMember().setEmail(newEmail);
+		securityUser.getMember().setPhone_number(phoneNumber);
+
+		// 여기에서는 SecurityContextHolder를 직접 조작하지 않고, Spring Security가 제공하는
+		// Authentication 객체를 통해 간접적으로 세션을 갱신합니다.
+	}
+
 	@GetMapping("/datecheck")
-	   public String datScheck(@AuthenticationPrincipal SecurityUser securityUser) { 
-	      Member member = securityUser.getMember();
-	      member = memberUtil.checkPosition(member);
-	      memberService.changeMembership(member);
-	      return "redirect:/main";
-	   }
-   
-   
+	public String dateCheck(@AuthenticationPrincipal SecurityUser securityUser) {
+		Member member = securityUser.getMember();
+		member = memberUtil.checkPosition(member);
+		memberService.changeMembership(member);
+		return "redirect:/main";
+	}
+
+	@GetMapping("/loginerror")
+	public String loginError(Model model) {
+		model.addAttribute("message", "아이디 또는 비밀번호를 확인해주세요.");
+		return "layout/member/login";
+	}
+
 }
 

@@ -32,6 +32,9 @@ public class MainController {
 		List<Movie> movieList = movieService.getMovieList(movie);
 		System.out.println(movieList);
 		model.addAttribute("movieList", movieList);
+		
+		// 임시 데이터!
+		model.addAttribute("bannerList", movieList);
 
 		return "layout/main";
 	}
