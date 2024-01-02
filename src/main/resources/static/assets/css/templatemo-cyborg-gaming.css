@@ -1456,6 +1456,14 @@ Modify Style
   border-radius: 15px;
 }
 
+.modify form .input_block .join-info {
+  margin-top: 15px;
+  display: block;
+  position: relative;
+  color: #eee;
+  width: 340px;
+}
+
 .modify form .input_block input {
   display: block;
   width: 120%;
@@ -1469,6 +1477,10 @@ Modify Style
   color: #666;
   padding: 0 0 0 15px;
   font-size: 14px;
+}
+
+.modify form .input_block .password_ck{
+  display: none;
 }
 
  .modify form .input__block input:focus,

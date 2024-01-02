@@ -114,31 +114,30 @@ public class MemberController {
    }
    // 아이디 찾기 이메일로 핸드폰 번호로 찾기
    @ResponseBody
-   @RequestMapping("/check_find_id")
+   @GetMapping("/check_find_id")
    public String findIdView(@RequestParam(name = "email") String email,
          @RequestParam(name = "phone_number") String phone_number, Model model, Member member) {
-	   System.out.println("---> 아이디 찾기 시작!");
-	      System.out.println("입력 핸드폰 번호 " + phone_number);
-	      System.out.println("입력 이메일 " + email);
+      System.out.println("---> 아이디 찾기 시작!");
+      System.out.println("입력 핸드폰 번호 " + phone_number);
+      System.out.println("입력 이메일 " + email);
+      
+      
       model.addAttribute("phone_number", phone_number);
       model.addAttribute("email", email);
 
       String searchUserId = memberService.getEmailPhone(member);
 
+
       if (searchUserId != null) { // 아이디를 찾은 경우
          System.out.println("아이디 찾기 가능");
-        
          System.out.println("아이디 찾기 아이디 : " + searchUserId);
          model.addAttribute("id", searchUserId);// 아이디 값을 모델에 추가
          
-
          return searchUserId;
          
       } else { // 아이디를 못찾은 경우
          System.out.println("없는 아이디");
-         model.addAttribute("message", 0);
          
-
          return "불가능";
       }
       
@@ -151,33 +150,47 @@ public class MemberController {
          
          return "layout/member/find_pwd";
       }
+      
       // 비번 찾기 아이디와 이메일로 비밀번호로 찾기
       @ResponseBody
       @RequestMapping("/check_find_pwd")
       public String findpwdView(@RequestParam(name = "id") String id,
             @RequestParam(name = "email") String email, Model model, Member member) {
          System.out.println("---> 비번 찾기 오픈 페이지");
-         System.out.println("입력 아이디 " + id);
-         System.out.println("입력 이메일 " + email);
-         
-         model.addAttribute("id", id);
-         model.addAttribute("email", email);
          
          String searchUserPwd = memberService.getIdPhone(member);
 
          if (searchUserPwd != null) { // 비번을 찾은 경우
-            System.out.println("비번 찾기 가능");
-            System.out.println("비번 찾기 비번 : " + searchUserPwd);
-            model.addAttribute("password", searchUserPwd);// 비번 값을 모델에 넣기
-            
-            return searchUserPwd;
+            return id;
             
          } else { // 아이디를 못찾은 경우
         	    System.out.println("비밀번호 찾을 수 없음");
-        	    
         	    return "불가능";
          }
        
+      }
+      
+      @GetMapping("/renew_pwd")
+      public String renewPwdView(@RequestParam(name = "id") String id, Model model) {
+    	 System.out.println(id);
+         model.addAttribute("id", id);
+         return "layout/member/renew_pwd";
+      }
+      
+      // 비밀번호 재설정
+      @ResponseBody
+      @RequestMapping("/renew_pwd_update")
+      public String renewPwdAction(@RequestParam(name = "id") String id, @RequestParam(name = "password") String password) {
+         System.out.println("renew_pwd_update");
+         Member member = new Member();
+         member.setId(id);
+         
+         Member renew = memberService.getMember(member);
+         
+         renew.setPassword(password);
+         memberService.modifyMember(renew);
+         
+         return "success";
       }
    
 
