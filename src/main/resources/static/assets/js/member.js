@@ -78,7 +78,11 @@ function changeDate() {
          alert("이름 입력해주세요.")
          name.focus();
          return false;
-      } else if (phone_number.value == "" || phone_number.length == 0) {
+      } else if (password.value == "" || password.length == 0) {
+         alert("비밀번호를 입력해주세요.")
+         password.focus();
+         return false;
+      }else if (phone_number.value == "" || phone_number.length == 0) {
          alert("핸드폰 번호를 입력해주세요.")
          phone_number.focus();
          return false;
