@@ -3,8 +3,7 @@
 <head>
 <!-- header 입니다. -->
 <th:block th:replace="fragments/adminheader :: adminheader"></th:block>
-<style>
-      
+<style>      
 a {
 	color: #080808;;
 	text-decoration: none !important;
@@ -14,7 +13,7 @@ a {
 a:hover {
 	color: #587D84;
 	}
-    </style>
+</style>
 
 </head>
 <body class="sb-nav-fixed  th:align="center"">
@@ -30,7 +29,7 @@ a:hover {
             <div class="container-fluid px-4">
                <h1 class="mt-4">용용플레이</h1>
                <ol class="breadcrumb mb-4">
-                  <li class="breadcrumb-item active"><a th:href="@{/insertMovie}">영화 등록하기</a></li>
+                  <li class="breadcrumb-item active"><a th:href="@{/admin/insertMovie}">영화 등록하기</a></li>
                </ol>
                
                <div class="card mb-4">
