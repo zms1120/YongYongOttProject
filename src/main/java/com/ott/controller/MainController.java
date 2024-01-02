@@ -13,6 +13,7 @@ import com.ott.entity.Movie;
 import com.ott.entity.TVProgram;
 import com.ott.movie.MovieService;
 import com.ott.search.SearchService;
+import com.ott.tvprogram.TVProgramService;
 
 @Controller
 public class MainController {
@@ -20,19 +21,22 @@ public class MainController {
 	@Autowired
 	private MovieService movieService;
 	private SearchService searchService;
-
+	@Autowired
+	private TVProgramService tvProgramService;
 	@Autowired
 	public void MovieTvProgramController(SearchService searchService) {
 		this.searchService = searchService;
 	}
 
 	// 메인 화면
-	@RequestMapping({"/main","/"})
-	public String mainView(Model model, Movie movie) {
-		List<Movie> movieList = movieService.getMovieList(movie);
-		System.out.println(movieList);
-		model.addAttribute("movieList", movieList);
-		
+		@RequestMapping({"/main","/"})
+		public String mainView(Model model, Movie movie, TVProgram tvProgram) {
+			List<Movie> movieList = movieService.getMovieList(movie);
+			List<TVProgram> tvProgramList = tvProgramService.getTVProgramList(tvProgram);
+			System.out.println(movieList);
+			model.addAttribute("movieList", movieList);
+			model.addAttribute("tvProgramList", tvProgramList);
+			
 		// 임시 데이터!
 		model.addAttribute("bannerList", movieList);
 

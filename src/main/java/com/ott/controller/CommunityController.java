@@ -84,11 +84,16 @@ public class CommunityController {
 
 	@GetMapping("/insertBoard")
 	public String insertBoardView(Model model, @AuthenticationPrincipal SecurityUser securityUser) {
-		Member member = securityUser.getMember();
-		model.addAttribute("member", member);
-		return "layout/community/insertBoard";
-	}
+	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
+	    if (authentication == null || !authentication.isAuthenticated() || securityUser == null) {
+	        return "layout/member/login";
+	    } else {
+	        Member member = securityUser.getMember();
+	        model.addAttribute("member", member);
+	        return "layout/community/insertBoard";
+	    }
+	}
 	@PostMapping("/insertBoard")
 	public String insertBoard(@RequestParam(name = "id") String id, Board board, Model model, Member member) {
 		member.setId(id);

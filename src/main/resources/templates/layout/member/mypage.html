@@ -145,11 +145,9 @@
 								   <td></td>
 								   <td></td>
 							   </tr>
-							   <tr th:each="board, state: ${myboard}">
+							   <tr th:each="board, state: ${myboard}"  th:unless="${board.b_category=='qna'}">
 								   <td th:text="${#dates.format(board.write_date, 'yyyy-MM-dd')}"></td>
-								   <td th:text="${board.title}"></td>
-								   <td th:if="${board.report != null and board.report != ''}"></td> <!-- 신고 안들어옴 -->
-								   <td th:unless="${board.report != null and board.report != ''}" th:style="'color: #ec6090'">숨김처리</td> <!-- 신고 들어옴 -->
+								   <td th:text="${board.title}"></td>								
 								   <td><div class="main-border-button border-no-active"><a th:href="@{/gopost(b_seq=${board.b_seq})}">go</a></div></td>
 							   </tr>
 						   </table>
