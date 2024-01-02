@@ -72,7 +72,7 @@ function changeDate() {
       var password = document.getElementById("password");
       var name = document.getElementById("name");
       var phone_number = document.getElementById("phone_number");
-      console.log("update 성공"+phone_number);    
+      //console.log("update 성공"+phone_number);    
     
         if (name.value == "" || name.length == 0) {
          alert("이름 입력해주세요.")
@@ -82,7 +82,11 @@ function changeDate() {
          alert("비밀번호를 입력해주세요.")
          password.focus();
          return false;
-      }else if (phone_number.value == "" || phone_number.length == 0) {
+      } else if (!modify_pwd_check()) {
+        // modify_pwd_check 함수가 false를 반환하면 폼 전송을 막음
+        password.focus();
+        return false;
+      } else if (phone_number.value == "" || phone_number.length == 0) {
          alert("핸드폰 번호를 입력해주세요.")
          phone_number.focus();
          return false;
@@ -90,3 +94,41 @@ function changeDate() {
          return true;
       }
    }
+   
+   
+   // 비밀번호 확인
+function modify_pwd_check() {
+	$('#password').on('focusout', function(e) {
+		var password = $('#password').val();
+		// 숫자, 특수문자 각각을 포함하는지 확인
+		const numberRegex = /[0-9]/;
+		const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+		
+		// 비밀번호 길이가 8-20자인지 확인
+		if (password == "") {
+			return false;
+		} else if (
+			password.length < 8 || password.length > 20 ||
+			!numberRegex.test(password) ||
+			!specialCharRegex.test(password)
+		) {
+			$('#pwd-message').css("color", "#ec6090").text("비밀번호 형식에 맞게 입력해주세요");
+			e.preventDefault();
+			return false;
+		} else {
+			$('#pwd-message').css("color", "aquamarine").text("확인되었습니다.");
+			return true;
+		}
+	});
+}
+
+$('#password').on('focus', function() {
+	$('#pwd-message').css("color", "#f7f7f7").text("비밀번호는 8-20자 이내로 영문 대소문자, 숫자, 특수문자를 반드시 하나씩 포함하여 입력해주세요.");
+});
+
+
+
+// modify_save 함수가 true를 반환하면 폼이 전송됨
+$('#modify').submit(function() {
+	return modify_save();
+});

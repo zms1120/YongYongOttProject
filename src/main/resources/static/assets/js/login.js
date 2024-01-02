@@ -73,7 +73,7 @@ function check_find_id() {
     // 유효한 이메일 주소 형식인지 확인
     var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     // 유효한 전화번호
-    var phonePattern = /^\d{11}$/;
+    var phonePattern = /^\d{3}-\d{4}-\d{4}$/;
 
     // 이메일 유효성 검사
     if (!emailPattern.test(email)) {
@@ -98,7 +98,7 @@ function check_find_id() {
             email: email,
             phone_number: phone_number
         },
-        type: 'POST',
+        type: 'GET',
         dataType: 'text',
         success: function(result) {
     if (result == "불가능") {
@@ -106,7 +106,7 @@ function check_find_id() {
         $("#id").val('');
     } else {
         $("#searchid-message").css("color", "aquamarine").html("찾으시는 아이디는<br>" + result + "<br>입니다용");
-
+        
     }
         }
     });
@@ -127,34 +127,30 @@ function check_find_pwd() {
     if (!emailPattern.test(email)) {
         $("#findemail-message").css("color", "#ec6090").text("올바른 이메일 형식으로 작성해주세용.");
         return;
-    } else {
-        $("#findemail-message").css("color", "aquamarine").text("잘 입력하셨어용!");
     }
 
     // 아이디 유효성 검사
     if (!emailPattern.test(id)) {
         $("#findid-message").css("color", "#ec6090").text("올바른 이메일 형식으로 작성해주세용.");
         return;
-    } else {
-        $("#findid-message").css("color", "aquamarine").text("잘 입력하셨어용!");
     }
 
-    // 아이디 찾기 AJAX 요청
+    // 비밀번호 찾기 AJAX 요청
     jQuery.ajax({
         url: '/check_find_pwd',
         data: {
             email: email,
             id: id
         },
-        type: 'POST',
+        type: 'GET',
         dataType: 'text',
         success: function(result) {
             if (result == "불가능") {
                 $("#searchpwd-message").css("color", "#ec6090").html("아이디 또는 메일을 확인해주세용.<br>다시 시도해주세용");
                 $("#id").val('');
             } else {
-                $("#searchpwd-message").css("color", "aquamarine").html("찾으시는 비밀번호는<br>" + result + "<br>입니다용!<br>비밀번호는 주기적으로 변경해주세용!");
-
+				//alert(result);
+                window.location.href = "/renew_pwd?id=" + result;
             }
         }
     });

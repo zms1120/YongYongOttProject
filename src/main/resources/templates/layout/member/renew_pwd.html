@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<th:block th:replace="fragments/header :: header"></th:block>
+
+<head>
+<meta charset="UTF-8">
+<title>비밀번호 재설정</title>
+
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="page-content">
+					<!-- 아이디 찾기 페이지 시작 -->
+					<div class="modify">
+						<div class="col-lg-8">
+							<div class="modify modify-section">
+								<div class="heading-section">
+									<h2>비밀번호 재설정</h2>
+								</div>
+
+								<div class="form-section">
+									<form action="renew_pwd" name="fr" method="get" id="renew_pwd_form">
+										<input type="hidden" name="id" id="id" th:value="${id}" readonly>
+										<div class="input_block">
+											<input type="password" name="password" id="password"
+												placeholder="비밀번호를 입력해주세요.">
+											<p class="join-info" id="pwd-message">비밀번호는 8-20자 이내로 영문
+												대소문자, 숫자, 특수문자를 반드시 하나씩 포함하여 입력해주세요.</p>
+										</div>
+										<div class="input_block">
+											<div class="input_block password_ck">
+												<input type="password" name="password_ck" id="password_ck"
+													placeholder="비밀번호를 다시 입력해주세요."> <span
+													class="join-info" id="pwdck-message"></span>
+											</div>
+										</div>
+										<input class="signin_btn" type="button" value="완료" onclick="renewPwd()"><br>
+										<div class="link-block">
+											<a th:href="@{/login}">취소</a> &nbsp; &nbsp; 
+											<a th:href="@{/find_id}">아이디 찾기</a>
+										</div>
+									</form>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<th:block th:replace="fragments/footer :: footer"></th:block>
+</body>
+</html>

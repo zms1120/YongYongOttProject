@@ -100,7 +100,13 @@
                               <a th:href="@{/main}">메인으로</a> &nbsp;
                               </div>
                               <input class="signin_btn" type="submit" value="이용권 변경 완료">
-                              </div>                              
+                              </div>
+                              <!-- 회원 가입창으로 유도 -->
+                              <div th:if="${member == null}">
+                              <div class="link-block">
+                              <a th:href="@{/join}">회원 가입</a>
+                              </div>
+                              </div>                                           
                            </div>
                           </form>
                      </div>

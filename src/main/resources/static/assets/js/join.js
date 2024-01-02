@@ -303,3 +303,33 @@ function save() {
 function goWindow(url){
 	window.open(url);
 }
+
+// renew_pwd
+function renewPwd() {
+	var id = $('#id').val().trim();
+	var password = $('#password').val().trim();
+
+	if (pwd_checker == 1
+		&& pwdck_checker == 1) {
+			//alert("id: " + id + " password: " + password)
+
+		jQuery.ajax({
+			url: '/renew_pwd_update',
+			data: {
+				id: id,
+				password: password
+			},
+			type: 'GET',
+			dataType: 'text',
+			success: function(result) {
+				if (result == "success") {
+					window.location.href = "/login";
+				} else {
+					alert("비밀번호 재설정에 실패했습니다.");
+				}
+			}
+		});
+	} else {
+		return;
+	}
+}
