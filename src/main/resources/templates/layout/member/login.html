@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+
+<th:block th:replace="fragments/header :: header"></th:block>
+
+<body>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="page-content">
+
+					<!-- login page start -->
+					<div class="login">
+						<div class="col-lg-8">
+							<div class="login login-section">
+								<div class="heading-section">
+									<h2>로그인</h2>
+									<h4>용용플레이 계정으로 시작하기</h4>
+								</div>
+								<div class="form-section">
+									<form th:action="@{/login}" method="post">
+										<div class="input_block">
+											<input type="text" name="id" placeholder="id" />
+										</div>
+										<div class="input_block">
+											<input type="password" name="password" placeholder="Password" />
+										</div>
+										<div class="error">[[${message}]]</div>
+										<button class="signin_btn" type="submit">로그인</button>
+										<div class="link-block">
+											<a href="join">회원가입</a> &nbsp; &nbsp; <a href="find_id">아이디 /</a><a href="find_pwd"> 비밀번호 찾기</a>
+										</div>
+									</form>
+									
+
+
+
+								</div>
+								<br> <br>
+								<!-- separator -->
+
+								<div class="separator">다른 서비스 계정으로 간편로그인</div>
+
+								<div class="social-login-buttons"
+									style="display: flex; gap: 10px;">
+									<!-- Google 로그인 버튼 -->
+
+									<div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+									<!-- 네이버 로그인 버튼 -->
+									<div style="width: 120px;">
+										<div id="naverIdLogin"></div>
+									</div>
+									<!-- 카카오톡 로그인 버튼 -->
+									<a id="kakao-login-btn"> <img
+										src="assets/images/kakao_login.png" alt="카카오톡으로 로그인"
+										style="cursor: pointer; width: 120px; height: 35px;" />
+									</a>
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<th:block th:replace="fragments/footer :: footer"></th:block>
+</body>
+
+</html>

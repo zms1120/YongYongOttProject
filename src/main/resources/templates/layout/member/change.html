@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>이용권 변경</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" th:src="@{/assets/js/member.js}"></script>
+</head>
+<!-- header -->
+<th:block th:replace="fragments/header :: header"></th:block>
+<body onload="calculateRegDate()">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-12">
+            <div class="page-content">
+               <!-- 이용권 안내 시작! -->
+               <div class="change">
+                  <div class="change chage-section">
+                     <div class="heading-section">
+                        <h2>이용권 안내</h2>
+                     </div>
+                     <div class="form-section">
+                        <form th:action="@{/change}" method="post" id="change">
+                           <div class="use-table">
+                              <table class="use" th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
+                                 <tr>
+                                    <th></th>
+                                    <th>
+                                    <button  class="change-use-button" type="button" id="guest-btn" onclick="setMembership('GUEST')">GUEST</button>
+                                    </th>
+                                    <th>
+                                    <button class="change-use-button" type="button" id="basic-btn" onclick="setMembership('BASIC')">BASIC</button>
+                                    </th>
+                                    <th>
+                                    <button class="change-use-button" type="button" id="premium-btn" onclick="setMembership('PREMIUM')">PREMIUM</button>
+                                    </th>
+                                 </tr>
+                                 <tr class="content">
+                                    <td>월간 이용 금액</td>
+                                    <td class="guest">0원</td>
+                                    <td class="basic">9,500원</td>
+                                    <td class="premium">13,500원</td>
+                                 </tr>
+                                 <tr class="content">
+                                    <td>이용기간</td>
+                                    <td class="guest">가입 후 7일</td>
+                                    <td class="basic">한달</td>
+                                    <td class="premium">한달</td>
+                                 </tr>
+                                 <tr class="content">
+                                    <td>모바일+태블릿+PC+TV</td>
+                                    <td class="guest">○</td>
+                                    <td class="basic">○</td>
+                                    <td class="premium">○</td>
+                                 </tr>
+                                 <tr class="content">
+                                    <td>VOD 30만편 이상</td>
+                                    <td class="guest">○</td>
+                                    <td class="basic">○</td>
+                                    <td class="premium">○</td>
+                                 </tr>
+                                 <tr class="content">
+                                    <td>영화 6천편 무제한 시청</td>
+                                    <td class="guest">X</td>
+                                    <td class="basic">X</td>
+                                    <td class="premium">○</td>
+                                 </tr>
+                              </table>
+                           </div>
+                           <br>
+                           <div>
+                           <!-- 로그인 되었을때만 보이게 이용권 변경 가능-->
+                              <div th:if="${member != null}">                                         
+                                 <div class="input_block">
+                                    <h5>id</h5>
+                                    <input type="text" name="id" id="id" th:value="${member.id}" readonly>
+                                 </div>                     
+                                 <div class="input_block">
+                                    <h5>변경 이용권</h5>
+                                    <select id="positionSelect" name="position" th:value="${member.position}" onchange="setMembership(this.value)">
+                                         <!-- <option value="GUEST" th:selected="${session.member.position == 'GUEST'}">GUEST</option> -->
+                                       <option value="BASIC" th:selected="${member.position == 'BASIC'}">BASIC</option>
+                                       <option value="PREMIUM" th:selected="${member.position == 'PREMIUM'}">PREMIUM</option>
+                                    </select>
+                                 </div>
+                                 <div class="input_block">
+                                    <h5>변경 날짜</h5>
+                                    <input type="date" name="change_date" id="change_date" readonly>
+                                 </div>
+                                 <div class="input_block">
+                                    <h5>이용권 갱신일</h5>
+                                    <input type="date" name="renew_date" id="renew_date" th:value="${#dates.format(member.renew_date, 'yyyy-MM-dd')}" readonly>
+                                 </div>
+                                 <div class="input_block">
+                                    <h5>이용권 종료일</h5>
+                                    <input type="date" name="end_date"  id="end_date" th:value="${#dates.format(member.end_date, 'yyyy-MM-dd')}" readonly>
+                                 </div>
+                                 <br>
+                                 <div class="link-block">
+                              <a th:href="@{/main}">메인으로</a> &nbsp;
+                              </div>
+                              <input class="signin_btn" type="submit" value="이용권 변경 완료">
+                              </div>
+                              <!-- 회원 가입창으로 유도 -->
+                              <div th:if="${member == null}">
+                              <div class="link-block">
+                              <a th:href="@{/join}">회원 가입</a>
+                              </div>
+                              </div>                                           
+                           </div>
+                          </form>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- footer -->
+   <th:block th:replace="fragments/footer :: footer"></th:block>
+</body>
+</html> 

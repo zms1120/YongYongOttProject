@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+ <th:block th:replace="fragments/header :: header"></th:block>
+
+<body>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-content">
+
+		<!-- ***** Banner Start ***** -->
+		<div class="owl-banner owl-carousel owl-theme">
+		  <div>
+			<a href="change">
+		  	  <div class="banners" th:style="'background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), 
+		  		url(/assets/images/main_banner.jpg)'">
+			    <div class="header-text">
+			    </div>
+		  	  </div>
+		  	</a>
+		  </div>
+		  
+		  <div th:each="banner, state : ${bannerList}">
+			<a th:href="@{moviedetail(movie_code=${banner.movie_code})}">
+		      <div class="banners" th:style="'background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), 
+		  		url(/assets/images/movie/' + ${banner.banner_path} + ')'">
+			     <div class="header-text">
+				  <h4>[[${banner.m_title_ko}]]</h4>
+			    </div>
+		      </div>
+		    </a>
+		  </div>
+		</div>
+		<!-- ***** Banner End ***** -->
+          
+             <!-- 추천 컨텐츠 -->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="featured-contents header-text">
+					<div class="heading-section">
+						<h3>해리포터 시리즈</h3>
+					</div>
+					
+                <div class="owl-features owl-carousel">
+				<tr th:each="movie, state : ${movieList}">
+				<div th:if="${#strings.containsIgnoreCase(movie.m_title_ko, '해리')}">
+                  <div class="item">
+                    <div class="thumb">
+                      <img th:src="@{'/assets/images/movie/' + ${movie.image_path}}" alt="">
+                      	<a th:href="@{moviedetail(movie_code=${movie.movie_code})}">
+	                      <div class="hover-effect">
+	                        	<h6>바로보기</h6>
+	                      </div>
+                      	</a>
+                    </div>
+                    </div>
+                    <h4>[[${movie.m_title_ko}]]</h4>
+                  </div>
+				</tr>
+                </div>
+              </div>
+            </div>
+            
+		   <div class="row">
+			<div class="col-lg-12">
+				<div class="featured-contents header-text">
+					<div class="heading-section">
+						<h3>최신 컨텐츠</h3>
+					</div>
+					
+                <div class="owl-features owl-carousel">
+				<tr th:each="tvProgram, state : ${tvProgramList}">
+				<div th:if="${#strings.containsIgnoreCase(tvProgram.airing_period, '202')}">
+                  <div class="item">
+                    <div class="thumb">
+                      <img th:src="@{'/assets/images/tv/' + ${tvProgram.image_path}}" alt="">
+                      <a th:href="@{tvdetail(pseq=${tvProgram.pseq})}">
+	                      <div class="hover-effect">
+	                        	<h6>바로보기</h6>
+	                      </div>
+                      	</a>
+                    </div>
+                    </div>
+                    <h4>[[${tvProgram.p_title}]]</h4>
+                  </div>
+				</tr>
+                </div>
+              </div>
+            </div>
+
+          
+  
+  <th:block th:replace="fragments/footer :: footer"></th:block>
+
+  </body>
+
+</html>

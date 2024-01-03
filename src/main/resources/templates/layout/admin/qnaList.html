@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- header 입니다. -->
+<th:block th:replace="fragments/adminheader :: adminheader"></th:block>
+</head>
+<body class="sb-nav-fixed">
+
+	<div id="layoutSidenav">
+		<!-- mid 입니다. -->
+		<th:block th:replace="fragments/adminmid :: adminmid"></th:block>
+		<div id="layoutSidenav_content">
+			<main>
+				<!-- 여기까지는 꼭 넣어주기(어드민) 아래 footer도 있음 -->
+
+				<div class="container-fluid px-4">
+					<h1 class="mt-4">용용플레이</h1>
+					<ol class="breadcrumb mb-4">
+						<li class="breadcrumb-item active">게시판 관리</li>
+					</ol>
+
+					<div class="card mb-4">
+						<div class="card-header">
+							<i class="fas fa-table me-1"></i>전체 게시물
+						</div>
+						<div class="card-body">
+							<table id="boardTable">
+								<thead>
+									<tr>
+										<th>번호</th>
+										<th>제목</th>
+										<th>작성자</th>
+										<th>게시글 항목</th>
+										<th>조회수</th>
+										<th>추천수</th>
+										<th>등록일</th>																	
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="board, state : ${boardList}">
+										<td th:text="${board.b_seq}"></td>
+										<td><a th:href="@{/gopost(b_seq=${board.b_seq})}" th:text="${board.title}"></a></td>
+										<td th:text="${board.member.id}"></td>
+										<td th:text="${board.b_category}"></td>
+										<td th:text="${board.cnt}"></td>
+										<td th:text="${board.b_like}"></td>
+										<td th:text="${board.write_date}"></td>	
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+				</div>
+			</main>
+		</div>
+	</div>
+	<!-- footer 입니다. -->
+	<th:block th:replace="fragments/adminfooter :: adminfooter"></th:block>
+</body>
+
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+ <th:block th:replace="fragments/header :: header"></th:block>
+
+<body>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="page-content">
+
+		<!-- join page start -->
+		<div class="join">
+          <div class="col-lg-8">
+			<form th:action="@{/join}" method="post" id="join" name="fr">
+			
+			<!-- *** STEP 1 *** -->
+			<div class="join step1">
+				<div class="join join-section">
+					<p>STEP 1</p>
+					<div class="heading-section">
+						<h2>이메일과 비밀번호로 <br>
+							<em th:style="'color: #9ADBE8'">용용플레이</em>를 즐길 수 있어용!
+						</h2>
+					</div>
+					<div class="join-form">
+						<!--action : form에 작성한 데이터를 member/join으로 보냄 -->
+						<!-- name : 서버로 전송 할 때 변수의 역할이라고 생각해줘-->
+						<input type="hidden" id="email" name="email">
+						<div class="input_block">
+							<input type="email" id="id" name="id" placeholder="yongyong@example.com">
+							<span class="join-info" id="id-message">로그인, 비밀번호 찾기, 알림에 사용되니 정확한 이메일 주소를 입력해주세요.</span>
+						</div>
+						<div class="input_block">
+							<input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요.">
+							<p class="join-info" id="pwd-message">비밀번호는 8-20자 이내로 영문 대소문자, 숫자, 특수문자를 반드시 하나씩 포함하여 입력해주세요.</p>
+						</div>
+						<div class="input_block">
+							<div class="input_block password_ck">
+								<input type="password" name="password_ck" id="password_ck" placeholder="비밀번호를 다시 입력해주세요.">
+								<span class="join-info" id="pwdck-message"></span>
+							</div>
+						</div>
+						<div class="button-div">
+							<button class="ck-button" id="next-to-step2" th:style="'width: 80%'">다음</button>
+						</div>
+					</div>
+					
+					<!-- separator -->
+			
+					<div class="separator">
+						다른 서비스 계정으로 가입
+					</div>
+			
+					<div class="social-login-buttons" style="display: flex; gap: 10px;">
+						<!-- Google 로그인 버튼 -->
+			
+						<div class="g-signin2" data-onsuccess="onSignIn"></div>
+			
+						<!-- 네이버 로그인 버튼 -->
+						<div style="width:120px;">
+							<div id="naverIdLogin"></div>
+						</div>
+						<!-- 카카오톡 로그인 버튼 -->
+						<a id="kakao-login-btn"> <img src="assets/images/kakao_login.png" alt="카카오톡으로 로그인"
+								style="cursor: pointer; width: 120px; height: 35px;" />
+						</a>
+			
+					</div>
+				</div>
+			</div>
+			<!-- *** STEP 1 END *** -->
+				
+				<!-- *** STEP 2 *** -->
+				
+				  <div class="join step2">
+					<div class="join join-section">
+						<p>STEP 2</p>
+						<div class="heading-section">
+							<h2>이메일 확인</h2>
+							<h6>이메일로 인증코드를 전송했습니다.</h6>
+						</div>
+						<div class="join-form">
+							<div class="input_block">
+								<input type="text" id="auth_num" name="auth_num">
+								<button class="auth-button">인증</button>
+							</div>
+							<div class="auth-message"></div>
+							<br>
+							<div class="button-div">
+							  <button class="prev-button" id="prev-to-step1">Back</button>
+							  <button class="ck-button" id="next-to-step3">다음</button>
+							</div>
+						</div>
+					</div>
+				  </div>
+				
+				<!-- *** STEP 2 END *** -->
+				
+				<!-- *** STEP 3 *** -->
+				<div class="join step3">
+					<div class="join join-section">
+						<p>STEP 3</p>
+						<div class="heading-section">
+							<h2>조금 더 남았어용:)</h2>
+						</div>
+						<div class="join-form">
+							<div class="input_block">
+								<span class="join-info">이름</span>
+								<input type="text" id="name" name="name" placeholder="ex) 김용용">
+							</div>
+							<div class="input_block">
+								<span class="join-info">번호</span>
+								<input type="tel" name="phone_number" id="phone_number" placeholder="'-' 제외 11자리 입력">
+							</div>
+							
+							<div class="input_block age">
+								<div class="join-info">나이</div>
+								<div class="selection">
+									<select name="age" id="age">
+										<option th:each="i : ${#numbers.sequence(0, 100)}" th:value="${i}" th:text="${i}"></option>
+									</select>
+								</div>
+							</div>
+							<br>
+							<div class="join-info" id="step3-message"></div>
+							
+							<div class="button-div">
+							  <button class="prev-button" id="prev-to-step2">Back</button>
+							  <button class="ck-button" id="next-to-step4">다음</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- *** STEP 3 END *** -->
+				
+				<!-- *** STEP 4 *** -->
+				<div class="join step4">
+					<div class="join join-section">
+						<p>STEP 4</p>
+						<div class="heading-section">
+							<h2>이용권을 선택해주세용!</h2>
+						</div>
+						<div class="membership">
+							<div class="use-table">
+                              <table class="use" th:align="center" th:cellpadding="0" th:cellspacing="0">
+                                 <tr>
+                                    <th><input type="hidden" id="position" name="position"></th>
+                                    <th>
+										<button  class="change-use-button" type="button" id="guest-btn">GUEST</button></label>
+                                    </th>
+                                    <th>
+                                    	<button  class="change-use-button" type="button" id="basic-btn">BASIC</button></label>
+                                    </th>
+                                    <th>
+										<button  class="change-use-button" type="button" id="premium-btn">PREMIUM</button></label>
+                                    </th>
+                                 </tr>
+                                 <tr class="content">
+                                    <td>월간 이용 금액</td>
+                                    <td class="guest">0원</td>
+                                    <td class="basic">9,500원</td>
+                                    <td class="premium">13,500원</td>
+                                 </tr>
+                                 <tr class="content">
+                                    <td>이용기간</td>
+                                    <td class="guest">가입 후 7일</td>
+                                    <td class="basic">한달</td>
+                                    <td class="premium">한달</td>
+                                 </tr>
+                                 <tr class="content">
+                                    <td>모바일+태블릿+PC+TV</td>
+                                    <td class="guest">○</td>
+                                    <td class="basic">○</td>
+                                    <td class="premium">○</td>
+                                 </tr>
+                                 <tr class="content">
+                                    <td>VOD 30만편 이상</td>
+                                    <td class="guest">○</td>
+                                    <td class="basic">○</td>
+                                    <td class="premium">○</td>
+                                 </tr>
+                                 <tr class="content">
+                                    <td>영화 6천편 무제한 시청</td>
+                                    <td class="guest">X</td>
+                                    <td class="basic">X</td>
+                                    <td class="premium">○</td>
+                                 </tr>
+                              </table>
+                              
+                              <input type="hidden" name="reg_date" id="reg_date">
+                              <input type="hidden" name="renew_date" id="renew_date">
+                              <input type="hidden" name="end_date" id="end_date">
+                              
+                              <div class="join-info" id="membership-message"></div>
+                              
+                             <div class="button-div">
+							  <button class="prev-button" id="prev-to-step3">Back</button>
+							  <button class="ck-button" id="next-to-step5">다음</button>
+							</div>
+                          </div>
+                              
+						</div>
+					</div>
+				</div>
+				<!-- *** STEP 4 END *** -->
+				
+				<!-- *** STEP 5 *** -->
+				<div class="join step5">
+					<div class="join join-section">
+						<p>STEP 5</p>
+						<div class="heading-section">
+							<h2>이용약관에 동의하시면<br>
+								회원가입이 완료됩니다.
+							</h2>
+						</div>
+						<div class="join-form">
+				
+							<div class="checkbox age-restriction">
+								<input type="checkbox" class="terms-of-service" id="age-restriction">
+								<label for="age-restriction"></label>
+								<span class="checkbox-info">만 14세 이상입니다.
+									<span th:style="'color: aquamarine'">(필수)</span>
+								</span>
+								<span onclick="goWindow('/age-restriction')">
+									<div class="detail"><i class="fas fa-chevron-right"></i></div>
+								</span>
+							</div>
+							<div class="checkbox service">
+								<input type="checkbox" class="terms-of-service" id="service">
+								<label for="service"></label>
+								<span class="checkbox-info">서비스 이용약관
+									<span th:style="'color: aquamarine'">(필수)</span>
+								</span>
+								<span onclick="goWindow('/service')">
+									<div class="detail"><i class="fas fa-chevron-right"></i></div>
+								</span>
+							</div>
+							<div class="checkbox member_privacy">
+								<input type="checkbox" class="terms-of-service" id="member_privacy">
+								<label for="member_privacy"></label>
+								<span class="checkbox-info">개인정보 수집 이용 동의
+									<span th:style="'color: aquamarine'">(필수)</span>
+								</span>
+								<span onclick="goWindow('/member_privacy')">
+									<div class="detail"><i class="fas fa-chevron-right"></i></div>
+								</span>
+							</div>
+							<div class="checkbox member_payment">
+								<input type="checkbox" class="terms-of-service" id="member_payment">
+								<label for="member_payment"></label>
+								<span class="checkbox-info">유료상품 이용약관
+									<span th:style="'color: aquamarine'">(필수)</span>
+								</span>
+								<span onclick="goWindow('/member_payment')">
+									<div class="detail"><i class="fas fa-chevron-right"></i></div>
+								</span>
+							</div>
+							<div class="checkbox member_event">
+								<input type="checkbox" class="terms-of-service" id="member_event">
+								<label for="member_event"></label>
+								<span class="checkbox-info">신작 콘텐츠 및 이벤트 정보 수신 동의
+									<span>(선택)</span>
+								</span>
+								<span onclick="goWindow('/member_event')">
+									<div class="detail"><i class="fas fa-chevron-right"></i></div>
+								</span>
+							</div>
+							<div class="checkbox member_ad">
+								<input type="checkbox" class="terms-of-service" id="member_ad">
+								<label for="member_ad"></label>
+								<span class="checkbox-info">광고성 정보 수신
+									<span>(선택)</span>
+								</span>
+								<span onclick="goWindow('/member_ad')">
+									<div class="detail"><i class="fas fa-chevron-right"></i></div>
+								</span>
+							</div>
+							<div class="checkbox member_target">
+								<input type="checkbox" class="terms-of-service" id="member_target">
+								<label for="member_target"></label>
+								<span class="checkbox-info">맞춤형 서비스 제공을 위한 제3자 제공 동의
+									<span>(선택)</span>
+								</span>
+								<span onclick="goWindow('/member_target')">
+									<div class="detail"><i class="fas fa-chevron-right"></i></div>
+								</span>
+							</div>
+							
+							<div class="join-info" id="checkbox-message"></div>
+							
+							<div class="button-div">
+							  <button class="prev-button" id="prev-to-step4">Back</button>
+							  <button type="button" class="submit-button" id="submit-button">완료</button>
+							</div>
+				
+						</div>
+					</div>
+				</div>
+				<!-- *** STEP 5 END *** -->
+				
+			  </form>
+		    </div>
+		  </div>
+		</div>
+		
+      </div>
+    </div>
+  </div>
+          
+  <th:block th:replace="fragments/footer :: footer"></th:block>
+  
+
+  </body>
+
+</html>

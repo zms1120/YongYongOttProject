@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<title>회원 정보 수정</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" th:src="@{/assets/js/member.js}"></script>
+</head>
+<!-- header -->
+<th:block th:replace="fragments/header :: header"></th:block>
+<body>
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-12">
+            <div class="page-content">
+               <!-- 회원정보페이지 시작! -->
+               <div class="modify">
+                  <div class="col-lg-8">
+                     <div class="modify modify-section">
+                        <div class="heading-section">
+                           <h2>회원 정보 수정</h2>
+                           <h4>회원 정보를 수정할 수 있어용.</h4>
+                           <h5>비밀번호, 이름, 핸드폰번호만 수정 가능해용.</h5>
+                        </div>
+                        <div class="form-section">
+                           <form th:action="@{/modify}" method="post" id="modify" onsubmit="return modify_save()">
+                              <div class="input_block">
+                                 <h5>아이디</h5>
+                                 <input type="text" name="id" th:value="${member.id}" readonly>
+                              </div>
+                               <div class="input_block">
+                                 <h5>비밀번호</h5>
+                                 <input type="password" name="password" id="password">
+                                 <p class="join-info" id="pwd-message">비밀번호는 8-20자 이내로 영문 대소문자, 숫자, 특수문자를 반드시 하나씩 포함하여 입력해주세요.</p>
+                              </div>
+                              <div class="input_block">
+                                 <h5 style="color: #ec6090;">이름</h5>
+                                 <input type="text" name="name" id="name" th:value="${member.name}">
+                              </div>
+                              <div class="input_block">
+                                 <h5 style="color: #ec6090;">핸드폰 번호</h5>
+                                 <input type="text" name="phone_number" id="phone_number" th:value="${member.phone_number}">
+                              </div>
+                              <div class="input_block">
+                                 <h5 style="color: #ec6090;">이메일</h5>
+                                 <input type="text" name="email" th:value="${member.email}">
+                              </div>
+                              <div class="input_block">
+                                 <h5>이용권</h5>
+                                 <input type="text" name="position" th:value="${member.position}" readonly>
+                              </div>
+                              <div class="input_block">
+                                 <h5>가입일</h5>
+                                 <input type="date" name="reg_date" th:value="${#dates.format(member.reg_date, 'yyyy-MM-dd')}" readonly>
+                              </div>
+                              <div th:unless="${member.position=='ADMIN'}">
+											<div class="input_block">
+												<h5>이용권 갱신일</h5>
+												<input type="date" name="renew_date"
+													th:value="${#dates.format(member.renew_date, 'yyyy-MM-dd')}"
+													pattern="yyyy-MM-dd" readonly>
+											</div>
+											<div class="input_block">
+												<h5>이용권 종료일</h5>
+												<input type="date" name="end_date"
+													th:value="${#dates.format(member.end_date, 'yyyy-MM-dd')}"
+													readonly>
+											</div>
+										</div>
+                              </div>
+                              <div class="link-block">
+                                 <a th:href="@{/main}">메인으로</a> &nbsp; &nbsp; <a th:href="@{/delete}">탈퇴</a>
+                              </div>                              
+                              <input class="signin_btn" type="submit" value="회원정보 수정" >
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- footer -->
+   <th:block th:replace="fragments/footer :: footer"></th:block>
+</body>
+</html>

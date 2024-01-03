@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- header 입니다. -->
+<th:block th:replace="fragments/adminheader :: adminheader"></th:block>
+<!-- CSS Files -->
+<link rel="stylesheet" href="assets/css/admin.css" />
+<style>
+a {
+	color: #080808;;
+	text-decoration: none !important;
+	font-size: 15px;
+}
+
+a:hover {
+	color: #587D84;
+	}
+</style>
+</head>
+<body class="sb-nav-fixed">
+
+	<div id="layoutSidenav">
+		<!-- mid 입니다. -->
+		<th:block th:replace="fragments/adminmid :: adminmid"></th:block>
+		<div id="layoutSidenav_content">
+			<main>
+				<!-- 여기까지는 꼭 넣어주기(어드민) 아래 footer도 있음 -->
+
+				<div class="container-fluid px-4">
+					<h1 class="mt-4">용용플레이</h1>
+					<ol class="breadcrumb mb-4">
+						<li class="breadcrumb-item active">영화 상세페이지</li>
+					</ol>
+
+					<img th:src="@{'/assets/images/movie/' + ${movie.banner_path}}"
+						alt="">
+
+					<!-- ***** image End ***** -->
+					<!-- detail information -->
+					<div class="detail-table">
+						<table>
+							<tr>
+								<td class="em" th:text="${movie.m_title_ko}" width="80"
+									colspan="2"></td>
+							</tr>
+							<tr>
+								<td th:text="${movie.description}" colspan="2"></td>
+							</tr>
+							<tr>
+								<td class="em" th:text="개요"></td>
+								<td>[[${movie.nation}]], [[${movie.open_year}]]</td>
+							</tr>
+							<tr>
+								<td class="em" th:text="장르"></td>
+								<td th:text="${movie.genre}"></td>
+							</tr>
+							<tr>
+								<td class="em" th:text="출연"></td>
+								<td th:text="${movie.cast}"></td>
+							</tr>
+							<tr>
+								<td class="em" th:text="감독"></td>
+								<td th:text="${movie.director}"></td>
+							</tr>
+							<tr>
+								<td class="em" th:text="등급"></td>
+								<td th:text="${movie.rating}"></td>
+							</tr>
+						</table>
+					</div>
+					<br>
+					<a th:href="@{'/admin/updateMovie?movie_code=' + ${movie.movie_code}}">수정하기</a>
+					<a th:href="@{/admin/deleteMovie/{movie_code}(movie_code=${movie.movie_code})}">삭제하기</a>
+
+
+				</div>
+			</main>
+		</div>
+	</div>
+
+	<!-- footer 입니다. -->
+	<th:block th:replace="fragments/adminfooter :: adminfooter"></th:block>
+</body>
+
+</html>

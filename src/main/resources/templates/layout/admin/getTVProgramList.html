@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- header 입니다. -->
+<th:block th:replace="fragments/adminheader :: adminheader"></th:block>
+<style>
+      
+a {
+	color: #080808;;
+	text-decoration: none !important;
+	font-size: 15px;
+}
+
+a:hover {
+	color: #587D84;
+	}
+    </style>
+</head>
+<body class="sb-nav-fixed">
+
+	<div id="layoutSidenav">
+		<!-- mid 입니다. -->
+		<th:block th:replace="fragments/adminmid :: adminmid"></th:block>
+		<div id="layoutSidenav_content">
+			<main>
+			<!-- 여기까지는 꼭 넣어주기(어드민) 아래 footer도 있음 -->  
+	 			<!-- TV프로그램 목록 -->
+	 			<div class="container-fluid px-4">
+					<h1 class="mt-4">용용플레이</h1>
+					<ol class="breadcrumb mb-4">
+						<li class="breadcrumb-item active"><a th:href="@{/admin/insertMovie}">TV프로그램 등록하기</a></li>
+					</ol>
+									
+					
+					<div class="card mb-4">
+						<div class="card-header">
+							<i class="fas fa-table me-1"></i>TV 프로그램
+						</div>
+						<div class="card-body">
+							<table id="tvProgramTable">
+								<thead>
+									<tr>
+										<th>일련번호</th>
+										<th>이미지</th>
+										<th>제목</th>
+										<th>방송사</th>
+										<th>감독</th>
+										<th>출연진</th>
+										<th>등급</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="tvProgram, state : ${tvProgramList}" th:object="${tvProgram}">
+									    <td><a th:href="@{getTVProgram(pseq=${tvProgram.pseq})}" th:text="${tvProgram.pseq}"></a></td>
+									    <td><a th:href="@{getTVProgram(pseq=${tvProgram.pseq})}"><img th:src="@{'/assets/images/tv/' + ${tvProgram.image_path}}" alt=""></a></td>
+									    <td><a th:href="@{getTVProgram(pseq=${tvProgram.pseq})}" th:text="${tvProgram.p_title}"></a></td>
+									    <td><a th:href="@{getTVProgram(pseq=${tvProgram.pseq})}" th:text="${tvProgram.p_board_casting}"></a></td>
+									    <td><a th:href="@{getTVProgram(pseq=${tvProgram.pseq})}" th:text="${tvProgram.p_director}"></a></td>
+									    <td><a th:href="@{getTVProgram(pseq=${tvProgram.pseq})}" th:text="${tvProgram.p_cast}"></a></td>
+									    <td><a th:href="@{getTVProgram(pseq=${tvProgram.pseq})}" th:text="${tvProgram.rating}"></a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>				
+				
+				</div>
+			</main>
+		</div>
+	</div>
+					
+					
+
+	<!-- footer 입니다. -->
+	<th:block th:replace="fragments/adminfooter :: adminfooter"></th:block>	
+
+</body>
+
+</html>

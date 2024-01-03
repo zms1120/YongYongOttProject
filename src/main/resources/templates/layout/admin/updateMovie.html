@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- header 입니다. -->
+<th:block th:replace="fragments/adminheader :: adminheader"></th:block>
+<!-- CSS Files -->
+<link rel="stylesheet" th:href="@{/assets/css/admin.css}" />
+<!-- js Files -->
+<script type="text/javascript" th:src="@{/assets/js/admin.js}"></script>
+</head>
+<body class="sb-nav-fixed">
+
+	<div id="layoutSidenav">
+		<!-- mid 입니다. -->
+		<th:block th:replace="fragments/adminmid :: adminmid"></th:block>
+
+		<div id="layoutSidenav_content">
+			<main>
+				<!-- 여기까지는 꼭 넣어주기(어드민) 아래 footer도 있음 -->
+
+				<!-- 무비 update 시작 -->
+				<div class="insert">
+					<div class="insert insert-section">
+						<div class="form-section">
+							<div class="heading-section">
+								<h4>영화 수정 페이지 입니다.</h4>
+								<h5>수정해주시고 수정하기 버튼을 눌러주세요.</h5>
+							</div>
+							<form th:action="@{/admin/updateMovie}" method="post" id="update" enctype="multipart/form-data" onsubmit="return movie_save()">
+								<div class="input-table">
+									<div class="insert-input">
+										<h5>카테고리</h5>
+									</div>
+									<div>
+									<input type="text" name="category" id="category" value="영화" readonly>
+									</div>	
+									
+									<div class="insert-input">
+										<h5>일련번호</h5>
+									</div>
+									<div>
+									<input type="text" name="movie_code" id="movie_code" placeholder="일련번호를 입력해주세요." th:value="${movie.movie_code}">
+									</div>
+									
+									<div class="insert-input">
+										<h5>장르</h5>
+									</div>
+									<div>
+									<input type="text" name="genre" id="genre" placeholder="장르를 입력해주세요." th:value="${movie.genre}">
+									</div>
+									
+									<div class="insert-input">
+										<h5>제목</h5>
+									</div>
+									<div>
+									<input type="text" name="m_title_ko" id="m_title_ko" placeholder="제목을 입력해주세요." th:value="${movie.m_title_ko}">
+									</div>		
+									
+									<div class="insert-input">
+										<h5>감독</h5>
+									</div>
+									<div>
+									<input type="text" name="director" id="director" placeholder="감독을 입력해주세요." th:value="${movie.director}">
+									</div>
+									
+									<div class="insert-input">
+										<h5>국가</h5>
+									</div>
+									<div>
+									<input type="text" name="nation" id="nation" placeholder="국가를 입력해주세요." th:value="${movie.nation}">
+									</div>
+									
+									<div class="insert-input">
+										<h5>개봉년도</h5>
+									</div>
+									<div>
+									<input type="text" name="open_year" id="open_year" placeholder="개봉년도를 입력해주세요." th:value="${movie.open_year}">
+									</div>	
+									
+									<div class="insert-input">
+										<h5>상영시간</h5>
+									</div>
+									<div>
+									<input type="text" name="running_time"
+										id="running_time" placeholder="상영시간을 입력해주세요." th:value="${movie.running_time}">
+									</div>	
+									
+									<div class="insert-input">
+										<h5>등급</h5>
+									</div>
+									<div>
+										<input type="text" name="rating" id="rating" placeholder="등급을 입력해주세요." th:value="${movie.rating}">
+									</div>
+									
+									<div class="insert-input">
+										<h5>키워드</h5>
+									</div>
+									<div>
+										<input type="text" name="keyword" id="keyword"  placeholder="키워드를 입력해주세요." th:value="${movie.keyword}">
+									</div>
+									
+									<div class="insert-input">
+										<h5>출연진</h5>
+									</div>
+									<div>
+										<textarea name="cast" id="cast" cols="30" rows="3" placeholder="출연진을 입력해주세요." th:text="${movie.cast}"></textarea>
+									</div>
+									
+									<div class="insert-input">
+										<h5>줄거리</h5>
+									</div>
+									<div>
+										<textarea name="description" id="description" cols="50" rows="10" placeholder="줄거리를 입력해주세요." th:text="${movie.description}"></textarea>
+									</div>
+									
+									<div class="insert-input">
+										<h5>영상주소</h5>
+									</div>
+									<div>
+										<input type="text" name="video_path" id="video_path" placeholder="영상주소를 입력해주세요." th:value="${movie.video_path}">
+									</div>
+									
+									<div class="insert-input">
+										<h5>이미지 업로드</h5>
+									</div>
+									<div>
+									<div class="image-upload-container">
+										<img th:src="@{'/assets/images/movie/' + ${originalImagePath}}" width="200pt" th:if="${not #strings.isEmpty(originalImagePath)}">
+										<!-- 이미지 업로드 필드 -->
+										<input type="file" name="imageFile" id="imageFile" th:required="${#strings.isEmpty(originalImagePath)}">
+										<!-- 기존 이미지 파일명을 hidden 필드로 전송 -->
+										<input type="hidden" name="originalImageFile" th:if="${not #strings.isEmpty(originalImagePath)}" th:value="${originalImagePath}">
+									</div>
+									</div>
+									
+									<div class="insert-input">
+										<h5>배너 업로드</h5>
+									</div>
+									<div>
+									<div class="image-upload-container">
+										<!-- 기존 배너 이미지 파일이 있을 경우에 이미지 표시 -->
+										<img th:src="@{'/assets/images/movie/' + ${originalBannerPath}}" width="200pt" th:if="${not #strings.isEmpty(originalBannerPath)}">
+										<!-- 이미지 업로드 필드 -->
+										<input type="file" name="bannerFile" id="bannerFile" th:required="${#strings.isEmpty(originalBannerPath)}">
+										<!-- 기존 이미지 파일명을 hidden 필드로 전송 -->
+										<input type="hidden" name="originalBannerFile" th:if="${not #strings.isEmpty(movie.banner_path)}" th:value="${movie.banner_path}">
+									</div>	
+									</div>
+								</div>									
+								<br>
+								<input class="insert_btn" type="submit" value="수정하기">
+						</form>
+					</div>
+				</div>
+				</div>
+			</main>
+		</div>
+	</div>
+
+	<!-- footer 입니다. -->
+	<th:block th:replace="fragments/adminfooter :: adminfooter"></th:block>
+
+</body>
+
+</html>

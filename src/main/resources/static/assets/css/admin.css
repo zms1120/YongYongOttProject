@@ -1,0 +1,162 @@
+/* 
+---------------------------------------------
+a link Style
+--------------------------------------------- 
+*/ 
+a {
+	color: #080808;;
+	text-decoration: none !important;
+	font-weight: bold;
+	font-size: 17px;
+}
+
+a:hover {
+	color: #587D84;
+}
+
+/* 
+---------------------------------------------
+community insert & update Style
+--------------------------------------------- 
+*/ 
+
+.insert {
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.insert .insert-section {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-color: #D1E4E8;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40px;
+   width: 1000px; 
+}
+.insert .form-section {
+  width: 900px;
+  margin: 10px auto;
+}
+
+.insert .heading-section{
+  width: 900px;
+  margin-top: 50px;
+}
+.insert .heading-section h4{
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 25px;
+  font-weight: 500px;
+}
+
+.insert .heading-section h5{
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.insert .insert-input h5{
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 18x;
+}
+
+.insert form .input-table select {
+  display: block;
+  width:750px;
+  height: 40px;
+  margin: 0 auto;
+  border-radius: 8px;
+  border: none;
+  background: #f7f7f7;
+  opacity: 90%;
+  color: #666;
+  padding: 0 0 0 15px;
+  font-size: 20px;
+}
+
+
+.insert .link-block {
+   position: relative;
+    justify-content: center;
+    align-items: center;
+   text-align: center;
+   margin-left: 10px;   
+}
+
+.insert form .input-table input {
+  display: block;
+  width:750px;
+  height: 40px;
+  margin: 0 auto;
+  border-radius: 8px;
+  border: none;
+  background: #f7f7f7;
+  opacity: 90%;
+  color: #666;
+  padding: 0 0 0 15px;
+  font-size: 20px;
+}
+ .insert form .input-table input:focus,
+ .insert form .input-table input:active {
+  outline: none;
+  border: none;
+  color: rgba(15, 19, 42, 1);
+}
+.insert form .input-table textarea {
+  display: block;
+  width:750px;
+
+  margin: 0 auto;
+  border-radius: 8px;
+  border: none;
+  background: #f7f7f7;
+  opacity: 90%;
+  color: #666;
+  padding: 0 0 0 15px;
+  font-size: 18px;
+}
+
+ .insert form .insert_btn {
+  background: #9ADBE8;
+  color: #1e1e1e;
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  height: 45px;
+  border-radius: 8px;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500px;
+  transition: 0.2s linear;
+  margin: 0 auto;
+ }
+  .insert form .insert_btn:hover {
+  border-color: #fff;
+  background-color: #fff;
+  color: #1e1e1e;
+}
+
+/* 
+---------------------------------------------
+image Style
+--------------------------------------------- 
+*/ 
+
+.image-upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px; 
+}
+
